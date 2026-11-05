@@ -54,26 +54,25 @@ const CONFIG = {
     { icon: "shield", title: "Full Autonomy", time: "Phase 5 - Ongoing", text: "Complete decentralization, DAO governance activation, and autonomous operations." }
   ],
 
- // PRODUCT CARDS (8 cards across 2 rows of 4)
+ // PRODUCT CARDS (8 cards across 2 rows of 4) — Linked to dedicated product pages
   products: [
-    { asset: "tokenizedDrones", icon: "drone", label: "Aerial logistics", title: "Tokenized Drones", href: "#ecosystem",
+    { asset: "tokenizedDrones", icon: "drone", label: "Aerial logistics", title: "Tokenized Drones", href: "product-drones.html",
       text: "Explore legally structured participation in drone-fleet economics, subject to the applicable terms." },
-    { asset: "tokenizedVehicles", icon: "car", label: "Mobility assets", title: "Tokenized Vehicles", href: "#ecosystem",
+    { asset: "tokenizedVehicles", icon: "car", label: "Mobility assets", title: "Tokenized Vehicles", href: "product-vehicles.html",
       text: "Discover tokenization models that may represent contractual rights or interests in dedicated vehicle entities." },
-    { asset: "zeroVault", icon: "vault", label: "Treasury security", title: "ZeroVault", href: "#technology",
+    { asset: "zeroVault", icon: "vault", label: "Treasury security", title: "ZeroVault", href: "product-zerovault.html",
       text: "Explore modular treasury security, role-based access, timelocks, emergency pausing, and controlled execution." },
-    { asset: "escrowDelivery", icon: "box", label: "Verified delivery", title: "Escrow & Delivery", href: "#technology",
+    { asset: "escrowDelivery", icon: "box", label: "Verified delivery", title: "Escrow & Delivery", href: "product-escrow.html",
       text: "Explore escrow workflows designed to release funds according to defined conditions and authenticated evidence." },
-    { asset: "nftAviation", icon: "plane", label: "Web3 aviation", title: "NFT Flight Tickets", href: "#ecosystem",
+    { asset: "nftAviation", icon: "plane", label: "Web3 aviation", title: "NFT Flight Tickets", href: "product-aviation.html",
       text: "Book airline tickets minted as on-chain NFTs. Unlock native token discounts and installment payments by holding eligible tier NFTs." },
-    { asset: "cryptoBankCard", icon: "card", label: "Instant POS settlement", title: "Direct Wallet Card", href: "#technology",
+    { asset: "cryptoBankCard", icon: "card", label: "Instant POS settlement", title: "Direct Wallet Card", href: "product-card.html",
       text: "Spend the real-time fiat value of your tokens at physical POS terminals via a bank card wired directly to your Web3 wallet." },
-    { asset: "nftMarketplace", icon: "market", label: "Utility & BNPL NFTs", title: "NFT Marketplace", href: "#ecosystem",
+    { asset: "nftMarketplace", icon: "market", label: "Utility & BNPL NFTs", title: "NFT Marketplace", href: "product-marketplace.html",
       text: "Trade ecosystem assets and exclusive Credit-Tier NFTs that grant wallet holders instant buy-now-pay-later installment privileges." },
-    { asset: "droneArcade", icon: "gamepad", label: "Play-to-earn arcade", title: "2D Drone Arcade", href: "#ecosystem",
+    { asset: "droneArcade", icon: "gamepad", label: "Play-to-earn arcade", title: "2D Drone Arcade", href: "product-arcade.html",
       text: "Pilot combat drones in a classic 2D aerial shooter. Score points to unlock store discount vouchers and exclusive reward NFTs." }
   ],
-
   // METRICS STRIP — labels only. Add value:"…" text only for real, verified figures.
   metrics: [
     { icon: "box", label: "Real-World Assets", value: "In Development" },
@@ -312,8 +311,20 @@ const svg = (n, c = "i") => `<svg class="${c}" viewBox="0 0 24 24" aria-hidden="
 function render() {
   const C = CONFIG;
   $("#links").innerHTML = C.nav.map(([t, h]) => `<li><a class="l" href="${h}">${t}</a></li>`).join("");
+ // Render 8 product cards with glowing orange Learn More CTA button
   $("#cards").innerHTML = C.products.map((p, k) =>
-    `<a class="card rv" style="--k:${k}" href="${p.href}"><div class="card__vis" data-asset="${p.asset}" data-alt="${p.title} visual">${svg(p.icon)}</div><div class="card__body"><small>${p.label}</small><h3>${p.title}</h3><p>${p.text}</p><span class="card__go">Learn more ${svg("arrow")}</span></div></a>`).join("");
+    `<a class="card rv" style="--k:${k}" href="${p.href}">
+      <div class="card__vis" data-asset="${p.asset}" data-alt="${p.title} visual">${svg(p.icon)}</div>
+      <div class="card__body">
+        <small>${p.label}</small>
+        <h3>${p.title}</h3>
+        <p>${p.text}</p>
+        <span class="card__go">
+          <span data-en="Learn More" data-fa="مشاهده محصول">Learn More</span>
+          ${svg("arrow")}
+        </span>
+      </div>
+    </a>`).join("");
   $("#metrics").innerHTML = C.metrics.map((m, k) =>
     `<div class="m rv" style="--k:${k}">${svg(m.icon)}<div><b>${m.label}</b><span>${m.value}</span></div></div>`).join("") +
     `<a class="m__more rv" style="--k:4" href="#ecosystem"><span>More than assets.<br>A movement.</span>${svg("arrow")}</a>`;

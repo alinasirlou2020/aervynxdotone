@@ -185,12 +185,34 @@ em{font-style:normal;color:var(--color-accent)}
 .card__vis>.i{width:56px;height:56px;stroke-width:1.1}
 .card__vis img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 900ms var(--ease-premium)}
 .card:hover img,.card:focus-visible img{transform:translate(var(--px,0),var(--py,0)) scale(1.04)}
-.card__body{display:grid;gap:8px;padding:20px 22px 22px;flex:1;align-content:start}
+.card__body{display:flex;flex-direction:column;gap:8px;padding:20px 22px 22px;flex:1}
 .card small{font-size:13px;font-weight:600;color:var(--color-accent)}
 .card h3{font-size:22px;letter-spacing:-.02em}
-.card p{color:var(--color-text-secondary);font-size:14.5px}
-.card__go{display:flex;align-items:center;justify-content:space-between;padding-top:12px;font-size:14px;font-weight:600}
-.card__go .i{width:20px;height:20px;transition:transform var(--duration-normal) var(--ease-premium)}
+.card p{color:var(--color-text-secondary);font-size:14.5px;margin-bottom:14px}
+.card__go{
+  margin-top:auto;
+  display:inline-flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 10px;
+  width:50%;
+  min-height:42px;
+  padding:0 18px;
+  border-radius:99px;
+  background:linear-gradient(135deg, var(--color-accent) 0%, #c94700 100%);
+  border:1px solid rgba(255,155,90,.45);
+  color:#ffffff;
+  font-size:14px;
+  font-weight:600;
+  box-shadow:0 6px 20px rgba(236,88,0,.28), inset 0 1px 0 rgba(255,255,255,.22);
+  transition:transform var(--duration-fast), box-shadow var(--duration-fast), filter var(--duration-fast);
+}
+.card__go .i{width:18px;height:18px;stroke:#ffffff;transition:transform var(--duration-normal) var(--ease-premium)}
+.card:hover .card__go,.card:focus-visible .card__go{
+  transform:translateY(-2px);
+  box-shadow:0 10px 28px rgba(236,88,0,.48), inset 0 1px 0 rgba(255,255,255,.35);
+  filter:brightness(1.06);
+}
 .card:hover .card__go .i,.card:focus-visible .card__go .i{transform:translateX(5px)}
 /* ---------- CARD ENTRANCE ANIMATION (product cards + technology modules) ---------- */
 @keyframes card-in{from{opacity:0;transform:translateY(64px) scale(.96)}}
