@@ -28,7 +28,7 @@
     transform: scaleX(-1);
   }
 
-  /* ---------- 1. CINEMATIC DRONE HERO SECTION (100% OPACITY, NO GRID LINES) ---------- */
+  /* ---------- 1. CINEMATIC DRONE HERO SECTION ---------- */
   .p-hero {
     position: relative;
     min-height: 100svh;
@@ -41,7 +41,7 @@
     border-bottom: 1px solid var(--color-border);
   }
 
-  /* Hero Background Image Layer — Full 100% Opacity & Crystal Clear */
+  /* Hero Background Image Layer — Full 100% Opacity */
   .p-hero__bg {
     position: absolute;
     inset: 0;
@@ -54,10 +54,9 @@
     height: 100%;
     object-fit: cover;
     object-position: center center;
-    opacity: 1; /* 100% full visibility for custom background artwork */
+    opacity: 1;
     animation: heroZoom 18s ease-in-out infinite alternate;
   }
-  /* Soft left/bottom gradient only to keep typography readable without dulling the wallpaper */
   .p-hero__bg::after {
     content: "";
     position: absolute;
@@ -75,11 +74,11 @@
   /* Top Breadcrumb & Main Hero Grid */
   .p-hero__main {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 48px;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 40px;
     align-items: center;
     margin-block: auto;
-    padding: 36px 0;
+    padding: 28px 0;
   }
 
   .p-crumb {
@@ -126,31 +125,196 @@
     margin-top: 22px;
   }
 
-  /* Right Side Floating HUD Telemetry Target on Hero Visual */
+  /* ---------- RIGHT-SIDE AUTONOMOUS DRONE AIRSPACE HUD ---------- */
   .p-hero__hud {
     position: relative;
-    height: 360px;
+    width: 100%;
+    height: 430px;
     display: grid;
     place-items: center;
     pointer-events: none;
+    perspective: 1400px;
+    overflow: visible;
   }
+
+  /* Radar Airspace Circle (Drone flies in and out of this boundary) */
   .hud-reticle {
-    position: relative;
-    width: 300px;
-    height: 300px;
+    position: absolute;
+    width: 320px;
+    height: 320px;
     border-radius: 50%;
-    border: 1px dashed rgba(236,88,0,0.32);
-    animation: spinCW 28s linear infinite;
+    border: 1px dashed rgba(236, 88, 0, 0.32);
+    background: radial-gradient(circle, rgba(236, 88, 0, 0.08) 0%, rgba(1, 11, 19, 0) 70%);
+    animation: spinCW 32s linear infinite;
+    z-index: 1;
   }
   .hud-reticle::before {
     content: "";
     position: absolute;
     inset: 28px;
     border-radius: 50%;
-    border: 1px solid rgba(0,150,255,0.22);
+    border: 1px solid rgba(0, 150, 255, 0.22);
     border-top-color: var(--color-accent);
-    animation: spinCCW 14s linear infinite;
+    animation: spinCCW 16s linear infinite;
   }
+
+  /* 3D Autonomous Flight Rig (Controlled by JS Flight Physics) */
+  .hero-drone-rig {
+    position: relative;
+    width: min(105%, 490px);
+    aspect-ratio: 1400 / 876;
+    z-index: 3;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+
+  .hero-drone-body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+  }
+
+  .hero-drone-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 26px 40px rgba(0, 0, 0, 0.82)) drop-shadow(0 0 18px rgba(236, 88, 0, 0.18));
+    transition: filter 0.18s ease;
+  }
+
+  /* High-Speed Spinning Propeller Discs (Exact Coordinates on how-it-works.webp) */
+  .h-rotor {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--w);
+    aspect-ratio: var(--r);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+  .h-rotor::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    aspect-ratio: 1;
+    margin-top: -50%;
+    border-radius: 50%;
+    background: conic-gradient(
+      transparent 0deg,
+      rgba(255, 255, 255, 0.48) 14deg,
+      rgba(236, 88, 0, 0.35) 26deg,
+      transparent 44deg,
+      transparent 120deg,
+      rgba(255, 255, 255, 0.42) 134deg,
+      transparent 154deg,
+      transparent 240deg,
+      rgba(255, 255, 255, 0.48) 254deg,
+      rgba(0, 150, 255, 0.32) 266deg,
+      transparent 284deg
+    );
+    -webkit-mask: radial-gradient(closest-side, transparent 10%, #000 36%, transparent 100%);
+    mask: radial-gradient(closest-side, transparent 10%, #000 36%, transparent 100%);
+    transform: scaleY(calc(1 / var(--r)));
+    animation: rotor-spin 0.22s linear infinite;
+  }
+
+  /* Blinking / Shutting-Off Navigation & Motor Pod LEDs (Exact Hardware Positions) */
+  .h-led-strip {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--w);
+    height: var(--h);
+    transform: translate(-50%, -50%) rotate(var(--rot, 0deg));
+    border-radius: 99px;
+    background: radial-gradient(ellipse at center, #FFFFFF 0%, #FF8533 45%, #EC5800 75%, transparent 100%);
+    box-shadow: 0 0 10px 2px rgba(236, 88, 0, 0.85);
+    mix-blend-mode: screen;
+    animation: navLightCycle var(--dur, 2.6s) ease-in-out infinite;
+    animation-delay: var(--d, 0s);
+  }
+
+  /* Tiny Precision Arm Strobe Dots (Turn completely OFF and ON like real aviation strobes) */
+  .h-strobe-dot {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: 5px;
+    height: 5px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: #FFFFFF;
+    box-shadow: 0 0 8px 2px #EC5800, 0 0 14px 4px rgba(236, 88, 0, 0.9);
+    mix-blend-mode: screen;
+    animation: aviationStrobe var(--dur, 1.8s) steps(1, end) infinite;
+    animation-delay: var(--d, 0s);
+  }
+
+  /* Micro-Calibrated High-Beam Projectors on Blades & Nose Lenses (Fires Every 3s Automatically) */
+  .h-beam-point {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--w, 18px);
+    height: var(--h, 8px);
+    transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(0.3);
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    background: radial-gradient(ellipse at center, #FFFFFF 0%, #FFE4CC 38%, rgba(236, 88, 0, 0.85) 70%, transparent 100%);
+    box-shadow: 0 0 14px 3px rgba(255, 255, 255, 0.95), 0 0 26px 6px rgba(236, 88, 0, 0.8);
+  }
+  /* Razor-thin Micro Optical Glint across the Blade/Projector */
+  .h-beam-point::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -130%;
+    right: -130%;
+    height: 1.5px;
+    transform: translateY(-50%);
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.95) 35%, #FFFFFF 50%, rgba(236, 88, 0, 0.9) 65%, transparent 100%);
+    box-shadow: 0 0 6px #FFFFFF;
+  }
+
+  /* Active High-Beam State (Triggered Automatically Every 3 Seconds) */
+  .hero-drone-rig.is-flashing .h-beam-point {
+    animation: precisionHighBeam 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .hero-drone-rig.is-flashing .hero-drone-img {
+    filter: drop-shadow(0 26px 40px rgba(0, 0, 0, 0.82)) drop-shadow(0 0 28px rgba(255, 160, 80, 0.55)) brightness(1.09);
+  }
+
+  @keyframes precisionHighBeam {
+    0%   { opacity: 0; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(0.3); }
+    18%  { opacity: 1; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(1.15); }
+    38%  { opacity: 0.08; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(0.5); }
+    58%  { opacity: 1; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(1.3); }
+    100% { opacity: 0; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(0.3); }
+  }
+
+  @keyframes navLightCycle {
+    0%, 100% { opacity: 0.95; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(1); }
+    45%      { opacity: 0.05; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(0.75); }
+    55%      { opacity: 0; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(0.7); }
+    70%      { opacity: 1; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(1.08); }
+  }
+
+  @keyframes aviationStrobe {
+    0%, 55%  { opacity: 0; }
+    56%, 64% { opacity: 1; }
+    65%, 72% { opacity: 0; }
+    73%, 80% { opacity: 1; }
+    81%, 100%{ opacity: 0; }
+  }
+
+  /* Telemetry Status Chips */
   .hud-chip {
     position: absolute;
     display: inline-flex;
@@ -158,7 +322,7 @@
     gap: 8px;
     padding: 8px 14px;
     border-radius: 99px;
-    background: rgba(3, 10, 18, 0.82);
+    background: rgba(3, 10, 18, 0.86);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255,255,255,0.14);
     font-family: var(--mono);
@@ -168,6 +332,8 @@
     color: #fff;
     box-shadow: 0 12px 30px rgba(0,0,0,0.55);
     animation: floatChip 4s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 4;
   }
   .hud-chip i {
     width: 7px;
@@ -176,15 +342,17 @@
     background: var(--c, var(--color-accent));
     box-shadow: 0 0 10px var(--c, var(--color-accent));
   }
-  .hud-chip--1 { top: 18px; right: 10px; --c: #27D17F; }
-  .hud-chip--2 { bottom: 38px; left: 0px; --c: #EC5800; animation-delay: 1.2s; }
-  .hud-chip--3 { top: 50%; right: -10px; --c: #0096FF; animation-delay: 2.1s; }
+  .hud-chip--1 { top: 14px; right: 12px; --c: #27D17F; }
+  .hud-chip--2 { bottom: 26px; left: 4px; --c: #EC5800; animation-delay: 1.2s; }
+  .hud-chip--3 { top: 48%; right: -8px; --c: #0096FF; animation-delay: 2.1s; }
 
-  /* ---------- 2. HERO BOTTOM 4-STAGE PIPELINE & PILL BAR ---------- */
+  /* ---------- 2. HERO BOTTOM 4-STAGE PIPELINE & PILL BAR (FULL 100% CONTAINER WIDTH) ---------- */
   .p-hero__bottom {
     position: relative;
     z-index: 3;
     margin-top: 24px;
+    width: min(100% - 2 * var(--page-gutter), var(--container-width));
+    margin-inline: auto;
   }
 
   .p-pipeline {
@@ -306,12 +474,12 @@
     flex-shrink: 0;
   }
 
-  /* ---------- 3. DEEP-DIVE NARRATIVE & BENTO ARCHITECTURE ---------- */
+  /* ---------- 3. DEEP-DIVE NARRATIVE & 5 UNIFORM CARDS ---------- */
   .p-narrative {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: clamp(32px, 5vw, 72px);
-    align-items: start;
+    grid-template-columns: 1.12fr 0.88fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: stretch;
   }
   .p-copy-box {
     padding: clamp(28px, 4vw, 48px);
@@ -322,6 +490,9 @@
     box-shadow: var(--shadow-card);
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   .p-copy-box::before {
     content: "";
@@ -342,12 +513,44 @@
     font-weight: 500;
   }
 
+  .p-copy-kpis {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 34px;
+    padding-top: 26px;
+    border-top: 1px solid var(--color-border);
+  }
+  .p-copy-kpi {
+    padding: 14px 16px;
+    border-radius: var(--radius-sm);
+    background: rgba(255,255,255,0.018);
+    border-left: 2px solid var(--color-accent);
+  }
+  html[dir="rtl"] .p-copy-kpi {
+    border-left: 0;
+    border-right: 2px solid var(--color-accent);
+  }
+  .p-copy-kpi b {
+    display: block;
+    font-family: var(--mono);
+    font-size: 18px;
+    color: var(--color-text);
+    margin-bottom: 4px;
+  }
+  .p-copy-kpi span {
+    font-size: 12.5px;
+    color: var(--color-text-muted);
+  }
+
+  /* Right Column: 5 Identical Uniform Cards Stacked Vertically */
   .p-specs-grid {
     display: grid;
-    gap: 32px;
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
   .p-spec-card {
-    padding: 24px 26px;
+    padding: 22px 26px;
     border-radius: var(--radius-md);
     background: rgba(255,255,255,0.022);
     border: 1px solid var(--color-border);
@@ -385,7 +588,7 @@
     line-height: 1.6;
   }
 
-  /* ---------- 4. MASTERPIECE INTERACTIVE ANIMATED DIAGRAM (DRONE RWA ENGINE) ---------- */
+  /* ---------- 4. INTERACTIVE ANIMATED DIAGRAM (DRONE RWA ENGINE) ---------- */
   .sim-box {
     margin-top: 42px;
     border-radius: var(--radius-lg);
@@ -446,7 +649,6 @@
     overflow: visible;
   }
 
-  /* Live Telemetry Readout Bar below Diagram */
   .sim-metrics {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -511,11 +713,12 @@
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.35; transform: scale(0.8); }
   }
-  @keyframes dronePatrol {
-    0%, 100% { transform: translate(0px, 0px) rotate(-2deg); }
-    25% { transform: translate(14px, -10px) rotate(2deg); }
-    50% { transform: translate(4px, 8px) rotate(-1deg); }
-    75% { transform: translate(-12px, -6px) rotate(-3deg); }
+  @keyframes dronePatrolSmooth {
+    0%   { transform: translate(0px, 0px) rotate(-1.5deg); }
+    25%  { transform: translate(14px, -12px) rotate(2deg); }
+    50%  { transform: translate(-6px, -6px) rotate(1.5deg); }
+    75%  { transform: translate(-14px, -14px) rotate(-2deg); }
+    100% { transform: translate(0px, 0px) rotate(-1.5deg); }
   }
   @keyframes packetFlow1 {
     0% { stroke-dashoffset: 260; }
@@ -525,11 +728,12 @@
   /* Responsive Adjustments */
   @media (max-width: 1024px) {
     .p-hero__main, .p-narrative { grid-template-columns: 1fr; }
-    .p-hero__hud { display: none; }
+    .p-hero__hud { height: 360px; }
     .p-pipeline { grid-template-columns: repeat(2, 1fr); }
     .p-pipeline::before, .p-pipeline__beam { display: none; }
     .p-strip { grid-template-columns: 1fr; border-radius: var(--radius-md); gap: 12px; }
     .p-strip__item { border: 0 !important; justify-content: flex-start; }
+    .p-copy-kpis { grid-template-columns: 1fr; }
     .sim-metrics { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
@@ -578,10 +782,11 @@
 ================================================= -->
 <section class="p-hero">
  <div class="p-hero__bg" aria-hidden="true">
-  <!-- EDIT HERO BACKGROUND IMAGE PATH HERE (Full 100% Opacity, No Grid Overlay) -->
+  <!-- EDIT HERO BACKGROUND IMAGE PATH HERE -->
   <img src="assets/tokenized-drones3.pn" alt="Aervynx Tokenized Cargo Drone Fleet">
  </div>
 
+ <!-- Top 2-Column Hero Grid -->
  <div class="wrap p-hero__main">
   <!-- Left Column: Title, Eyebrow, Lead & CTAs -->
   <div>
@@ -613,17 +818,55 @@
    </div>
   </div>
 
-  <!-- Right Column: Animated HUD Target Overlay -->
+  <!-- Right Column: Autonomous 3D-Maneuvering Drone (`assets/how-it-works.webp`) -->
   <div class="p-hero__hud" aria-hidden="true">
    <div class="hud-reticle"></div>
+
+   <!-- Autonomous Drone Rig: Banks, Turns, Flies Left/Right Outside the Circle & Flashes Every 3s -->
+   <div class="hero-drone-rig" id="hero-drone-rig">
+    <div class="hero-drone-body" id="hero-drone-body">
+     <img class="hero-drone-img" src="assets/how-it-works.webp" alt="Aervynx Autonomous Cargo Drone">
+
+     <!-- 1. High-Speed Spinning Propeller Blades -->
+     <i class="h-rotor" style="--x:21.5%;--y:16.5%;--w:34%;--r:7.0"></i>
+     <i class="h-rotor" style="--x:19.8%;--y:38.2%;--w:25%;--r:6.6"></i>
+     <i class="h-rotor" style="--x:83.2%;--y:28.5%;--w:31%;--r:5.8"></i>
+
+     <!-- 2. Motor Pod Neon Rings & Body Lights (Turn OFF & ON in Sequence) -->
+     <i class="h-led-strip" style="--x:21.4%;--y:26.8%;--w:8.8%;--h:2.2%;--dur:2.4s;--d:0s"></i>
+     <i class="h-led-strip" style="--x:19.8%;--y:46.2%;--w:6.8%;--h:1.8%;--dur:2.4s;--d:0.4s"></i>
+     <i class="h-led-strip" style="--x:83.0%;--y:41.2%;--w:6.5%;--h:1.8%;--dur:2.4s;--d:0.8s"></i>
+     <i class="h-led-strip" style="--x:47.6%;--y:35.5%;--w:3.2%;--h:4.2%;--rot:-28deg;--dur:3.1s;--d:0.2s"></i>
+
+     <!-- 3. Tiny Arm Strobe Indicators -->
+     <i class="h-strobe-dot" style="--x:29.0%;--y:29.2%;--dur:2.0s;--d:0.1s"></i>
+     <i class="h-strobe-dot" style="--x:25.4%;--y:45.4%;--dur:2.0s;--d:0.9s"></i>
+     <i class="h-strobe-dot" style="--x:38.5%;--y:74.8%;--dur:2.5s;--d:0.5s"></i>
+
+     <!-- 4. Precision Micro High-Beams Directly on Blades, Motor Rings & Front Optical Lenses (Auto Every 3s) -->
+     <!-- Top-Left Blade & Motor Ring High-Beam -->
+     <i class="h-beam-point" style="--x:21.5%;--y:16.5%;--w:26px;--h:6px;--rot:-4deg"></i>
+     <i class="h-beam-point" style="--x:21.4%;--y:26.8%;--w:22px;--h:7px;--rot:0deg"></i>
+     <!-- Bottom-Left Blade & Motor Ring High-Beam -->
+     <i class="h-beam-point" style="--x:19.8%;--y:38.2%;--w:20px;--h:5px;--rot:-4deg"></i>
+     <i class="h-beam-point" style="--x:19.8%;--y:46.2%;--w:18px;--h:6px;--rot:0deg"></i>
+     <!-- Right Blade & Motor Ring High-Beam -->
+     <i class="h-beam-point" style="--x:83.2%;--y:28.5%;--w:24px;--h:6px;--rot:4deg"></i>
+     <i class="h-beam-point" style="--x:83.0%;--y:41.2%;--w:18px;--h:6px;--rot:0deg"></i>
+     <!-- Front Nose Optical Lenses High-Beam -->
+     <i class="h-beam-point" style="--x:47.8%;--y:35.8%;--w:16px;--h:8px;--rot:-12deg"></i>
+     <i class="h-beam-point" style="--x:50.4%;--y:47.4%;--w:14px;--h:6px;--rot:-8deg"></i>
+    </div>
+   </div>
+
    <div class="hud-chip hud-chip--1"><i></i><span>IOT TELEMETRY · ACTIVE</span></div>
    <div class="hud-chip hud-chip--2"><i></i><span>RWA POOL · YIELDING</span></div>
    <div class="hud-chip hud-chip--3"><i></i><span>CHAIN ID · 505</span></div>
   </div>
  </div>
 
- <!-- Bottom Hero Pipeline & Glassmorphic Pill Strip -->
- <div class="wrap p-hero__bottom">
+ <!-- Bottom Hero 4-Stage Pipeline & Glassmorphic Pill Strip (Full 100% Container Width) -->
+ <div class="p-hero__bottom">
   <div class="p-pipeline">
    <div class="p-pipeline__beam"></div>
 
@@ -683,32 +926,49 @@
 </section>
 
 <!-- ================================================
-     SECTION 03: PRODUCT DEEP-DIVE & ARCHITECTURAL PILLARS
+     SECTION 03: PRODUCT DEEP-DIVE & 5 UNIFORM ARCHITECTURAL PILLARS
 ================================================= -->
 <section class="wrap sec" id="deep-dive">
  <div class="p-narrative">
-  <!-- Left Column: Official Product Copy -->
+  <!-- Left Column: Official Product Copy + KPI Sub-Strip -->
   <div class="p-copy-box">
-   <span class="eyebrow" data-en="01 · AUTONOMOUS FLEET RWA" data-fa="۰۱ · دارایی واقعی ناوگان خودکار">01 · AUTONOMOUS FLEET RWA</span>
-   <h2 data-en="Tokenized Cargo <em>Drones</em>" data-fa="پهپادهای ترابری <em>توکنایزشده</em>">Tokenized Cargo <em>Drones</em></h2>
+   <div>
+    <span class="eyebrow" data-en="01 · AUTONOMOUS FLEET RWA" data-fa="۰۱ · دارایی واقعی ناوگان خودکار">01 · AUTONOMOUS FLEET RWA</span>
+    <h2 data-en="Tokenized Cargo <em>Drones</em>" data-fa="پهپادهای ترابری <em>توکنایزشده</em>">Tokenized Cargo <em>Drones</em></h2>
 
-   <p data-en="Welcome to the future of decentralized logistics. Our Tokenized Cargo Drones bridge the gap between heavy physical infrastructure and decentralized finance, transforming autonomous aerial delivery fleets into highly liquid, yield-bearing Real-World Assets (RWAs) on the DotOne Smart Chain."
-      data-fa="به آینده لجستیک غیرمتمرکز خوش آمدید. پهپادهای باری توکنایزشده ما شکاف میان زیرساخت‌های سنگین فیزیکی و امور مالی غیرمتمرکز (DeFi) را پر کرده و ناوگان‌های تحویل هوایی خودکار را به دارایی‌های واقعی (RWA) نقدشونده و سودده روی شبکه هوشمند دات‌وان تبدیل می‌کنند.">
-    Welcome to the future of decentralized logistics. Our Tokenized Cargo Drones bridge the gap between heavy physical infrastructure and decentralized finance, transforming autonomous aerial delivery fleets into highly liquid, yield-bearing Real-World Assets (RWAs) on the DotOne Smart Chain.
-   </p>
+    <p data-en="Welcome to the future of decentralized logistics. Our Tokenized Cargo Drones bridge the gap between heavy physical infrastructure and decentralized finance, transforming autonomous aerial delivery fleets into highly liquid, yield-bearing Real-World Assets (RWAs) on the DotOne Smart Chain."
+       data-fa="به آینده لجستیک غیرمتمرکز خوش آمدید. پهپادهای باری توکنایزشده ما شکاف میان زیرساخت‌های سنگین فیزیکی و امور مالی غیرمتمرکز (DeFi) را پر کرده و ناوگان‌های تحویل هوایی خودکار را به دارایی‌های واقعی (RWA) نقدشونده و سودده روی شبکه هوشمند دات‌وان تبدیل می‌کنند.">
+     Welcome to the future of decentralized logistics. Our Tokenized Cargo Drones bridge the gap between heavy physical infrastructure and decentralized finance, transforming autonomous aerial delivery fleets into highly liquid, yield-bearing Real-World Assets (RWAs) on the DotOne Smart Chain.
+    </p>
 
-   <p data-en="By fractionally owning these commercial drones, users step directly into the physical economy's supply chain, earning a proportional share of actual operational revenue. Every successful delivery execution deposits logistics fees directly into on-chain profit pools, which are distributed seamlessly to token holders."
-      data-fa="با مالکیت کسری این پهپادهای تجاری، کاربران مستقیماً وارد زنجیره تأمین اقتصاد فیزیکی شده و سهمی متناسب از درآمد واقعی عملیاتی را کسب می‌کنند. هر مأموریت تحویل موفق، کارمزدهای لجستیکی را مستقیماً به استخرهای سود آن‌چین واریز می‌کند تا به صورت یکپارچه میان دارندگان توکن توزیع شود.">
-    By fractionally owning these commercial drones, users step directly into the physical economy's supply chain, earning a proportional share of actual operational revenue. Every successful delivery execution deposits logistics fees directly into on-chain profit pools, which are distributed seamlessly to token holders.
-   </p>
+    <p data-en="By fractionally owning these commercial drones, users step directly into the physical economy's supply chain, earning a proportional share of actual operational revenue. Every successful delivery execution deposits logistics fees directly into on-chain profit pools, which are distributed seamlessly to token holders."
+       data-fa="با مالکیت کسری این پهپادهای تجاری، کاربران مستقیماً وارد زنجیره تأمین اقتصاد فیزیکی شده و سهمی متناسب از درآمد واقعی عملیاتی را کسب می‌کنند. هر مأموریت تحویل موفق، کارمزدهای لجستیکی را مستقیماً به استخرهای سود آن‌چین واریز می‌کند تا به صورت یکپارچه میان دارندگان توکن توزیع شود.">
+     By fractionally owning these commercial drones, users step directly into the physical economy's supply chain, earning a proportional share of actual operational revenue. Every successful delivery execution deposits logistics fees directly into on-chain profit pools, which are distributed seamlessly to token holders.
+    </p>
 
-   <p data-en="This isn't speculative yield; it is tangible, cash-flowing infrastructure backed by transparent IoT telemetry and operational data. Whether you are a retail enthusiast or an institutional backer, you can now power the skies and passively earn from the high-velocity movement of real-world cargo."
-      data-fa="این یک سود سفته‌بازانه نیست؛ بلکه زیرساختی ملموس و دارای جریان نقدینگی است که با تله‌متری شفاف IoT و داده‌های عملیاتی پشتیبانی می‌شود. چه یک کاربر خرد باشید و چه یک سرمایه‌گذار سازمانی، اکنون می‌توانید آسمان‌ها را به حرکت درآورید و از جابه‌جایی پرسرعت محموله‌های واقعی، درآمد غیرفعال کسب کنید.">
-    This isn't speculative yield; it is tangible, cash-flowing infrastructure backed by transparent IoT telemetry and operational data. Whether you are a retail enthusiast or an institutional backer, you can now power the skies and passively earn from the high-velocity movement of real-world cargo.
-   </p>
+    <p data-en="This isn't speculative yield; it is tangible, cash-flowing infrastructure backed by transparent IoT telemetry and operational data. Whether you are a retail enthusiast or an institutional backer, you can now power the skies and passively earn from the high-velocity movement of real-world cargo."
+       data-fa="این یک سود سفته‌بازانه نیست؛ بلکه زیرساختی ملموس و دارای جریان نقدینگی است که با تله‌متری شفاف IoT و داده‌های عملیاتی پشتیبانی می‌شود. چه یک کاربر خرد باشید و چه یک سرمایه‌گذار سازمانی، اکنون می‌توانید آسمان‌ها را به حرکت درآورید و از جابه‌جایی پرسرعت محموله‌های واقعی، درآمد غیرفعال کسب کنید.">
+     This isn't speculative yield; it is tangible, cash-flowing infrastructure backed by transparent IoT telemetry and operational data. Whether you are a retail enthusiast or an institutional backer, you can now power the skies and passively earn from the high-velocity movement of real-world cargo.
+    </p>
+   </div>
+
+   <div class="p-copy-kpis">
+    <div class="p-copy-kpi">
+     <b>EIP-712</b>
+     <span data-en="Telemetry Verification" data-fa="گواهی رمزنگاری تله‌متری">Telemetry Verification</span>
+    </div>
+    <div class="p-copy-kpi">
+     <b>CHAIN 505</b>
+     <span data-en="DotOne Native Settlement" data-fa="تسویه بومی شبکه دات‌وان">DotOne Native Settlement</span>
+    </div>
+    <div class="p-copy-kpi">
+     <b>100% ON-CHAIN</b>
+     <span data-en="Pro-Rata Yield Routing" data-fa="توزیع شفاف و خودکار سود">Pro-Rata Yield Routing</span>
+    </div>
+   </div>
   </div>
 
-  <!-- Right Column: 4 Engineering Highlights -->
+  <!-- Right Column: 5 Uniform Engineering Highlights (Identical Single-Column Cards) -->
   <div class="p-specs-grid">
    <div class="p-spec-card">
     <div class="p-spec-dot">01</div>
@@ -743,6 +1003,15 @@
      <h3 data-en="Non-Speculative Real Cashflow" data-fa="جریان نقدی واقعی و غیرسفته‌بازانه">Non-Speculative Real Cashflow</h3>
      <p data-en="Yields are powered by actual physical commerce and parcel movement rather than inflationary token emissions."
         data-fa="بازده اقتصادی این مدل از دل تجارت فیزیکی و حمل واقعی کالا تولید می‌شود، نه از چاپ تورمی توکن.">Yields are powered by actual physical commerce and parcel movement rather than inflationary token emissions.</p>
+    </div>
+   </div>
+
+   <div class="p-spec-card">
+    <div class="p-spec-dot">05</div>
+    <div>
+     <h3 data-en="Autonomous Maintenance & Insurance Reserve" data-fa="ذخیره خودکار تعمیر و نگهداری ناوگان">Autonomous Maintenance & Insurance Reserve</h3>
+     <p data-en="A dedicated protocol reserve automatically allocates a fraction of flight revenue to battery swaps, airframe servicing, and coverage."
+        data-fa="درصدی مشخص از درآمد هر پرواز به طور هوشمند در خزانه پشتیبان برای تعویض باتری، سرویس‌های دوره‌ای و بیمه ناوگان ذخیره می‌شود.">A dedicated protocol reserve automatically allocates a fraction of flight revenue to battery swaps, airframe servicing, and coverage.</p>
     </div>
    </div>
   </div>
@@ -807,44 +1076,41 @@
     <path d="M 310 190 C 390 190, 410 190, 460 190" fill="none" stroke="url(#beamOrange)" stroke-width="4" stroke-dasharray="40 220" style="animation: packetFlow1 1.6s linear infinite"/>
 
     <!-- CONNECTOR 2: Smart Contract Pool -> 3 Fractional Token Holder Wallets -->
-    <path d="M 640 190 C 720 190, 740 85, 815 85" fill="none" stroke="rgba(39,209,127,0.22)" stroke-width="2.5"/>
-    <path d="M 640 190 L 815 190" fill="none" stroke="rgba(39,209,127,0.22)" stroke-width="2.5"/>
-    <path d="M 640 190 C 720 190, 740 295, 815 295" fill="none" stroke="rgba(39,209,127,0.22)" stroke-width="2.5"/>
+    <path d="M 640 190 C 715 190, 735 85, 795 85" fill="none" stroke="rgba(39,209,127,0.22)" stroke-width="2.5"/>
+    <path d="M 640 190 L 795 190" fill="none" stroke="rgba(39,209,127,0.22)" stroke-width="2.5"/>
+    <path d="M 640 190 C 715 190, 735 295, 795 295" fill="none" stroke="rgba(39,209,127,0.22)" stroke-width="2.5"/>
 
     <!-- Animated Yield Particles Streaming to Holders -->
     <circle r="5" fill="#27D17F" filter="drop-shadow(0 0 8px #27D17F)">
-     <animateMotion dur="1.8s" repeatCount="indefinite" path="M 640 190 C 720 190, 740 85, 815 85"/>
+     <animateMotion dur="1.8s" repeatCount="indefinite" path="M 640 190 C 715 190, 735 85, 795 85"/>
     </circle>
     <circle r="5" fill="#EC5800" filter="drop-shadow(0 0 8px #EC5800)">
-     <animateMotion dur="1.4s" repeatCount="indefinite" path="M 640 190 L 815 190"/>
+     <animateMotion dur="1.4s" repeatCount="indefinite" path="M 640 190 L 795 190"/>
     </circle>
     <circle r="5" fill="#0096FF" filter="drop-shadow(0 0 8px #0096FF)">
-     <animateMotion dur="2.1s" repeatCount="indefinite" path="M 640 190 C 720 190, 740 295, 815 295"/>
+     <animateMotion dur="2.1s" repeatCount="indefinite" path="M 640 190 C 715 190, 735 295, 795 295"/>
     </circle>
 
     <!-- ==========================================
          ZONE 1 (LEFT): AUTONOMOUS DRONE RADAR ZONE
-         (RENDERS `assets/how-it-works.webp` LIVE)
+         (CLEAN `assets/how-it-works.webp` + CONTAINED TELEMETRY PILL)
     =========================================== -->
     <g transform="translate(180, 190)">
-     <circle r="135" fill="url(#coreGlow)"/>
-     <circle r="122" fill="#050D17" stroke="rgba(236,88,0,0.35)" stroke-width="1.5"/>
-     <circle r="96" fill="none" stroke="rgba(0,150,255,0.25)" stroke-width="1.2" stroke-dasharray="8 8">
-      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="20s" repeatCount="indefinite"/>
+     <circle r="142" fill="url(#coreGlow)"/>
+     <circle r="130" fill="#050D17" stroke="rgba(236,88,0,0.38)" stroke-width="1.5"/>
+     <circle r="104" fill="none" stroke="rgba(0,150,255,0.25)" stroke-width="1.2" stroke-dasharray="8 8">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="24s" repeatCount="indefinite"/>
      </circle>
-     <!-- Radar Sweep Cone -->
-     <g>
-      <path d="M0,0 L0,-120 A120,120 0 0,1 88,-82 Z" fill="rgba(236,88,0,0.16)"/>
-      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="5s" repeatCount="indefinite"/>
-     </g>
 
      <!-- YOUR CUSTOM DRONE ASSET: assets/how-it-works.webp -->
-     <g style="animation: dronePatrol 4.5s ease-in-out infinite">
-      <image href="assets/how-it-works.webp" x="-105" y="-82" width="210" height="140" preserveAspectRatio="xMidYMid meet" style="filter: drop-shadow(0 14px 24px rgba(236,88,0,0.45));"/>
+     <g style="animation: dronePatrolSmooth 5.5s ease-in-out infinite">
+      <image href="assets/how-it-works.webp" x="-102" y="-96" width="204" height="134" preserveAspectRatio="xMidYMid meet" style="filter: drop-shadow(0 16px 26px rgba(236,88,0,0.42));"/>
      </g>
 
-     <text y="86" fill="#fff" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700" text-anchor="middle">DRONE UNIT #505-A</text>
-     <text y="103" fill="#EC5800" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="middle">IOT GPS + EIP-712 PROOF</text>
+     <!-- Contained HUD Badge Inside Circle -->
+     <rect x="-86" y="48" width="172" height="44" rx="10" fill="rgba(4,10,18,0.92)" stroke="rgba(236,88,0,0.35)" stroke-width="1"/>
+     <text y="66" fill="#fff" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" text-anchor="middle">DRONE UNIT #505-A</text>
+     <text y="83" fill="#EC5800" font-family="JetBrains Mono, monospace" font-size="9.2" font-weight="600" letter-spacing="0.04em" text-anchor="middle">IOT GPS + EIP-712 PROOF</text>
     </g>
 
     <!-- ==========================================
@@ -855,8 +1121,8 @@
      <rect x="-88" y="-82" width="176" height="164" rx="24" fill="#06101C" stroke="#EC5800" stroke-width="2"/>
      <rect x="-76" y="-70" width="152" height="140" rx="18" fill="none" stroke="rgba(0,150,255,0.3)" stroke-width="1" stroke-dasharray="6 6"/>
 
-     <!-- Central "A" Reactor Emblem -->
-    <path d="M0 -40 L24 16 L12 16 L0 -12 L-12 16 L-24 16 Z" fill="#EC5800"/>
+     <!-- Central A Emblem (Matching site logo without middle crossbar) -->
+     <path d="M0 -40 L24 16 L12 16 L0 -12 L-12 16 L-24 16 Z" fill="#EC5800"/>
 
      <text y="38" fill="#fff" font-family="Inter, sans-serif" font-size="14" font-weight="700" text-anchor="middle">RWA Yield Vault</text>
      <text y="56" fill="#27D17F" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700" text-anchor="middle" id="svg-pool-val">POOL: 48,920 DOTO</text>
@@ -864,10 +1130,11 @@
 
     <!-- ==========================================
          ZONE 3 (RIGHT): FRACTIONAL TOKEN HOLDERS
+         (WIDENED TO 268PX SO TEXT NEVER OVERFLOWS)
     =========================================== -->
     <!-- Holder Node 1 -->
-    <g transform="translate(820, 52)">
-     <rect width="230" height="66" rx="14" fill="#06111E" stroke="rgba(39,209,127,0.45)" stroke-width="1.5"/>
+    <g transform="translate(800, 52)">
+     <rect width="268" height="66" rx="14" fill="#06111E" stroke="rgba(39,209,127,0.45)" stroke-width="1.5"/>
      <circle cx="30" cy="33" r="14" fill="rgba(39,209,127,0.15)" stroke="#27D17F" stroke-width="1.5"/>
      <text x="30" y="37" fill="#27D17F" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" text-anchor="middle">40%</text>
      <text x="56" y="28" fill="#fff" font-family="Inter, sans-serif" font-size="13.5" font-weight="600">Institutional Pool</text>
@@ -875,8 +1142,8 @@
     </g>
 
     <!-- Holder Node 2 -->
-    <g transform="translate(820, 157)">
-     <rect width="230" height="66" rx="14" fill="#06111E" stroke="rgba(236,88,0,0.45)" stroke-width="1.5"/>
+    <g transform="translate(800, 157)">
+     <rect width="268" height="66" rx="14" fill="#06111E" stroke="rgba(236,88,0,0.45)" stroke-width="1.5"/>
      <circle cx="30" cy="33" r="14" fill="rgba(236,88,0,0.15)" stroke="#EC5800" stroke-width="1.5"/>
      <text x="30" y="37" fill="#EC5800" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" text-anchor="middle">35%</text>
      <text x="56" y="28" fill="#fff" font-family="Inter, sans-serif" font-size="13.5" font-weight="600">Retail RWA Holders</text>
@@ -884,8 +1151,8 @@
     </g>
 
     <!-- Holder Node 3 -->
-    <g transform="translate(820, 262)">
-     <rect width="230" height="66" rx="14" fill="#06111E" stroke="rgba(0,150,255,0.45)" stroke-width="1.5"/>
+    <g transform="translate(800, 262)">
+     <rect width="268" height="66" rx="14" fill="#06111E" stroke="rgba(0,150,255,0.45)" stroke-width="1.5"/>
      <circle cx="30" cy="33" r="14" fill="rgba(0,150,255,0.15)" stroke="#0096FF" stroke-width="1.5"/>
      <text x="30" y="37" fill="#0096FF" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" text-anchor="middle">25%</text>
      <text x="56" y="28" fill="#fff" font-family="Inter, sans-serif" font-size="13.5" font-weight="600">Fleet Maintenance Reserve</text>
@@ -951,7 +1218,7 @@
 </footer>
 
 <!-- ================================================
-     INTERACTIVE TELEMETRY & BILINGUAL ENGINE SCRIPT
+     AUTONOMOUS DRONE FLIGHT PHYSICS & TELEMETRY ENGINE
 ================================================= -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -1018,6 +1285,65 @@ document.addEventListener("DOMContentLoaded", () => {
     simBtn.addEventListener("click", settleDelivery);
   }
   setInterval(settleDelivery, 4500);
+
+  // =====================================================
+  // 4. HERO AUTONOMOUS DRONE 3D FLIGHT & AUTO HIGH-BEAM ENGINE
+  //    - Flies left & right (exiting the HUD circle boundary and swooping back)
+  //    - Banks naturally into turns + executes smooth 360° yaw turnaround
+  //    - Automatically fires a precision micro high-beam every 3.0 seconds
+  // =====================================================
+  const droneRig = document.getElementById("hero-drone-rig");
+  if (!droneRig) return;
+
+  // Automatic Precision High-Beam Trigger Every 3.0 Seconds
+  function fireAutoHighBeam() {
+    droneRig.classList.remove("is-flashing");
+    void droneRig.offsetWidth;
+    droneRig.classList.add("is-flashing");
+  }
+  setTimeout(fireAutoHighBeam, 900);
+  setInterval(fireAutoHighBeam, 3000);
+
+  // 60FPS Continuous 3D Flight Path Controller
+  let t = 0;
+  let curX = 0, curY = 0, curScale = 1, curRotZ = 0, curRotX = 0, curRotY = 0;
+
+  function updateFlightPhysics() {
+    t += 0.014;
+
+    // Wide horizontal patrol: sweeps left & right (exiting the circle boundary and returning)
+    const targetX = Math.sin(t * 1.15) * 78 + Math.cos(t * 0.55) * 24;
+    // Vertical altitude swoops
+    const targetY = Math.cos(t * 1.55) * 32 + Math.sin(t * 2.3) * 12;
+    // Depth scaling (flies closer to camera then deeper into the sky)
+    const targetScale = 1 + Math.sin(t * 0.85) * 0.11;
+
+    // Calculate horizontal velocity for realistic banking angle (tilt into the turn)
+    const vx = targetX - curX;
+    const targetRotZ = Math.max(-11, Math.min(11, vx * 3.4));
+    const targetRotX = Math.sin(t * 1.55) * 7;
+    // Subtle natural yaw angle while banking left/right (No 360 spin)
+    const targetRotY = Math.sin(t * 1.15) * 16;
+
+    // Smooth Damping Interpolation
+    curX += (targetX - curX) * 0.09;
+    curY += (targetY - curY) * 0.09;
+    curScale += (targetScale - curScale) * 0.09;
+    curRotZ += (targetRotZ - curRotZ) * 0.12;
+    curRotX += (targetRotX - curRotX) * 0.10;
+    curRotY += (targetRotY - curRotY) * 0.10;
+
+    droneRig.style.transform =
+      `translate3d(${curX.toFixed(2)}px, ${curY.toFixed(2)}px, 0px) ` +
+      `scale(${curScale.toFixed(3)}) ` +
+      `rotateX(${curRotX.toFixed(2)}deg) ` +
+      `rotateY(${curRotY.toFixed(2)}deg) ` +
+      `rotateZ(${curRotZ.toFixed(2)}deg)`;
+
+    requestAnimationFrame(updateFlightPhysics);
+  }
+
+  requestAnimationFrame(updateFlightPhysics);
 });
 </script>
 </body>
