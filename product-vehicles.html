@@ -3,804 +3,544 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Aervynx — Tokenized Commercial Vehicles (Fractional SPV Fleets)</title>
-<meta name="description" content="Legal SPV-wrapped commercial vehicle fleets tokenized on DotOne Chain 505 for fractional ownership and daily on-chain cashflow yields.">
+<title>Aervynx — Tokenized Commercial Vehicles</title>
+<meta name="description" content="Commercial vehicle fleets structured in dedicated SPVs, with fractional tokenized participation on DotOne Chain 505.">
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="js/wallet.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="js/wallet.js" defer></script>
-
 <style>
-  /* =====================================================
-     PRODUCT PAGE 02: TOKENIZED COMMERCIAL VEHICLES — CUSTOM STYLES
-     Theme Architecture: Obsidian (#010B13), Molten Orange (#EC5800)
-  ===================================================== */
-  :root {
-    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-    --cyber-green: #27D17F;
-  }
+/* =====================================================
+   PRODUCT PAGE: TOKENIZED COMMERCIAL VEHICLES
+   Sections: 0 tokens · 1 hero + car stage · 2 deep dive · 3 architecture ·
+   4 pillars · 5 lifecycle · 6 simulator · 7 next-product bar · 8 responsive
+   Brand tokens (--color-accent, --color-text...) come from css/styles.css
+===================================================== */
+:root{--vb:#0096FF;--vg:#27D17F;--vm:#91a0ae;--vl:rgba(170,195,215,.14);--mono:"JetBrains Mono",ui-monospace,Menlo,monospace}
+html{scroll-behavior:smooth}
+html[lang=fa] body{font-family:Vazirmatn,Inter,system-ui,sans-serif}
+html[lang=fa] *{letter-spacing:0!important}
+body{overflow-x:hidden}
+.v-wrap{width:min(1240px,calc(100% - 48px));margin-inline:auto}
+.v-sec{position:relative;padding-top:clamp(72px,9vw,120px)}
+.v-eye{font:600 12px var(--mono);letter-spacing:.16em;color:var(--color-accent)}
+.v-h2{margin:14px 0;max-width:20ch;font-size:clamp(30px,3.8vw,52px);line-height:1.1;letter-spacing:-.035em;font-weight:700}
+.v-h2 em{font-style:normal;color:var(--color-accent)}
+.v-lead{max-width:60ch;color:var(--color-text-secondary);font-size:clamp(15px,1.15vw,17.5px);line-height:1.75}
+.v-head{margin-bottom:40px}
+.vr{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease-premium),transform .9s var(--ease-premium)}
+.vr.vis{opacity:1;transform:none}
+.v-glass{background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.015));border:1px solid var(--vl);border-radius:20px;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);transition:border-color .4s,box-shadow .4s,transform .4s var(--ease-premium)}
+.v-glass:hover{border-color:rgba(236,88,0,.55);box-shadow:0 0 44px rgba(236,88,0,.13);transform:translateY(-3px)}
+.v-ico{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;border:1px solid rgba(236,88,0,.4);background:rgba(236,88,0,.08)}
+.v-ico svg{width:22px;height:22px;fill:none;stroke:var(--color-accent);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 
-  html[dir="rtl"] body {
-    font-family: "Vazirmatn", system-ui, sans-serif;
-  }
-  html[dir="rtl"] .btn .i {
-    transform: scaleX(-1);
-  }
+/* ---------- 1. HERO ---------- */
+.v-hero{position:relative;display:flex;flex-direction:column;justify-content:center;min-height:100svh;padding:calc(var(--nav-h,68px) + 36px) 0 36px;overflow:hidden;isolation:isolate;border-bottom:1px solid var(--vl)}
+.v-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(58% 55% at 76% 42%,rgba(236,88,0,.17),transparent 70%),radial-gradient(45% 50% at 4% 92%,rgba(0,150,255,.12),transparent 70%)}
+.v-hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px) 0 0/64px 64px,linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px) 0 0/64px 64px;-webkit-mask-image:radial-gradient(70% 70% at 60% 45%,#000,transparent);mask-image:radial-gradient(70% 70% at 60% 45%,#000,transparent)}
+.v-main{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:28px;align-items:center}
+.v-crumb{display:flex;flex-wrap:wrap;gap:8px;font:600 12px var(--mono);letter-spacing:.14em;color:var(--vm)}
+.v-crumb b{color:var(--color-accent);font-weight:600}
+.v-copy h1{margin:18px 0 20px;font-size:clamp(38px,4.8vw,74px);line-height:1;letter-spacing:-.045em;font-weight:800}
+.v-copy h1 span{display:block}
+.v-copy h1 em{font-style:normal;color:var(--color-accent);text-shadow:0 0 42px rgba(236,88,0,.35)}
+.v-desc{max-width:52ch;margin-bottom:30px;color:var(--color-text-secondary);font-size:clamp(15px,1.2vw,18px);line-height:1.75}
+.v-cta{display:flex;flex-wrap:wrap;gap:14px}
+.v-live{display:flex;align-items:center;gap:10px;margin-top:30px;font:500 11.5px var(--mono);letter-spacing:.14em;color:var(--vm)}
+.v-dot{width:8px;height:8px;border-radius:50%;background:var(--vg);box-shadow:0 0 12px var(--vg);animation:v-breathe 2s ease-in-out infinite}
 
-  /* ---------- HERO SECTION CONFIGURATION ---------- */
-  .p-hero {
-    position: relative;
-    min-height: 100svh;
-    padding: calc(var(--nav-h) + 48px) 0 64px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden;
-    isolation: isolate;
-    border-bottom: 1px solid var(--color-border);
-  }
+/* ===== HERO STAGE v2: CAR (replaces old "CAR STAGE" block) ===== */
+.v-stage{position:relative;height:clamp(360px,43vw,540px);min-width:0;overflow:hidden;direction:ltr;isolation:isolate}
 
-  .p-hero__bg {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: #010B13;
-    overflow: hidden;
-  }
-  .p-hero__bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-    opacity: 1;
-    animation: heroZoom 18s ease-in-out infinite alternate;
-  }
-  .p-hero__bg::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(90deg, rgba(1,11,19,0.88) 0%, rgba(1,11,19,0.48) 34%, transparent 65%),
-      linear-gradient(180deg, rgba(1,11,19,0.45) 0%, transparent 22%, rgba(1,11,19,0.82) 86%, #010B13 100%);
-  }
-  html[dir="rtl"] .p-hero__bg::after {
-    background:
-      linear-gradient(270deg, rgba(1,11,19,0.88) 0%, rgba(1,11,19,0.48) 34%, transparent 65%),
-      linear-gradient(180deg, rgba(1,11,19,0.45) 0%, transparent 22%, rgba(1,11,19,0.82) 86%, #010B13 100%);
-  }
+/* background: aura + HUD rings + perspective floor + speed streaks */
+.h-aura{position:absolute;left:4%;top:12%;width:92%;height:66%;border-radius:50%;background:radial-gradient(closest-side,rgba(236,88,0,.30),rgba(0,150,255,.10) 62%,transparent);filter:blur(14px);transform:translateX(calc(var(--mx,0)*22px));transition:transform .6s;animation:v-breathe 5s ease-in-out infinite}
+.h-hud{position:absolute;left:50%;top:46%;width:min(86%,520px);aspect-ratio:1;translate:-50% -50%;overflow:visible;pointer-events:none}
+.h-hud circle{fill:none;transform-box:fill-box;transform-origin:center}
+.h-hud .a{stroke:rgba(170,195,215,.10);stroke-width:1}
+.h-hud .tk{stroke:rgba(170,195,215,.34);stroke-width:7;stroke-dasharray:.45 4.55;animation:v-spin 120s linear infinite}
+.h-hud .arc{stroke-width:2;stroke-linecap:round}
+.h-hud .arc.o{stroke:rgba(255,122,31,.85);stroke-dasharray:62 298;animation:v-spin 9s linear infinite}
+.h-hud .arc.b{stroke:rgba(0,150,255,.85);stroke-dasharray:40 320;animation:v-spin 14s linear infinite reverse}
+.h-hud .orb{stroke-width:8;stroke-linecap:round;stroke-dasharray:.01 179.99}
+.h-hud .orb.o{stroke:#ff9a52;animation:v-spin 26s linear infinite}
+.h-hud .orb.b{stroke:#45b4ff;animation:v-spin 38s linear infinite reverse}
+.h-floor{position:absolute;left:-6%;right:-6%;top:71.5%;height:40%;perspective:380px;perspective-origin:50% 0;overflow:hidden;pointer-events:none;-webkit-mask-image:radial-gradient(ellipse 52% 92% at 50% 4%,#000 22%,transparent 100%);mask-image:radial-gradient(ellipse 52% 92% at 50% 4%,#000 22%,transparent 100%)}
+.h-floor i{position:absolute;top:0;bottom:0;left:-90px;right:-90px;transform-origin:50% 0;transform:rotateX(66deg);background:repeating-linear-gradient(90deg,rgba(0,150,255,.34) 0 1px,transparent 1px 72px),repeating-linear-gradient(0deg,rgba(236,88,0,.34) 0 1px,transparent 1px 36px);animation:h-grid 1.1s linear infinite}
+.h-floor::before{content:"";position:absolute;left:10%;right:10%;top:0;height:1px;z-index:1;background:linear-gradient(90deg,transparent,rgba(236,88,0,.9),rgba(0,150,255,.7),transparent)}
+.v-streaks i{position:absolute;left:0;height:1.5px;width:26%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);opacity:0;animation:v-streak var(--d) linear var(--t) infinite}
+.h-dust i{position:absolute;left:var(--x);top:var(--y);width:var(--s,3px);height:var(--s,3px);border-radius:50%;background:var(--c,#ff8a3c);box-shadow:0 0 8px var(--c,#ff8a3c);opacity:0;animation:h-rise var(--d,6s) ease-in var(--t,0s) infinite}
+.h-ping{position:absolute;left:50%;top:77%;width:80%;height:15%;translate:-50% -50%;border-radius:50%;border:1.5px solid rgba(255,150,70,.7);box-shadow:0 0 18px rgba(236,88,0,.35);opacity:0;pointer-events:none;animation:h-ping 3s ease-out 1.74s infinite backwards}
+.h-ping.b{border-color:rgba(60,170,255,.7);box-shadow:0 0 18px rgba(0,150,255,.35);animation-delay:1.98s}
 
-  .p-hero__main {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 48px;
-    align-items: center;
-    margin-block: auto;
-    padding: 36px 0;
-  }
+/* car: parallax + rig (everything inside the rig moves with the car) */
+.v-par{position:absolute;inset:0;transform:translateX(calc(var(--mx,0)*10px));transition:transform .5s}
+.v-shadow{position:absolute;left:12%;top:73%;width:76%;height:7%;border-radius:50%;background:rgba(0,0,0,.8);filter:blur(16px);animation:v-shadow 1.6s ease-in-out infinite}
+/* RIG: 92% wide, 2.57:1. If an overlay is off the car, tune ONLY these variables (all % of the rig box):
+   --f-* front wheel, --r-* rear wheel (x / y = centre, d = height as % of rig width, sx = squash of the ellipse),
+   --ha-* right headlight strip, --hb-* left headlight */
+.v-rig{--f-x:59.9%;--f-y:71.5%;--f-d:16.2%;--f-sx:.4;--r-x:88%;--r-y:72%;--r-d:17%;--r-sx:.46;--ha-x:47%;--ha-y:43%;--hb-x:13.4%;--hb-y:45%;position:absolute;left:4%;top:30%;width:92%;aspect-ratio:2.57/1;z-index:5;animation:v-drive 1.6s ease-in-out infinite}
+.v-rig>img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none;user-select:none;filter:drop-shadow(0 18px 20px rgba(0,0,0,.6))}
 
-  .p-crumb {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--mono);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-text-secondary);
-    margin-bottom: 22px;
-    padding-left: 12px;
-    border-left: 2px solid var(--color-accent);
-  }
-  html[dir="rtl"] .p-crumb {
-    padding-left: 0;
-    padding-right: 12px;
-    border-left: 0;
-    border-right: 2px solid var(--color-accent);
-  }
-  .p-crumb span { color: var(--color-accent); }
+/* wheels: a spinning highlight on the REAL wheel pixels, squashed into the 3/4-view ellipse */
+.v-wh{position:absolute;left:var(--x);top:var(--y);width:var(--d);aspect-ratio:1;translate:-50% -50%;scale:var(--sx) 1;border-radius:50%;mix-blend-mode:screen;pointer-events:none;-webkit-mask-image:radial-gradient(circle,transparent 16%,#000 34%,#000 88%,transparent);mask-image:radial-gradient(circle,transparent 16%,#000 34%,#000 88%,transparent)}
+.v-wh::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(rgba(255,255,255,0) 0,rgba(255,255,255,.62) 10deg,rgba(255,255,255,0) 30deg 60deg,rgba(255,255,255,.62) 70deg,rgba(255,255,255,0) 90deg 120deg,rgba(255,255,255,.62) 130deg,rgba(255,255,255,0) 150deg 180deg,rgba(255,255,255,.62) 190deg,rgba(255,255,255,0) 210deg 240deg,rgba(255,255,255,.62) 250deg,rgba(255,255,255,0) 270deg 300deg,rgba(255,255,255,.62) 310deg,rgba(255,255,255,0) 330deg);filter:blur(.6px);animation:v-spin .5s linear infinite}
+.v-wh::after{content:"";position:absolute;inset:7%;border-radius:50%;box-shadow:0 0 0 2px rgba(255,122,31,.55) inset,0 0 22px rgba(236,88,0,.5);animation:v-breathe 2.4s ease-in-out infinite}
 
-  .p-hero h1 {
-    font-size: clamp(38px, 5vw, 72px);
-    line-height: 1.04;
-    letter-spacing: -0.035em;
-    max-width: 15ch;
-  }
-  .p-hero h1 em {
-    display: block;
-    color: var(--color-accent);
-    text-shadow: 0 0 38px rgba(236,88,0,0.35);
-  }
+/* scan plane + high-beam (flashes every 3 s: double blink, then holds) */
+.h-scan{position:absolute;top:-8%;bottom:-4%;left:0;width:14%;opacity:0;mix-blend-mode:screen;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(110,210,255,.22) 70%,rgba(190,244,255,.6) 98%,transparent);-webkit-mask-image:linear-gradient(180deg,transparent,#000 18%,#000 78%,transparent);mask-image:linear-gradient(180deg,transparent,#000 18%,#000 78%,transparent);animation:h-scan 6s cubic-bezier(.45,0,.25,1) infinite}
+.h-hl{position:absolute;left:var(--x);top:var(--y);translate:-50% -50%;border-radius:50%;opacity:.4;mix-blend-mode:screen;pointer-events:none;background:radial-gradient(closest-side,rgba(255,252,240,.95),rgba(190,225,255,.5) 38%,rgba(120,190,255,.14) 66%,transparent);animation:h-flash 3s ease-in-out infinite}
+.h-hl.a{width:17%;aspect-ratio:3.4/1;rotate:-10deg}
+.h-hl.b{width:8.5%;aspect-ratio:1.25/1}
+.h-hl::before{content:"";position:absolute;left:-95%;right:-95%;top:50%;height:2px;translate:0 -50%;opacity:0;background:linear-gradient(90deg,transparent,rgba(200,232,255,.95),transparent);animation:h-flare 3s ease-in-out infinite}
+.h-beam{position:absolute;left:var(--x);top:var(--y);height:24%;translate:-100% -50%;transform-origin:100% 50%;opacity:.14;mix-blend-mode:screen;pointer-events:none;filter:blur(5px);animation:h-beam 3s ease-in-out infinite}
+.h-beam::before{content:"";position:absolute;inset:0;background:linear-gradient(270deg,rgba(255,244,214,.66),rgba(255,244,214,.16) 62%,transparent);-webkit-clip-path:polygon(100% 42%,0 0,0 100%,100% 58%);clip-path:polygon(100% 42%,0 0,0 100%,100% 58%)}
+.h-beam.b{width:17%;rotate:-2deg}
+.h-beam.a{width:11%;height:14%}
+.h-pool{position:absolute;left:-4%;top:80%;width:34%;height:20%;border-radius:50%;opacity:0;mix-blend-mode:screen;pointer-events:none;filter:blur(3px);background:radial-gradient(closest-side,rgba(255,236,190,.55),rgba(255,190,110,.18) 60%,transparent);animation:h-pool 3s ease-in-out infinite}
 
-  .p-hero__sub {
-    color: var(--color-text-secondary);
-    font-size: clamp(16px, 1.35vw, 20px);
-    line-height: 1.65;
-    max-width: 46ch;
-    margin-top: 22px;
-  }
+/* info chips: every chip has a glowing status dot (green / orange / blue / red) */
+.v-chip{--rgb:39,209,127;position:absolute;z-index:9;max-width:210px;padding:11px 15px 11px 14px;border:1px solid rgba(var(--rgb),.38);border-radius:12px;background:linear-gradient(135deg,rgba(var(--rgb),.12),rgba(6,18,30,.8) 58%);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 8px 28px rgba(0,0,0,.35),0 0 22px rgba(var(--rgb),.12);font:600 12.5px/1.35 var(--mono);color:#fff;animation:v-float 7s ease-in-out infinite}
+.v-chip::before{content:"";position:absolute;left:14px;right:14px;top:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(var(--rgb),.95),transparent)}
+.v-chip small{display:block;margin-bottom:2px;font:500 10px var(--mono);letter-spacing:.14em;color:var(--vm)}
+.v-chip i{position:relative;display:inline-block;width:7px;height:7px;margin-right:8px;border-radius:50%;background:rgb(var(--rgb));box-shadow:0 0 10px rgb(var(--rgb))}
+.v-chip i::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:1px solid rgb(var(--rgb));animation:h-dot 2s ease-out infinite}
+.c1{left:2%;top:3%}.c2{--rgb:255,122,31;right:2%;top:13%;animation-delay:-2s}.c3{--rgb:0,150,255;left:2%;bottom:3%;animation-delay:-4s}.c4{--rgb:255,59,69;right:2%;bottom:3%;animation-delay:-1s}
 
-  .p-hero__hud {
-    position: relative;
-    height: 360px;
-    display: grid;
-    place-items: center;
-    pointer-events: none;
-  }
-  .hud-reticle {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    border: 1px dashed rgba(236,88,0,0.32);
-    animation: spinCW 28s linear infinite;
-  }
-  .hud-reticle::before {
-    content: "";
-    position: absolute;
-    inset: 28px;
-    border-radius: 50%;
-    border: 1px solid rgba(236,88,0,0.22);
-    border-top-color: var(--color-accent);
-    animation: spinCCW 14s linear infinite;
-  }
-  .hud-chip {
-    position: absolute;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
-    border-radius: 99px;
-    background: rgba(3, 10, 18, 0.82);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.14);
-    font-family: var(--mono);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    color: #fff;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.55);
-    animation: floatChip 4s ease-in-out infinite alternate;
-  }
-  .hud-chip i {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--c, var(--color-accent));
-    box-shadow: 0 0 10px var(--c, var(--color-accent));
-  }
-  .hud-chip--1 { top: 18px; right: 10px; --c: var(--color-accent); }
-  .hud-chip--2 { bottom: 38px; left: 0px; --c: #27D17F; animation-delay: 1.2s; }
-  .hud-chip--3 { top: 50%; right: -10px; --c: var(--color-accent); animation-delay: 2.1s; }
+/* new keyframes (v-spin / v-breathe / v-float / v-drive / v-shadow / v-streak already exist below in your file) */
+@keyframes h-grid{to{transform:rotateX(66deg) translateX(72px)}}
+@keyframes h-rise{0%{transform:translate(0,0) scale(.6);opacity:0}15%{opacity:.9}100%{transform:translate(var(--dx,14px),-120px) scale(1);opacity:0}}
+@keyframes h-ping{0%{transform:scale(.35);opacity:.85}100%{transform:scale(1.35);opacity:0}}
+@keyframes h-dot{0%{transform:scale(1);opacity:.9}100%{transform:scale(3.2);opacity:0}}
+@keyframes h-scan{0%{transform:translateX(-30%);opacity:0}8%{opacity:1}52%{transform:translateX(650%);opacity:1}60%,100%{transform:translateX(700%);opacity:0}}
+@keyframes h-flash{0%,56%{opacity:.4;transform:scale(1)}60%{opacity:1;transform:scale(1.7)}64%{opacity:.3;transform:scale(1)}68%{opacity:1;transform:scale(1.9)}84%{opacity:.9;transform:scale(1.6)}100%{opacity:.4;transform:scale(1)}}
+@keyframes h-flare{0%,56%{opacity:0;transform:scaleX(.3)}60%{opacity:1;transform:scaleX(1)}64%{opacity:0}68%,80%{opacity:1;transform:scaleX(1)}100%{opacity:0;transform:scaleX(.3)}}
+@keyframes h-beam{0%,56%{opacity:.14;transform:scaleX(.5)}60%{opacity:.9;transform:scaleX(1)}64%{opacity:.18;transform:scaleX(.55)}68%,84%{opacity:1;transform:scaleX(1)}100%{opacity:.14;transform:scaleX(.5)}}
+@keyframes h-pool{0%,56%{opacity:0}60%{opacity:.8}64%{opacity:.1}68%,84%{opacity:1}100%{opacity:0}}
 
-  /* ---------- PIPELINE & PILL STRIP ---------- */
-  .p-hero__bottom {
-    position: relative;
-    z-index: 3;
-    margin-top: 24px;
-  }
-  .p-pipeline {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 24px 0 32px;
-    direction: ltr;
-  }
-  .p-pipeline::before {
-    content: "";
-    position: absolute;
-    top: 56px;
-    left: 12%;
-    right: 12%;
-    height: 2px;
-    background: linear-gradient(90deg, rgba(236,88,0,0.15), rgba(236,88,0,0.65), rgba(236,88,0,0.65), rgba(39,209,127,0.35));
-    z-index: 0;
-  }
-  .p-pipeline__beam {
-    position: absolute;
-    top: 55px;
-    left: 12%;
-    width: 90px;
-    height: 4px;
-    border-radius: 4px;
-    background: linear-gradient(90deg, transparent, #EC5800, #fff);
-    box-shadow: 0 0 16px #EC5800;
-    z-index: 1;
-    animation: pipePulse 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  }
+/* PIPELINE + TRUST STRIP */
+.v-pipe{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:36px}
+.v-pipe::before{content:"";position:absolute;left:4%;right:4%;top:44px;height:1px;background:linear-gradient(90deg,var(--color-accent),var(--vb));opacity:.5}
+.v-pipe::after{content:"";position:absolute;left:4%;top:42px;width:90px;height:5px;border-radius:3px;background:linear-gradient(90deg,transparent,#fff,transparent);filter:blur(2px);animation:v-slide 5s linear infinite}
+.v-st{position:relative;z-index:1;padding:18px 18px 20px;text-align:center}
+.v-st .v-ico{margin:0 auto 12px;background:var(--color-bg)}
+.v-st strong{display:block;font-size:15px;font-weight:600}
+.v-st small{display:block;margin-top:3px;font-size:12.5px;color:var(--vm)}
+.v-trust{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:center;margin-top:26px;font-size:13px;color:var(--color-text-secondary)}
+.v-trust span{display:inline-flex;align-items:center;gap:9px}
+.v-trust svg{width:18px;height:18px;fill:none;stroke:var(--color-accent);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 
-  .p-stage {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 12px;
-  }
-  .p-stage__ic {
-    width: 64px;
-    height: 64px;
-    border-radius: 18px;
-    background: rgba(6, 14, 24, 0.92);
-    border: 1px solid rgba(255,255,255,0.14);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.6), inset 0 0 18px rgba(236,88,0,0.08);
-    display: grid;
-    place-items: center;
-    transition: transform 0.35s var(--ease-premium), border-color 0.35s, box-shadow 0.35s;
-  }
-  .p-stage:hover .p-stage__ic {
-    transform: translateY(-5px) scale(1.06);
-    border-color: var(--color-accent);
-    box-shadow: 0 16px 36px rgba(236,88,0,0.28), inset 0 0 22px rgba(236,88,0,0.18);
-  }
-  .p-stage__ic svg {
-    width: 32px;
-    height: 32px;
-    stroke: var(--color-accent);
-    fill: none;
-    stroke-width: 1.7;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-  .p-stage b { font-size: 15px; font-weight: 600; color: var(--color-text); }
-  .p-stage span { font-size: 12.5px; color: var(--color-text-muted); max-width: 22ch; }
+/* ---------- 2. DEEP DIVE ---------- */
+.v-dive{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start}
+.v-dive p+p{margin-top:16px}
+.v-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.v-kpi{padding:16px 14px;text-align:center}
+.v-kpi strong{display:block;font:700 26px var(--mono);color:var(--color-accent)}
+.v-kpi span{display:block;margin-top:4px;font-size:12.5px;line-height:1.35;color:var(--vm)}
+.v-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.v-card{padding:22px}
+.v-card h3{margin:16px 0 6px;font-size:18px;letter-spacing:-.01em}
+.v-card p{font-size:14px;line-height:1.6;color:var(--color-text-secondary)}
 
-  .p-strip {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: center;
-    padding: 18px 28px;
-    border-radius: 99px;
-    background: rgba(255,255,255,0.025);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-  }
-  .p-strip__item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 4px 16px;
-    border-right: 1px solid rgba(255,255,255,0.1);
-    font-size: 14.5px;
-    font-weight: 500;
-    color: var(--color-text-secondary);
-  }
-  .p-strip__item:last-child { border-right: 0; }
-  html[dir="rtl"] .p-strip__item { border-right: 0; border-left: 1px solid rgba(255,255,255,0.1); }
-  html[dir="rtl"] .p-strip__item:last-child { border-left: 0; }
-  .p-strip__item svg { width: 20px; height: 20px; stroke: var(--color-accent); fill: none; stroke-width: 1.8; flex-shrink: 0; }
+/* ---------- 3. ARCHITECTURE (live system model) ---------- */
+.v-arch-box{padding:22px 24px 18px;overflow:hidden}
+.v-arch-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px;font:600 12px var(--mono);letter-spacing:.1em}
+.v-arch-bar small{display:block;margin-top:3px;font-weight:500;color:var(--vm)}
+.v-counters{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;color:var(--vm);font-weight:500}
+.v-counters b{margin:0 6px;color:#fff;font-weight:700}
+.v-scroll{overflow-x:auto;direction:ltr}
+.v-arch{display:block;width:100%;min-width:760px;height:auto}
+.v-arch text{font-family:inherit;text-anchor:middle}
+/* PIPES: halo > wall > dark bore > soft liquid > flowing light. Colour comes from --pc (o = orange, b = blue) */
+.v-arch .pipe.o{--pc:236,88,0}.v-arch .pipe.b{--pc:0,150,255}
+.v-arch .pipe use{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.v-arch .pipe .halo{stroke-width:26;stroke:rgba(var(--pc),.055)}
+.v-arch .pipe .wall{stroke-width:13;stroke:rgba(185,208,226,.34)}
+.v-arch .pipe .bore{stroke-width:10;stroke:#050c15}
+.v-arch .pipe .lq{stroke-width:5;stroke:rgba(var(--pc),.16)}
+.v-arch .pipe .fl{stroke-width:2.4;stroke:rgba(var(--pc),.95);stroke-dasharray:10 56;animation:h-flow 2.4s linear var(--dl,0s) infinite}
+.v-arch .pipe .fg{fill:#08121d;stroke:rgba(185,208,226,.5);stroke-width:1.6}
+.v-arch .pipe .pt{fill:rgb(var(--pc));animation:v-breathe 2.6s ease-in-out var(--dl,0s) infinite}
+.v-arch .pipe .col{fill:#0b1826;stroke:rgba(185,208,226,.45);stroke-width:1.2}
+/* NODES */
+.v-arch .nd{--pc:0,150,255}.v-arch .nd.o{--pc:236,88,0}
+.v-arch .nd .bx{fill:url(#gN);stroke:rgba(var(--pc),.4);stroke-width:1.2;transition:stroke .3s,filter .3s}
+.v-arch .nd .bar{fill:rgb(var(--pc))}
+.v-arch .nd .led{fill:rgb(var(--pc));animation:v-breathe 2.6s ease-in-out infinite}
+.v-arch .nd.hit .bx{stroke:rgb(var(--pc));filter:drop-shadow(0 0 12px rgba(var(--pc),.75))}
+.v-arch .t{font:500 10.5px var(--mono);letter-spacing:.12em;fill:var(--vm)}
+.v-arch .h{font-size:17px;font-weight:700;fill:#fff}
+.v-arch .d{font-size:12px;fill:var(--vm)}
+/* CORE */
+.v-arch .cc{fill:url(#gC);stroke:rgba(236,88,0,.75);stroke-width:1.5;transition:filter .3s}
+.v-arch #core.hit circle.cc{stroke:var(--color-accent);filter:drop-shadow(0 0 16px rgba(236,88,0,.85))}
+.v-arch .cr{fill:none;transform-box:fill-box;transform-origin:center}
+.v-arch .r1{stroke:rgba(236,88,0,.4);stroke-dasharray:3 9;animation:v-spin 30s linear infinite}
+.v-arch .r2{stroke:rgba(0,150,255,.3);stroke-dasharray:2 12;animation:v-spin 46s linear infinite reverse}
+.v-arch .r3{stroke:rgba(255,122,31,.9);stroke-width:2;stroke-linecap:round;stroke-dasharray:46 314;animation:v-spin 7s linear infinite}
+.v-arch .r4{stroke:rgba(0,150,255,.85);stroke-width:2;stroke-linecap:round;stroke-dasharray:30 330;animation:v-spin 11s linear infinite reverse}
+.v-arch .ping{stroke:rgba(236,88,0,.6);stroke-width:1.5;animation:h-core-ping 3.2s ease-out infinite}
+.v-arch .ping.b{stroke:rgba(0,150,255,.55);animation-delay:1.6s}
+.v-arch .big{font-size:30px;font-weight:800;fill:#fff}
+/* PACKETS (drawn by the engine) */
+.v-arch .pkt.o{fill:#ffa266}.v-arch .pkt.b{fill:#7fcfff}
+@keyframes h-flow{to{stroke-dashoffset:-66}}
+@keyframes h-core-ping{0%{transform:scale(1);opacity:.75}100%{transform:scale(1.9);opacity:0}}
 
-  /* ---------- NARRATIVE & BENTO (GAP 24px) ---------- */
-  .p-narrative {
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: clamp(32px, 5vw, 72px);
-    align-items: start;
-  }
-  .p-copy-box {
-    padding: clamp(28px, 4vw, 48px);
-    border-radius: var(--radius-lg);
-    background: rgba(255,255,255,0.02);
-    backdrop-filter: blur(16px);
-    border: 1px solid var(--color-border);
-    box-shadow: var(--shadow-card);
-    position: relative;
-    overflow: hidden;
-  }
-  .p-copy-box::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--color-accent), var(--color-accent), transparent);
-  }
-  .p-copy-box p {
-    color: var(--color-text-secondary);
-    font-size: 16.5px;
-    line-height: 1.8;
-    margin-top: 18px;
-  }
-  .p-copy-box p:first-of-type {
-    font-size: 18px;
-    color: var(--color-text);
-    font-weight: 500;
-  }
+/* ---------- 4. PILLARS ---------- */
+.v-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.v-pil{padding:26px}
+.v-pil em{display:block;margin-bottom:16px;font:600 11px var(--mono);font-style:normal;letter-spacing:.14em;color:var(--color-accent)}
+.v-pil h3{margin:16px 0 8px;font-size:19px;letter-spacing:-.01em}
+.v-pil p{font-size:14.5px;line-height:1.65;color:var(--color-text-secondary)}
 
-  .p-specs-grid {
-    display: grid;
-    gap: 32px;
-  }
-  .p-spec-card {
-    padding: 24px 26px;
-    border-radius: var(--radius-md);
-    background: rgba(255,255,255,0.022);
-    border: 1px solid var(--color-border);
-    transition: transform 0.3s var(--ease-premium), border-color 0.3s, box-shadow 0.3s;
-    display: flex;
-    gap: 18px;
-    align-items: flex-start;
-  }
-  .p-spec-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--color-border-active);
-    box-shadow: 0 14px 36px rgba(236,88,0,0.16);
-  }
-  .p-spec-dot {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    background: rgba(236,88,0,0.1);
-    border: 1px solid rgba(236,88,0,0.35);
-    display: grid;
-    place-items: center;
-    flex-shrink: 0;
-    font-family: var(--mono);
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--color-accent);
-  }
-  .p-spec-card h3 { font-size: 18px; margin-bottom: 6px; }
-  .p-spec-card p { font-size: 14px; color: var(--color-text-secondary); line-height: 1.6; }
+/* ---------- 5. LIFECYCLE ---------- */
+.v-steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.v-steps::before{content:"";position:absolute;left:6%;right:6%;top:36px;height:2px;background:linear-gradient(90deg,var(--color-accent),var(--vb));transform:scaleX(0);transform-origin:left;transition:transform 2.2s var(--ease-premium) .3s}
+html[dir=rtl] .v-steps::before{transform-origin:right}
+.v-steps.vis::before{transform:scaleX(1)}
+.v-step{position:relative;padding:24px 22px}
+.v-step span{display:inline-grid;place-items:center;width:26px;height:26px;margin-bottom:14px;border-radius:50%;background:var(--color-bg);border:1px solid var(--color-accent);font:600 11px var(--mono);color:var(--color-accent)}
+.v-step b{display:block;margin-bottom:10px;font:500 11px var(--mono);letter-spacing:.14em;color:var(--vm)}
+.v-step h3{margin-bottom:8px;font-size:18px}
+.v-step p{font-size:14px;line-height:1.6;color:var(--color-text-secondary)}
 
-  /* ---------- INTERACTIVE DIAGRAM CONFIGURATION ---------- */
-  .sim-box {
-    margin-top: 42px;
-    border-radius: var(--radius-lg);
-    background: linear-gradient(165deg, rgba(8,16,28,0.92) 0%, rgba(2,7,13,0.98) 100%);
-    border: 1px solid rgba(255,255,255,0.12);
-    box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 40px rgba(236,88,0,0.08);
-    overflow: hidden;
-    position: relative;
-  }
-  .sim-header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 20px 28px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    background: rgba(255,255,255,0.015);
-  }
-  .sim-status {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--color-text-secondary);
-  }
-  .sim-status i {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--cyber-green);
-    box-shadow: 0 0 12px var(--cyber-green);
-    animation: pulseDot 1.4s infinite;
-  }
-  .sim-controls { display: flex; align-items: center; gap: 12px; }
-  .btn--sim { min-height: 38px; padding: 0 18px; font-size: 13px; font-family: var(--mono); }
+/* ---------- 6. SIMULATOR ---------- */
+.v-sim{padding:28px}
+.v-sim-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding-bottom:20px;border-bottom:1px solid var(--vl)}
+.v-sim-top strong{display:block;font-size:15px;letter-spacing:.04em}
+.v-sim-top small{display:block;margin-top:3px;font:500 11px var(--mono);color:var(--vm)}
+.v-sim-st{display:flex;align-items:center;gap:10px;font:600 12px var(--mono);letter-spacing:.1em;color:var(--color-text-secondary)}
+.v-sim-btns{display:flex;gap:10px}
+.v-flow{display:grid;grid-template-columns:1fr 60px 1fr 60px 1fr;align-items:center;margin:26px 0 16px}
+.v-nodes{padding:18px 14px;text-align:center;opacity:.45;transition:opacity .5s,border-color .5s,box-shadow .5s}
+.v-nodes.on{opacity:1;border-color:rgba(236,88,0,.6);box-shadow:0 0 30px rgba(236,88,0,.16)}
+.v-nodes .v-ico{margin:0 auto 10px}
+.v-nodes strong{display:block;font-size:15px}
+.v-nodes small{display:block;margin-top:2px;font-size:12.5px;color:var(--vm)}
+.v-con{height:2px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.3) 0 6px,transparent 6px 12px);animation:v-dash 1.2s linear infinite}
+.v-bar{height:4px;margin-bottom:22px;border-radius:3px;background:var(--vl);overflow:hidden}
+.v-bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--color-accent),var(--vb));transition:width .8s var(--ease-premium)}
+.v-res{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.v-r{padding:16px;border:1px solid var(--vl);border-radius:14px;background:rgba(255,255,255,.02)}
+.v-r small{display:block;font:500 10.5px var(--mono);letter-spacing:.12em;color:var(--vm)}
+.v-r strong{display:block;margin-top:6px;font:700 clamp(15px,1.6vw,20px) var(--mono);white-space:nowrap}
+.v-r.up{animation:v-pop .7s}
+.v-note{margin-top:18px;font-size:12.5px;line-height:1.6;color:var(--vm)}
 
-  .sim-stage { position: relative; padding: 32px 24px; direction: ltr; }
-  .sim-svg { width: 100%; height: auto; max-height: 440px; display: block; overflow: visible; }
+/* ---------- 7. NEXT PRODUCT BAR (same markup/CSS as product-drones.html) ---------- */
+.p-next-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;padding:32px 40px;border-radius:var(--radius-lg);background:rgba(255,255,255,.02);border:1px solid var(--color-border)}
 
-  .sim-metrics {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: rgba(255,255,255,0.08);
-    border-top: 1px solid rgba(255,255,255,0.08);
-  }
-  .sim-metric {
-    background: #030911;
-    padding: 18px 22px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .sim-metric small { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); }
-  .sim-metric b { font-family: var(--mono); font-size: 20px; color: #fff; }
-  .sim-metric b.orange { color: var(--color-accent); }
-  .sim-metric b.green { color: var(--cyber-green); }
+/* ---------- KEYFRAMES ---------- */
+@keyframes v-spin{to{transform:rotate(360deg)}}
+@keyframes v-breathe{50%{opacity:.62}}
+@keyframes v-float{50%{transform:translateY(-6px)}}
+@keyframes v-lane{to{transform:translateX(120px)}}
+@keyframes v-drive{0%,100%{transform:translate(0,0) rotate(0)}25%{transform:translate(-3px,-1.2px) rotate(-.08deg)}50%{transform:translate(-5px,0) rotate(0)}75%{transform:translate(-2px,-1px) rotate(.08deg)}}
+@keyframes v-shadow{50%{transform:scaleX(.97);opacity:.85}}
+@keyframes v-streak{0%{transform:translateX(0);opacity:0}15%,80%{opacity:.7}100%{transform:translateX(380%);opacity:0}}
+@keyframes v-slide{to{left:90%}}
+@keyframes v-dash{to{stroke-dashoffset:-26;background-position:24px 0}}
+@keyframes v-pop{40%{border-color:var(--color-accent);box-shadow:0 0 24px rgba(236,88,0,.4)}}
 
-  .p-next-bar {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 32px 40px;
-    border-radius: var(--radius-lg);
-    background: rgba(255,255,255,0.02);
-    border: 1px solid var(--color-border);
-  }
-
-  @keyframes heroZoom { 0% { transform: scale(1); } 100% { transform: scale(1.06); } }
-  @keyframes spinCW { to { transform: rotate(360deg); } }
-  @keyframes spinCCW { to { transform: rotate(-360deg); } }
-  @keyframes floatChip { 0% { transform: translateY(0px); } 100% { transform: translateY(-10px); } }
-  @keyframes pipePulse { 0% { left: 12%; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { left: 82%; opacity: 0; } }
-  @keyframes pulseDot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(0.8); } }
-  @keyframes packetFlow1 { 0% { stroke-dashoffset: 260; } 100% { stroke-dashoffset: 0; } }
-  @keyframes vehicleDriveRealistic {
-    0% { transform: translate(-25px, 5px) rotate(-1deg) scale(0.98); }
-    40% { transform: translate(15px, -5px) rotate(3deg) scale(1.02); }
-    50% { transform: translate(20px, -8px) rotate(6deg) scale(1.03); } /* Slight smooth turn */
-    60% { transform: translate(10px, -3px) rotate(2deg) scale(1.01); }
-    100% { transform: translate(-25px, 5px) rotate(-1deg) scale(0.98); } /* Smooth reverse back */
-  }
-
-  @media (max-width: 1024px) {
-    .p-hero__main, .p-narrative { grid-template-columns: 1fr; }
-    .p-hero__hud { display: none; }
-    .p-pipeline { grid-template-columns: repeat(2, 1fr); }
-    .p-pipeline::before, .p-pipeline__beam { display: none; }
-    .p-strip { grid-template-columns: 1fr; border-radius: var(--radius-md); gap: 12px; }
-    .p-strip__item { border: 0 !important; justify-content: flex-start; }
-    .sim-metrics { grid-template-columns: repeat(2, 1fr); }
-  }
+/* ---------- 8. RESPONSIVE ---------- */
+@media (max-width:1060px){
+ .v-main,.v-dive{grid-template-columns:1fr}
+ .v-copy{text-align:left}.v-stage{max-width:760px;margin:0 auto;width:100%}
+ .v-pipe{grid-template-columns:1fr 1fr}.v-pipe::before,.v-pipe::after{display:none}
+ .v-pillars{grid-template-columns:1fr}.v-steps{grid-template-columns:1fr 1fr}.v-steps::before{display:none}
+ .v-res{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+ .v-cards,.v-kpis,.v-steps,.v-pipe{grid-template-columns:1fr}
+ .v-flow{grid-template-columns:1fr;gap:10px}.v-con{width:2px;height:26px;margin:0 auto;background:repeating-linear-gradient(180deg,rgba(255,255,255,.3) 0 6px,transparent 6px 12px)}
+ .v-chip{padding:7px 10px;font-size:11px;max-width:150px}.c2{top:14%}
+ .p-next-bar{padding:24px}.v-sim{padding:20px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01ms!important}.vr{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
 <div id="top" aria-hidden="true"></div>
 
-<!-- ================================================
-     NAVIGATION SYSTEM
-================================================= -->
+<!-- =========================================================
+     NAVIGATION (identical to the rest of the site; behaviour in the script at the bottom)
+========================================================= -->
 <header class="nav scrolled" id="nav">
- <div class="wrap nav__in">
-  <a class="logo" href="index.html" aria-label="Aervynx home">
-   <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M3 28 16 3l13 25h-6.5L16 14.5 9.5 28z"/></svg>Aervynx
-  </a>
-  <nav class="menu" id="menu" aria-label="Primary">
-   <ul id="links">
-    <li><a class="l" href="index.html#home" data-en="Home" data-fa="خانه">Home</a></li>
-    <li><a class="l" href="index.html#products" aria-current="true" data-en="Products" data-fa="محصولات">Products</a></li>
-    <li><a class="l" href="index.html#technology" data-en="Technology" data-fa="تکنولوژی">Technology</a></li>
-    <li><a class="l" href="index.html#roadmap" data-en="Roadmap" data-fa="نقشه راه">Roadmap</a></li>
-    <li><a class="l" href="index.html#team" data-en="Team" data-fa="تیم">Team</a></li>
-    <li><a class="l" href="whitepaper.html" data-en="Whitepaper" data-fa="وایت‌پیپر">Whitepaper</a></li>
-    <li><a class="l" href="aervynx_one_pitch_deck.html" target="_blank" data-en="Pitch Deck" data-fa="پیچ‌دک">Pitch Deck</a></li>
-   </ul>
-   <div class="menu__cta">
-    <button class="btn-lang" type="button" id="lang-switch" aria-label="Switch language">
-     <svg class="i" viewBox="0 0 24 24"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0zM3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
-     <span class="lang-code active" data-target="en">EN</span>
-     <span class="lang-sep">/</span>
-     <span class="lang-code" data-target="fa">FA</span>
-    </button>
-    <div id="wallet-root" style="display:contents"></div>
-   </div>
-  </nav>
-  <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu"></button>
- </div>
+  <div class="wrap nav__in">
+    <a class="logo" href="index.html" aria-label="Aervynx home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M3 28 16 3l13 25h-6.5L16 14.5 9.5 28z"/></svg>
+      Aervynx
+    </a>
+    <nav class="menu" id="menu" aria-label="Primary">
+      <ul id="links">
+        <li><a class="l" href="index.html#home" data-en="Home" data-fa="خانه">Home</a></li>
+        <li><a class="l" href="index.html#products" aria-current="true" data-en="Products" data-fa="محصولات">Products</a></li>
+        <li><a class="l" href="index.html#technology" data-en="Technology" data-fa="تکنولوژی">Technology</a></li>
+        <li><a class="l" href="index.html#roadmap" data-en="Roadmap" data-fa="نقشه راه">Roadmap</a></li>
+        <li><a class="l" href="index.html#team" data-en="Team" data-fa="تیم">Team</a></li>
+        <li><a class="l" href="whitepaper.html" data-en="Whitepaper" data-fa="وایت‌پیپر">Whitepaper</a></li>
+        <li><a class="l" href="aervynx_one_pitch_deck.html" target="_blank" data-en="Pitch Deck" data-fa="پیچ‌دک">Pitch Deck</a></li>
+      </ul>
+      <div class="menu__cta">
+        <button class="btn-lang" type="button" id="lang-switch" aria-label="Switch language">
+          <svg class="i" viewBox="0 0 24 24"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0zM3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
+          <span class="lang-code active" data-target="en">EN</span>
+          <span class="lang-sep">/</span>
+          <span class="lang-code" data-target="fa">FA</span>
+        </button>
+        <div id="wallet-root" style="display:contents"></div>
+      </div>
+    </nav>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu"></button>
+  </div>
 </header>
 
 <main id="main">
 
-<!-- ================================================
-     HERO SECTION
-================================================= -->
-<section class="p-hero">
- <div class="p-hero__bg" aria-hidden="true">
-  <img src="assets/tokenized-vehicles3.pn" alt="Aervynx Tokenized Commercial Vehicle Fleets">
- </div>
+<!-- =========================================================
+     01 HERO
+     Car image: assets/car-simulate.png  (replace the file to change the car;
+     if the car looks misaligned, tune the --wf-x / --hl1-x variables on .v-rig in the CSS)
+========================================================= -->
+<section class="v-hero" id="home">
+  <div class="v-wrap">
+    <div class="v-main">
 
- <div class="wrap p-hero__main">
-  <div>
-   <div class="p-crumb">
-    <b data-en="MOBILITY ASSETS" data-fa="دارایی‌های حرکتی و ناوگان">MOBILITY ASSETS</b>
-    <span>/</span>
-    <span data-en="TOKENIZED COMMERCIAL VEHICLES" data-fa="خودروهای تجاری توکنایزشده">TOKENIZED COMMERCIAL VEHICLES</span>
-   </div>
+      <div class="v-copy">
+        <div class="v-crumb"><span data-en="MOBILITY ASSETS" data-fa="دارایی‌های حمل‌ونقل">MOBILITY ASSETS</span><b>/</b><span data-en="TOKENIZED VEHICLES" data-fa="خودروهای توکنایزشده">TOKENIZED VEHICLES</span></div>
+        <h1>
+          <span data-en="Commercial Fleets." data-fa="ناوگان تجاری.">Commercial Fleets.</span>
+          <em data-en="Fractionally Owned." data-fa="مالکیت کسری.">Fractionally Owned.</em>
+        </h1>
+        <p class="v-desc" data-en="A new framework for participating in commercial vehicle fleets. Physical delivery vans and transit vehicles are structured within dedicated SPVs, with tokenized participation on DotOne Chain 505." data-fa="چارچوبی جدید برای مشارکت در ناوگان خودروهای تجاری. ون‌های تحویل کالا و خودروهای ترابری در ساختارهای اختصاصی SPV قرار گرفته و مشارکت در آن‌ها روی شبکه DotOne 505 توکنایز می‌شود.">A new framework for participating in commercial vehicle fleets. Physical delivery vans and transit vehicles are structured within dedicated SPVs, with tokenized participation on DotOne Chain 505.</p>
+        <div class="v-cta">
+          <a class="btn" href="#architecture"><span data-en="Explore SPV Architecture" data-fa="بررسی معماری SPV">Explore SPV Architecture</span><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn--ghost" href="#simulation" data-en="Explore Simulation" data-fa="مشاهده شبیه‌ساز">Explore Simulation</a>
+        </div>
+        <div class="v-live"><i class="v-dot"></i><span data-en="PHYSICAL ASSETS · DIGITAL PARTICIPATION" data-fa="دارایی فیزیکی · مشارکت دیجیتال">PHYSICAL ASSETS · DIGITAL PARTICIPATION</span></div>
+      </div>
 
-   <h1>
-    <span data-en="Commercial Fleets." data-fa="ناوگان تجاری.">Commercial Fleets.</span>
-    <em data-en="Fractionally Owned." data-fa="مالکیت کسری و سودآور.">Fractionally Owned.</em>
-   </h1>
-
-   <p class="p-hero__sub"
-      data-en="Legally compliant SPV-wrapped vehicular fleets natively tokenized on DotOne Chain 505, transforming urban transit and logistics into a liquid yield-bearing asset class."
-      data-fa="ناوگان خودرویی دارای ساختار قانونی SPV که روی شبکه دات‌وان ۵۰۵ توکنایز شده و ترابری شهری را به دارایی نقدشونده و سودده تبدیل می‌کند.">
-    Legally compliant SPV-wrapped vehicular fleets natively tokenized on DotOne Chain 505, transforming urban transit and logistics into a liquid yield-bearing asset class.
-   </p>
-
-   <div class="ctas">
-    <a class="btn" href="#live-architecture">
-     <span data-en="Explore SPV Model" data-fa="بررسی ساختار SPV">Explore SPV Model</span>
-     <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </a>
-    <a class="btn btn--ghost" href="#deep-dive">
-     <span data-en="View Legal Wrapper" data-fa="مطالعه ساختار حقوقی">View Legal Wrapper</span>
-    </a>
-   </div>
-  </div>
-
-  <div class="p-hero__hud" aria-hidden="true">
-   <div class="hud-reticle"></div>
-   <div class="hud-chip hud-chip--1"><i></i><span>SPV ENTITY · VERIFIED</span></div>
-   <div class="hud-chip hud-chip--2"><i></i><span>DAILY CASHFLOW · ACTIVE</span></div>
-   <div class="hud-chip hud-chip--3"><i></i><span>CHAIN ID · 505</span></div>
-  </div>
- </div>
-
- <div class="wrap p-hero__bottom">
-  <div class="p-pipeline">
-   <div class="p-pipeline__beam"></div>
-
-   <div class="p-stage">
-    <div class="p-stage__ic">
-     <svg viewBox="0 0 24 24"><path d="M3 16v-4l2-5h14l2 5v4M3 16h18M3 16v3h3v-3M18 16v3h3v-3M7 12h10"/></svg>
+           <!-- RIGHT: the car (v2: HUD rings, perspective floor, scan plane, 3-second high-beam, colored chips) -->
+      <div class="v-stage" id="stage" aria-label="Animated commercial vehicle">
+        <div class="h-aura"></div>
+        <svg class="h-hud" viewBox="0 0 500 500" aria-hidden="true">
+          <circle class="a" cx="250" cy="250" r="190"/>
+          <circle class="a" cx="250" cy="250" r="150"/>
+          <circle class="arc o" cx="250" cy="250" r="226" pathLength="360"/>
+          <circle class="arc b" cx="250" cy="250" r="208" pathLength="360"/>
+          <circle class="orb o" cx="250" cy="250" r="240" pathLength="360"/>
+          <circle class="orb b" cx="250" cy="250" r="226" pathLength="360"/>
+        </svg>
+        <div class="h-floor" aria-hidden="true"><i></i></div>
+        <i class="h-ping"></i><i class="h-ping b"></i>
+        <div class="v-streaks" aria-hidden="true">
+          <i style="top:74%;--d:1.1s;--t:0s"></i><i style="top:79%;--d:1.6s;--t:.4s"></i><i style="top:84%;--d:1.3s;--t:.9s"></i><i style="top:52%;--d:2.2s;--t:.2s;width:18%"></i><i style="top:36%;--d:2.6s;--t:1.1s;width:14%"></i>
+        </div>
+        <div class="v-par">
+          <div class="v-shadow"></div>
+          <div class="v-rig" id="rig">
+            <img src="assets/car-simulate.png" alt="Aervynx commercial vehicle" draggable="false">
+            <i class="h-pool"></i>
+            <i class="v-wh" style="--x:var(--f-x);--y:var(--f-y);--d:var(--f-d);--sx:var(--f-sx)"></i>
+            <i class="v-wh" style="--x:var(--r-x);--y:var(--r-y);--d:var(--r-d);--sx:var(--r-sx)"></i>
+            <i class="h-beam b" style="--x:var(--hb-x);--y:var(--hb-y)"></i>
+            <i class="h-beam a" style="--x:var(--ha-x);--y:var(--ha-y)"></i>
+            <i class="h-hl b" style="--x:var(--hb-x);--y:var(--hb-y)"></i>
+            <i class="h-hl a" style="--x:var(--ha-x);--y:var(--ha-y)"></i>
+          </div>
+        </div>
+        <div class="h-dust" aria-hidden="true">
+          <i style="--x:20%;--y:70%;--d:6s;--t:0s"></i><i style="--x:30%;--y:74%;--d:7s;--t:1.2s;--c:#45b4ff;--dx:-10px"></i><i style="--x:42%;--y:72%;--d:5.5s;--t:2.1s;--s:2px"></i><i style="--x:52%;--y:76%;--d:6.5s;--t:.6s;--c:#45b4ff"></i><i style="--x:62%;--y:73%;--d:7.5s;--t:3s;--dx:-16px"></i><i style="--x:71%;--y:75%;--d:6s;--t:1.8s;--c:#ff5a64;--s:2px"></i><i style="--x:80%;--y:71%;--d:5.8s;--t:.3s;--c:#45b4ff;--dx:12px"></i><i style="--x:88%;--y:74%;--d:7s;--t:2.6s"></i>
+        </div>
+        <div class="v-chip c1"><small>FLEET STATUS</small><i></i><span data-en="Operational" data-fa="عملیاتی">Operational</span></div>
+        <div class="v-chip c2"><small>ASSET CLASS</small><i></i>COMMERCIAL FLEET</div>
+        <div class="v-chip c3"><small>NETWORK</small><i></i>DOTONE / 505</div>
+        <div class="v-chip c4"><small>OWNERSHIP</small><i></i>FRACTIONAL SPV</div>
+      </div>
+    <!-- PIPELINE -->
+    <div class="v-pipe">
+      <div class="v-st v-glass"><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M3 16v-4l2-5h14l2 5v4M3 16h18M3 16v3h3v-3M18 16v3h3v-3M7 12h10"/></svg></div><strong data-en="Physical Fleet" data-fa="ناوگان فیزیکی">Physical Fleet</strong><small data-en="Vans, trucks &amp; transit" data-fa="ون، کامیونت و ترابری">Vans, trucks &amp; transit</small></div>
+      <div class="v-st v-glass"><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><strong data-en="SPV Structuring" data-fa="ساختاردهی SPV">SPV Structuring</strong><small data-en="Dedicated legal entities" data-fa="نهادهای حقوقی اختصاصی">Dedicated legal entities</small></div>
+      <div class="v-st v-glass"><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M7 3h8l4 4v14H7zM15 3v4h4M10 12h6M10 16h6"/></svg></div><strong data-en="On-Chain Tokens" data-fa="توکن‌های آن‌چین">On-Chain Tokens</strong><small data-en="Fractional participation" data-fa="مشارکت کسری">Fractional participation</small></div>
+      <div class="v-st v-glass"><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M4 20h16M7 16v-4M12 16V8M17 16v-7"/></svg></div><strong data-en="Cashflow Allocation" data-fa="تخصیص جریان نقدی">Cashflow Allocation</strong><small data-en="Pro-rata distribution model" data-fa="مدل توزیع متناسب">Pro-rata distribution model</small></div>
     </div>
-    <b data-en="Physical Fleet" data-fa="ناوگان خودرویی فیزیکی">Physical Fleet</b>
-    <span data-en="Vans, trucks & transit vehicles" data-fa="ون‌ها، کامیونت‌ها و خودروهای ترابری">Vans, trucks & transit vehicles</span>
-   </div>
-
-   <div class="p-stage">
-    <div class="p-stage__ic">
-     <svg viewBox="0 0 24 24"><path d="M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
+    <div class="v-trust">
+      <span><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7zM9 12l2 2 4-4"/></svg><span data-en="Dedicated SPV Structures" data-fa="ساختارهای اختصاصی SPV">Dedicated SPV Structures</span></span>
+      <span><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M5 5l14 14M19 5L5 19"/></svg><span data-en="DotOne Chain 505" data-fa="شبکه DotOne 505">DotOne Chain 505</span></span>
+      <span><svg viewBox="0 0 24 24"><path d="M4 20h16M5 17l4-5 4 3 6-9"/></svg><span data-en="Commercial Cashflow Model" data-fa="مدل جریان نقدی تجاری">Commercial Cashflow Model</span></span>
     </div>
-    <b data-en="Legal SPV Wrapper" data-fa="نهاد حقوقی SPV">Legal SPV Wrapper</b>
-    <span data-en="Compliant entity encapsulation" data-fa="محافظت قانونی و ساختار شرکتی">Compliant entity encapsulation</span>
-   </div>
-
-   <div class="p-stage">
-    <div class="p-stage__ic">
-     <svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5zM3 13l9 5 9-5"/></svg>
-    </div>
-    <b data-en="Native Tokenization" data-fa="توکنایز روی زنجیره">Native Tokenization</b>
-    <span data-en="Undisputed fractional claims" data-fa="سهام کسری غیرقابل انکار">Undisputed fractional claims</span>
-   </div>
-
-   <div class="p-stage">
-    <div class="p-stage__ic">
-     <svg viewBox="0 0 24 24"><path d="M4 20h16M7 16v-4M12 16V8M17 16v-7"/></svg>
-    </div>
-    <b data-en="Rental Cashflows" data-fa="جریان نقدی اجاره">Rental Cashflows</b>
-    <span data-en="Daily automated yield payouts" data-fa="پرداخت روزانه سود عملیاتی">Daily automated yield payouts</span>
-   </div>
   </div>
-
-  <div class="p-strip">
-   <div class="p-strip__item">
-    <svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4"/></svg>
-    <span data-en="Legally Structured SPV Frameworks" data-fa="چارچوب‌های حقوقی ساختاریافته SPV">Legally Structured SPV Frameworks</span>
-   </div>
-   <div class="p-strip__item">
-    <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>
-    <span data-en="Constant Daily On-Chain Rental Revenue" data-fa="درآمد اجاره روزانه مستمر روی زنجیره">Constant Daily On-Chain Rental Revenue</span>
-   </div>
-   <div class="p-strip__item">
-    <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0zM3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
-    <span data-en="Instant Liquid Secondary Trading" data-fa="معاملات ثانویه نقدشونده">Instant Liquid Secondary Trading</span>
-   </div>
-  </div>
- </div>
 </section>
 
-<!-- ================================================
-     PRODUCT NARRATIVE & BENTO ARCHITECTURE
-================================================= -->
-<section class="wrap sec" id="deep-dive">
- <div class="p-narrative">
-  <div class="p-copy-box">
-   <span class="eyebrow" data-en="02 · FRACTIONAL SPV FLEETS" data-fa="۰۲ · ناوگان کسری SPV">02 · FRACTIONAL SPV FLEETS</span>
-   <h2 data-en="Tokenized Commercial <em>Vehicles</em>" data-fa="خودروهای تجاری <em>توکنایزشده</em>">Tokenized Commercial <em>Vehicles</em></h2>
-
-   <p data-en="Unlock the sharing economy's true potential with our Tokenized Commercial Vehicles. We have engineered a legally compliant, trustless framework where physical fleets—ranging from delivery vans to transit vehicles—are encapsulated within dedicated Special Purpose Vehicles (SPVs)."
-      data-fa="پتانسیل واقعی اقتصاد اشتراکی را با خودروهای تجاری توکنایزشده ما آزاد کنید. ما یک چارچوب قانونی و بدون نیاز به اعتماد مهندسی کرده‌ایم که در آن ناوگان‌های فیزیکی — از ون‌های تحویل کالا گرفته تا خودروهای ترابری — درون شرکت‌های واسط اختصاصی (SPV) قرار می‌گیرند.">
-    Unlock the sharing economy's true potential with our Tokenized Commercial Vehicles. We have engineered a legally compliant, trustless framework where physical fleets—ranging from delivery vans to transit vehicles—are encapsulated within dedicated Special Purpose Vehicles (SPV)s.
-   </p>
-
-   <p data-en="These legal wrappers are natively tokenized on the DotOne Chain, granting users undisputed fractional ownership and a direct claim to the fleet's daily commercial cash flows. Operating in total synergy with our logistics ecosystem, these vehicles generate constant on-chain revenue through rental and cargo transport operations."
-      data-fa="این ساختارهای قانونی به صورت بومی روی زنجیره دات‌وان توکنایز شده و به کاربران مالکیت کسری غیرقابل انکاری اعطا می‌کنند تا مستقیماً در جریان‌های نقدی تجاری روزانه ناوگان سهیم باشند. این خودروها با هم‌افزایی کامل با اکوسیستم لجستیک ما، درآمد مداوم آن‌چین تولید می‌کنند.">
-    These legal wrappers are natively tokenized on the DotOne Chain, granting users undisputed fractional ownership and a direct claim to the fleet's daily commercial cash flows. Operating in total synergy with our logistics ecosystem, these vehicles generate constant on-chain revenue through rental and cargo transport operations.
-   </p>
-
-   <p data-en="The traditional barriers to heavy asset investment are entirely removed. Now, you can instantly buy, trade, or stake your shares of a physical vehicular fleet, turning urban mobility and logistics into a decentralized, liquid, and relentlessly yield-generating asset class in your Web3 portfolio."
-      data-fa="موانع سنتی سرمایه‌گذاری روی دارایی‌های سنگین کاملاً برداشته شده است. اکنون می‌توانید فوراً سهام یک ناوگان خودرویی فیزیکی را بخرید، معامله کنید یا استیک کنید و ترابری شهری را به یک دارایی نقدشونده و سودده در پرتفوی وب۳ خود تبدیل نمایید.">
-    The traditional barriers to heavy asset investment are entirely removed. Now, you can instantly buy, trade, or stake your shares of a physical vehicular fleet, turning urban mobility and logistics into a decentralized, liquid, and relentlessly yield-generating asset class in your Web3 portfolio.
-   </p>
+<!-- =========================================================
+     02 DEEP DIVE: THE SPV
+========================================================= -->
+<section class="v-sec" id="deep-dive">
+  <div class="v-wrap v-dive">
+    <div class="vr">
+      <span class="v-eye" data-en="01 · FRACTIONAL SPV FLEETS" data-fa="۰۱ · ناوگان کسری SPV">01 · FRACTIONAL SPV FLEETS</span>
+      <h2 class="v-h2"><span data-en="The SPV is the" data-fa="ساختار SPV">The SPV is the</span> <em data-en="Bridge." data-fa="پل ارتباطی.">Bridge.</em></h2>
+      <p class="v-lead" data-en="Unlock the sharing economy's potential with Tokenized Commercial Vehicles. Physical fleets—from delivery vans to transit vehicles—are designed to be encapsulated within dedicated Special Purpose Vehicles (SPVs)." data-fa="با خودروهای تجاری توکنایزشده، ظرفیت اقتصاد اشتراکی را فعال کنید. ناوگان‌های فیزیکی، از ون‌های تحویل کالا تا خودروهای ترابری، در قالب شرکت‌های واسط اختصاصی یا SPV سازمان‌دهی می‌شوند.">Unlock the sharing economy's potential with Tokenized Commercial Vehicles. Physical fleets—from delivery vans to transit vehicles—are designed to be encapsulated within dedicated Special Purpose Vehicles (SPVs).</p>
+      <p class="v-lead" data-en="These legal wrappers provide the structural layer between physical assets and their digital representation. The corresponding participation tokens can be issued on DotOne Chain 505 according to the final legal and technical framework." data-fa="این ساختارهای حقوقی لایه ارتباطی میان دارایی‌های فیزیکی و نمایش دیجیتال آن‌ها را فراهم می‌کنند. توکن‌های مشارکت متناظر می‌توانند مطابق چارچوب حقوقی و فنی نهایی روی شبکه DotOne 505 صادر شوند.">These legal wrappers provide the structural layer between physical assets and their digital representation. The corresponding participation tokens can be issued on DotOne Chain 505 according to the final legal and technical framework.</p>
+      <div class="v-kpis">
+        <div class="v-kpi v-glass"><strong>SPV</strong><span data-en="Legal Asset Wrapper" data-fa="ساختار حقوقی دارایی">Legal Asset Wrapper</span></div>
+        <div class="v-kpi v-glass"><strong>505</strong><span data-en="DotOne Network" data-fa="شبکه دات‌وان">DotOne Network</span></div>
+        <div class="v-kpi v-glass"><strong>RWA</strong><span data-en="Real-World Assets" data-fa="دارایی‌های واقعی">Real-World Assets</span></div>
+      </div>
+    </div>
+    <div class="v-cards">
+      <article class="v-card v-glass vr"><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M3 16v-4l2-5h14l2 5v4M3 16h18M6 16v3M18 16v3"/></svg></div><h3 data-en="Physical Fleet" data-fa="ناوگان فیزیکی">Physical Fleet</h3><p data-en="Commercial vehicles used in delivery, rental and transportation operations." data-fa="خودروهای تجاری مورد استفاده در عملیات تحویل، اجاره و حمل‌ونقل.">Commercial vehicles used in delivery, rental and transportation operations.</p></article>
+      <article class="v-card v-glass vr"><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/></svg></div><h3 data-en="SPV Entity" data-fa="نهاد SPV">SPV Entity</h3><p data-en="A dedicated legal structure designed to hold or manage the defined asset pool." data-fa="ساختار حقوقی اختصاصی برای نگهداری یا مدیریت مجموعه مشخصی از دارایی‌ها.">A dedicated legal structure designed to hold or manage the defined asset pool.</p></article>
+      <article class="v-card v-glass vr"><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M7 3h8l4 4v14H7zM15 3v4h4M10 12h6M10 16h6"/></svg></div><h3 data-en="Digital Shares" data-fa="سهام دیجیتال">Digital Shares</h3><p data-en="Tokenized participation representing defined contractual interests in the structure." data-fa="مشارکت توکنایزشده که نمایانگر حقوق قراردادی مشخص در ساختار است.">Tokenized participation representing defined contractual interests in the structure.</p></article>
+      <article class="v-card v-glass vr"><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M4 20h16M7 16v-4M12 16V8M17 16v-7"/></svg></div><h3 data-en="Revenue Allocation" data-fa="تخصیص درآمد">Revenue Allocation</h3><p data-en="A defined mechanism for allocating eligible operating proceeds according to contractual terms." data-fa="سازوکار مشخص برای تخصیص درآمدهای عملیاتی واجد شرایط طبق شرایط قراردادی.">A defined mechanism for allocating eligible operating proceeds according to contractual terms.</p></article>
+    </div>
   </div>
-
-  <div class="p-specs-grid">
-   <div class="p-spec-card">
-    <div class="p-spec-dot">01</div>
-    <div>
-     <h3 data-en="Special Purpose Vehicle (SPV)" data-fa="ساختار حقوقی شرکت واسط (SPV)">Special Purpose Vehicle (SPV)</h3>
-     <p data-en="Each vehicle fleet is legally encapsulated in a dedicated corporate entity to protect asset ownership."
-        data-fa="هر ناوگان خودرویی به صورت قانونی در یک نهاد شرکتی اختصاصی جهت حفاظت از مالکیت دارایی قرار می‌گیرد.">Each vehicle fleet is legally encapsulated in a dedicated corporate entity to protect asset ownership.</p>
-    </div>
-   </div>
-
-   <div class="p-spec-card">
-    <div class="p-spec-dot">02</div>
-    <div>
-     <h3 data-en="Daily Rental Yields" data-fa="سود و بازده روزانه اجاره">Daily Rental Yields</h3>
-     <p data-en="Rental and transit fees are automatically collected and distributed daily to token holders."
-        data-fa="کارمزدهای اجاره و ترابری به صورت خودکار جمع‌آوری شده و روزانه بین دارندگان توکن توزیع می‌شود.">Rental and transit fees are automatically collected and distributed daily to token holders.</p>
-    </div>
-   </div>
-
-   <div class="p-spec-card">
-    <div class="p-spec-dot">03</div>
-    <div>
-     <h3 data-en="Zero Liquidity Lockup" data-fa="بدون قفل طولانی مدت نقدینگی">Zero Liquidity Lockup</h3>
-     <p data-en="Trade your fractional SPV shares instantly on decentralized secondary markets without friction."
-        data-fa="سهام کسری SPV خود را بدون اصطکاک و فوراً در بازارهای ثانویه غیرمتمرکز معامله کنید.">Trade your fractional SPV shares instantly on decentralized secondary markets without friction.</p>
-    </div>
-   </div>
-
-   <div class="p-spec-card">
-    <div class="p-spec-dot">04</div>
-    <div>
-     <h3 data-en="Full Ecosystem Synergy" data-fa="هم‌افزایی کامل با اکوسیستم">Full Ecosystem Synergy</h3>
-     <p data-en="Integrates directly with delivery drone handoffs and BitBank Shetab liquidation bridges."
-        data-fa="به صورت مستقیم با تحویل بسته‌های پهپادی و پل‌های نقدینگی بیت‌بانک یکپارچه شده است.">Integrates directly with delivery drone handoffs and BitBank Shetab liquidation bridges.</p>
-    </div>
-   </div>
-  </div>
- </div>
 </section>
 
-<!-- ================================================
-     INTERACTIVE DIAGRAM CONFIGURATION
-================================================= -->
-<section class="wrap sec" id="live-architecture">
- <div>
-  <span class="eyebrow" data-en="SPV LEGAL & YIELD ARCHITECTURE" data-fa="معماری حقوقی و سود SPV">SPV LEGAL & YIELD ARCHITECTURE</span>
-  <h2 data-en="Vehicles to <em>SPV Tokenization Stream</em>" data-fa="جریان توکنایز ناوگان خودرویی به <em>SPV</em>">Vehicles to <em>SPV Tokenization Stream</em></h2>
-  <p class="lead"
-     data-en="Visualize how physical commercial vehicles are legally structured into SPVs, tokenized on DotOne Chain 505, and stream daily rental yields directly to investor wallets."
-     data-fa="مشاهده کنید که چگونه خودروهای تجاری فیزیکی در ساختار SPV قرار گرفته، روی زنجیره دات‌وان ۵۰۵ توکنایز می‌شوند و سود روزانه اجاره را مستقیماً به والت سرمایه‌گذاران واریز می‌کنند.">
-   Visualize how physical commercial vehicles are legally structured into SPVs, tokenized on DotOne Chain 505, and stream daily rental yields directly to investor wallets.
-  </p>
- </div>
-
- <div class="sim-box">
-  <div class="sim-header">
-   <div class="sim-status">
-    <i></i>
-    <span>DOTONE CHAIN 505 · SPV RWA ASSET STREAM</span>
-   </div>
-   <div class="sim-controls">
-    <button type="button" class="btn btn--sim" id="trigger-settlement">
-     <span data-en="⚡ Trigger Daily SPV Payout" data-fa="⚡ واریز سود روزانه SPV">⚡ Trigger Daily SPV Payout</span>
-    </button>
-   </div>
+<!-- =========================================================
+     03 ARCHITECTURE: LIVE SYSTEM MODEL
+     Packets are spawned at random intervals on random routes (script: "ARCHITECTURE ENGINE"),
+     travel exactly along the SVG paths #e1..#e6 and never restart in a visible loop.
+========================================================= -->
+<section class="v-sec" id="architecture">
+  <div class="v-wrap">
+    <div class="v-head vr">
+      <span class="v-eye" data-en="02 · PROTOCOL ARCHITECTURE" data-fa="۰۲ · معماری پروتکل">02 · PROTOCOL ARCHITECTURE</span>
+      <h2 class="v-h2"><span data-en="From Physical Assets to" data-fa="از دارایی فیزیکی تا">From Physical Assets to</span> <em data-en="Digital Ownership." data-fa="مالکیت دیجیتال.">Digital Ownership.</em></h2>
+      <p class="v-lead" data-en="Explore how the vehicle fleet, its dedicated legal entity, tokenized participation and revenue-allocation layer connect within one architecture." data-fa="مشاهده کنید که ناوگان خودرو، نهاد حقوقی اختصاصی، مشارکت توکنایزشده و لایه تخصیص درآمد چگونه در یک معماری به هم متصل می‌شوند.">Explore how the vehicle fleet, its dedicated legal entity, tokenized participation and revenue-allocation layer connect within one architecture.</p>
+    </div>
+    <div class="v-arch-box v-glass vr">
+      <div class="v-arch-bar">
+        <div><span data-en="FLEET OWNERSHIP ARCHITECTURE" data-fa="معماری مالکیت ناوگان">FLEET OWNERSHIP ARCHITECTURE</span><small>DOTONE SMART CHAIN / 505</small></div>
+        <div class="v-counters"><span class="v-live" style="margin:0"><i class="v-dot"></i><span data-en="SYSTEM MODEL" data-fa="مدل سیستم">SYSTEM MODEL</span></span><span><span data-en="Revenue events" data-fa="رویدادهای درآمد">Revenue events</span><b id="c-ev">0</b></span><span><span data-en="Allocations" data-fa="تخصیص‌ها">Allocations</span><b id="c-al">0</b></span></div>
+      </div>
+      <div class="v-scroll">
+                   <svg class="v-arch" id="arch" viewBox="0 0 1000 460" role="img" aria-label="Architecture diagram: commercial fleet, dedicated SPV, DotOne 505 core, fractional tokens and revenue allocation, connected by pipes with animated data flows">
+          <defs>
+            <radialGradient id="gC"><stop offset="0" stop-color="#EC5800" stop-opacity=".42"/><stop offset="1" stop-color="#EC5800" stop-opacity=".05"/></radialGradient>
+            <radialGradient id="gG"><stop offset="0" stop-color="#EC5800" stop-opacity=".18"/><stop offset="1" stop-color="#EC5800" stop-opacity="0"/></radialGradient>
+            <linearGradient id="gN" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0e1e2e" stop-opacity=".96"/><stop offset="1" stop-color="#050d16" stop-opacity=".96"/></linearGradient>
+            <!-- pipe geometry (the engine reads these six paths: do not rename the ids) -->
+            <path id="e1" d="M165 132V324"/>
+            <path id="e2" d="M310 372C390 372 362 255 427 255"/>
+            <path id="e3" d="M573 205C638 205 610 84 690 84"/>
+            <path id="e4" d="M835 132V324"/>
+            <path id="e5" d="M573 255C638 255 610 372 690 372"/>
+            <path id="e6" d="M310 84C390 84 362 205 427 205"/>
+          </defs>
+          <circle cx="500" cy="230" r="190" fill="url(#gG)"/>
+          <!-- PIPES: orange = revenue, blue = records / telemetry -->
+          <g class="pipe o" style="--dl:0s"><use href="#e1" class="halo"/><use href="#e1" class="wall"/><use href="#e1" class="bore"/><use href="#e1" class="lq"/><use href="#e1" class="fl"/><rect class="col" x="155.5" y="224" width="19" height="8" rx="3"/><circle class="fg" cx="165" cy="132" r="9"/><circle class="pt" cx="165" cy="132" r="2.6"/><circle class="fg" cx="165" cy="324" r="9"/><circle class="pt" cx="165" cy="324" r="2.6"/></g>
+          <g class="pipe o" style="--dl:-.7s"><use href="#e2" class="halo"/><use href="#e2" class="wall"/><use href="#e2" class="bore"/><use href="#e2" class="lq"/><use href="#e2" class="fl"/><circle class="fg" cx="310" cy="372" r="9"/><circle class="pt" cx="310" cy="372" r="2.6"/><circle class="fg" cx="427" cy="255" r="9"/><circle class="pt" cx="427" cy="255" r="2.6"/></g>
+          <g class="pipe o" style="--dl:-1.4s"><use href="#e3" class="halo"/><use href="#e3" class="wall"/><use href="#e3" class="bore"/><use href="#e3" class="lq"/><use href="#e3" class="fl"/><circle class="fg" cx="573" cy="205" r="9"/><circle class="pt" cx="573" cy="205" r="2.6"/><circle class="fg" cx="690" cy="84" r="9"/><circle class="pt" cx="690" cy="84" r="2.6"/></g>
+          <g class="pipe o" style="--dl:-.4s"><use href="#e4" class="halo"/><use href="#e4" class="wall"/><use href="#e4" class="bore"/><use href="#e4" class="lq"/><use href="#e4" class="fl"/><rect class="col" x="825.5" y="224" width="19" height="8" rx="3"/><circle class="fg" cx="835" cy="132" r="9"/><circle class="pt" cx="835" cy="132" r="2.6"/><circle class="fg" cx="835" cy="324" r="9"/><circle class="pt" cx="835" cy="324" r="2.6"/></g>
+          <g class="pipe b" style="--dl:-1.1s"><use href="#e5" class="halo"/><use href="#e5" class="wall"/><use href="#e5" class="bore"/><use href="#e5" class="lq"/><use href="#e5" class="fl"/><circle class="fg" cx="573" cy="255" r="9"/><circle class="pt" cx="573" cy="255" r="2.6"/><circle class="fg" cx="690" cy="372" r="9"/><circle class="pt" cx="690" cy="372" r="2.6"/></g>
+          <g class="pipe b" style="--dl:-1.8s"><use href="#e6" class="halo"/><use href="#e6" class="wall"/><use href="#e6" class="bore"/><use href="#e6" class="lq"/><use href="#e6" class="fl"/><circle class="fg" cx="310" cy="84" r="9"/><circle class="pt" cx="310" cy="84" r="2.6"/><circle class="fg" cx="427" cy="205" r="9"/><circle class="pt" cx="427" cy="205" r="2.6"/></g>
+          <!-- NODES (node width 290, title 17px, description 12px: EN and FA both fit) -->
+          <g class="nd" id="n1" transform="translate(20 36)"><rect class="bx" width="290" height="96" rx="18"/><rect class="bar" x="24" y="0" width="54" height="2.5" rx="1.25"/><circle class="led" cx="268" cy="22" r="3"/><text class="t" x="145" y="26">01 / PHYSICAL LAYER</text><text class="h" x="145" y="55" data-en="Commercial Fleet" data-fa="ناوگان تجاری">Commercial Fleet</text><text class="d" x="145" y="78" data-en="Vehicles / Operations / Rental" data-fa="خودرو / عملیات / اجاره">Vehicles / Operations / Rental</text></g>
+          <g class="nd" id="n2" transform="translate(20 324)"><rect class="bx" width="290" height="96" rx="18"/><rect class="bar" x="24" y="0" width="54" height="2.5" rx="1.25"/><circle class="led" cx="268" cy="22" r="3" style="animation-delay:-.6s"/><text class="t" x="145" y="26">02 / LEGAL LAYER</text><text class="h" x="145" y="55" data-en="Dedicated SPV" data-fa="شرکت واسط اختصاصی">Dedicated SPV</text><text class="d" x="145" y="78" data-en="Asset holding / Defined rights" data-fa="نگهداری دارایی / حقوق مشخص">Asset holding / Defined rights</text></g>
+          <g class="nd o" id="n3" transform="translate(690 36)"><rect class="bx" width="290" height="96" rx="18"/><rect class="bar" x="24" y="0" width="54" height="2.5" rx="1.25"/><circle class="led" cx="268" cy="22" r="3" style="animation-delay:-1.2s"/><text class="t" x="145" y="26">03 / TOKEN LAYER</text><text class="h" x="145" y="55" data-en="Fractional Tokens" data-fa="توکن‌های کسری">Fractional Tokens</text><text class="d" x="145" y="78" data-en="Digital participation / On-chain records" data-fa="مشارکت دیجیتال / سوابق آن‌چین">Digital participation / On-chain records</text></g>
+          <g class="nd o" id="n4" transform="translate(690 324)"><rect class="bx" width="290" height="96" rx="18"/><rect class="bar" x="24" y="0" width="54" height="2.5" rx="1.25"/><circle class="led" cx="268" cy="22" r="3" style="animation-delay:-1.8s"/><text class="t" x="145" y="26">04 / ECONOMIC LAYER</text><text class="h" x="145" y="55" data-en="Revenue Allocation" data-fa="تخصیص درآمد">Revenue Allocation</text><text class="d" x="145" y="78" data-en="Operating proceeds / Pro-rata model" data-fa="درآمد عملیاتی / مدل توزیع متناسب">Operating proceeds / Pro-rata model</text></g>
+          <!-- CORE -->
+          <g id="core" transform="translate(500 230)"><circle class="cr ping" r="80"/><circle class="cr ping b" r="80"/><circle class="cr r1" r="128"/><circle class="cr r2" r="104"/><circle class="cr r3" r="116" pathLength="360"/><circle class="cr r4" r="94" pathLength="360"/><circle class="cc" r="78"/><text class="big" y="6">505</text><text class="t" y="30">DOTONE</text></g>
+          <g id="pk"></g>
+        </svg>
+      </div>
+    </div>
   </div>
-
-  <div class="sim-stage">
-   <svg class="sim-svg" viewBox="0 0 1100 380" aria-label="Tokenized Vehicles SPV Yield Flow Diagram">
-    <defs>
-     <linearGradient id="beamAccent" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#EC5800" stop-opacity="0.15"/>
-      <stop offset="50%" stop-color="#EC5800" stop-opacity="0.95"/>
-      <stop offset="100%" stop-color="#27D17F" stop-opacity="0.95"/>
-     </linearGradient>
-     <radialGradient id="coreGlowAccent" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="rgba(236,88,0,0.38)"/>
-      <stop offset="100%" stop-color="rgba(236,88,0,0)"/>
-     </radialGradient>
-    </defs>
-
-    <g stroke="rgba(255,255,255,0.04)" stroke-width="1">
-     <line x1="0" y1="70" x2="1100" y2="70"/>
-     <line x1="0" y1="190" x2="1100" y2="190"/>
-     <line x1="0" y1="310" x2="1100" y2="310"/>
-     <line x1="200" y1="0" x2="200" y2="380"/>
-     <line x1="550" y1="0" x2="550" y2="380"/>
-     <line x1="900" y1="0" x2="900" y2="380"/>
-    </g>
-
-    <path d="M 310 190 C 390 190, 410 190, 460 190" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="3" stroke-dasharray="6 8"/>
-    <path d="M 310 190 C 390 190, 410 190, 460 190" fill="none" stroke="url(#beamAccent)" stroke-width="4" stroke-dasharray="40 220" style="animation: packetFlow1 1.6s linear infinite"/>
-
-    <path d="M 640 190 C 720 190, 740 85, 815 85" fill="none" stroke="rgba(39,209,127,0.22)" stroke-width="2.5"/>
-    <path d="M 640 190 L 815 190" fill="none" stroke="rgba(39,209,127,0.22)" stroke-width="2.5"/>
-    <path d="M 640 190 C 720 190, 740 295, 815 295" fill="none" stroke="rgba(39,209,127,0.22)" stroke-width="2.5"/>
-
-    <circle r="5" fill="#27D17F" filter="drop-shadow(0 0 8px #27D17F)"><animateMotion dur="1.8s" repeatCount="indefinite" path="M 640 190 C 720 190, 740 85, 815 85"/></circle>
-    <circle r="5" fill="#EC5800" filter="drop-shadow(0 0 8px #EC5800)"><animateMotion dur="1.4s" repeatCount="indefinite" path="M 640 190 L 815 190"/></circle>
-    <circle r="5" fill="#0096FF" filter="drop-shadow(0 0 8px #0096FF)"><animateMotion dur="2.1s" repeatCount="indefinite" path="M 640 190 C 720 190, 740 295, 815 295"/></circle>
-
- <!-- ZONE 1: COMMERCIAL VEHICLES RADAR ZONE -->
-    <!-- CUSTOM VEHICLE IMAGE ASSET: Replace 'assets/car-simulate.png' with your uploaded image filename -->
-    <g transform="translate(180, 190)">
-     <circle r="135" fill="url(#coreGlowAccent)"/>
-     <circle r="122" fill="#050D17" stroke="rgba(236,88,0,0.35)" stroke-width="1.5"/>
-     <circle r="96" fill="none" stroke="rgba(0,150,255,0.25)" stroke-width="1.2" stroke-dasharray="8 8">
-      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="25s" repeatCount="indefinite"/>
-     </circle>
-     
-     <!-- Animated Fleet Vehicle Image with Realistic Driving Physics -->
-     <g style="animation: vehicleDriveRealistic 6s ease-in-out infinite;">
-      <image href="assets/car-simulate.png" x="-75" y="-45" width="150" height="90" preserveAspectRatio="xMidYMid meet" style="filter: drop-shadow(0 14px 24px rgba(236,88,0,0.45));"/>
-     </g>
-
-     <text y="74" fill="#fff" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700" text-anchor="middle">SPV FLEET #02-V</text>
-     <text y="92" fill="#EC5800" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="middle">LEGAL ENTITY WRAPPER</text>
-    </g>
-    <!-- Zone 2: SPV Treasury Core (Logo A without middle crossbar) -->
-    <g transform="translate(550, 190)">
-     <circle r="96" fill="url(#coreGlowAccent)"/>
-     <rect x="-88" y="-82" width="176" height="164" rx="24" fill="#06101C" stroke="#EC5800" stroke-width="2"/>
-     <rect x="-76" y="-70" width="152" height="140" rx="18" fill="none" stroke="rgba(0,150,255,0.3)" stroke-width="1" stroke-dasharray="6 6"/>
-     
-     <!-- Central A Emblem (Without middle crossbar, matching site logo) -->
-     <path d="M0 -40 L24 16 L12 16 L0 -12 L-12 16 L-24 16 Z" fill="#EC5800"/>
-
-     <text y="38" fill="#fff" font-family="Inter, sans-serif" font-size="14" font-weight="700" text-anchor="middle">SPV Yield Vault</text>
-     <text y="56" fill="#27D17F" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700" text-anchor="middle" id="svg-pool-val">POOL: 64,150 DOTO</text>
-    </g>
-
-    <!-- Zone 3: Holders -->
-    <g transform="translate(820, 52)">
-     <rect width="230" height="66" rx="14" fill="#06111E" stroke="rgba(39,209,127,0.45)" stroke-width="1.5"/>
-     <circle cx="30" cy="33" r="14" fill="rgba(39,209,127,0.15)" stroke="#27D17F" stroke-width="1.5"/>
-     <text x="30" y="37" fill="#27D17F" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" text-anchor="middle">45%</text>
-     <text x="56" y="28" fill="#fff" font-family="Inter, sans-serif" font-size="13.5" font-weight="600">SPV Token Holders</text>
-     <text x="56" y="47" fill="#27D17F" font-family="JetBrains Mono, monospace" font-size="11.5" id="holder-1">+28,867 DOTO</text>
-    </g>
-
-    <g transform="translate(820, 157)">
-     <rect width="230" height="66" rx="14" fill="#06111E" stroke="rgba(236,88,0,0.45)" stroke-width="1.5"/>
-     <circle cx="30" cy="33" r="14" fill="rgba(236,88,0,0.15)" stroke="#EC5800" stroke-width="1.5"/>
-     <text x="30" y="37" fill="#EC5800" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" text-anchor="middle">35%</text>
-     <text x="56" y="28" fill="#fff" font-family="Inter, sans-serif" font-size="13.5" font-weight="600">Transit Pool Stake</text>
-     <text x="56" y="47" fill="#EC5800" font-family="JetBrains Mono, monospace" font-size="11.5" id="holder-2">+22,452 DOTO</text>
-    </g>
-
-    <g transform="translate(820, 262)">
-     <rect width="230" height="66" rx="14" fill="#06111E" stroke="rgba(0,150,255,0.45)" stroke-width="1.5"/>
-     <circle cx="30" cy="33" r="14" fill="rgba(0,150,255,0.15)" stroke="#0096FF" stroke-width="1.5"/>
-     <text x="30" y="37" fill="#0096FF" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" text-anchor="middle">20%</text>
-     <text x="56" y="28" fill="#fff" font-family="Inter, sans-serif" font-size="13.5" font-weight="600">Maintenance Fund</text>
-     <text x="56" y="47" fill="#0096FF" font-family="JetBrains Mono, monospace" font-size="11.5" id="holder-3">+12,830 DOTO</text>
-    </g>
-   </svg>
-  </div>
-
-  <div class="sim-metrics">
-   <div class="sim-metric">
-    <small data-en="ACTIVE FLEET SIZE" data-fa="تعداد ناوگان فعال">ACTIVE FLEET SIZE</small>
-    <b class="orange" id="m-fleet">340 Units</b>
-   </div>
-   <div class="sim-metric">
-    <small data-en="DAILY RENTAL REVENUE" data-fa="درآمد اجاره روزانه">DAILY RENTAL REVENUE</small>
-    <b class="green" id="m-pool">64,150 DOTO</b>
-   </div>
-   <div class="sim-metric">
-    <small data-en="LEGAL SPV STATUS" data-fa="وضعیت حقوقی SPV">LEGAL SPV STATUS</small>
-    <b class="orange">VERIFIED & AUDITED</b>
-   </div>
-   <div class="sim-metric">
-    <small data-en="SETTLEMENT SPEED" data-fa="سرعت تسویه آن‌چین">SETTLEMENT SPEED</small>
-    <b>< 380 ms</b>
-   </div>
-  </div>
- </div>
 </section>
 
-<!-- ================================================
-     NAVIGATION BAR
-================================================= -->
+<!-- =========================================================
+     04 PILLARS
+========================================================= -->
+<section class="v-sec">
+  <div class="v-wrap">
+    <div class="v-head vr">
+      <span class="v-eye" data-en="03 · DIGITAL LAYER FOR PHYSICAL ECONOMY" data-fa="۰۳ · لایه دیجیتال اقتصاد فیزیکی">03 · DIGITAL LAYER FOR PHYSICAL ECONOMY</span>
+      <h2 class="v-h2"><span data-en="Built Around" data-fa="طراحی‌شده بر اساس">Built Around</span> <em data-en="Real Infrastructure." data-fa="زیرساخت واقعی.">Real Infrastructure.</em></h2>
+      <p class="v-lead" data-en="A structured model connecting commercial mobility, legal ownership frameworks, tokenized participation and operational revenue." data-fa="مدلی ساختاریافته برای اتصال حمل‌ونقل تجاری، چارچوب‌های مالکیت حقوقی، مشارکت توکنایزشده و درآمد عملیاتی.">A structured model connecting commercial mobility, legal ownership frameworks, tokenized participation and operational revenue.</p>
+    </div>
+    <div class="v-pillars">
+      <article class="v-pil v-glass vr"><em>01 / OWNERSHIP</em><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/></svg></div><h3 data-en="Fractional Fleet Participation" data-fa="مشارکت کسری در ناوگان">Fractional Fleet Participation</h3><p data-en="Digital tokens designed to represent defined economic participation in dedicated commercial vehicle structures." data-fa="توکن‌های دیجیتال برای نمایش مشارکت اقتصادی مشخص در ساختارهای اختصاصی خودروهای تجاری.">Digital tokens designed to represent defined economic participation in dedicated commercial vehicle structures.</p></article>
+      <article class="v-pil v-glass vr"><em>02 / STRUCTURE</em><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M9 10h.01M15 10h.01"/></svg></div><h3 data-en="Dedicated SPV Framework" data-fa="چارچوب اختصاصی SPV">Dedicated SPV Framework</h3><p data-en="Defined legal entities provide a structural connection between physical vehicle fleets and their digital participation layer." data-fa="نهادهای حقوقی مشخص، ارتباط ساختاری میان ناوگان خودروهای فیزیکی و لایه مشارکت دیجیتال را فراهم می‌کنند.">Defined legal entities provide a structural connection between physical vehicle fleets and their digital participation layer.</p></article>
+      <article class="v-pil v-glass vr"><em>03 / BLOCKCHAIN</em><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9"/></svg></div><h3 data-en="DotOne Chain Integration" data-fa="یکپارچگی با دات‌وان">DotOne Chain Integration</h3><p data-en="The proposed token and record layer is designed around DotOne Smart Chain 505." data-fa="لایه پیشنهادی توکن و ثبت سوابق بر پایه شبکه هوشمند DotOne 505 طراحی شده است.">The proposed token and record layer is designed around DotOne Smart Chain 505.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     05 OWNERSHIP LIFECYCLE
+========================================================= -->
+<section class="v-sec" id="ownership">
+  <div class="v-wrap">
+    <div class="v-head vr">
+      <span class="v-eye" data-en="04 · OWNERSHIP LIFECYCLE" data-fa="۰۴ · چرخه مالکیت">04 · OWNERSHIP LIFECYCLE</span>
+      <h2 class="v-h2"><span data-en="How the" data-fa="چگونه">How the</span> <em data-en="Structure Works." data-fa="ساختار عمل می‌کند.">Structure Works.</em></h2>
+      <p class="v-lead" data-en="A conceptual lifecycle connecting physical vehicle operations with structured digital participation." data-fa="چرخه‌ای مفهومی که عملیات خودروهای فیزیکی را به مشارکت دیجیتال ساختاریافته متصل می‌کند.">A conceptual lifecycle connecting physical vehicle operations with structured digital participation.</p>
+    </div>
+    <div class="v-steps vr" id="steps">
+      <article class="v-step v-glass"><span>1</span><b>STEP / 01</b><h3 data-en="Asset Allocation" data-fa="اختصاص دارایی">Asset Allocation</h3><p data-en="Commercial vehicles are selected and organized into a defined fleet structure." data-fa="خودروهای تجاری انتخاب شده و در یک ساختار ناوگان مشخص سازمان‌دهی می‌شوند.">Commercial vehicles are selected and organized into a defined fleet structure.</p></article>
+      <article class="v-step v-glass"><span>2</span><b>STEP / 02</b><h3 data-en="SPV Formation" data-fa="تشکیل SPV">SPV Formation</h3><p data-en="A dedicated legal entity defines the ownership and operational framework." data-fa="یک نهاد حقوقی اختصاصی، چارچوب مالکیت و عملیات را مشخص می‌کند.">A dedicated legal entity defines the ownership and operational framework.</p></article>
+      <article class="v-step v-glass"><span>3</span><b>STEP / 03</b><h3 data-en="Token Issuance" data-fa="صدور توکن">Token Issuance</h3><p data-en="Defined participation interests are represented through digital tokens." data-fa="منافع مشارکت مشخص از طریق توکن‌های دیجیتال نمایش داده می‌شوند.">Defined participation interests are represented through digital tokens.</p></article>
+      <article class="v-step v-glass"><span>4</span><b>STEP / 04</b><h3 data-en="Revenue Allocation" data-fa="تخصیص درآمد">Revenue Allocation</h3><p data-en="Eligible operating proceeds follow the allocation rules established for the SPV." data-fa="درآمدهای عملیاتی واجد شرایط از قوانین تخصیص تعیین‌شده برای SPV پیروی می‌کنند.">Eligible operating proceeds follow the allocation rules established for the SPV.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     06 SETTLEMENT SIMULATOR (illustrative numbers only)
+========================================================= -->
+<section class="v-sec" id="simulation">
+  <div class="v-wrap">
+    <div class="v-head vr">
+      <span class="v-eye" data-en="05 · INTERACTIVE PROTOCOL MODEL" data-fa="۰۵ · مدل تعاملی پروتکل">05 · INTERACTIVE PROTOCOL MODEL</span>
+      <h2 class="v-h2"><span data-en="Explore the" data-fa="بررسی">Explore the</span> <em data-en="Settlement Flow." data-fa="جریان تسویه.">Settlement Flow.</em></h2>
+      <p class="v-lead" data-en="An interactive demonstration of how an illustrative operating revenue amount can move through an SPV allocation model." data-fa="نمایشی تعاملی از نحوه حرکت یک مبلغ فرضی درآمد عملیاتی در مدل تخصیص درآمد SPV.">An interactive demonstration of how an illustrative operating revenue amount can move through an SPV allocation model.</p>
+    </div>
+    <div class="v-sim v-glass vr">
+      <div class="v-sim-top">
+        <div><strong data-en="SPV SETTLEMENT SIMULATION" data-fa="شبیه‌سازی تسویه SPV">SPV SETTLEMENT SIMULATION</strong><small>DOTONE CHAIN / 505 · DEMONSTRATION MODE</small></div>
+        <div class="v-sim-st"><i class="v-dot"></i><span id="sim-status" data-en="READY TO SIMULATE" data-fa="آماده شبیه‌سازی">READY TO SIMULATE</span></div>
+        <div class="v-sim-btns">
+          <button class="btn" type="button" id="sim-run"><span data-en="Simulate Settlement" data-fa="شبیه‌سازی تسویه">Simulate Settlement</span></button>
+          <button class="btn btn--ghost" type="button" id="sim-reset"><span data-en="Reset" data-fa="بازنشانی">Reset</span></button>
+        </div>
+      </div>
+      <div class="v-flow">
+        <div class="v-nodes v-glass on" id="sn1"><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M3 16v-4l2-5h14l2 5v4M3 16h18M6 16v3M18 16v3"/></svg></div><strong data-en="Vehicle Operations" data-fa="عملیات خودرو">Vehicle Operations</strong><small data-en="Rental &amp; cargo activity" data-fa="فعالیت اجاره و حمل بار">Rental &amp; cargo activity</small></div>
+        <div class="v-con"></div>
+        <div class="v-nodes v-glass" id="sn2"><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/></svg></div><strong data-en="SPV Accounting" data-fa="حسابداری SPV">SPV Accounting</strong><small data-en="Defined revenue pool" data-fa="استخر درآمد مشخص">Defined revenue pool</small></div>
+        <div class="v-con"></div>
+        <div class="v-nodes v-glass" id="sn3"><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M7 3h8l4 4v14H7zM15 3v4h4M10 12h6M10 16h6"/></svg></div><strong data-en="Allocation Model" data-fa="مدل تخصیص">Allocation Model</strong><small data-en="Illustrative distribution" data-fa="توزیع فرضی">Illustrative distribution</small></div>
+      </div>
+      <div class="v-bar"><span id="sim-bar"></span></div>
+      <div class="v-res">
+        <div class="v-r" id="rs-pool"><small>GROSS OPERATING AMOUNT</small><strong id="r-pool">10,000 DOTO</strong></div>
+        <div class="v-r" id="rs-h"><small>HOLDER ALLOCATION</small><strong id="r-h">7,000 DOTO</strong></div>
+        <div class="v-r" id="rs-r"><small>RESERVE ALLOCATION</small><strong id="r-r">2,000 DOTO</strong></div>
+        <div class="v-r" id="rs-m"><small>OPERATING COSTS</small><strong id="r-m">1,000 DOTO</strong></div>
+      </div>
+      <p class="v-note" data-en="Illustrative figures and allocation percentages only. These values are not live blockchain data, actual vehicle revenue, guaranteed returns or finalized contractual terms." data-fa="اعداد و درصدهای تخصیص صرفاً نمایشی هستند. این مقادیر داده زنده بلاکچین، درآمد واقعی خودرو، بازده تضمین‌شده یا شرایط قراردادی نهایی نیستند.">Illustrative figures and allocation percentages only. These values are not live blockchain data, actual vehicle revenue, guaranteed returns or finalized contractual terms.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     07 NEXT PRODUCT & ECOSYSTEM NAVIGATION (same as product-drones.html)
+========================================================= -->
 <section class="wrap sec" style="padding-bottom: 96px;">
  <div class="p-next-bar">
   <div>
    <span class="eyebrow" style="margin-bottom: 6px;" data-en="CONTINUE EXPLORING" data-fa="ادامه بررسی محصولات">CONTINUE EXPLORING</span>
-   <h3 style="font-size: 26px;" data-en="Next Product: ZeroVault Treasury Security" data-fa="محصول بعدی: خزانه‌داری امن ZeroVault">Next Product: ZeroVault Treasury Security</h3>
+   <h3 style="font-size: 26px;" data-en="Next Product: ZeroVault" data-fa="محصول بعدی: زیروولت">Next Product: ZeroVault</h3>
   </div>
   <div style="display: flex; flex-wrap: wrap; gap: 12px;">
-   <a class="btn btn--ghost" href="product-drones.html" data-en="← Tokenized Drones" data-fa="→ پهپادهای توکنایزشده">← Tokenized Drones</a>
+   <a class="btn btn--ghost" href="index.html#products" data-en="← All Products" data-fa="→ همه محصولات">← All Products</a>
    <a class="btn" href="product-zerovault.html">
-    <span data-en="ZeroVault Treasury" data-fa="خزانه‌داری ZeroVault">ZeroVault Treasury</span>
+    <span data-en="ZeroVault" data-fa="زیروولت">ZeroVault</span>
     <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
    </a>
   </div>
@@ -813,63 +553,231 @@
  <div class="wrap">
   <div class="foot__bot" style="margin-top:0; border-top:0;">
    <span>© <span id="yr">2026</span> Aervynx. All rights reserved.</span>
-   <span data-en="Descriptions are conceptual. A token does not by itself establish legal title to a physical asset."
-         data-fa="توضیحات مفهومی هستند. توکن به تنهایی سند مالکیت قانونی دارایی فیزیکی محسوب نمی‌شود.">Descriptions are conceptual. A token does not by itself establish legal title to a physical asset.</span>
+   <span data-en="Product concept for informational purposes. Token rights, SPV structure, eligibility, revenue allocation and legal treatment are subject to final documentation and applicable law. No investment offer or guaranteed return." data-fa="این صفحه توضیح مفهومی محصول است. حقوق توکن، ساختار SPV، شرایط مشارکت، تخصیص درآمد و وضعیت حقوقی تابع اسناد نهایی و قوانین مربوط هستند. این محتوا پیشنهاد سرمایه‌گذاری یا تضمین بازده نیست.">Product concept for informational purposes. Token rights, SPV structure, eligibility, revenue allocation and legal treatment are subject to final documentation and applicable law. No investment offer or guaranteed return.</span>
   </div>
  </div>
 </footer>
 
+<!-- =========================================================
+     JAVASCRIPT: nav · language · reveal · hero parallax · architecture engine · simulator
+     (no template literals on purpose: safe to copy-paste anywhere)
+========================================================= -->
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const nav = document.getElementById("nav");
-  const burger = document.getElementById("burger");
-  if (burger && nav) {
-    burger.addEventListener("click", () => {
-      const isOpen = nav.classList.toggle("open");
-      burger.setAttribute("aria-expanded", String(isOpen));
+(function () {
+  "use strict";
+  var html = document.documentElement;
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+
+  /* ---------- 01 NAVIGATION ---------- */
+  var nav = $("#nav"), burger = $("#burger"), menu = $("#menu");
+  function closeMenu() { nav.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); document.body.classList.remove("lock"); }
+  burger.addEventListener("click", function () {
+    var o = nav.classList.toggle("open");
+    burger.setAttribute("aria-expanded", String(o));
+    document.body.classList.toggle("lock", o);
+  });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeMenu(); });
+  menu.addEventListener("click", function (e) { if (e.target.closest("a")) closeMenu(); });
+  function onScroll() { nav.classList.toggle("scrolled", window.scrollY > 20); }
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  /* ---------- 02 LANGUAGE (EN / FA, RTL) ---------- */
+  var langBtn = $("#lang-switch"), refreshSim = function () {};
+  function setLang(lang) {
+    html.lang = lang;
+    html.dir = lang === "fa" ? "rtl" : "ltr";
+    $$("[data-en][data-fa]").forEach(function (el) {
+      var t = el.getAttribute("data-" + lang);
+      if (t !== null) el.textContent = t;
     });
+    $$(".lang-code").forEach(function (el) { el.classList.toggle("active", el.dataset.target === lang); });
+    langBtn.setAttribute("aria-label", lang === "en" ? "Switch to Persian" : "Switch to English");
+    refreshSim();
   }
+  langBtn.addEventListener("click", function () { setLang(html.lang === "en" ? "fa" : "en"); });
 
-  const langBtn = document.getElementById("lang-switch");
-  if (langBtn) {
-    langBtn.addEventListener("click", () => {
-      const curLang = document.documentElement.lang === "en" ? "en" : "fa";
-      const nextLang = curLang === "en" ? "fa" : "en";
-      document.documentElement.lang = nextLang;
-      document.documentElement.dir = nextLang === "fa" ? "rtl" : "ltr";
+  /* ---------- 03 SCROLL REVEAL ---------- */
+  var rv = $$(".vr");
+  if ("IntersectionObserver" in window && !reduced) {
+    var ro = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("vis"); ro.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: "0px 0px -30px 0px" });
+    rv.forEach(function (el, i) { el.style.transitionDelay = ((i % 4) * 70) + "ms"; ro.observe(el); });
+  } else { rv.forEach(function (el) { el.classList.add("vis"); }); }
 
-      langBtn.querySelectorAll(".lang-code").forEach(el => {
-        el.classList.toggle("active", el.getAttribute("data-target") === nextLang);
-      });
-
-      document.querySelectorAll("[data-en][data-fa]").forEach(el => {
-        el.innerHTML = el.getAttribute("data-" + nextLang);
+  /* ---------- 04 HERO PARALLAX (horizontal only, so the car stays on the road) ---------- */
+  var stage = $("#stage");
+  if (stage && !reduced && window.matchMedia("(hover:hover) and (pointer:fine)").matches) {
+    var raf = 0;
+    stage.addEventListener("pointermove", function (e) {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(function () {
+        var r = stage.getBoundingClientRect();
+        stage.style.setProperty("--mx", (((e.clientX - r.left) / r.width) * 2 - 1).toFixed(3));
       });
     });
+    stage.addEventListener("pointerleave", function () { stage.style.setProperty("--mx", "0"); });
+  }
+  /* pause the car effects when the hero is off-screen (saves battery) */
+  if (stage && "IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) {
+      var run = es[0].isIntersecting ? "running" : "paused";
+      $$("*", stage).forEach(function (el) { el.style.animationPlayState = run; });
+    }).observe(stage);
   }
 
-  let poolTotal = 64150;
-  const poolEl = document.getElementById("m-pool");
-  const svgPoolEl = document.getElementById("svg-pool-val");
-  const h1El = document.getElementById("holder-1");
-  const h2El = document.getElementById("holder-2");
-  const h3El = document.getElementById("holder-3");
-  const simBtn = document.getElementById("trigger-settlement");
+   /* ---------- 05 ARCHITECTURE ENGINE ----------
+     Glowing packets travel through the pipes (#e1..#e6). Each packet has a soft trail, eases in and out of every
+     pipe, and "rests" for a moment inside the node it reaches before leaving through the next pipe.
+     EDIT: chains = routes (edge ids), c = colour o/b, r = true to travel the pipes backwards;
+           v = speed in px/second; TRAIL / GAP = tail length; spawn gap = ms. */
+  (function () {
+    var svg = $("#arch"); if (!svg) return;
+    var NS = "http://www.w3.org/2000/svg", pk = $("#pk");
+    var ids = ["e1", "e2", "e3", "e4", "e5", "e6"], P = {}, L = {};
+    ids.forEach(function (id) { P[id] = $("#" + id); L[id] = P[id].getTotalLength(); });
+    var chains = [
+      { e: ["e1", "e2", "e3", "e4"], c: "o" },
+      { e: ["e1", "e2"], c: "o" },
+      { e: ["e2", "e5"], c: "o" },
+      { e: ["e6", "e5"], c: "b" },
+      { e: ["e6", "e3", "e4"], c: "b" },
+      { e: ["e5", "e2"], c: "b", r: true },
+      { e: ["e3", "e6"], c: "b", r: true },
+      { e: ["e4", "e3"], c: "o", r: true }
+    ];
+    var arrF = { e1: "n2", e2: "core", e3: "n3", e4: "n4", e5: "n4", e6: "core" };
+    var arrR = { e1: "n1", e2: "n2", e3: "core", e4: "n3", e5: "core", e6: "n1" };
+    var TRAIL = 6, GAP = 8, FADE = 0.16, REST = 0.26;
+    var act = [], live = false, running = false, last = 0, next = 0, ev = 0, al = 0;
+    function sm(x) { x = x < 0 ? 0 : x > 1 ? 1 : x; return x * x * (3 - 2 * x); }
+    function pulse(id) {
+      var n = $("#" + id); if (!n) return;
+      n.classList.add("hit");
+      setTimeout(function () { n.classList.remove("hit"); }, 560);
+    }
+    function circle(cls) {
+      var c = document.createElementNS(NS, "circle");
+      c.setAttribute("class", cls); c.setAttribute("r", "0"); c.setAttribute("opacity", "0");
+      return c;
+    }
+    function spawn() {
+      var ch = chains[Math.floor(Math.random() * chains.length)];
+      var g = document.createElementNS(NS, "g"), cs = [], j;
+      cs.push(circle("pkt " + ch.c));                                   /* halo */
+      for (j = TRAIL; j >= 1; j--) cs.push(circle("pkt " + ch.c));      /* trail, tail first */
+      cs.push(circle("pkt " + ch.c));                                   /* head */
+      cs.forEach(function (c) { g.appendChild(c); });
+      pk.appendChild(g);
+      act.push({ ch: ch, i: 0, t: 0, v: 105 + Math.random() * 70, r: 3.2 + Math.random() * 1.4, g: g, cs: cs, wait: 0 });
+    }
+    function place(c, id, s, rev, rad, op) {
+      var len = L[id], pt = P[id].getPointAtLength(rev ? len - s : s);
+      c.setAttribute("cx", pt.x.toFixed(2)); c.setAttribute("cy", pt.y.toFixed(2));
+      c.setAttribute("r", rad.toFixed(2)); c.setAttribute("opacity", op.toFixed(3));
+    }
+    function frame(now) {
+      if (!live) { running = false; return; }
+      requestAnimationFrame(frame);
+      var dt = Math.min(40, now - last) / 1000; last = now;
+      if (now > next && act.length < 12) { spawn(); next = now + 520 + Math.random() * 900; }
+      for (var k = act.length - 1; k >= 0; k--) {
+        var p = act[k], rev = !!p.ch.r, id = p.ch.e[p.i], len = L[id];
+        if (p.wait > 0) {
+          p.wait -= dt;
+          if (p.wait > 0) continue;
+          p.wait = 0; p.g.removeAttribute("visibility");
+        }
+        p.t += p.v * (0.62 + 0.38 * Math.sin(Math.PI * Math.min(p.t, 1))) * dt / len;
+        if (p.t >= 1) {
+          var to = (rev ? arrR : arrF)[id]; pulse(to);
+          if (!rev && to === "n2") { ev++; $("#c-ev").textContent = ev; }
+          if (!rev && to === "n4") { al++; $("#c-al").textContent = al; }
+          p.i++; p.t = 0;
+          if (p.i >= p.ch.e.length) { pk.removeChild(p.g); act.splice(k, 1); continue; }
+          p.wait = REST; p.g.setAttribute("visibility", "hidden");
+          continue;
+        }
+        var env = Math.min(sm(p.t / FADE), sm((1 - p.t) / FADE)), s = p.t * len, n = p.cs.length, j, sj, f, sc = 0.4 + 0.6 * env;
+        place(p.cs[0], id, s, rev, p.r * 3.2 * sc, 0.2 * env);
+        for (j = 1; j <= TRAIL; j++) {
+          sj = s - j * GAP; f = 1 - j / (TRAIL + 1);
+          place(p.cs[n - 1 - j], id, sj > 0 ? sj : 0, rev, p.r * f * sc, sj > 0 ? env * f * 0.55 : 0);
+        }
+        place(p.cs[n - 1], id, s, rev, p.r * sc, env);
+      }
+    }
+    if (reduced) return;
+    new IntersectionObserver(function (es) {
+      live = es[0].isIntersecting;
+      if (live && !running) { running = true; last = performance.now(); requestAnimationFrame(frame); }
+    }).observe(svg);
+  })();
+  /* ---------- 06 SETTLEMENT SIMULATOR ---------- */
+  (function () {
+    var run = $("#sim-run"), reset = $("#sim-reset"); if (!run) return;
+    var st = $("#sim-status"), bar = $("#sim-bar");
+    var nodes = [$("#sn1"), $("#sn2"), $("#sn3")];
+    var out = { pool: $("#r-pool"), h: $("#r-h"), r: $("#r-r"), m: $("#r-m") };
+    var boxes = [$("#rs-pool"), $("#rs-h"), $("#rs-r"), $("#rs-m")];
+    var init = { pool: 10000, h: 7000, r: 2000, m: 1000 }, cur = { pool: 10000, h: 7000, r: 2000, m: 1000 };
+    var busy = false, count = 0;
+    function fmt(v) { return v.toLocaleString(html.lang === "fa" ? "fa-IR" : "en-US") + " DOTO"; }
+    function show() { out.pool.textContent = fmt(cur.pool); out.h.textContent = fmt(cur.h); out.r.textContent = fmt(cur.r); out.m.textContent = fmt(cur.m); }
+    refreshSim = show;
+    function tween(el, a, b) {
+      if (reduced) { el.textContent = fmt(b); return; }
+      var t0 = performance.now();
+      (function f(n) {
+        var k = Math.min((n - t0) / 850, 1), e = 1 - Math.pow(1 - k, 4);
+        el.textContent = fmt(Math.round(a + (b - a) * e));
+        if (k < 1) requestAnimationFrame(f);
+      })(t0);
+    }
+    function update(animate) {
+      var keys = ["pool", "h", "r", "m"];
+      keys.forEach(function (k, i) {
+        var from = parseInt(out[k].textContent.replace(/[^0-9]/g, ""), 10);
+        if (isNaN(from)) from = init[k];
+        if (animate) tween(out[k], from, cur[k]); else out[k].textContent = fmt(cur[k]);
+        boxes[i].classList.remove("up"); void boxes[i].offsetWidth; boxes[i].classList.add("up");
+      });
+    }
+    function status(en, fa) { st.setAttribute("data-en", en); st.setAttribute("data-fa", fa); st.textContent = html.lang === "fa" ? fa : en; }
+    function active(n) { nodes.forEach(function (el, i) { el.classList.toggle("on", i <= n); }); }
+    function wait(ms) { return new Promise(function (r) { setTimeout(r, reduced ? 0 : ms); }); }
+    run.addEventListener("click", function () {
+      if (busy) return; busy = true; run.disabled = true; reset.disabled = true; count++;
+      active(0); bar.style.width = "8%";
+      status("PROCESSING VEHICLE OPERATIONS", "در حال پردازش عملیات خودرو");
+      wait(700).then(function () {
+        active(1); bar.style.width = "55%";
+        status("CALCULATING SPV ALLOCATION", "محاسبه تخصیص SPV");
+        return wait(900);
+      }).then(function () {
+        var pool = init.pool + count * 1250, h = Math.round(pool * 0.7), r = Math.round(pool * 0.2);
+        cur = { pool: pool, h: h, r: r, m: pool - h - r };
+        active(2); bar.style.width = "100%";
+        status("ILLUSTRATIVE SETTLEMENT COMPLETE", "شبیه‌سازی تخصیص تکمیل شد");
+        update(true);
+        return wait(600);
+      }).then(function () { run.disabled = false; reset.disabled = false; busy = false; });
+    });
+    reset.addEventListener("click", function () {
+      if (busy) return; count = 0;
+      cur = { pool: init.pool, h: init.h, r: init.r, m: init.m };
+      update(true); active(0); bar.style.width = "0%";
+      status("READY TO SIMULATE", "آماده شبیه‌سازی");
+    });
+    show(); active(0);
+  })();
 
-  function settlePayout() {
-    poolTotal += 1250;
-    if (poolEl) poolEl.textContent = poolTotal.toLocaleString("en-US") + " DOTO";
-    if (svgPoolEl) svgPoolEl.textContent = "POOL: " + poolTotal.toLocaleString("en-US") + " DOTO";
-    if (h1El) h1El.textContent = "+" + Math.round(poolTotal * 0.45).toLocaleString("en-US") + " DOTO";
-    if (h2El) h2El.textContent = "+" + Math.round(poolTotal * 0.35).toLocaleString("en-US") + " DOTO";
-    if (h3El) h3El.textContent = "+" + Math.round(poolTotal * 0.20).toLocaleString("en-US") + " DOTO";
-  }
-
-  if (simBtn) {
-    simBtn.addEventListener("click", settlePayout);
-  }
-  setInterval(settlePayout, 5000);
-});
+  /* ---------- 07 FOOTER YEAR ---------- */
+  var yr = $("#yr"); if (yr) yr.textContent = new Date().getFullYear();
+  onScroll();
+})();
 </script>
 </body>
 </html>
