@@ -14,11 +14,16 @@
 <style>
 /* =====================================================
    PRODUCT PAGE: TOKENIZED COMMERCIAL VEHICLES
-   Sections: 0 tokens · 1 hero + car stage · 2 deep dive · 3 architecture ·
-   4 pillars · 5 lifecycle · 6 simulator · 7 next-product bar · 8 responsive
-   Brand tokens (--color-accent, --color-text...) come from css/styles.css
+   Strict Brand Palette: Obsidian (#010B13), Molten Orange (#EC5800),
+   Telemetry Blue (#0096FF), Status Green (#27D17F), Slate (#91A0AE)
 ===================================================== */
-:root{--vb:#0096FF;--vg:#27D17F;--vm:#91a0ae;--vl:rgba(170,195,215,.14);--mono:"JetBrains Mono",ui-monospace,Menlo,monospace}
+:root{
+  --vb:#0096FF;
+  --vg:#27D17F;
+  --vm:#91a0ae;
+  --vl:rgba(170,195,215,.14);
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
 html{scroll-behavior:smooth}
 html[lang=fa] body{font-family:Vazirmatn,Inter,system-ui,sans-serif}
 html[lang=fa] *{letter-spacing:0!important}
@@ -52,10 +57,8 @@ body{overflow-x:hidden}
 .v-live{display:flex;align-items:center;gap:10px;margin-top:30px;font:500 11.5px var(--mono);letter-spacing:.14em;color:var(--vm)}
 .v-dot{width:8px;height:8px;border-radius:50%;background:var(--vg);box-shadow:0 0 12px var(--vg);animation:v-breathe 2s ease-in-out infinite}
 
-/* ===== HERO STAGE v2: CAR (replaces old "CAR STAGE" block) ===== */
+/* ===== HERO STAGE v2: CAR ===== */
 .v-stage{position:relative;height:clamp(360px,43vw,540px);min-width:0;overflow:hidden;direction:ltr;isolation:isolate}
-
-/* background: aura + HUD rings + perspective floor + speed streaks */
 .h-aura{position:absolute;left:4%;top:12%;width:92%;height:66%;border-radius:50%;background:radial-gradient(closest-side,rgba(236,88,0,.30),rgba(0,150,255,.10) 62%,transparent);filter:blur(14px);transform:translateX(calc(var(--mx,0)*22px));transition:transform .6s;animation:v-breathe 5s ease-in-out infinite}
 .h-hud{position:absolute;left:50%;top:46%;width:min(86%,520px);aspect-ratio:1;translate:-50% -50%;overflow:visible;pointer-events:none}
 .h-hud circle{fill:none;transform-box:fill-box;transform-origin:center}
@@ -75,21 +78,15 @@ body{overflow-x:hidden}
 .h-ping{position:absolute;left:50%;top:77%;width:80%;height:15%;translate:-50% -50%;border-radius:50%;border:1.5px solid rgba(255,150,70,.7);box-shadow:0 0 18px rgba(236,88,0,.35);opacity:0;pointer-events:none;animation:h-ping 3s ease-out 1.74s infinite backwards}
 .h-ping.b{border-color:rgba(60,170,255,.7);box-shadow:0 0 18px rgba(0,150,255,.35);animation-delay:1.98s}
 
-/* car: parallax + rig (everything inside the rig moves with the car) */
 .v-par{position:absolute;inset:0;transform:translateX(calc(var(--mx,0)*10px));transition:transform .5s}
 .v-shadow{position:absolute;left:12%;top:73%;width:76%;height:7%;border-radius:50%;background:rgba(0,0,0,.8);filter:blur(16px);animation:v-shadow 1.6s ease-in-out infinite}
-/* RIG: 92% wide, 2.57:1. If an overlay is off the car, tune ONLY these variables (all % of the rig box):
-   --f-* front wheel, --r-* rear wheel (x / y = centre, d = height as % of rig width, sx = squash of the ellipse),
-   --ha-* right headlight strip, --hb-* left headlight */
 .v-rig{--f-x:59.9%;--f-y:71.5%;--f-d:16.2%;--f-sx:.4;--r-x:88%;--r-y:72%;--r-d:17%;--r-sx:.46;--ha-x:47%;--ha-y:43%;--hb-x:13.4%;--hb-y:45%;position:absolute;left:4%;top:30%;width:92%;aspect-ratio:2.57/1;z-index:5;animation:v-drive 1.6s ease-in-out infinite}
 .v-rig>img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none;user-select:none;filter:drop-shadow(0 18px 20px rgba(0,0,0,.6))}
 
-/* wheels: a spinning highlight on the REAL wheel pixels, squashed into the 3/4-view ellipse */
 .v-wh{position:absolute;left:var(--x);top:var(--y);width:var(--d);aspect-ratio:1;translate:-50% -50%;scale:var(--sx) 1;border-radius:50%;mix-blend-mode:screen;pointer-events:none;-webkit-mask-image:radial-gradient(circle,transparent 16%,#000 34%,#000 88%,transparent);mask-image:radial-gradient(circle,transparent 16%,#000 34%,#000 88%,transparent)}
 .v-wh::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(rgba(255,255,255,0) 0,rgba(255,255,255,.62) 10deg,rgba(255,255,255,0) 30deg 60deg,rgba(255,255,255,.62) 70deg,rgba(255,255,255,0) 90deg 120deg,rgba(255,255,255,.62) 130deg,rgba(255,255,255,0) 150deg 180deg,rgba(255,255,255,.62) 190deg,rgba(255,255,255,0) 210deg 240deg,rgba(255,255,255,.62) 250deg,rgba(255,255,255,0) 270deg 300deg,rgba(255,255,255,.62) 310deg,rgba(255,255,255,0) 330deg);filter:blur(.6px);animation:v-spin .5s linear infinite}
 .v-wh::after{content:"";position:absolute;inset:7%;border-radius:50%;box-shadow:0 0 0 2px rgba(255,122,31,.55) inset,0 0 22px rgba(236,88,0,.5);animation:v-breathe 2.4s ease-in-out infinite}
 
-/* scan plane + high-beam (flashes every 3 s: double blink, then holds) */
 .h-scan{position:absolute;top:-8%;bottom:-4%;left:0;width:14%;opacity:0;mix-blend-mode:screen;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(110,210,255,.22) 70%,rgba(190,244,255,.6) 98%,transparent);-webkit-mask-image:linear-gradient(180deg,transparent,#000 18%,#000 78%,transparent);mask-image:linear-gradient(180deg,transparent,#000 18%,#000 78%,transparent);animation:h-scan 6s cubic-bezier(.45,0,.25,1) infinite}
 .h-hl{position:absolute;left:var(--x);top:var(--y);translate:-50% -50%;border-radius:50%;opacity:.4;mix-blend-mode:screen;pointer-events:none;background:radial-gradient(closest-side,rgba(255,252,240,.95),rgba(190,225,255,.5) 38%,rgba(120,190,255,.14) 66%,transparent);animation:h-flash 3s ease-in-out infinite}
 .h-hl.a{width:17%;aspect-ratio:3.4/1;rotate:-10deg}
@@ -101,7 +98,6 @@ body{overflow-x:hidden}
 .h-beam.a{width:11%;height:14%}
 .h-pool{position:absolute;left:-4%;top:80%;width:34%;height:20%;border-radius:50%;opacity:0;mix-blend-mode:screen;pointer-events:none;filter:blur(3px);background:radial-gradient(closest-side,rgba(255,236,190,.55),rgba(255,190,110,.18) 60%,transparent);animation:h-pool 3s ease-in-out infinite}
 
-/* info chips: every chip has a glowing status dot (green / orange / blue / red) */
 .v-chip{--rgb:39,209,127;position:absolute;z-index:9;max-width:210px;padding:11px 15px 11px 14px;border:1px solid rgba(var(--rgb),.38);border-radius:12px;background:linear-gradient(135deg,rgba(var(--rgb),.12),rgba(6,18,30,.8) 58%);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 8px 28px rgba(0,0,0,.35),0 0 22px rgba(var(--rgb),.12);font:600 12.5px/1.35 var(--mono);color:#fff;animation:v-float 7s ease-in-out infinite}
 .v-chip::before{content:"";position:absolute;left:14px;right:14px;top:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(var(--rgb),.95),transparent)}
 .v-chip small{display:block;margin-bottom:2px;font:500 10px var(--mono);letter-spacing:.14em;color:var(--vm)}
@@ -109,7 +105,6 @@ body{overflow-x:hidden}
 .v-chip i::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:1px solid rgb(var(--rgb));animation:h-dot 2s ease-out infinite}
 .c1{left:2%;top:3%}.c2{--rgb:255,122,31;right:2%;top:13%;animation-delay:-2s}.c3{--rgb:0,150,255;left:2%;bottom:3%;animation-delay:-4s}.c4{--rgb:255,59,69;right:2%;bottom:3%;animation-delay:-1s}
 
-/* new keyframes (v-spin / v-breathe / v-float / v-drive / v-shadow / v-streak already exist below in your file) */
 @keyframes h-grid{to{transform:rotateX(66deg) translateX(72px)}}
 @keyframes h-rise{0%{transform:translate(0,0) scale(.6);opacity:0}15%{opacity:.9}100%{transform:translate(var(--dx,14px),-120px) scale(1);opacity:0}}
 @keyframes h-ping{0%{transform:scale(.35);opacity:.85}100%{transform:scale(1.35);opacity:0}}
@@ -144,59 +139,446 @@ body{overflow-x:hidden}
 .v-card h3{margin:16px 0 6px;font-size:18px;letter-spacing:-.01em}
 .v-card p{font-size:14px;line-height:1.6;color:var(--color-text-secondary)}
 
-/* ---------- 3. ARCHITECTURE (live system model) ---------- */
-.v-arch-box{padding:22px 24px 18px;overflow:hidden}
-.v-arch-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px;font:600 12px var(--mono);letter-spacing:.1em}
-.v-arch-bar small{display:block;margin-top:3px;font-weight:500;color:var(--vm)}
-.v-counters{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;color:var(--vm);font-weight:500}
-.v-counters b{margin:0 6px;color:#fff;font-weight:700}
-.v-scroll{overflow-x:auto;direction:ltr}
-.v-arch{display:block;width:100%;min-width:760px;height:auto}
-.v-arch text{font-family:inherit;text-anchor:middle}
-/* PIPES: halo > wall > dark bore > soft liquid > flowing light. Colour comes from --pc (o = orange, b = blue) */
-.v-arch .pipe.o{--pc:236,88,0}.v-arch .pipe.b{--pc:0,150,255}
-.v-arch .pipe use{fill:none;stroke-linecap:round;stroke-linejoin:round}
-.v-arch .pipe .halo{stroke-width:26;stroke:rgba(var(--pc),.055)}
-.v-arch .pipe .wall{stroke-width:13;stroke:rgba(185,208,226,.34)}
-.v-arch .pipe .bore{stroke-width:10;stroke:#050c15}
-.v-arch .pipe .lq{stroke-width:5;stroke:rgba(var(--pc),.16)}
-.v-arch .pipe .fl{stroke-width:2.4;stroke:rgba(var(--pc),.95);stroke-dasharray:10 56;animation:h-flow 2.4s linear var(--dl,0s) infinite}
-.v-arch .pipe .fg{fill:#08121d;stroke:rgba(185,208,226,.5);stroke-width:1.6}
-.v-arch .pipe .pt{fill:rgb(var(--pc));animation:v-breathe 2.6s ease-in-out var(--dl,0s) infinite}
-.v-arch .pipe .col{fill:#0b1826;stroke:rgba(185,208,226,.45);stroke-width:1.2}
-/* NODES */
-.v-arch .nd{--pc:0,150,255}.v-arch .nd.o{--pc:236,88,0}
-.v-arch .nd .bx{fill:url(#gN);stroke:rgba(var(--pc),.4);stroke-width:1.2;transition:stroke .3s,filter .3s}
-.v-arch .nd .bar{fill:rgb(var(--pc))}
-.v-arch .nd .led{fill:rgb(var(--pc));animation:v-breathe 2.6s ease-in-out infinite}
-.v-arch .nd.hit .bx{stroke:rgb(var(--pc));filter:drop-shadow(0 0 12px rgba(var(--pc),.75))}
-.v-arch .t{font:500 10.5px var(--mono);letter-spacing:.12em;fill:var(--vm)}
-.v-arch .h{font-size:17px;font-weight:700;fill:#fff}
-.v-arch .d{font-size:12px;fill:var(--vm)}
-/* CORE */
-.v-arch .cc{fill:url(#gC);stroke:rgba(236,88,0,.75);stroke-width:1.5;transition:filter .3s}
-.v-arch #core.hit circle.cc{stroke:var(--color-accent);filter:drop-shadow(0 0 16px rgba(236,88,0,.85))}
-.v-arch .cr{fill:none;transform-box:fill-box;transform-origin:center}
-.v-arch .r1{stroke:rgba(236,88,0,.4);stroke-dasharray:3 9;animation:v-spin 30s linear infinite}
-.v-arch .r2{stroke:rgba(0,150,255,.3);stroke-dasharray:2 12;animation:v-spin 46s linear infinite reverse}
-.v-arch .r3{stroke:rgba(255,122,31,.9);stroke-width:2;stroke-linecap:round;stroke-dasharray:46 314;animation:v-spin 7s linear infinite}
-.v-arch .r4{stroke:rgba(0,150,255,.85);stroke-width:2;stroke-linecap:round;stroke-dasharray:30 330;animation:v-spin 11s linear infinite reverse}
-.v-arch .ping{stroke:rgba(236,88,0,.6);stroke-width:1.5;animation:h-core-ping 3.2s ease-out infinite}
-.v-arch .ping.b{stroke:rgba(0,150,255,.55);animation-delay:1.6s}
-.v-arch .big{font-size:30px;font-weight:800;fill:#fff}
-/* PACKETS (drawn by the engine) */
-.v-arch .pkt.o{fill:#ffa266}.v-arch .pkt.b{fill:#7fcfff}
-@keyframes h-flow{to{stroke-dashoffset:-66}}
-@keyframes h-core-ping{0%{transform:scale(1);opacity:.75}100%{transform:scale(1.9);opacity:0}}
+/* =========================================================
+   3. REDESIGNED RWA SYSTEM MODEL (#architecture)
+   Calibrated to Aervynx Brand Colors (#010B13, #EC5800, #0096FF, #27D17F)
+========================================================= */
+#architecture .v-head { max-width: 760px; }
+#architecture .v-arch-box {
+  position: relative;
+  padding: 0;
+  border-radius: 22px;
+  border: 1px solid var(--vl);
+  background:
+    radial-gradient(ellipse at 50% 48%, rgba(236,88,0,.08), rgba(0,150,255,.04) 42%, transparent 70%),
+    linear-gradient(165deg, rgba(8, 16, 28, 0.96) 0%, rgba(2, 7, 13, 0.99) 100%);
+  box-shadow: 0 30px 80px rgba(0,0,0,.68), 0 0 40px rgba(236,88,0,.06);
+  overflow: hidden;
+}
+#architecture .v-arch-box::before,
+#architecture .v-arch-box::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+#architecture .v-arch-box::before {
+  inset: 0;
+  opacity: .22;
+  background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse at center, #000 12%, transparent 82%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 12%, transparent 82%);
+}
+#architecture .v-arch-box::after {
+  left: 50%; top: 18%; bottom: 10%; width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(0,150,255,.16), rgba(236,88,0,.16), transparent);
+}
+#architecture .v-arch-bar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 26px;
+  margin: 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.018);
+  font: 600 12px var(--mono);
+  color: #ffffff;
+  letter-spacing: .1em;
+}
+#architecture .v-arch-bar small {
+  display: block;
+  margin-top: 4px;
+  color: var(--vm);
+  letter-spacing: .14em;
+  font-size: 10px;
+}
+#architecture .v-counters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  align-items: center;
+  font: 500 11px var(--mono);
+  color: var(--vm);
+}
+#architecture .v-counters b {
+  margin-left: 6px;
+  color: var(--color-accent);
+  font: 700 12px var(--mono);
+}
+#architecture .v-counters .v-live {
+  color: var(--color-text-secondary);
+  font-size: 11px;
+  letter-spacing: .1em;
+}
+#architecture .v-counters .v-dot {
+  width: 7px; height: 7px;
+  background: var(--vg);
+  box-shadow: 0 0 10px var(--vg);
+}
+#architecture .v-scroll {
+  position: relative;
+  z-index: 1;
+  padding: 16px 22px 6px;
+  overflow-x: auto;
+  direction: ltr;
+}
+#architecture .v-arch {
+  display: block;
+  width: 100%;
+  min-width: 790px;
+  height: auto;
+  overflow: visible;
+}
+#architecture .v-arch text { font-family: var(--mono); text-anchor: middle; }
 
-/* ---------- 4. PILLARS ---------- */
+/* Optical Signal Routes */
+#architecture .v-arch .edge-base {
+  fill: none;
+  stroke: #26394B;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+#architecture .v-arch .edge-glow {
+  fill: none;
+  stroke: rgba(236,88,0,.14);
+  stroke-width: 6;
+  stroke-linecap: round;
+  filter: blur(2.5px);
+  vector-effect: non-scaling-stroke;
+}
+#architecture .v-arch .edge-signal {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 1.8;
+  stroke-dasharray: 2 18;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 4px rgba(236,88,0,.8));
+  animation: v-rwa-wire 2.1s linear infinite;
+  vector-effect: non-scaling-stroke;
+}
+#architecture .v-arch .edge-signal.slow { animation-duration: 3s; stroke: var(--vb); filter: drop-shadow(0 0 4px rgba(0,150,255,.8)); }
+#architecture .v-arch .edge-signal.fast { animation-duration: 1.55s; }
+@keyframes v-rwa-wire { to { stroke-dashoffset: -40; } }
+#architecture .v-arch .edge-port {
+  fill: #050C15;
+  stroke: var(--color-accent);
+  stroke-width: 1.3;
+  vector-effect: non-scaling-stroke;
+}
+#architecture .v-arch .edge-port-core {
+  fill: var(--color-accent);
+  opacity: .95;
+  filter: drop-shadow(0 0 5px rgba(236,88,0,.75));
+}
+#architecture .v-arch .edge-tag {
+  fill: var(--vm);
+  font: 600 8.5px var(--mono);
+  letter-spacing: .13em;
+}
+
+/* Architecture Nodes */
+#architecture .v-arch .nd { cursor: default; }
+#architecture .v-arch .nd .bx {
+  fill: url(#vNodeFill);
+  stroke: rgba(0,150,255,.38);
+  stroke-width: 1.4;
+  transition: stroke .35s, filter .35s;
+  vector-effect: non-scaling-stroke;
+}
+#architecture .v-arch .nd.o .bx {
+  stroke: rgba(236,88,0,.42);
+}
+#architecture .v-arch .nd .bar { fill: var(--vb); }
+#architecture .v-arch .nd.o .bar { fill: var(--color-accent); }
+#architecture .v-arch .nd .led {
+  fill: var(--vg);
+  filter: drop-shadow(0 0 6px var(--vg));
+  animation: v-rwa-led 2.4s ease-in-out infinite;
+}
+#architecture .v-arch .nd.o .led {
+  fill: var(--color-accent);
+  filter: drop-shadow(0 0 6px var(--color-accent));
+}
+@keyframes v-rwa-led { 50% { opacity: .38; } }
+#architecture .v-arch .nd.hit .bx {
+  stroke: var(--color-accent);
+  filter: drop-shadow(0 0 14px rgba(236,88,0,.5));
+}
+#architecture .v-arch .nd .t { fill: var(--vm); font-size: 9px; font-weight: 600; letter-spacing: .14em; }
+#architecture .v-arch .nd .h { fill: #ffffff; font: 700 15.5px var(--mono); letter-spacing: -.02em; }
+#architecture .v-arch .nd .d { fill: var(--vm); font: 400 10.5px Inter, sans-serif; }
+#architecture .v-arch .nd .node-index { fill: var(--color-accent); font: 600 8.5px var(--mono); letter-spacing: .1em; }
+
+/* DotOne Core */
+#architecture .v-arch .core-aura { fill: url(#vCoreAura); opacity: .9; }
+#architecture .v-arch .core-ring {
+  fill: none;
+  stroke: rgba(236,88,0,.34);
+  stroke-width: 1.2;
+  stroke-dasharray: 4 8;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: v-spin 42s linear infinite;
+}
+#architecture .v-arch .core-ring.inner {
+  stroke: rgba(0,150,255,.45);
+  stroke-dasharray: 28 15 2 15;
+  animation-duration: 24s;
+  animation-direction: reverse;
+}
+#architecture .v-arch .core-disc {
+  fill: url(#vCoreFill);
+  stroke: var(--color-accent);
+  stroke-width: 1.8;
+  filter: drop-shadow(0 0 20px rgba(236,88,0,.22));
+}
+#architecture .v-arch #core.hit .core-disc {
+  stroke: #ffffff;
+  filter: drop-shadow(0 0 12px rgba(236,88,0,.85)) drop-shadow(0 0 26px rgba(236,88,0,.35));
+}
+#architecture .v-arch .core-notch { fill: var(--color-accent); }
+#architecture .v-arch .core-number { fill: #ffffff; font: 800 28px var(--mono); letter-spacing: -.05em; }
+#architecture .v-arch .core-label { fill: var(--color-accent); font: 700 8.5px var(--mono); letter-spacing: .16em; }
+#architecture .v-arch .core-sub { fill: var(--vm); font: 600 7.5px var(--mono); letter-spacing: .12em; }
+#architecture .v-arch .pkt.o {
+  fill: #FFB078;
+  filter: drop-shadow(0 0 5px #EC5800) drop-shadow(0 0 10px rgba(236,88,0,.7));
+}
+#architecture .v-arch .pkt.b {
+  fill: #80D0FF;
+  filter: drop-shadow(0 0 5px #0096FF) drop-shadow(0 0 10px rgba(0,150,255,.7));
+}
+#architecture .v-arch .pkt { pointer-events: none; }
+#architecture .v-arch-note {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  padding: 14px 26px 16px;
+  background: rgba(3, 9, 17, 0.92);
+  border-top: 1px solid rgba(255,255,255,.08);
+  color: var(--vm);
+  font: 500 10px var(--mono);
+  letter-spacing: .1em;
+}
+#architecture .v-arch-note span { display: inline-flex; align-items: center; gap: 8px; }
+#architecture .v-arch-note i { width: 16px; height: 2px; background: var(--color-accent); box-shadow: 0 0 8px var(--color-accent); }
+#architecture .v-arch-note b { color: var(--color-accent); font-weight: 700; }
+
+/* =========================================================
+   4. RWA REGISTER — CODE + FRACTIONAL OWNERSHIP VISUAL (#rwa-model)
+   Strictly Styled with Aervynx Brand Colors (#010B13, #EC5800, #0096FF, #27D17F)
+========================================================= */
+.v-rwa-section { padding-top: clamp(76px, 8vw, 108px); }
+.v-rwa-head { max-width: 780px; margin-bottom: 36px; }
+.v-rwa-layout {
+  display: grid;
+  grid-template-columns: minmax(0,1.08fr) minmax(0,.92fr);
+  gap: 22px;
+  align-items: stretch;
+}
+.v-code-panel, .v-token-panel {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--vl);
+  border-radius: 20px;
+  background:
+    radial-gradient(65% 75% at 100% 0%, rgba(236,88,0,.08), transparent 65%),
+    radial-gradient(55% 65% at 0% 100%, rgba(0,150,255,.06), transparent 65%),
+    linear-gradient(160deg, #07111E 0%, #020810 100%);
+  box-shadow: 0 26px 65px rgba(0,0,0,.6), inset 0 1px rgba(255,255,255,.04);
+  transition: border-color .35s, box-shadow .35s, transform .35s var(--ease-premium);
+}
+.v-code-panel:hover, .v-token-panel:hover {
+  border-color: rgba(236,88,0,.5);
+  box-shadow: 0 30px 70px rgba(0,0,0,.7), 0 0 34px rgba(236,88,0,.14);
+  transform: translateY(-3px);
+}
+.v-code-panel::before, .v-token-panel::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), var(--vb), transparent);
+}
+.v-code-top, .v-token-top {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 22px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.025);
+}
+.v-file-label { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.v-file-icon {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  color: var(--color-accent);
+  border: 1px solid rgba(236,88,0,.4);
+  border-radius: 9px;
+  background: rgba(236,88,0,.12);
+  font: 700 10.5px var(--mono);
+  box-shadow: inset 0 0 12px rgba(236,88,0,.15);
+}
+.v-file-label strong { display: block; color: #ffffff; font: 700 12.5px var(--mono); letter-spacing: .03em; }
+.v-file-label small { display: block; margin-top: 3px; color: var(--vm); font: 500 9.5px var(--mono); letter-spacing: .1em; }
+.v-code-state { color: var(--vb); font: 600 10px var(--mono); letter-spacing: .12em; white-space: nowrap; }
+
+.v-code-body { position: relative; padding: 18px 0 20px; overflow-x: auto; direction: ltr; }
+.v-code-line {
+  position: relative;
+  display: block;
+  min-width: 560px;
+  padding: 3.5px 22px 3.5px 18px;
+  color: #D6E3F0;
+  font: 11.8px/1.68 var(--mono);
+  white-space: pre;
+  transition: background .3s, color .3s;
+}
+.v-code-line .ln { display: inline-block; width: 28px; margin-right: 16px; color: #52657A; text-align: right; user-select: none; }
+.v-code-line .kw { color: var(--color-accent); font-weight: 600; }
+.v-code-line .ty { color: #5CE1FF; }
+.v-code-line .fn { color: var(--vg); font-weight: 600; }
+.v-code-line .str { color: var(--vg); }
+.v-code-line .cm { color: #64788C; }
+.v-code-line .nm { color: #FFFFFF; }
+.v-code-line.focus {
+  background: linear-gradient(90deg, rgba(236,88,0,.14), rgba(0,150,255,.04) 65%, transparent 92%);
+  color: #ffffff;
+}
+#rwa-model.vis .v-code-line.focus {
+  animation: v-code-emphasis 4.8s ease-in-out infinite;
+}
+#rwa-model.vis .v-code-line.focus:nth-of-type(3) { animation-delay: 0s; }
+#rwa-model.vis .v-code-line.focus:nth-of-type(10) { animation-delay: 1.2s; }
+#rwa-model.vis .v-code-line.focus:nth-of-type(14) { animation-delay: 2.4s; }
+@keyframes v-code-emphasis {
+  0%, 16%, 100% { background-color: rgba(236,88,0,.04); }
+  7% { background-color: rgba(236,88,0,.20); }
+}
+.v-code-line.focus::before {
+  content: "";
+  position: absolute;
+  top: 2px; bottom: 2px; left: 0;
+  width: 3px;
+  background: var(--color-accent);
+  box-shadow: 0 0 12px var(--color-accent);
+}
+.v-code-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 22px;
+  background: rgba(236,88,0,.06);
+  border-top: 1px solid rgba(236,88,0,.24);
+  color: var(--vm);
+  font: 500 10.5px var(--mono);
+  letter-spacing: .08em;
+}
+.v-code-foot strong { color: var(--vg); font-weight: 700; }
+
+.v-token-panel { display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 20px; }
+.v-token-top small { color: var(--vb); font: 600 10px var(--mono); letter-spacing: .13em; }
+.v-asset-flow {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 30px 1fr 30px 1fr;
+  align-items: center;
+  gap: 6px;
+  padding: 28px 20px 24px;
+  direction: ltr;
+}
+.v-asset-step { min-width: 0; text-align: center; position: relative; z-index: 2; }
+.v-asset-glyph {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 12px;
+  border: 1px solid rgba(236,88,0,.4);
+  border-radius: 14px;
+  background: radial-gradient(circle at 50% 30%, rgba(236,88,0,.16), rgba(6,14,24,.92));
+  color: var(--color-accent);
+  box-shadow: 0 10px 26px rgba(0,0,0,.45), inset 0 0 14px rgba(236,88,0,.12);
+}
+.v-asset-step:nth-of-type(3) .v-asset-glyph {
+  border-color: rgba(0,150,255,.45);
+  background: radial-gradient(circle at 50% 30%, rgba(0,150,255,.16), rgba(6,14,24,.92));
+  color: var(--vb);
+}
+.v-asset-step:nth-of-type(5) .v-asset-glyph {
+  border-color: rgba(39,209,127,.45);
+  background: radial-gradient(circle at 50% 30%, rgba(39,209,127,.16), rgba(6,14,24,.92));
+  color: var(--vg);
+}
+.v-asset-glyph svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.v-asset-step strong { display: block; color: #ffffff; font: 700 10.5px var(--mono); letter-spacing: .06em; line-height: 1.4; }
+.v-asset-step small { display: block; margin-top: 4px; color: var(--vm); font: 500 9.5px var(--mono); line-height: 1.4; }
+.v-asset-link { height: 2px; position: relative; background: linear-gradient(90deg, rgba(236,88,0,.35), rgba(0,150,255,.35)); border-radius: 2px; }
+.v-asset-link::after {
+  content: "";
+  position: absolute;
+  top: -2px; left: 0;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 10px var(--color-accent), 0 0 16px var(--vb);
+  animation: v-asset-packet 1.8s linear infinite;
+}
+.v-asset-link:nth-of-type(4)::after { animation-delay: .65s; }
+@keyframes v-asset-packet { from { left: 0; opacity: 0; } 14% { opacity: 1; } 86% { opacity: 1; } to { left: calc(100% - 6px); opacity: 0; } }
+
+.v-token-divider { margin: 0 22px; height: 1px; background: linear-gradient(90deg, transparent, rgba(170,195,215,.22), transparent); }
+.v-token-metrics { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; padding: 18px 22px 12px; }
+.v-token-metrics strong { display: block; color: #ffffff; font: 800 24px var(--mono); text-shadow: 0 0 22px rgba(236,88,0,.35); }
+.v-token-metrics span { display: block; margin-top: 2px; color: var(--vm); font: 600 9.5px var(--mono); letter-spacing: .12em; }
+.v-token-metrics small { color: var(--color-accent); font: 700 9.5px var(--mono); letter-spacing: .1em; text-align: right; line-height: 1.5; }
+
+.v-unit-grid { display: grid; grid-template-columns: repeat(8,1fr); gap: 6px; padding: 6px 22px 0; direction: ltr; }
+.v-unit {
+  position: relative;
+  height: 26px;
+  border: 1px solid rgba(236,88,0,.38);
+  border-radius: 6px;
+  background: linear-gradient(145deg, rgba(236,88,0,.22), rgba(0,150,255,.08));
+  box-shadow: inset 0 0 10px rgba(236,88,0,.12);
+  opacity: .22;
+  transform: translateY(6px) scale(.94);
+}
+.v-unit:nth-child(even) {
+  border-color: rgba(0,150,255,.38);
+  background: linear-gradient(145deg, rgba(0,150,255,.20), rgba(236,88,0,.06));
+}
+.v-rwa-section.vis .v-unit { animation: v-unit-arrive .55s cubic-bezier(.2,.8,.2,1) forwards; animation-delay: calc(var(--i) * 55ms); }
+.v-unit::after { content: ""; position: absolute; left: 5px; right: 5px; top: 50%; height: 1.5px; background: rgba(255,255,255,.48); border-radius: 2px; }
+@keyframes v-unit-arrive { to { opacity: .95; transform: translateY(0) scale(1); } }
+.v-token-note { padding: 14px 22px 0; color: var(--vm); font: 400 11.5px/1.65 Inter, sans-serif; }
+
+/* ---------- 5. PILLARS ---------- */
 .v-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .v-pil{padding:26px}
 .v-pil em{display:block;margin-bottom:16px;font:600 11px var(--mono);font-style:normal;letter-spacing:.14em;color:var(--color-accent)}
 .v-pil h3{margin:16px 0 8px;font-size:19px;letter-spacing:-.01em}
 .v-pil p{font-size:14.5px;line-height:1.65;color:var(--color-text-secondary)}
 
-/* ---------- 5. LIFECYCLE ---------- */
+/* ---------- 6. LIFECYCLE ---------- */
 .v-steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .v-steps::before{content:"";position:absolute;left:6%;right:6%;top:36px;height:2px;background:linear-gradient(90deg,var(--color-accent),var(--vb));transform:scaleX(0);transform-origin:left;transition:transform 2.2s var(--ease-premium) .3s}
 html[dir=rtl] .v-steps::before{transform-origin:right}
@@ -207,7 +589,7 @@ html[dir=rtl] .v-steps::before{transform-origin:right}
 .v-step h3{margin-bottom:8px;font-size:18px}
 .v-step p{font-size:14px;line-height:1.6;color:var(--color-text-secondary)}
 
-/* ---------- 6. SIMULATOR ---------- */
+/* ---------- 7. SIMULATOR ---------- */
 .v-sim{padding:28px}
 .v-sim-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding-bottom:20px;border-bottom:1px solid var(--vl)}
 .v-sim-top strong{display:block;font-size:15px;letter-spacing:.04em}
@@ -230,7 +612,7 @@ html[dir=rtl] .v-steps::before{transform-origin:right}
 .v-r.up{animation:v-pop .7s}
 .v-note{margin-top:18px;font-size:12.5px;line-height:1.6;color:var(--vm)}
 
-/* ---------- 7. NEXT PRODUCT BAR (same markup/CSS as product-drones.html) ---------- */
+/* ---------- 8. NEXT PRODUCT BAR ---------- */
 .p-next-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;padding:32px 40px;border-radius:var(--radius-lg);background:rgba(255,255,255,.02);border:1px solid var(--color-border)}
 
 /* ---------- KEYFRAMES ---------- */
@@ -245,9 +627,9 @@ html[dir=rtl] .v-steps::before{transform-origin:right}
 @keyframes v-dash{to{stroke-dashoffset:-26;background-position:24px 0}}
 @keyframes v-pop{40%{border-color:var(--color-accent);box-shadow:0 0 24px rgba(236,88,0,.4)}}
 
-/* ---------- 8. RESPONSIVE ---------- */
+/* ---------- 9. RESPONSIVE ---------- */
 @media (max-width:1060px){
- .v-main,.v-dive{grid-template-columns:1fr}
+ .v-main,.v-dive,.v-rwa-layout{grid-template-columns:1fr}
  .v-copy{text-align:left}.v-stage{max-width:760px;margin:0 auto;width:100%}
  .v-pipe{grid-template-columns:1fr 1fr}.v-pipe::before,.v-pipe::after{display:none}
  .v-pillars{grid-template-columns:1fr}.v-steps{grid-template-columns:1fr 1fr}.v-steps::before{display:none}
@@ -258,15 +640,17 @@ html[dir=rtl] .v-steps::before{transform-origin:right}
  .v-flow{grid-template-columns:1fr;gap:10px}.v-con{width:2px;height:26px;margin:0 auto;background:repeating-linear-gradient(180deg,rgba(255,255,255,.3) 0 6px,transparent 6px 12px)}
  .v-chip{padding:7px 10px;font-size:11px;max-width:150px}.c2{top:14%}
  .p-next-bar{padding:24px}.v-sim{padding:20px}
+ .v-asset-flow{padding-inline:12px;grid-template-columns:1fr 18px 1fr 18px 1fr}
+ .v-unit-grid{padding-inline:14px;gap:4px}
 }
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01ms!important}.vr{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01ms!important}.vr{opacity:1;transform:none}.v-rwa-section .v-unit{opacity:.95;transform:none}}
 </style>
 </head>
 <body>
 <div id="top" aria-hidden="true"></div>
 
 <!-- =========================================================
-     NAVIGATION (identical to the rest of the site; behaviour in the script at the bottom)
+     NAVIGATION
 ========================================================= -->
 <header class="nav scrolled" id="nav">
   <div class="wrap nav__in">
@@ -302,8 +686,6 @@ html[dir=rtl] .v-steps::before{transform-origin:right}
 
 <!-- =========================================================
      01 HERO
-     Car image: assets/car-simulate.png  (replace the file to change the car;
-     if the car looks misaligned, tune the --wf-x / --hl1-x variables on .v-rig in the CSS)
 ========================================================= -->
 <section class="v-hero" id="home">
   <div class="v-wrap">
@@ -323,7 +705,7 @@ html[dir=rtl] .v-steps::before{transform-origin:right}
         <div class="v-live"><i class="v-dot"></i><span data-en="PHYSICAL ASSETS · DIGITAL PARTICIPATION" data-fa="دارایی فیزیکی · مشارکت دیجیتال">PHYSICAL ASSETS · DIGITAL PARTICIPATION</span></div>
       </div>
 
-           <!-- RIGHT: the car (v2: HUD rings, perspective floor, scan plane, 3-second high-beam, colored chips) -->
+      <!-- RIGHT: the car -->
       <div class="v-stage" id="stage" aria-label="Animated commercial vehicle">
         <div class="h-aura"></div>
         <svg class="h-hud" viewBox="0 0 500 500" aria-hidden="true">
@@ -360,9 +742,11 @@ html[dir=rtl] .v-steps::before{transform-origin:right}
         <div class="v-chip c3"><small>NETWORK</small><i></i>DOTONE / 505</div>
         <div class="v-chip c4"><small>OWNERSHIP</small><i></i>FRACTIONAL SPV</div>
       </div>
+    </div>
+
     <!-- PIPELINE -->
     <div class="v-pipe">
-      <div class="v-st v-glass"><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M3 16v-4l2-5h14l2 5v4M3 16h18M3 16v3h3v-3M18 16v3h3v-3M7 12h10"/></svg></div><strong data-en="Physical Fleet" data-fa="ناوگان فیزیکی">Physical Fleet</strong><small data-en="Vans, trucks &amp; transit" data-fa="ون، کامیونت و ترابری">Vans, trucks &amp; transit</small></div>
+      <div class="v-st v-glass"><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M3 16v-4l2-5h14l2 5v4M3 16h18M3 16v3h3v-3M18 16v3h3v-3M7 12h10"/></svg></div><strong data-en="Physical Fleet" data-fa="ناوگان فیزیکی">Physical Fleet</strong><small data-en="Vans, trucks & transit" data-fa="ون، کامیونت و ترابری">Vans, trucks & transit</small></div>
       <div class="v-st v-glass"><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><strong data-en="SPV Structuring" data-fa="ساختاردهی SPV">SPV Structuring</strong><small data-en="Dedicated legal entities" data-fa="نهادهای حقوقی اختصاصی">Dedicated legal entities</small></div>
       <div class="v-st v-glass"><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M7 3h8l4 4v14H7zM15 3v4h4M10 12h6M10 16h6"/></svg></div><strong data-en="On-Chain Tokens" data-fa="توکن‌های آن‌چین">On-Chain Tokens</strong><small data-en="Fractional participation" data-fa="مشارکت کسری">Fractional participation</small></div>
       <div class="v-st v-glass"><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M4 20h16M7 16v-4M12 16V8M17 16v-7"/></svg></div><strong data-en="Cashflow Allocation" data-fa="تخصیص جریان نقدی">Cashflow Allocation</strong><small data-en="Pro-rata distribution model" data-fa="مدل توزیع متناسب">Pro-rata distribution model</small></div>
@@ -401,65 +785,267 @@ html[dir=rtl] .v-steps::before{transform-origin:right}
 </section>
 
 <!-- =========================================================
-     03 ARCHITECTURE: LIVE SYSTEM MODEL
-     Packets are spawned at random intervals on random routes (script: "ARCHITECTURE ENGINE"),
-     travel exactly along the SVG paths #e1..#e6 and never restart in a visible loop.
+     03 ARCHITECTURE: REDESIGNED LIVE RWA SYSTEM MODEL
 ========================================================= -->
 <section class="v-sec" id="architecture">
   <div class="v-wrap">
     <div class="v-head vr">
-      <span class="v-eye" data-en="02 · PROTOCOL ARCHITECTURE" data-fa="۰۲ · معماری پروتکل">02 · PROTOCOL ARCHITECTURE</span>
-      <h2 class="v-h2"><span data-en="From Physical Assets to" data-fa="از دارایی فیزیکی تا">From Physical Assets to</span> <em data-en="Digital Ownership." data-fa="مالکیت دیجیتال.">Digital Ownership.</em></h2>
-      <p class="v-lead" data-en="Explore how the vehicle fleet, its dedicated legal entity, tokenized participation and revenue-allocation layer connect within one architecture." data-fa="مشاهده کنید که ناوگان خودرو، نهاد حقوقی اختصاصی، مشارکت توکنایزشده و لایه تخصیص درآمد چگونه در یک معماری به هم متصل می‌شوند.">Explore how the vehicle fleet, its dedicated legal entity, tokenized participation and revenue-allocation layer connect within one architecture.</p>
+      <span class="v-eye" data-en="02 · RWA SYSTEM ARCHITECTURE" data-fa="۰۲ · معماری سیستم RWA">02 · RWA SYSTEM ARCHITECTURE</span>
+      <h2 class="v-h2"><span data-en="One Physical Asset." data-fa="یک دارایی فیزیکی.">One Physical Asset.</span> <em data-en="A Structured Digital Interest." data-fa="یک منفعت دیجیتال ساختاریافته.">A Structured Digital Interest.</em></h2>
+      <p class="v-lead" data-en="A conceptual map of how a commercial vehicle can be organized through a dedicated SPV, represented in an RWA registry, and connected to fractional participation and revenue-allocation logic." data-fa="نقشه‌ای مفهومی از چگونگی سازمان‌دهی یک خودروی تجاری در قالب SPV اختصاصی، ثبت آن در ساختار RWA و اتصال آن به مشارکت کسری و منطق تخصیص درآمد.">A conceptual map of how a commercial vehicle can be organized through a dedicated SPV, represented in an RWA registry, and connected to fractional participation and revenue-allocation logic.</p>
     </div>
-    <div class="v-arch-box v-glass vr">
+
+    <div class="v-arch-box vr">
       <div class="v-arch-bar">
-        <div><span data-en="FLEET OWNERSHIP ARCHITECTURE" data-fa="معماری مالکیت ناوگان">FLEET OWNERSHIP ARCHITECTURE</span><small>DOTONE SMART CHAIN / 505</small></div>
-        <div class="v-counters"><span class="v-live" style="margin:0"><i class="v-dot"></i><span data-en="SYSTEM MODEL" data-fa="مدل سیستم">SYSTEM MODEL</span></span><span><span data-en="Revenue events" data-fa="رویدادهای درآمد">Revenue events</span><b id="c-ev">0</b></span><span><span data-en="Allocations" data-fa="تخصیص‌ها">Allocations</span><b id="c-al">0</b></span></div>
+        <div>
+          <span data-en="VEHICLE RWA · SYSTEM MODEL" data-fa="RWA خودرو · مدل سیستم">VEHICLE RWA · SYSTEM MODEL</span>
+          <small>PHYSICAL ASSET → LEGAL WRAPPER → DOTONE 505</small>
+        </div>
+        <div class="v-counters">
+          <span class="v-live" style="margin:0"><i class="v-dot"></i><span data-en="ILLUSTRATIVE FLOW" data-fa="جریان نمایشی">ILLUSTRATIVE FLOW</span></span>
+          <span><span data-en="SPV handoffs" data-fa="انتقال‌های SPV">SPV handoffs</span><b id="c-ev">0</b></span>
+          <span><span data-en="Allocation routes" data-fa="مسیرهای تخصیص">Allocation routes</span><b id="c-al">0</b></span>
+        </div>
       </div>
+
       <div class="v-scroll">
-                   <svg class="v-arch" id="arch" viewBox="0 0 1000 460" role="img" aria-label="Architecture diagram: commercial fleet, dedicated SPV, DotOne 505 core, fractional tokens and revenue allocation, connected by pipes with animated data flows">
+        <svg class="v-arch" id="arch" viewBox="0 0 1000 500" role="img" aria-label="Conceptual vehicle RWA architecture: physical fleet, dedicated SPV, DotOne Chain 505 registry, fractional token interests and revenue allocation">
           <defs>
-            <radialGradient id="gC"><stop offset="0" stop-color="#EC5800" stop-opacity=".42"/><stop offset="1" stop-color="#EC5800" stop-opacity=".05"/></radialGradient>
-            <radialGradient id="gG"><stop offset="0" stop-color="#EC5800" stop-opacity=".18"/><stop offset="1" stop-color="#EC5800" stop-opacity="0"/></radialGradient>
-            <linearGradient id="gN" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0e1e2e" stop-opacity=".96"/><stop offset="1" stop-color="#050d16" stop-opacity=".96"/></linearGradient>
-            <!-- pipe geometry (the engine reads these six paths: do not rename the ids) -->
-            <path id="e1" d="M165 132V324"/>
-            <path id="e2" d="M310 372C390 372 362 255 427 255"/>
-            <path id="e3" d="M573 205C638 205 610 84 690 84"/>
-            <path id="e4" d="M835 132V324"/>
-            <path id="e5" d="M573 255C638 255 610 372 690 372"/>
-            <path id="e6" d="M310 84C390 84 362 205 427 205"/>
+            <linearGradient id="vNodeFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#0D1D2E"/>
+              <stop offset="1" stop-color="#050C15"/>
+            </linearGradient>
+            <radialGradient id="vCoreAura">
+              <stop offset="0" stop-color="#EC5800" stop-opacity=".24"/>
+              <stop offset=".55" stop-color="#0096FF" stop-opacity=".08"/>
+              <stop offset="1" stop-color="#010B13" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="vCoreFill" cx="38%" cy="27%" r="78%">
+              <stop offset="0" stop-color="#14263B"/>
+              <stop offset=".62" stop-color="#07121F"/>
+              <stop offset="1" stop-color="#040A12"/>
+            </radialGradient>
+
+            <!-- Actual route geometry used by the animated packet engine -->
+            <path id="e1" d="M242 246 C270 246 250 90 284 90"/>
+            <path id="e2" d="M504 90 C585 90 470 180 490 220"/>
+            <path id="e3" d="M630 220 C700 220 690 90 760 90"/>
+            <path id="e4" d="M875 142 C875 205 875 282 875 350"/>
+            <path id="e5" d="M760 405 C680 405 700 282 630 278"/>
+            <path id="e6" d="M242 282 C380 475 650 492 760 420"/>
           </defs>
-          <circle cx="500" cy="230" r="190" fill="url(#gG)"/>
-          <!-- PIPES: orange = revenue, blue = records / telemetry -->
-          <g class="pipe o" style="--dl:0s"><use href="#e1" class="halo"/><use href="#e1" class="wall"/><use href="#e1" class="bore"/><use href="#e1" class="lq"/><use href="#e1" class="fl"/><rect class="col" x="155.5" y="224" width="19" height="8" rx="3"/><circle class="fg" cx="165" cy="132" r="9"/><circle class="pt" cx="165" cy="132" r="2.6"/><circle class="fg" cx="165" cy="324" r="9"/><circle class="pt" cx="165" cy="324" r="2.6"/></g>
-          <g class="pipe o" style="--dl:-.7s"><use href="#e2" class="halo"/><use href="#e2" class="wall"/><use href="#e2" class="bore"/><use href="#e2" class="lq"/><use href="#e2" class="fl"/><circle class="fg" cx="310" cy="372" r="9"/><circle class="pt" cx="310" cy="372" r="2.6"/><circle class="fg" cx="427" cy="255" r="9"/><circle class="pt" cx="427" cy="255" r="2.6"/></g>
-          <g class="pipe o" style="--dl:-1.4s"><use href="#e3" class="halo"/><use href="#e3" class="wall"/><use href="#e3" class="bore"/><use href="#e3" class="lq"/><use href="#e3" class="fl"/><circle class="fg" cx="573" cy="205" r="9"/><circle class="pt" cx="573" cy="205" r="2.6"/><circle class="fg" cx="690" cy="84" r="9"/><circle class="pt" cx="690" cy="84" r="2.6"/></g>
-          <g class="pipe o" style="--dl:-.4s"><use href="#e4" class="halo"/><use href="#e4" class="wall"/><use href="#e4" class="bore"/><use href="#e4" class="lq"/><use href="#e4" class="fl"/><rect class="col" x="825.5" y="224" width="19" height="8" rx="3"/><circle class="fg" cx="835" cy="132" r="9"/><circle class="pt" cx="835" cy="132" r="2.6"/><circle class="fg" cx="835" cy="324" r="9"/><circle class="pt" cx="835" cy="324" r="2.6"/></g>
-          <g class="pipe b" style="--dl:-1.1s"><use href="#e5" class="halo"/><use href="#e5" class="wall"/><use href="#e5" class="bore"/><use href="#e5" class="lq"/><use href="#e5" class="fl"/><circle class="fg" cx="573" cy="255" r="9"/><circle class="pt" cx="573" cy="255" r="2.6"/><circle class="fg" cx="690" cy="372" r="9"/><circle class="pt" cx="690" cy="372" r="2.6"/></g>
-          <g class="pipe b" style="--dl:-1.8s"><use href="#e6" class="halo"/><use href="#e6" class="wall"/><use href="#e6" class="bore"/><use href="#e6" class="lq"/><use href="#e6" class="fl"/><circle class="fg" cx="310" cy="84" r="9"/><circle class="pt" cx="310" cy="84" r="2.6"/><circle class="fg" cx="427" cy="205" r="9"/><circle class="pt" cx="427" cy="205" r="2.6"/></g>
-          <!-- NODES (node width 290, title 17px, description 12px: EN and FA both fit) -->
-          <g class="nd" id="n1" transform="translate(20 36)"><rect class="bx" width="290" height="96" rx="18"/><rect class="bar" x="24" y="0" width="54" height="2.5" rx="1.25"/><circle class="led" cx="268" cy="22" r="3"/><text class="t" x="145" y="26">01 / PHYSICAL LAYER</text><text class="h" x="145" y="55" data-en="Commercial Fleet" data-fa="ناوگان تجاری">Commercial Fleet</text><text class="d" x="145" y="78" data-en="Vehicles / Operations / Rental" data-fa="خودرو / عملیات / اجاره">Vehicles / Operations / Rental</text></g>
-          <g class="nd" id="n2" transform="translate(20 324)"><rect class="bx" width="290" height="96" rx="18"/><rect class="bar" x="24" y="0" width="54" height="2.5" rx="1.25"/><circle class="led" cx="268" cy="22" r="3" style="animation-delay:-.6s"/><text class="t" x="145" y="26">02 / LEGAL LAYER</text><text class="h" x="145" y="55" data-en="Dedicated SPV" data-fa="شرکت واسط اختصاصی">Dedicated SPV</text><text class="d" x="145" y="78" data-en="Asset holding / Defined rights" data-fa="نگهداری دارایی / حقوق مشخص">Asset holding / Defined rights</text></g>
-          <g class="nd o" id="n3" transform="translate(690 36)"><rect class="bx" width="290" height="96" rx="18"/><rect class="bar" x="24" y="0" width="54" height="2.5" rx="1.25"/><circle class="led" cx="268" cy="22" r="3" style="animation-delay:-1.2s"/><text class="t" x="145" y="26">03 / TOKEN LAYER</text><text class="h" x="145" y="55" data-en="Fractional Tokens" data-fa="توکن‌های کسری">Fractional Tokens</text><text class="d" x="145" y="78" data-en="Digital participation / On-chain records" data-fa="مشارکت دیجیتال / سوابق آن‌چین">Digital participation / On-chain records</text></g>
-          <g class="nd o" id="n4" transform="translate(690 324)"><rect class="bx" width="290" height="96" rx="18"/><rect class="bar" x="24" y="0" width="54" height="2.5" rx="1.25"/><circle class="led" cx="268" cy="22" r="3" style="animation-delay:-1.8s"/><text class="t" x="145" y="26">04 / ECONOMIC LAYER</text><text class="h" x="145" y="55" data-en="Revenue Allocation" data-fa="تخصیص درآمد">Revenue Allocation</text><text class="d" x="145" y="78" data-en="Operating proceeds / Pro-rata model" data-fa="درآمد عملیاتی / مدل توزیع متناسب">Operating proceeds / Pro-rata model</text></g>
-          <!-- CORE -->
-          <g id="core" transform="translate(500 230)"><circle class="cr ping" r="80"/><circle class="cr ping b" r="80"/><circle class="cr r1" r="128"/><circle class="cr r2" r="104"/><circle class="cr r3" r="116" pathLength="360"/><circle class="cr r4" r="94" pathLength="360"/><circle class="cc" r="78"/><text class="big" y="6">505</text><text class="t" y="30">DOTONE</text></g>
+
+          <!-- Architectural reference marks -->
+          <g fill="none" stroke="rgba(255,255,255,.04)" stroke-width="1">
+            <path d="M0 250 H1000" stroke-dasharray="2 12"/>
+            <path d="M500 0 V500" stroke-dasharray="2 14"/>
+          </g>
+
+          <!-- Six optical signal routes -->
+          <g class="pipe o">
+            <use href="#e1" class="edge-glow"/><use href="#e1" class="edge-base"/><use href="#e1" class="edge-signal"/>
+            <circle class="edge-port" cx="242" cy="246" r="3"/><circle class="edge-port-core" cx="242" cy="246" r="1.3"/>
+            <circle class="edge-port" cx="284" cy="90" r="3"/><circle class="edge-port-core" cx="284" cy="90" r="1.3"/>
+          </g>
+          <g class="pipe o">
+            <use href="#e2" class="edge-glow"/><use href="#e2" class="edge-base"/><use href="#e2" class="edge-signal slow"/>
+            <circle class="edge-port" cx="504" cy="90" r="3"/><circle class="edge-port-core" cx="504" cy="90" r="1.3"/>
+            <circle class="edge-port" cx="500" cy="220" r="3"/><circle class="edge-port-core" cx="500" cy="220" r="1.3"/>
+          </g>
+          <g class="pipe o">
+            <use href="#e3" class="edge-glow"/><use href="#e3" class="edge-base"/><use href="#e3" class="edge-signal fast"/>
+            <circle class="edge-port" cx="620" cy="220" r="3"/><circle class="edge-port-core" cx="620" cy="220" r="1.3"/>
+            <circle class="edge-port" cx="760" cy="90" r="3"/><circle class="edge-port-core" cx="760" cy="90" r="1.3"/>
+          </g>
+          <g class="pipe o">
+            <use href="#e4" class="edge-glow"/><use href="#e4" class="edge-base"/><use href="#e4" class="edge-signal slow"/>
+            <circle class="edge-port" cx="875" cy="142" r="3"/><circle class="edge-port-core" cx="875" cy="142" r="1.3"/>
+            <circle class="edge-port" cx="875" cy="350" r="3"/><circle class="edge-port-core" cx="875" cy="350" r="1.3"/>
+          </g>
+          <g class="pipe o">
+            <use href="#e5" class="edge-glow"/><use href="#e5" class="edge-base"/><use href="#e5" class="edge-signal"/>
+            <circle class="edge-port" cx="760" cy="405" r="3"/><circle class="edge-port-core" cx="760" cy="405" r="1.3"/>
+            <circle class="edge-port" cx="620" cy="278" r="3"/><circle class="edge-port-core" cx="620" cy="278" r="1.3"/>
+          </g>
+          <g class="pipe o">
+            <use href="#e6" class="edge-glow"/><use href="#e6" class="edge-base"/><use href="#e6" class="edge-signal slow"/>
+            <circle class="edge-port" cx="242" cy="282" r="3"/><circle class="edge-port-core" cx="242" cy="282" r="1.3"/>
+            <circle class="edge-port" cx="760" cy="420" r="3"/><circle class="edge-port-core" cx="760" cy="420" r="1.3"/>
+          </g>
+
+          <!-- Small edge annotations
+          <g class="edge-tag">
+            <text x="248" y="164" transform="rotate(-76 248 164)">ASSET RECORD</text>
+            <text x="700" y="185">RWA REGISTRATION</text>
+            <text x="710" y="468">OPERATING CASHFLOW</text>
+          </g> -->
+
+          <!-- 01 Physical fleet -->
+          <g class="nd" id="n1" transform="translate(22 196)">
+            <rect class="bx" width="220" height="104" rx="14"/>
+            <rect class="bar" x="18" y="0" width="44" height="2.5" rx="1.25"/>
+            <circle class="led" cx="198" cy="20" r="3"/>
+            <text class="t" x="110" y="25">01 / PHYSICAL ASSET</text>
+            <text class="h" x="110" y="54" data-en="Commercial Fleet" data-fa="ناوگان تجاری">Commercial Fleet</text>
+            <text class="d" x="110" y="76" data-en="Vehicle · Operations · Records" data-fa="خودرو · عملیات · سوابق">Vehicle · Operations · Records</text>
+            <text class="node-index" x="110" y="92">ASSET ORIGIN</text>
+          </g>
+
+          <!-- 02 Legal SPV -->
+          <g class="nd" id="n2" transform="translate(284 38)">
+            <rect class="bx" width="220" height="104" rx="14"/>
+            <rect class="bar" x="18" y="0" width="44" height="2.5" rx="1.25"/>
+            <circle class="led" cx="198" cy="20" r="3" style="animation-delay:-.7s"/>
+            <text class="t" x="110" y="25">02 / LEGAL STRUCTURE</text>
+            <text class="h" x="110" y="54" data-en="Dedicated SPV" data-fa="SPV اختصاصی">Dedicated SPV</text>
+            <text class="d" x="110" y="76" data-en="Asset · Rights · Obligations" data-fa="دارایی · حقوق · تعهدات">Asset · Rights · Obligations</text>
+            <text class="node-index" x="110" y="92">LEGAL WRAPPER</text>
+          </g>
+
+          <!-- 03 Fractional token interests -->
+          <g class="nd o" id="n3" transform="translate(760 38)">
+            <rect class="bx" width="220" height="104" rx="14"/>
+            <rect class="bar" x="18" y="0" width="44" height="2.5" rx="1.25"/>
+            <circle class="led" cx="198" cy="20" r="3" style="animation-delay:-1.3s"/>
+            <text class="t" x="110" y="25">03 / TOKEN LAYER</text>
+            <text class="h" x="110" y="54" data-en="Fractional Interests" data-fa="منافع مشارکت کسری">Fractional Interests</text>
+            <text class="d" x="110" y="76" data-en="Defined digital participation" data-fa="مشارکت دیجیتال تعریف‌شده">Defined digital participation</text>
+            <text class="node-index" x="110" y="92">TOKEN REPRESENTATION</text>
+          </g>
+
+          <!-- 04 Revenue allocation -->
+          <g class="nd o" id="n4" transform="translate(760 350)">
+            <rect class="bx" width="220" height="104" rx="14"/>
+            <rect class="bar" x="18" y="0" width="44" height="2.5" rx="1.25"/>
+            <circle class="led" cx="198" cy="20" r="3" style="animation-delay:-1.9s"/>
+            <text class="t" x="110" y="25">04 / ECONOMIC LAYER</text>
+            <text class="h" x="110" y="54" data-en="Revenue Allocation" data-fa="تخصیص درآمد">Revenue Allocation</text>
+            <text class="d" x="110" y="76" data-en="Eligible proceeds · Pro-rata" data-fa="عواید واجد شرایط · متناسب">Eligible proceeds · Pro-rata</text>
+            <text class="node-index" x="110" y="92">DISTRIBUTION LOGIC</text>
+          </g>
+
+          <!-- DotOne registry core -->
+          <g id="core" transform="translate(560 250)">
+            <circle class="core-aura" r="112"/>
+            <circle class="core-ring" r="91"/>
+            <circle class="core-ring inner" r="78"/>
+            <circle class="core-disc" r="65"/>
+            <rect class="core-notch" x="-13" y="-66" width="26" height="2.5" rx="1.25"/>
+            <text class="core-number" y="-2">505</text>
+            <text class="core-label" y="17">DOTONE CHAIN</text>
+            <text class="core-sub" y="34">RWA REGISTRY LAYER</text>
+          </g>
+
+          <!-- Dynamic packet layer -->
           <g id="pk"></g>
         </svg>
+      </div>
+
+      <div class="v-arch-note">
+        <span><i></i><b data-en="OPTICAL SIGNAL" data-fa="سیگنال نوری">OPTICAL SIGNAL</b><span data-en="Conceptual data / contract flow" data-fa="جریان مفهومی داده و قرارداد">Conceptual data / contract flow</span></span>
+        <span data-en="ILLUSTRATIVE ARCHITECTURE · NOT LIVE CHAIN DATA" data-fa="معماری نمایشی · نه داده زنده شبکه">ILLUSTRATIVE ARCHITECTURE · NOT LIVE CHAIN DATA</span>
       </div>
     </div>
   </div>
 </section>
 
 <!-- =========================================================
-     04 PILLARS
+     04 RWA REGISTER — CODE + FRACTIONAL OWNERSHIP VISUAL
+     ("A physical vehicle. A digital record of participation.")
+========================================================= -->
+<section class="v-sec v-rwa-section" id="rwa-model">
+  <div class="v-wrap">
+    <div class="v-rwa-head vr">
+      <span class="v-eye" data-en="03 · REAL-WORLD ASSET TOKENIZATION" data-fa="۰۳ · توکنیزاسیون دارایی واقعی">03 · REAL-WORLD ASSET TOKENIZATION</span>
+      <h2 class="v-h2"><span data-en="A physical vehicle." data-fa="یک خودروی فیزیکی.">A physical vehicle.</span> <em data-en="A digital record of participation." data-fa="یک سابقه دیجیتال مشارکت.">A digital record of participation.</em></h2>
+      <p class="v-lead" data-en="The RWA layer describes the link between a documented real-world asset, its SPV structure and digitally represented participation units. The code below is an illustrative Solidity pattern — not a deployed Aervynx contract." data-fa="لایه RWA ارتباط میان دارایی واقعی مستند، ساختار SPV و واحدهای مشارکتِ نمایش‌داده‌شده به‌صورت دیجیتال را توضیح می‌دهد. کد زیر یک الگوی نمونه Solidity است و قرارداد مستقرشده Aervynx نیست.">The RWA layer describes the link between a documented real-world asset, its SPV structure and digitally represented participation units. The code below is an illustrative Solidity pattern — not a deployed Aervynx contract.</p>
+    </div>
+
+    <div class="v-rwa-layout">
+      <!-- Left Box: Solidity Registry Pattern -->
+      <article class="v-code-panel vr" aria-label="Illustrative vehicle RWA Solidity code">
+        <div class="v-code-top">
+          <div class="v-file-label">
+            <span class="v-file-icon">SOL</span>
+            <span><strong>VehicleRWARegistry.sol</strong><small>ILLUSTRATIVE CONTRACT PATTERN</small></span>
+          </div>
+          <span class="v-code-state">REFERENCE / 001</span>
+        </div>
+        <div class="v-code-body" aria-label="Illustrative Solidity code snippet">
+          <code class="v-code-line"><span class="ln">01</span><span class="kw">struct</span> <span class="ty">VehicleAsset</span> {</code>
+          <code class="v-code-line"><span class="ln">02</span>  <span class="ty">bytes32</span> assetId;</code>
+          <code class="v-code-line focus"><span class="ln">03</span>  <span class="ty">address</span> spv;</code>
+          <code class="v-code-line"><span class="ln">04</span>  <span class="ty">uint256</span> totalUnits;</code>
+          <code class="v-code-line"><span class="ln">05</span>  <span class="ty">bool</span> registered;</code>
+          <code class="v-code-line"><span class="ln">06</span>}</code>
+          <code class="v-code-line"><span class="ln">07</span></code>
+          <code class="v-code-line"><span class="ln">08</span><span class="kw">mapping</span>(<span class="ty">bytes32</span> => <span class="ty">VehicleAsset</span>) <span class="kw">public</span> assets;</code>
+          <code class="v-code-line"><span class="ln">09</span></code>
+          <code class="v-code-line focus"><span class="ln">10</span><span class="kw">event</span> <span class="fn">VehicleRegistered</span>(</code>
+          <code class="v-code-line"><span class="ln">11</span>  <span class="kw">bytes32 indexed</span> assetId, <span class="kw">address indexed</span> spv</code>
+          <code class="v-code-line"><span class="ln">12</span>);</code>
+          <code class="v-code-line"><span class="ln">13</span></code>
+          <code class="v-code-line focus"><span class="ln">14</span><span class="kw">event</span> <span class="fn">ParticipationUnitsDefined</span>(</code>
+          <code class="v-code-line"><span class="ln">15</span>  <span class="kw">bytes32 indexed</span> assetId, <span class="ty">uint256</span> units</code>
+          <code class="v-code-line"><span class="ln">16</span>);</code>
+        </div>
+        <div class="v-code-foot">
+          <span>RWA / REGISTRY / STRUCTURE</span>
+          <strong>CONCEPTUAL EXCERPT</strong>
+        </div>
+      </article>
+
+      <!-- Right Box: Asset -> SPV -> RWA Units & 1,000 Participation Units Grid -->
+      <article class="v-token-panel vr" aria-label="Illustrative fractional ownership visualisation">
+        <div class="v-token-top">
+          <span class="v-file-label"><span class="v-file-icon">RWA</span><span><strong data-en="ASSET → PARTICIPATION" data-fa="دارایی ← مشارکت">ASSET → PARTICIPATION</strong><small data-en="STRUCTURAL REPRESENTATION" data-fa="نمایش ساختاری">STRUCTURAL REPRESENTATION</small></span></span>
+          <small>MODEL / 505</small>
+        </div>
+
+        <div class="v-asset-flow">
+          <div class="v-asset-step">
+            <div class="v-asset-glyph"><svg viewBox="0 0 24 24"><path d="M3 15.5v-4l2-5h12l4 5v4M3 15.5h18M5 15.5v3h3v-3M16 15.5v3h3v-3M7 10h8"/></svg></div>
+            <strong data-en="PHYSICAL ASSET" data-fa="دارایی فیزیکی">PHYSICAL ASSET</strong>
+            <small data-en="Commercial vehicle" data-fa="خودروی تجاری">Commercial vehicle</small>
+          </div>
+          <div class="v-asset-link"></div>
+          <div class="v-asset-step">
+            <div class="v-asset-glyph"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 20V8l6-4 6 4v12M9 12h6M9 16h6"/></svg></div>
+            <strong>SPV</strong>
+            <small data-en="Legal wrapper" data-fa="ساختار حقوقی">Legal wrapper</small>
+          </div>
+          <div class="v-asset-link"></div>
+          <div class="v-asset-step">
+            <div class="v-asset-glyph"><svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9"/></svg></div>
+            <strong data-en="RWA UNITS" data-fa="واحدهای RWA">RWA UNITS</strong>
+            <small data-en="Digital interests" data-fa="منافع دیجیتال">Digital interests</small>
+          </div>
+        </div>
+
+        <div class="v-token-divider"></div>
+        <div class="v-token-metrics">
+          <div><strong>1,000</strong><span data-en="ILLUSTRATIVE PARTICIPATION UNITS" data-fa="واحدهای مشارکت نمونه">ILLUSTRATIVE PARTICIPATION UNITS</span></div>
+          <small data-en="FRACTIONAL REPRESENTATION" data-fa="نمایش کسری">FRACTIONAL REPRESENTATION</small>
+        </div>
+        <div class="v-unit-grid" aria-hidden="true">
+          <i class="v-unit" style="--i:0"></i><i class="v-unit" style="--i:1"></i><i class="v-unit" style="--i:2"></i><i class="v-unit" style="--i:3"></i>
+          <i class="v-unit" style="--i:4"></i><i class="v-unit" style="--i:5"></i><i class="v-unit" style="--i:6"></i><i class="v-unit" style="--i:7"></i>
+          <i class="v-unit" style="--i:8"></i><i class="v-unit" style="--i:9"></i><i class="v-unit" style="--i:10"></i><i class="v-unit" style="--i:11"></i>
+          <i class="v-unit" style="--i:12"></i><i class="v-unit" style="--i:13"></i><i class="v-unit" style="--i:14"></i><i class="v-unit" style="--i:15"></i>
+        </div>
+        <p class="v-token-note" data-en="Illustrative unit grid only. Actual token rights, supply, issuance and transfer rules depend on the final legal documents and deployed contract design." data-fa="شبکه واحدها صرفاً نمایشی است. حقوق واقعی توکن، تعداد واحدها، صدور و قواعد انتقال به اسناد حقوقی نهایی و طراحی قرارداد مستقرشده بستگی دارد.">Illustrative unit grid only. Actual token rights, supply, issuance and transfer rules depend on the final legal documents and deployed contract design.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     05 PILLARS
 ========================================================= -->
 <section class="v-sec">
   <div class="v-wrap">
     <div class="v-head vr">
-      <span class="v-eye" data-en="03 · DIGITAL LAYER FOR PHYSICAL ECONOMY" data-fa="۰۳ · لایه دیجیتال اقتصاد فیزیکی">03 · DIGITAL LAYER FOR PHYSICAL ECONOMY</span>
+      <span class="v-eye" data-en="04 · DIGITAL LAYER FOR PHYSICAL ECONOMY" data-fa="۰۴ · لایه دیجیتال اقتصاد فیزیکی">04 · DIGITAL LAYER FOR PHYSICAL ECONOMY</span>
       <h2 class="v-h2"><span data-en="Built Around" data-fa="طراحی‌شده بر اساس">Built Around</span> <em data-en="Real Infrastructure." data-fa="زیرساخت واقعی.">Real Infrastructure.</em></h2>
       <p class="v-lead" data-en="A structured model connecting commercial mobility, legal ownership frameworks, tokenized participation and operational revenue." data-fa="مدلی ساختاریافته برای اتصال حمل‌ونقل تجاری، چارچوب‌های مالکیت حقوقی، مشارکت توکنایزشده و درآمد عملیاتی.">A structured model connecting commercial mobility, legal ownership frameworks, tokenized participation and operational revenue.</p>
     </div>
@@ -472,12 +1058,12 @@ html[dir=rtl] .v-steps::before{transform-origin:right}
 </section>
 
 <!-- =========================================================
-     05 OWNERSHIP LIFECYCLE
+     06 OWNERSHIP LIFECYCLE
 ========================================================= -->
 <section class="v-sec" id="ownership">
   <div class="v-wrap">
     <div class="v-head vr">
-      <span class="v-eye" data-en="04 · OWNERSHIP LIFECYCLE" data-fa="۰۴ · چرخه مالکیت">04 · OWNERSHIP LIFECYCLE</span>
+      <span class="v-eye" data-en="05 · OWNERSHIP LIFECYCLE" data-fa="۰۵ · چرخه مالکیت">05 · OWNERSHIP LIFECYCLE</span>
       <h2 class="v-h2"><span data-en="How the" data-fa="چگونه">How the</span> <em data-en="Structure Works." data-fa="ساختار عمل می‌کند.">Structure Works.</em></h2>
       <p class="v-lead" data-en="A conceptual lifecycle connecting physical vehicle operations with structured digital participation." data-fa="چرخه‌ای مفهومی که عملیات خودروهای فیزیکی را به مشارکت دیجیتال ساختاریافته متصل می‌کند.">A conceptual lifecycle connecting physical vehicle operations with structured digital participation.</p>
     </div>
@@ -491,12 +1077,12 @@ html[dir=rtl] .v-steps::before{transform-origin:right}
 </section>
 
 <!-- =========================================================
-     06 SETTLEMENT SIMULATOR (illustrative numbers only)
+     07 SETTLEMENT SIMULATOR
 ========================================================= -->
 <section class="v-sec" id="simulation">
   <div class="v-wrap">
     <div class="v-head vr">
-      <span class="v-eye" data-en="05 · INTERACTIVE PROTOCOL MODEL" data-fa="۰۵ · مدل تعاملی پروتکل">05 · INTERACTIVE PROTOCOL MODEL</span>
+      <span class="v-eye" data-en="06 · INTERACTIVE PROTOCOL MODEL" data-fa="۰۶ · مدل تعاملی پروتکل">06 · INTERACTIVE PROTOCOL MODEL</span>
       <h2 class="v-h2"><span data-en="Explore the" data-fa="بررسی">Explore the</span> <em data-en="Settlement Flow." data-fa="جریان تسویه.">Settlement Flow.</em></h2>
       <p class="v-lead" data-en="An interactive demonstration of how an illustrative operating revenue amount can move through an SPV allocation model." data-fa="نمایشی تعاملی از نحوه حرکت یک مبلغ فرضی درآمد عملیاتی در مدل تخصیص درآمد SPV.">An interactive demonstration of how an illustrative operating revenue amount can move through an SPV allocation model.</p>
     </div>
@@ -510,7 +1096,7 @@ html[dir=rtl] .v-steps::before{transform-origin:right}
         </div>
       </div>
       <div class="v-flow">
-        <div class="v-nodes v-glass on" id="sn1"><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M3 16v-4l2-5h14l2 5v4M3 16h18M6 16v3M18 16v3"/></svg></div><strong data-en="Vehicle Operations" data-fa="عملیات خودرو">Vehicle Operations</strong><small data-en="Rental &amp; cargo activity" data-fa="فعالیت اجاره و حمل بار">Rental &amp; cargo activity</small></div>
+        <div class="v-nodes v-glass on" id="sn1"><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M3 16v-4l2-5h14l2 5v4M3 16h18M6 16v3M18 16v3"/></svg></div><strong data-en="Vehicle Operations" data-fa="عملیات خودرو">Vehicle Operations</strong><small data-en="Rental & cargo activity" data-fa="فعالیت اجاره و حمل بار">Rental & cargo activity</small></div>
         <div class="v-con"></div>
         <div class="v-nodes v-glass" id="sn2"><div class="v-ico"><svg viewBox="0 0 24 24"><path d="M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/></svg></div><strong data-en="SPV Accounting" data-fa="حسابداری SPV">SPV Accounting</strong><small data-en="Defined revenue pool" data-fa="استخر درآمد مشخص">Defined revenue pool</small></div>
         <div class="v-con"></div>
@@ -529,7 +1115,7 @@ html[dir=rtl] .v-steps::before{transform-origin:right}
 </section>
 
 <!-- =========================================================
-     07 NEXT PRODUCT & ECOSYSTEM NAVIGATION (same as product-drones.html)
+     08 NEXT PRODUCT & ECOSYSTEM NAVIGATION
 ========================================================= -->
 <section class="wrap sec" style="padding-bottom: 96px;">
  <div class="p-next-bar">
@@ -550,7 +1136,7 @@ html[dir=rtl] .v-steps::before{transform-origin:right}
 </main>
 
 <!-- ================================================
-     SECTION 08: FOOTER (WEB3 SIGNATURE)
+     SECTION 09: FOOTER (WEB3 SIGNATURE)
 ================================================= -->
 <footer class="foot" id="footer">
  <div class="wrap" style="display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 36px 0;">
@@ -576,7 +1162,6 @@ html[dir=rtl] .v-steps::before{transform-origin:right}
 
 <!-- =========================================================
      JAVASCRIPT: nav · language · reveal · hero parallax · architecture engine · simulator
-     (no template literals on purpose: safe to copy-paste anywhere)
 ========================================================= -->
 <script>
 (function () {
@@ -623,7 +1208,7 @@ html[dir=rtl] .v-steps::before{transform-origin:right}
     rv.forEach(function (el, i) { el.style.transitionDelay = ((i % 4) * 70) + "ms"; ro.observe(el); });
   } else { rv.forEach(function (el) { el.classList.add("vis"); }); }
 
-  /* ---------- 04 HERO PARALLAX (horizontal only, so the car stays on the road) ---------- */
+  /* ---------- 04 HERO PARALLAX ---------- */
   var stage = $("#stage");
   if (stage && !reduced && window.matchMedia("(hover:hover) and (pointer:fine)").matches) {
     var raf = 0;
@@ -636,7 +1221,6 @@ html[dir=rtl] .v-steps::before{transform-origin:right}
     });
     stage.addEventListener("pointerleave", function () { stage.style.setProperty("--mx", "0"); });
   }
-  /* pause the car effects when the hero is off-screen (saves battery) */
   if (stage && "IntersectionObserver" in window) {
     new IntersectionObserver(function (es) {
       var run = es[0].isIntersecting ? "running" : "paused";
@@ -644,93 +1228,156 @@ html[dir=rtl] .v-steps::before{transform-origin:right}
     }).observe(stage);
   }
 
-   /* ---------- 05 ARCHITECTURE ENGINE ----------
-     Glowing packets travel through the pipes (#e1..#e6). Each packet has a soft trail, eases in and out of every
-     pipe, and "rests" for a moment inside the node it reaches before leaving through the next pipe.
-     EDIT: chains = routes (edge ids), c = colour o/b, r = true to travel the pipes backwards;
-           v = speed in px/second; TRAIL / GAP = tail length; spawn gap = ms. */
+  /* ---------- 05 VEHICLE RWA ARCHITECTURE ENGINE ---------- */
   (function () {
-    var svg = $("#arch"); if (!svg) return;
-    var NS = "http://www.w3.org/2000/svg", pk = $("#pk");
-    var ids = ["e1", "e2", "e3", "e4", "e5", "e6"], P = {}, L = {};
-    ids.forEach(function (id) { P[id] = $("#" + id); L[id] = P[id].getTotalLength(); });
-    var chains = [
-      { e: ["e1", "e2", "e3", "e4"], c: "o" },
-      { e: ["e1", "e2"], c: "o" },
-      { e: ["e2", "e5"], c: "o" },
-      { e: ["e6", "e5"], c: "b" },
-      { e: ["e6", "e3", "e4"], c: "b" },
-      { e: ["e5", "e2"], c: "b", r: true },
-      { e: ["e3", "e6"], c: "b", r: true },
-      { e: ["e4", "e3"], c: "o", r: true }
+    var svg = $("#arch"), pk = $("#pk");
+    if (!svg || !pk) return;
+    var NS = "http://www.w3.org/2000/svg";
+    var ids = ["e1", "e2", "e3", "e4", "e5", "e6"];
+    var paths = {}, lengths = {};
+    ids.forEach(function (id) {
+      var el = $("#" + id, svg);
+      if (el) { paths[id] = el; lengths[id] = el.getTotalLength(); }
+    });
+    if (ids.some(function (id) { return !paths[id] || !lengths[id]; })) return;
+
+    var routes = [
+      { edges: ["e1", "e2", "e3"], color: "o" },
+      { edges: ["e4", "e5"], color: "b" },
+      { edges: ["e6"], color: "o" },
+      { edges: ["e3", "e2", "e1"], color: "b", reverse: true },
+      { edges: ["e5", "e4"], color: "o", reverse: true }
     ];
-    var arrF = { e1: "n2", e2: "core", e3: "n3", e4: "n4", e5: "n4", e6: "core" };
-    var arrR = { e1: "n1", e2: "n2", e3: "core", e4: "n3", e5: "core", e6: "n1" };
-    var TRAIL = 6, GAP = 8, FADE = 0.16, REST = 0.26;
-    var act = [], live = false, running = false, last = 0, next = 0, ev = 0, al = 0;
-    function sm(x) { x = x < 0 ? 0 : x > 1 ? 1 : x; return x * x * (3 - 2 * x); }
+    var arrival = { e1: "n2", e2: "core", e3: "n3", e4: "n4", e5: "core", e6: "n4" };
+    var arrivalReverse = { e1: "n1", e2: "n2", e3: "core", e4: "n3", e5: "n4", e6: "n1" };
+    var trailCount = 5, trailGap = 7, fade = .17, rest = .2;
+    var active = [], visible = false, running = false, last = 0, nextSpawn = 0;
+    var handoffs = 0, allocations = 0, rafId = 0;
+
+    function clamp01(x) { return Math.max(0, Math.min(1, x)); }
+    function smooth(x) { x = clamp01(x); return x * x * (3 - 2 * x); }
     function pulse(id) {
-      var n = $("#" + id); if (!n) return;
-      n.classList.add("hit");
-      setTimeout(function () { n.classList.remove("hit"); }, 560);
+      var node = $("#" + id, svg);
+      if (!node) return;
+      node.classList.add("hit");
+      window.setTimeout(function () { node.classList.remove("hit"); }, 480);
     }
-    function circle(cls) {
+    function makeDot(className) {
       var c = document.createElementNS(NS, "circle");
-      c.setAttribute("class", cls); c.setAttribute("r", "0"); c.setAttribute("opacity", "0");
+      c.setAttribute("class", className);
+      c.setAttribute("r", "0");
+      c.setAttribute("opacity", "0");
       return c;
     }
     function spawn() {
-      var ch = chains[Math.floor(Math.random() * chains.length)];
-      var g = document.createElementNS(NS, "g"), cs = [], j;
-      cs.push(circle("pkt " + ch.c));                                   /* halo */
-      for (j = TRAIL; j >= 1; j--) cs.push(circle("pkt " + ch.c));      /* trail, tail first */
-      cs.push(circle("pkt " + ch.c));                                   /* head */
-      cs.forEach(function (c) { g.appendChild(c); });
-      pk.appendChild(g);
-      act.push({ ch: ch, i: 0, t: 0, v: 105 + Math.random() * 70, r: 3.2 + Math.random() * 1.4, g: g, cs: cs, wait: 0 });
+      var route = routes[Math.floor(Math.random() * routes.length)];
+      var group = document.createElementNS(NS, "g"), dots = [];
+      dots.push(makeDot("pkt " + route.color));
+      for (var j = trailCount; j >= 1; j--) dots.push(makeDot("pkt " + route.color));
+      dots.push(makeDot("pkt " + route.color));
+      dots.forEach(function (dot) { group.appendChild(dot); });
+      pk.appendChild(group);
+      active.push({ route: route, edgeIndex: 0, progress: 0, speed: 95 + Math.random() * 42,
+        radius: 2.2 + Math.random() * .65, group: group, dots: dots, pause: 0 });
     }
-    function place(c, id, s, rev, rad, op) {
-      var len = L[id], pt = P[id].getPointAtLength(rev ? len - s : s);
-      c.setAttribute("cx", pt.x.toFixed(2)); c.setAttribute("cy", pt.y.toFixed(2));
-      c.setAttribute("r", rad.toFixed(2)); c.setAttribute("opacity", op.toFixed(3));
+    function position(dot, edgeId, distance, reverse, radius, opacity) {
+      var len = lengths[edgeId];
+      var point = paths[edgeId].getPointAtLength(reverse ? len - distance : distance);
+      dot.setAttribute("cx", point.x.toFixed(2));
+      dot.setAttribute("cy", point.y.toFixed(2));
+      dot.setAttribute("r", radius.toFixed(2));
+      dot.setAttribute("opacity", opacity.toFixed(3));
     }
     function frame(now) {
-      if (!live) { running = false; return; }
-      requestAnimationFrame(frame);
-      var dt = Math.min(40, now - last) / 1000; last = now;
-      if (now > next && act.length < 12) { spawn(); next = now + 520 + Math.random() * 900; }
-      for (var k = act.length - 1; k >= 0; k--) {
-        var p = act[k], rev = !!p.ch.r, id = p.ch.e[p.i], len = L[id];
-        if (p.wait > 0) {
-          p.wait -= dt;
-          if (p.wait > 0) continue;
-          p.wait = 0; p.g.removeAttribute("visibility");
+      if (!visible) { running = false; return; }
+      rafId = window.requestAnimationFrame(frame);
+      var dt = Math.min(40, now - last) / 1000;
+      last = now;
+      if (now >= nextSpawn && active.length < 7) {
+        spawn();
+        nextSpawn = now + 850 + Math.random() * 800;
+      }
+      for (var k = active.length - 1; k >= 0; k--) {
+        var packet = active[k];
+        var reverse = !!packet.route.reverse;
+        var edgeId = packet.route.edges[packet.edgeIndex];
+        var len = lengths[edgeId];
+        if (packet.pause > 0) {
+          packet.pause -= dt;
+          if (packet.pause > 0) continue;
+          packet.pause = 0;
+          packet.group.removeAttribute("visibility");
         }
-        p.t += p.v * (0.62 + 0.38 * Math.sin(Math.PI * Math.min(p.t, 1))) * dt / len;
-        if (p.t >= 1) {
-          var to = (rev ? arrR : arrF)[id]; pulse(to);
-          if (!rev && to === "n2") { ev++; $("#c-ev").textContent = ev; }
-          if (!rev && to === "n4") { al++; $("#c-al").textContent = al; }
-          p.i++; p.t = 0;
-          if (p.i >= p.ch.e.length) { pk.removeChild(p.g); act.splice(k, 1); continue; }
-          p.wait = REST; p.g.setAttribute("visibility", "hidden");
+        packet.progress += packet.speed * dt / len;
+        if (packet.progress >= 1) {
+          var target = (reverse ? arrivalReverse : arrival)[edgeId];
+          pulse(target);
+          if (target === "n2") {
+            handoffs++;
+            var handoffCount = $("#c-ev");
+            if (handoffCount) handoffCount.textContent = handoffs;
+          }
+          if (target === "n4") {
+            allocations++;
+            var allocationCount = $("#c-al");
+            if (allocationCount) allocationCount.textContent = allocations;
+          }
+          packet.edgeIndex++;
+          packet.progress = 0;
+          if (packet.edgeIndex >= packet.route.edges.length) {
+            if (packet.group.parentNode) packet.group.parentNode.removeChild(packet.group);
+            active.splice(k, 1);
+            continue;
+          }
+          packet.pause = rest;
+          packet.group.setAttribute("visibility", "hidden");
           continue;
         }
-        var env = Math.min(sm(p.t / FADE), sm((1 - p.t) / FADE)), s = p.t * len, n = p.cs.length, j, sj, f, sc = 0.4 + 0.6 * env;
-        place(p.cs[0], id, s, rev, p.r * 3.2 * sc, 0.2 * env);
-        for (j = 1; j <= TRAIL; j++) {
-          sj = s - j * GAP; f = 1 - j / (TRAIL + 1);
-          place(p.cs[n - 1 - j], id, sj > 0 ? sj : 0, rev, p.r * f * sc, sj > 0 ? env * f * 0.55 : 0);
+        var p = packet.progress;
+        var envelope = Math.min(smooth(p / fade), smooth((1 - p) / fade));
+        var distance = p * len;
+        var count = packet.dots.length;
+        var scale = .45 + .55 * envelope;
+        position(packet.dots[0], edgeId, distance, reverse, packet.radius * 2.8 * scale, .16 * envelope);
+        for (var j = 1; j <= trailCount; j++) {
+          var tailDistance = distance - j * trailGap;
+          var factor = 1 - j / (trailCount + 1);
+          position(packet.dots[count - 1 - j], edgeId, tailDistance > 0 ? tailDistance : 0,
+            reverse, packet.radius * factor * scale, tailDistance > 0 ? envelope * factor * .58 : 0);
         }
-        place(p.cs[n - 1], id, s, rev, p.r * sc, env);
+        position(packet.dots[count - 1], edgeId, distance, reverse, packet.radius * scale, envelope);
       }
     }
     if (reduced) return;
-    new IntersectionObserver(function (es) {
-      live = es[0].isIntersecting;
-      if (live && !running) { running = true; last = performance.now(); requestAnimationFrame(frame); }
-    }).observe(svg);
+    var observer = new IntersectionObserver(function (entries) {
+      visible = entries[0].isIntersecting;
+      if (visible && !running) {
+        running = true;
+        last = performance.now();
+        nextSpawn = last + 300;
+        rafId = window.requestAnimationFrame(frame);
+      } else if (!visible && rafId) {
+        window.cancelAnimationFrame(rafId);
+        rafId = 0;
+        running = false;
+      }
+    }, { threshold: .08 });
+    observer.observe(svg);
   })();
+
+  /* ---------- 05B RWA CODE / TOKEN VISUAL REVEAL ---------- */
+  (function () {
+    var section = $("#rwa-model");
+    if (!section || reduced || !("IntersectionObserver" in window)) return;
+    var observer = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) {
+        section.classList.add("vis");
+        observer.unobserve(section);
+      }
+    }, { threshold: .18 });
+    observer.observe(section);
+  })();
+
   /* ---------- 06 SETTLEMENT SIMULATOR ---------- */
   (function () {
     var run = $("#sim-run"), reset = $("#sim-reset"); if (!run) return;
