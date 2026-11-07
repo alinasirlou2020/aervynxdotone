@@ -410,13 +410,17 @@
 ================================================= -->
 <footer class="foot" id="footer">
  <div class="wrap">
+  
+  <!-- Top Grid: Brand, Links, Socials & Newsletter -->
   <div class="foot__grid">
    <div class="foot__brand">
     <a class="logo" href="#home"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M3 28 16 3l13 25h-6.5L16 14.5 9.5 28z"/></svg>Aervnyx</a>
     <p>Bridging the physical and digital worlds through tokenized assets, autonomous delivery, and secure blockchain infrastructure.</p>
     <div class="soc" id="soc"></div>
    </div>
+   
    <div id="fgroups"></div>
+   
    <div class="foot__news">
     <h3>Stay Updated</h3>
     <p>Get the latest news and updates from Aervnyx.</p>
@@ -428,7 +432,30 @@
     <p class="msg" id="nmsg" role="status"></p>
    </div>
   </div>
-  <div class="foot__bot"><span>© <span id="yr"></span> Aervnyx. All rights reserved.</span><span>Descriptions are conceptual. A token does not by itself establish legal title to a physical asset.</span></div>
+
+  <!-- Bottom Bar: Signature (Left) & Copyright (Right) -->
+  <div class="foot__bot" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding-top: 32px; margin-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+   
+   <!-- Premium Web3 Developer Signature (Aligned Left) -->
+   <div class="mh-signature-box" title="Engineering & UI/UX" style="margin: 0;">
+    <i class="mh-sig-dot"></i>
+    <span class="mh-sig-text">
+     <span data-en="Designed & Engineered by" data-fa="طراحی و توسعه توسط">Designed & Engineered by</span>
+     <b data-en="Mohammad Hossein Ghiasvand" data-fa="محمد حسین غیاثوند">Mohammad Hossein Ghiasvand</b>
+    </span>
+   </div>
+
+   <!-- Minimal Copyright & Disclaimer (Aligned Right) -->
+   <div style="text-align: right; display: flex; flex-direction: column; gap: 6px;">
+    <span style="font-size: 10.5px; color: var(--color-text-muted); font-family: var(--mono); letter-spacing: 0.08em; text-transform: uppercase;">
+     © <span id="yr">2026</span> AERVYNX PROTOCOL. ALL RIGHTS RESERVED.
+    </span>
+    <span style="font-size: 10px; color: var(--color-text-muted); opacity: 0.6;" data-en="Descriptions are conceptual. A token does not by itself establish legal title." data-fa="توضیحات مفهومی هستند. توکن به تنهایی سند مالکیت قانونی محسوب نمی‌شود.">
+     Descriptions are conceptual. A token does not by itself establish legal title.
+    </span>
+   </div>
+
+  </div>
  </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
