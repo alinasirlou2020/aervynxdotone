@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Aervynx — Flight NFTs (Programmable ERC-4907 Air Travel & On-Chain BNPL)</title>
-<meta name="description" content="Aervynx transforms flight tickets into liquid, rentable ERC-4907 Web3 assets on DotOne Smart Chain 505 featuring the DOTO Discount Engine, Genesis NFT BNPL, dynamic aviation oracles, and zk-Proof boarding.">
+<title>Aervynx — Airline Ticket NFTs & Aviation Revenue RWA</title>
+<meta name="description" content="Explore airline-authorized Ticket NFTs, controlled secondary-market trading, and FlightYield — a proposed framework for tokenizing defined aviation revenue rights.">
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="js/wallet.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,7 +12,7 @@
 
 <style>
   /* =====================================================
-     PRODUCT PAGE 05: FLIGHT NFTs (ERC-4907 & ON-CHAIN BNPL)
+     PRODUCT PAGE 05: AIRLINE TICKET NFTs & FLIGHT REVENUE RWA
      Strict Brand Palette: Obsidian (#010B13), Molten Orange (#EC5800),
      Secondary Telemetry Blue (#0096FF), Status Green (#27D17F)
   ===================================================== */
@@ -551,7 +551,7 @@
   }
   .fl-stair-foot b { color: var(--cyber-green); }
 
-  /* ---------- 4. SECTION 03: ERC-4907 DUAL-ROLE & ORACLE SYSTEM MODEL ---------- */
+  /* ---------- 4. SECTION 03: AIRLINE TICKET NFT LIFECYCLE MODEL ---------- */
   .fl-arch-shell {
     margin-top: 38px;
     border-radius: var(--radius-lg);
@@ -825,7 +825,7 @@
   .fl-pass-cell strong.green  { color: var(--cyber-green); }
   .fl-pass-cell strong.blue   { color: var(--cyber-blue); }
 
-  /* Dual Role ERC-4907 & zk-Proof Bottom Stub */
+  /* Ticket NFT ownership / issuer-validation bottom stub */
   .fl-pass-stub {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -850,7 +850,7 @@
   .fl-pass-roles span { color: var(--color-text-muted); }
   .fl-pass-roles b { color: #fff; }
 
-  /* Animated zk-Proof QR Matrix Box */
+  /* Animated ticket-reference matrix box */
   .fl-zk-qr {
     width: 68px;
     height: 68px;
@@ -1329,7 +1329,7 @@
   .fl-airport-inspector .fl-inspector__tag { border-color:rgba(236,88,0,.35); background:rgba(236,88,0,.08); }
   .fl-airport-inspector .fl-inspector__desc { color:#A8B8C6; }
   .fl-airport-inspector .fl-inspector__meta { color:#6F879A; }
-  .fl-airport-model[data-mode="bnpl"] .fl-airport-core { border-color:#0096FF; box-shadow:0 0 0 7px rgba(0,150,255,.035),0 0 48px rgba(0,150,255,.17),0 22px 48px rgba(0,0,0,.5); }
+  .fl-airport-model[data-mode="escrow"] .fl-airport-core { border-color:#0096FF; box-shadow:0 0 0 7px rgba(0,150,255,.035),0 0 48px rgba(0,150,255,.17),0 22px 48px rgba(0,0,0,.5); }
   .fl-airport-model[data-mode="oracle"] .fl-airport-core { border-color:#27D17F; box-shadow:0 0 0 7px rgba(39,209,127,.035),0 0 48px rgba(39,209,127,.15),0 22px 48px rgba(0,0,0,.5); }
   @keyframes flTaxiFlow { to { stroke-dashoffset:-68; } }
   @keyframes flTowerOrbit { to { rotate:360deg; } }
@@ -1366,6 +1366,110 @@
     .fl-turbine::before,.fl-route-active path,.fl-tower-orbit,.fl-tower-beacon { animation:none !important; }
   }
 
+
+
+  /* =====================================================
+     AERVYNX FLIGHTYIELD — PREMIUM REVENUE TOKENIZATION LAYER
+     Scoped additions; original aviation visual system retained.
+  ===================================================== */
+  .fy-section { position:relative; }
+  .fy-intro { max-width:980px; margin-bottom:34px; }
+  .fy-intro h2 em,.fy-price-card h3 em,.fy-architecture h3 em,.fy-interactive h3 em,.fy-risk-panel h3 em { color:var(--color-accent); font-style:normal; }
+  .fy-distinction { display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-top:24px; font:600 10px var(--mono); letter-spacing:.1em; }
+  .fy-distinction > span { display:flex; flex-direction:column; gap:5px; padding:12px 16px; border:1px solid rgba(255,255,255,.12); border-radius:10px; background:rgba(255,255,255,.025); }
+  .fy-distinction b { color:var(--color-text-muted); font-size:9px; }
+  .fy-distinction__ticket { color:#d9e6f2; }.fy-distinction__rwa { color:#ff9a55; border-color:rgba(236,88,0,.35)!important; }
+  .fy-distinction i { color:var(--color-text-muted); font-style:normal; font-size:18px; }
+  .fy-console { margin-top:36px; padding:clamp(18px,3vw,32px); border:1px solid rgba(125,170,210,.18); border-radius:22px; background:radial-gradient(70% 80% at 85% 10%,rgba(0,150,255,.09),transparent 70%),radial-gradient(55% 65% at 10% 85%,rgba(236,88,0,.09),transparent 70%),linear-gradient(145deg,rgba(8,19,32,.98),rgba(1,7,13,.99)); box-shadow:0 28px 80px rgba(0,0,0,.5),inset 0 1px rgba(255,255,255,.035); overflow:hidden; }
+  .fy-console-head,.fy-architecture-head { display:flex; justify-content:space-between; align-items:flex-start; gap:20px; padding-bottom:20px; border-bottom:1px solid rgba(255,255,255,.09); }
+  .fy-kicker { color:var(--color-accent); font:700 10px var(--mono); letter-spacing:.16em; }
+  .fy-console-head h3 { margin:8px 0 4px; font-size:clamp(22px,3vw,32px); }.fy-console-head h3 em { color:#dce9f4; font-style:normal; }
+  .fy-console-head p { color:var(--color-text-muted); font:10px var(--mono); letter-spacing:.1em; }
+  .fy-live-tag { display:flex; align-items:center; gap:8px; border:1px solid rgba(39,209,127,.22); border-radius:99px; padding:9px 12px; color:#cdebdc; font:700 10px var(--mono); white-space:nowrap; }
+  .fy-live-tag i { width:7px;height:7px;border-radius:50%;background:#27d17f;box-shadow:0 0 12px #27d17f; }.fy-live-tag small { color:var(--color-text-muted); }
+  .fy-console-grid { display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;padding:24px 0; }
+  .fy-asset-visual { min-height:340px;position:relative;display:grid;place-items:center;overflow:hidden;border:1px solid rgba(0,150,255,.13);border-radius:16px;background:radial-gradient(circle at 50% 50%,rgba(0,150,255,.13),transparent 45%),linear-gradient(160deg,rgba(3,12,22,.7),rgba(2,7,13,.92)); }
+  .fy-asset-visual:before,.fy-asset-visual:after { content:"";position:absolute;inset:12%;border:1px solid rgba(0,150,255,.14);transform:perspective(500px) rotateX(64deg) rotateZ(-18deg);background:repeating-linear-gradient(0deg,transparent 0 28px,rgba(0,150,255,.07) 29px),repeating-linear-gradient(90deg,transparent 0 28px,rgba(0,150,255,.07) 29px); }
+  .fy-asset-visual:after { inset:22%;border-color:rgba(236,88,0,.22);transform:perspective(500px) rotateX(64deg) rotateZ(18deg); }
+  .fy-orbit { position:absolute;width:240px;height:240px;border:1px dashed rgba(0,150,255,.35);border-radius:50%;animation:fyOrbit 24s linear infinite; }
+  .fy-orbit-a:before,.fy-orbit-b:before { content:"";position:absolute;top:50%;left:-4px;width:8px;height:8px;border-radius:50%;background:#0096ff;box-shadow:0 0 15px #0096ff; }
+  .fy-orbit-b { width:290px;height:150px;border-color:rgba(236,88,0,.3);transform:rotate(-34deg);animation-duration:18s;animation-direction:reverse; }
+  .fy-orbit-b:before { background:#ec5800;box-shadow:0 0 15px #ec5800; }
+  .fy-asset-core { position:relative;z-index:2;width:230px;padding:24px 18px;text-align:center;border:1px solid rgba(116,190,255,.4);border-radius:14px;background:linear-gradient(145deg,rgba(14,35,54,.96),rgba(2,10,18,.98));box-shadow:0 0 45px rgba(0,150,255,.16),0 18px 45px rgba(0,0,0,.6),inset 0 1px rgba(255,255,255,.1); }
+  .fy-wing-mark { color:var(--color-accent);font-size:28px;font-weight:800;text-shadow:0 0 22px rgba(236,88,0,.5); }.fy-asset-core>span,.fy-asset-core>small { display:block;color:var(--color-text-muted);font:8px var(--mono);letter-spacing:.12em; }.fy-asset-core>strong { display:block;margin:8px 0;color:#f1f6fb;font:700 17px var(--mono); }.fy-core-route { display:flex;align-items:center;gap:10px;margin-top:16px;font:700 12px var(--mono); }.fy-core-route i { flex:1;height:1px;background:linear-gradient(90deg,#ec5800,#0096ff);position:relative; }.fy-core-route i:after { content:"✦";position:absolute;left:50%;top:-8px;color:#d7eaff;font-size:13px; }
+  .fy-float-label { position:absolute;z-index:3;padding:8px 10px;border:1px solid rgba(255,255,255,.12);border-radius:7px;background:rgba(2,9,16,.88);color:var(--color-text-muted);font:8px var(--mono);letter-spacing:.08em; }.fy-float-label b { display:block;margin-top:4px;color:#dce9f4;font-size:8px; }.fy-label-top { top:18px;left:18px; }.fy-label-bottom { bottom:18px;right:18px; }.fy-signal { position:absolute;width:5px;height:5px;border-radius:50%;background:#ec5800;box-shadow:0 0 15px 4px rgba(236,88,0,.6);animation:fyPulse 2.4s ease-in-out infinite; }.fy-signal-one { top:28%;right:20%; }.fy-signal-two { bottom:26%;left:17%;background:#0096ff;box-shadow:0 0 15px 4px rgba(0,150,255,.6);animation-delay:1.1s; }
+  .fy-asset-spec { padding:18px 20px;border:1px solid rgba(255,255,255,.09);border-radius:14px;background:rgba(1,8,15,.62); }.fy-spec-head { display:flex;justify-content:space-between;gap:12px;padding-bottom:13px;border-bottom:1px solid rgba(255,255,255,.1);font:700 10px var(--mono);letter-spacing:.1em; }.fy-spec-head b { color:var(--cyber-blue);font-size:9px; }.fy-spec-row { display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.055);font-size:12px; }.fy-spec-row span { color:var(--color-text-muted); }.fy-spec-row strong { text-align:right;color:#e4edf6;font-size:11px; }.fy-spec-row .fy-orange { color:#ff9550; }.fy-spec-note { margin-top:14px;padding:12px;border-left:2px solid var(--color-accent);background:rgba(236,88,0,.055);color:var(--color-text-muted);font-size:11px;line-height:1.6; }
+  .fy-finance-band { display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:stretch;gap:10px;padding:18px 0;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08); }.fy-finance-cell { padding:14px 12px;border:1px solid rgba(255,255,255,.08);border-radius:10px;background:rgba(255,255,255,.025); }.fy-finance-cell small,.fy-finance-cell span { display:block;color:var(--color-text-muted);font:9px var(--mono); }.fy-finance-cell strong { display:block;margin:8px 0;color:#edf5fc;font:700 clamp(19px,2.2vw,27px) var(--mono); }.fy-finance-op { align-self:center;color:var(--color-accent);font:700 22px var(--mono); }.fy-finance-cell--accent { border-color:rgba(236,88,0,.35);background:linear-gradient(145deg,rgba(236,88,0,.12),rgba(255,255,255,.02)); }.fy-finance-cell--accent strong { color:#ff9a55; }
+  .fy-interactive { display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:28px 0 12px; }.fy-interactive h3 { margin:8px 0;font-size:clamp(22px,3vw,30px); }.fy-interactive-copy p,.fy-price-card p { color:var(--color-text-secondary);font-size:13px;line-height:1.7; }.fy-slider-line { display:flex;justify-content:space-between;gap:12px;margin-top:22px;font:700 10px var(--mono);letter-spacing:.1em; }.fy-slider-line output { color:#ff9a55; }.fy-interactive input[type=range] { width:100%;margin:14px 0;accent-color:#ec5800;cursor:pointer; }.fy-range-labels { display:flex;justify-content:space-between;color:var(--color-text-muted);font:9px var(--mono); }
+  .fy-payout-card { padding:22px;border:1px solid rgba(0,150,255,.22);border-radius:14px;background:radial-gradient(80% 100% at 100% 0,rgba(0,150,255,.12),transparent 70%),linear-gradient(145deg,rgba(9,25,40,.95),rgba(2,8,14,.98));box-shadow:inset 0 1px rgba(255,255,255,.06); }.fy-payout-top { display:flex;justify-content:space-between;gap:10px;color:var(--color-text-muted);font:9px var(--mono); }.fy-payout-top i { color:var(--cyber-blue);font-style:normal; }.fy-payout-card>strong { display:block;margin:18px 0;color:#fff;font:700 clamp(34px,5vw,50px) var(--mono);text-shadow:0 0 24px rgba(0,150,255,.2); }.fy-payout-details { display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid rgba(255,255,255,.07);font-size:11px; }.fy-payout-details span { color:var(--color-text-muted); }.fy-payout-details b { color:#e6f0f8;font-family:var(--mono); }.fy-payout-details .fy-pending { color:#ffb36f;font-size:9px; }
+  .fy-price-grid { display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px; }.fy-price-card { padding:24px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:linear-gradient(155deg,rgba(10,23,36,.92),rgba(2,8,14,.96)); }.fy-price-card h3 { margin:9px 0 12px;font-size:22px; }.fy-equation { margin-top:16px;padding:13px;border:1px solid rgba(0,150,255,.2);border-radius:8px;background:rgba(0,150,255,.05);color:#d6eaff;text-align:center;font:11px var(--mono); }.fy-equation-result { margin-top:10px;color:#ff9a55;text-align:center;font:700 22px var(--mono); }.fy-equation-result small { display:block;margin-top:7px;color:var(--color-text-muted);font:10px/1.6 var(--mono); }.fy-muted { color:var(--color-text-muted)!important;font-size:11px!important; }.fy-timeline { list-style:none;padding:0;margin:18px 0 0;display:grid;gap:12px; }.fy-timeline li { display:flex;gap:12px;align-items:flex-start; }.fy-timeline li>b { display:grid;place-items:center;flex:0 0 28px;height:28px;border:1px solid rgba(236,88,0,.35);border-radius:7px;color:#ff9854;font:10px var(--mono); }.fy-timeline li strong,.fy-timeline li small { display:block; }.fy-timeline li strong { color:#e9f2fa;font-size:12px; }.fy-timeline li small { margin-top:3px;color:var(--color-text-muted);font-size:10px;line-height:1.5; }
+  .fy-architecture { margin-top:22px;padding:24px;border:1px solid rgba(0,150,255,.17);border-radius:16px;background:radial-gradient(70% 100% at 50% 0,rgba(0,150,255,.08),transparent 70%),rgba(2,9,16,.88); }.fy-architecture-head { align-items:center; }.fy-architecture-head h3 { margin:8px 0 0;font-size:23px; }.fy-architecture-head>span { color:var(--color-text-muted);font:9px var(--mono); }.fy-arch-flow { display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;align-items:center;margin-top:20px; }.fy-arch-flow article { min-height:128px;padding:12px 10px;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:linear-gradient(150deg,rgba(12,28,43,.9),rgba(2,8,14,.95));position:relative;overflow:hidden; }.fy-arch-flow article:after { content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,#ec5800,#0096ff);transform:scaleX(.25);transform-origin:left;animation:fyScan 3.6s ease-in-out infinite alternate; }.fy-arch-flow article i,.fy-arch-flow article b,.fy-arch-flow article small { display:block; }.fy-arch-flow article i { color:var(--color-accent);font:10px var(--mono);font-style:normal; }.fy-arch-flow article b { margin:10px 0 7px;color:#e6f1fa;font:700 9px var(--mono); }.fy-arch-flow article small { color:var(--color-text-muted);font-size:9px;line-height:1.5; }.fy-arch-flow>span { color:#ec7b37;text-align:center;font:14px var(--mono); }.fy-architecture-foot { margin:18px 0 0;color:var(--color-text-muted);font-size:11px;line-height:1.6; }
+  .fy-balance-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px; }.fy-balance-grid article { padding:18px;border:1px solid rgba(255,255,255,.09);border-radius:12px;background:rgba(255,255,255,.025); }.fy-balance-grid h4 { margin:8px 0;color:#e8f2fa;font-size:15px; }.fy-balance-grid p { margin:0;color:var(--color-text-muted);font-size:11px;line-height:1.6; }.fy-claim-example { display:flex;gap:16px;align-items:center;margin-top:14px;padding:14px 16px;border:1px dashed rgba(236,88,0,.28);border-radius:10px;background:rgba(236,88,0,.045); }.fy-claim-example b { flex:0 0 auto;color:#ff9854;font:10px var(--mono); }.fy-claim-example span { color:var(--color-text-muted);font-size:11px;line-height:1.55; }
+  .fy-risk-panel { display:grid;grid-template-columns:.8fr 1.2fr;gap:18px;margin-top:22px;padding:24px;border:1px solid rgba(236,88,0,.22);border-radius:16px;background:linear-gradient(120deg,rgba(236,88,0,.075),rgba(2,8,14,.96) 48%); }.fy-risk-panel h3 { margin:8px 0 0;font-size:22px; }.fy-risk-list { display:flex;flex-wrap:wrap;gap:8px;align-content:center; }.fy-risk-list span { padding:8px 10px;border:1px solid rgba(255,255,255,.1);border-radius:7px;color:#d8e4ee;font-size:10px;background:rgba(255,255,255,.025); }.fy-risk-panel>p { grid-column:1/-1;margin:0;padding-top:14px;border-top:1px solid rgba(255,255,255,.08);color:var(--color-text-muted);font-size:11px;line-height:1.65; }
+  @keyframes fyOrbit { to { transform:rotate(360deg); } } @keyframes fyPulse { 0%,100%{opacity:.35;transform:scale(.7)}50%{opacity:1;transform:scale(1.5)} } @keyframes fyScan { to { transform:scaleX(1); } }
+  @media(max-width:1024px) { .fy-console-grid,.fy-interactive,.fy-price-grid { grid-template-columns:1fr; }.fy-arch-flow { grid-template-columns:repeat(4,minmax(0,1fr)); }.fy-arch-flow>span { display:none; } }
+  @media(max-width:640px) { .fy-console-head,.fy-architecture-head { flex-direction:column; }.fy-finance-band { grid-template-columns:1fr 1fr; }.fy-finance-op { display:none; }.fy-arch-flow { grid-template-columns:repeat(2,minmax(0,1fr)); }.fy-balance-grid,.fy-risk-panel { grid-template-columns:1fr; }.fy-risk-panel>p { grid-column:auto; }.fy-claim-example { align-items:flex-start;flex-direction:column; }.fy-asset-visual { min-height:290px; }.fy-spec-row { flex-direction:column;gap:5px; }.fy-spec-row strong { text-align:left; } }
+  @media(prefers-reduced-motion:reduce) { .fy-orbit,.fy-signal,.fy-arch-flow article:after { animation:none!important; } }
+
+
+  .fy-ledger-grid { display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0 0; }
+  .fy-ledger-card { padding:18px;border:1px solid rgba(255,255,255,.09);border-radius:12px;background:rgba(255,255,255,.022); }
+  .fy-ledger-title,.fy-ledger-row,.fy-ledger-total { display:flex;justify-content:space-between;gap:14px;align-items:center; }
+  .fy-ledger-title { padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.1);color:#ff9a55;font:700 10px var(--mono);letter-spacing:.1em; }
+  .fy-ledger-title span { color:var(--color-text-muted);font-size:9px; }
+  .fy-ledger-row { padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:11px; }
+  .fy-ledger-row span { color:var(--color-text-muted); }.fy-ledger-row b { color:#e7f0f8;font:600 11px var(--mono); }
+  .fy-ledger-total { padding-top:12px;color:#dce8f2;font:700 10px var(--mono); }.fy-ledger-total b { color:#ff9a55;font-size:14px; }
+  .fy-allocation-note { display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:14px 0 0;padding:14px 16px;border:1px solid rgba(236,88,0,.24);border-radius:10px;background:linear-gradient(90deg,rgba(236,88,0,.08),rgba(0,150,255,.035));font-family:var(--mono); }
+  .fy-allocation-note span,.fy-allocation-note i { color:var(--color-text-muted);font-size:10px;font-style:normal; }.fy-allocation-note>b { color:#eaf3fa;font-size:18px; }.fy-allocation-note strong { color:#ff9a55;font-size:12px; }.fy-allocation-note small { flex-basis:100%;color:var(--color-text-muted);font:10px/1.55 var(--mono); }
+  @media(max-width:640px) { .fy-ledger-grid { grid-template-columns:1fr; }.fy-allocation-note { align-items:flex-start;gap:8px; } }
+
+
+  .fy-how-it-works { display:grid; grid-template-columns:1fr auto 1fr auto 1fr; align-items:stretch; gap:14px; margin-top:24px; }
+  .fy-how-it-works article { padding:17px; border:1px solid rgba(255,255,255,.1); border-radius:12px; background:linear-gradient(145deg,rgba(8,22,36,.82),rgba(2,8,14,.9)); }
+  .fy-how-it-works article>span { display:block; margin-bottom:10px; color:var(--color-accent); font:700 10px var(--mono); }
+  .fy-how-it-works article>b { color:#eaf3fb; font:700 10px var(--mono); letter-spacing:.05em; }
+  .fy-how-it-works article>p { margin:9px 0 0; color:var(--color-text-muted); font-size:11px; line-height:1.65; }
+  .fy-how-it-works>i { align-self:center; color:var(--color-accent); font:700 20px var(--mono); font-style:normal; }
+  @media(max-width:640px) { .fy-how-it-works { grid-template-columns:1fr; }.fy-how-it-works>i { transform:rotate(90deg); justify-self:center; } }
+
+  /* Clear token purchase / expected-return calculator */
+  .fy-buy-simulator { margin-top:28px; padding:26px; border:1px solid rgba(236,88,0,.22); border-radius:18px; background:linear-gradient(145deg,rgba(236,88,0,.045),rgba(0,150,255,.045)); }
+  .fy-buy-price-line { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:18px; padding:13px 15px; border:1px solid rgba(255,255,255,.1); border-radius:9px; background:rgba(255,255,255,.025); color:var(--color-text-muted); font:9px var(--mono); }
+  .fy-buy-price-line strong { color:#ff9a55; font:700 18px var(--mono); }
+  .fy-result-row { display:flex; justify-content:space-between; gap:12px; padding:11px 0; border-bottom:1px solid rgba(255,255,255,.08); color:var(--color-text-muted); font-size:11px; }
+  .fy-result-row strong,.fy-result-row b { color:#edf5fc; font:700 14px var(--mono); text-align:right; }
+  .fy-result-profit strong { color:#ff9a55; }
+  .fy-result-total { display:flex; flex-direction:column; gap:7px; margin-top:15px; padding:15px; border:1px solid rgba(0,150,255,.25); border-radius:10px; background:rgba(0,150,255,.07); color:var(--color-text-muted); font-size:10px; }
+  .fy-result-total strong { color:#fff; font:700 clamp(23px,3vw,30px) var(--mono); }
+  .fy-result-disclaimer { margin:13px 0 0; color:var(--color-text-muted); font-size:10px; line-height:1.65; }
+  @media(max-width:640px) { .fy-buy-simulator { padding:17px; }.fy-buy-price-line { align-items:flex-start; flex-direction:column; } }
+
+  /* FlightYield Persian layout support */
+  #flightyield.fy-rtl { direction: rtl; text-align: right; }
+  #flightyield.fy-rtl .fy-console-head,
+  #flightyield.fy-rtl .fy-architecture-head { direction: rtl; }
+  #flightyield.fy-rtl .fy-spec-row { direction: rtl; }
+  #flightyield.fy-rtl .fy-spec-row strong { text-align: left; }
+  #flightyield.fy-rtl .fy-finance-band,
+  #flightyield.fy-rtl .fy-ledger-grid,
+  #flightyield.fy-rtl .fy-interactive,
+  #flightyield.fy-rtl .fy-price-grid,
+  #flightyield.fy-rtl .fy-balance-grid { direction: rtl; }
+  #flightyield.fy-rtl .fy-slider-line,
+  #flightyield.fy-rtl .fy-payout-details,
+  #flightyield.fy-rtl .fy-ledger-row,
+  #flightyield.fy-rtl .fy-ledger-total { direction: rtl; }
+  #flightyield.fy-rtl .fy-arch-flow { direction: rtl; }
+  #flightyield.fy-rtl .fy-timeline { direction: rtl; }
+  #flightyield.fy-rtl .fy-timeline li { flex-direction: row; }
+  #flightyield.fy-rtl .fy-claim-example { direction: rtl; }
+  #flightyield.fy-rtl .fy-risk-panel { direction: rtl; }
+  #flightyield.fy-rtl .fy-risk-list { direction: rtl; }
+  #flightyield.fy-rtl .fy-equation,
+  #flightyield.fy-rtl .fy-equation-result,
+  #flightyield.fy-rtl .fy-asset-core strong,
+  #flightyield.fy-rtl .fy-asset-core small { direction: ltr; unicode-bidi: isolate; }
 </style>
 </head>
 <body>
@@ -1418,24 +1522,24 @@
    <div class="p-crumb">
     <b data-en="PROGRAMMABLE AVIATION RWAs · CHAIN 505" data-fa="دارایی‌های پروازی برنامه‌ریزی‌شده · زنجیره ۵۰۵">PROGRAMMABLE AVIATION RWAs · CHAIN 505</b>
     <span>/</span>
-    <span data-en="ERC-4907 FLIGHT NFTs" data-fa="بلیط‌های پروازی NFT (ERC-4907)">ERC-4907 FLIGHT NFTs</span>
+    <span data-en="AIRLINE TICKET NFTs" data-fa="توکن‌های NFT بلیط پرواز">AIRLINE TICKET NFTs</span>
    </div>
 
    <h1>
-    <span data-en="Don't Rent a Seat." data-fa="صندلی پرواز را اجاره نکنید.">Don't Rent a Seat.</span>
-    <em data-en="Own the Journey." data-fa="مالک سفر خود باشید.">Own the Journey.</em>
+    <span data-en="Own Your Ticket." data-fa="مالک بلیط خود باشید.">Own Your Ticket.</span>
+    <em data-en="Trade Your Journey." data-fa="سفر خود را معامله کنید.">Trade Your Journey.</em>
    </h1>
 
    <p class="p-hero__sub"
-      data-en="By tokenizing bulk-purchased charter flights and premium commercial routes on DotOne Smart Chain (Chain ID: 505), AERVYNX transforms a static airline database entry into a liquid, rentable ERC-4907 NFT—powered by the DOTO Discount Engine, Genesis NFT BNPL credit, and zk-Proof boarding."
-      data-fa="با توکنایز کردن پروازهای چارتری خریداری‌شده به صورت عمده و مسیرهای تجاری ممتاز روی شبکه هوشمند دات‌وان (Chain ID: 505)، پلتفرم AERVYNX یک رکورد سنتی در دیتابیس ایرلاین را به یک دارایی نقدشونده و قابل‌اجاره با استاندارد ERC-4907 تبدیل می‌کند؛ مجهز به موتور تخفیف DOTO، خرید اقساطی آن‌چین (BNPL) و سوار شدن با گواهی zk-Proof.">
-    By tokenizing bulk-purchased charter flights and premium commercial routes on DotOne Smart Chain (Chain ID: 505), AERVYNX transforms a static airline database entry into a liquid, rentable ERC-4907 NFT—powered by the DOTO Discount Engine, Genesis NFT BNPL credit, and zk-Proof boarding.
+      data-en="AERVYNX represents eligible, airline-authorized flight tickets as unique digital NFTs. Where the issuing airline and applicable rules permit, holders can use the ticket or list it through a controlled secondary marketplace. Every transfer remains subject to airline validation, passenger reissuance rules, and the underlying ticket conditions."
+      data-fa="AERVYNX بلیط‌های واجد شرایط و مورد تأیید ایرلاین را به‌صورت NFTهای منحصربه‌فرد نمایش می‌دهد. در صورت اجازه ایرلاین صادرکننده و قوانین مربوط، دارنده می‌تواند از بلیط استفاده کند یا آن را در بازار ثانویه کنترل‌شده عرضه کند. هر انتقال همچنان به تأیید ایرلاین، مقررات تغییر مشخصات مسافر و شرایط بلیط وابسته است.">
+    AERVYNX represents eligible, airline-authorized flight tickets as unique digital NFTs. Where the issuing airline and applicable rules permit, holders can use the ticket or list it through a controlled secondary marketplace. Every transfer remains subject to airline validation, passenger reissuance rules, and the underlying ticket conditions.
    </p>
 
    <div class="fl-hero-badges">
-    <span class="fl-hero-badge"><b>ERC-4907</b> <span data-en="Owner vs. User Dual-Role" data-fa="تفکیک نقش مالک و مسافر">Owner vs. User Dual-Role</span></span>
-    <span class="fl-hero-badge"><b>ON-CHAIN BNPL</b> <span data-en="Genesis NFT Credit Line" data-fa="اعتبار اقساطی با Genesis NFT">Genesis NFT Credit Line</span></span>
-    <span class="fl-hero-badge"><b>zk-PROOF QR</b> <span data-en="Zero-PII Gate Boarding" data-fa="گیت پرواز بدون افشای پاسپورت">Zero-PII Gate Boarding</span></span>
+    <span class="fl-hero-badge"><b>UNIQUE NFT</b> <span data-en="Digital Ticket Identity" data-fa="شناسه دیجیتال منحصربه‌فرد بلیط">Digital Ticket Identity</span></span>
+    <span class="fl-hero-badge"><b>AIRLINE-APPROVED</b> <span data-en="Authorized Ticket Issuance" data-fa="صدور مجاز بلیط با تأیید ایرلاین">Authorized Ticket Issuance</span></span>
+    <span class="fl-hero-badge"><b>CONTROLLED</b> <span data-en="Secondary-Market Transfer" data-fa="انتقال کنترل‌شده در بازار ثانویه">Secondary-Market Transfer</span></span>
    </div>
 
    <div class="ctas" style="margin-top: 28px;">
@@ -1446,6 +1550,7 @@
     <a class="btn btn--ghost" href="#interactive-boarding-pass">
      <span data-en="Test Live NFT Boarding Pass" data-fa="تست زنده کارت پرواز NFT">Test Live NFT Boarding Pass</span>
     </a>
+    <a class="btn btn--ghost" href="#flightyield"><span data-en="Explore FlightYield RWA" data-fa="بررسی FlightYield و توکنیزه‌سازی درآمد">Explore FlightYield RWA</span></a>
    </div>
   </div>
 
@@ -1485,29 +1590,29 @@
    </div>
 
    <!-- Floating Telemetry Status Chips -->
-   <div class="hud-chip hud-chip--1"><i></i><span>ERC-4907 · RENTABLE NFT</span></div>
-   <div class="hud-chip hud-chip--2"><i></i><span>DOTO ENGINE · DISCOUNT ACTIVE</span></div>
-   <div class="hud-chip hud-chip--3"><i></i><span>GENESIS NFT · BNPL WHITELISTED</span></div>
-   <div class="hud-chip hud-chip--4"><i></i><span>ORACLE · GATE & ZK-PROOF SYNCED</span></div>
+   <div class="hud-chip hud-chip--1"><i></i><span>AIRLINE-AUTHORIZED · TICKET NFT</span></div>
+   <div class="hud-chip hud-chip--2"><i></i><span>NFT REGISTRY · UNIQUE ID</span></div>
+   <div class="hud-chip hud-chip--3"><i></i><span>SECONDARY MARKET · RULE-BASED</span></div>
+   <div class="hud-chip hud-chip--4"><i></i><span>AIRLINE API · VALIDATION REQUIRED</span></div>
   </div>
  <!-- Bottom Hero Telemetry Strip -->
  <div class="p-hero__bottom">
   <div class="p-strip">
    <div class="p-strip__item">
     <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-    <span data-en="Hardcoded DOTO Protocol Discount" data-fa="تخفیف مستقیم پروتکل در پرداخت با DOTO">Hardcoded DOTO Protocol Discount</span>
+    <span data-en="Airline-Authorized Ticket Issuance" data-fa="صدور بلیط با مجوز ایرلاین">Airline-Authorized Ticket Issuance</span>
    </div>
    <div class="p-strip__item">
     <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-    <span data-en="Cross-Wallet Genesis NFT BNPL" data-fa="خرید اقساطی آن‌چین (BNPL) با Genesis NFT">Cross-Wallet Genesis NFT BNPL</span>
+    <span data-en="Unique On-Chain Ticket Identity" data-fa="شناسه منحصربه‌فرد بلیط روی زنجیره">Unique On-Chain Ticket Identity</span>
    </div>
    <div class="p-strip__item">
     <svg viewBox="0 0 24 24"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
-    <span data-en="Instant Secondary Market Resale" data-fa="فروش مجدد آنی بلیط در بازار ثانویه">Instant Secondary Market Resale</span>
+    <span data-en="Controlled Secondary-Market Trading" data-fa="معامله کنترل‌شده در بازار ثانویه">Controlled Secondary-Market Trading</span>
    </div>
    <div class="p-strip__item">
     <svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7zM9 12l2 2 4-4"/></svg>
-    <span data-en="ZeroVault RWA Pool Royalty Routing" data-fa="واریز رویالتی پروازها به خزانه ZeroVault">ZeroVault RWA Pool Royalty Routing</span>
+    <span data-en="Airline Transfer Validation" data-fa="اعتبارسنجی انتقال توسط ایرلاین">Airline Transfer Validation</span>
    </div>
   </div>
  </div>
@@ -1520,11 +1625,11 @@
 <section class="wrap sec" id="stepped-architecture">
  <div>
   <span class="eyebrow" data-en="01 · STEPPED VALUE PROGRESSION" data-fa="۰۱ · دیاگرام پلکانی تکامل دارایی پروازی">01 · STEPPED VALUE PROGRESSION</span>
-  <h2 data-en="From Static Seat to <em>Liquid Web3 Asset</em>" data-fa="از رکورد سنتی دیتابیس تا <em>دارایی نقدشونده Web3</em>">From Static Seat to <em>Liquid Web3 Asset</em></h2>
+  <h2 data-en="From Airline Ticket to <em>Programmable NFT</em>" data-fa="از بلیط ایرلاین تا <em>NFT برنامه‌پذیر</em>">From Airline Ticket to <em>Programmable NFT</em></h2>
   <p class="lead"
-     data-en="When you buy a traditional airline ticket, you merely rent a temporary row in a centralized database—impossible to resell freely or use as collateral. Follow the 4 ascending architectural steps below to see how AERVYNX turns air travel into a programmable asset class on DotOne Chain 505."
-     data-fa="در سیستم سنتی هواپیمایی، شما مالک بلیط نیستید بلکه یک ردیف موقت در دیتابیس متمرکز ایرلاین را اجاره می‌کنید که در صورت کنسلی، پولتان از دست می‌رود. در دیاگرام پلکانی زیر مشاهده کنید که چگونه AERVYNX بلیط پرواز را در ۴ پله به یک کلاس دارایی مالی و قابل‌برنامه‌ریزی روی زنجیره ۵۰۵ تبدیل می‌کند.">
-   When you buy a traditional airline ticket, you merely rent a temporary row in a centralized database—impossible to resell freely or use as collateral. Follow the 4 ascending architectural steps below to see how AERVYNX turns air travel into a programmable asset class on DotOne Chain 505.
+     data-en="Follow the four-stage ticket lifecycle: authorized inventory, NFT issuance, controlled resale, and airline-side validation. The NFT records digital ownership and transfer history; it does not independently change an airline reservation or override fare conditions."
+     data-fa="چرخه چهارمرحله‌ای بلیط را ببینید: موجودی مورد تأیید، صدور NFT، فروش مجدد کنترل‌شده و اعتبارسنجی در سامانه ایرلاین. NFT مالکیت دیجیتال و سوابق انتقال را ثبت می‌کند؛ اما به‌تنهایی رزرو ایرلاین را تغییر نمی‌دهد و شرایط بلیط را دور نمی‌زند.">
+   Follow the four-stage ticket lifecycle: authorized inventory, NFT issuance, controlled resale, and airline-side validation. The NFT records digital ownership and transfer history; it does not independently change an airline reservation or override fare conditions.
   </p>
  </div>
 
@@ -1532,7 +1637,7 @@
   <div class="fl-stepped-top">
    <div>
     <strong style="font-size: 15.5px; display: block;" data-en="ASCENDING 4-STEP PROTOCOL PIPELINE · CHAIN ID 505" data-fa="معماری پلکانی ۴ مرحله‌ای پروتکل · شبکه دات‌وان ۵۰۵">ASCENDING 4-STEP PROTOCOL PIPELINE · CHAIN ID 505</strong>
-    <small style="font-family: var(--mono); font-size: 11px; color: var(--color-text-muted);" id="fl-stair-status">ACTIVE TIER: STEP 01 → BULK CHARTER & ROUTE TOKENIZATION</small>
+    <small style="font-family: var(--mono); font-size: 11px; color: var(--color-text-muted);" id="fl-stair-status">ACTIVE TIER: STEP 01 → AUTHORIZED INVENTORY & TICKET ISSUANCE</small>
    </div>
    <div class="fl-stepped-top__status">
     <i></i>
@@ -1548,16 +1653,16 @@
     <div class="fl-stair-riser"></div>
     <div class="fl-stair-head">
      <span class="fl-stair-num">STEP 01 · BASE</span>
-     <span class="fl-stair-tag">DOTO / Shetab</span>
+     <span class="fl-stair-tag">AIRLINE / ISSUER</span>
     </div>
-    <h3 data-en="DOTO Discount Engine" data-fa="۱. موتور تخفیف بومی DOTO">DOTO Discount Engine</h3>
-    <p data-en="Bulk-purchased charter flights and commercial routes are tokenized on AERVYNX Marketplace. Paying in Fiat (Shetab) or Stablecoins is supported, while paying in native DOTO triggers a hardcoded protocol discount by eliminating banking and forex spreads."
-       data-fa="پروازهای چارتری و مسیرهای تجاری روی مارکت‌پلیس لیست می‌شوند. علاوه بر امکان پرداخت با ریال (پل شتاب) یا استیبل‌کوین، پرداخت مستقیم با توکن بومی DOTO به دلیل حذف واسطه‌های بانکی و اسپرد ارزی، تخفیف مستقیم کدنویسی‌شده در قرارداد را فعال می‌کند.">
-     Bulk-purchased charter flights and commercial routes are tokenized on AERVYNX Marketplace. Paying in Fiat (Shetab) or Stablecoins is supported, while paying in native DOTO triggers a hardcoded protocol discount by eliminating banking and forex spreads.
+    <h3 data-en="Authorized Ticket Inventory" data-fa="۱. موجودی بلیط مورد تأیید ایرلاین">Authorized Ticket Inventory</h3>
+    <p data-en="An airline or authorized supplier makes eligible inventory available under a defined commercial agreement. The original ticket is issued through the authorized ticketing process before its NFT representation is created or linked."
+       data-fa="ایرلاین یا تأمین‌کننده مجاز، موجودی واجد شرایط را بر اساس توافق تجاری مشخص ارائه می‌کند. بلیط اصلی ابتدا از مسیر سامانه مجاز فروش صادر می‌شود و سپس NFT متناظر با آن ایجاد یا به آن متصل می‌شود.">
+     An airline or authorized supplier makes eligible inventory available under a defined commercial agreement. The original ticket is issued through the authorized ticketing process before its NFT representation is created or linked.
     </p>
     <div class="fl-stair-foot">
-     <span>FOREX SPREAD</span>
-     <b>0% · DIRECT ROUTING</b>
+     <span>ISSUANCE SOURCE</span>
+     <b>AIRLINE / AUTHORIZED</b>
     </div>
    </article>
 
@@ -1565,17 +1670,17 @@
    <article class="fl-stair-step" data-step-idx="1">
     <div class="fl-stair-riser"></div>
     <div class="fl-stair-head">
-     <span class="fl-stair-num">STEP 02 · CREDIT</span>
-     <span class="fl-stair-tag">Genesis NFT</span>
+     <span class="fl-stair-num">STEP 02 · NFT MINT</span>
+     <span class="fl-stair-tag">Ticket Registry</span>
     </div>
-    <h3 data-en="Cross-Wallet BNPL" data-fa="۲. موتور اقساطی آن‌چین (BNPL)">Cross-Wallet BNPL</h3>
-    <p data-en="The world's first on-chain Buy Now, Pay Later engine linked to utility NFTs. Holding an AERVYNX Genesis Credential NFT automatically whitelists the wallet for an instant credit line—pay a fraction upfront with automated smart-contract installments."
-       data-fa="اولین موتور خرید اقساطی (BNPL) روی زنجیره متصل به NFTهای کاربردی. داشتن AERVYNX Genesis Credential NFT در کیف‌پول، کاربر را به طور خودکار در لیست سفید خط اعتباری قرار می‌دهد تا تنها بخشی از مبلغ را نقد بپردازد و اقساط توسط قرارداد هوشمند زمان‌بندی شود.">
-     The world's first on-chain Buy Now, Pay Later engine linked to utility NFTs. Holding an AERVYNX Genesis Credential NFT automatically whitelists the wallet for an instant credit line—pay a fraction upfront with automated smart-contract installments.
+    <h3 data-en="Unique Ticket NFT" data-fa="۲. صدور NFT منحصربه‌فرد">Unique Ticket NFT</h3>
+    <p data-en="A unique NFT is minted or linked to the confirmed ticket record, carrying a reference to the eligible itinerary, issuer, fare conditions, and ticket status. Sensitive passenger information should remain off-chain or be disclosed only through authorized systems."
+       data-fa="برای رکورد تأییدشده بلیط، یک NFT منحصربه‌فرد ایجاد یا متصل می‌شود که به اطلاعات مسیر، صادرکننده، شرایط کرایه و وضعیت بلیط ارجاع می‌دهد. اطلاعات حساس مسافر باید خارج از زنجیره یا فقط از مسیرهای مجاز نگهداری و افشا شود.">
+     A unique NFT is minted or linked to the confirmed ticket record, carrying a reference to the eligible itinerary, issuer, fare conditions, and ticket status. Sensitive passenger information should remain off-chain or be disclosed only through authorized systems.
     </p>
     <div class="fl-stair-foot">
-     <span>CREDIT SCORE</span>
-     <b>WALLET REPUTATION</b>
+     <span>TOKEN ID</span>
+     <b>UNIQUE / TRACEABLE</b>
     </div>
    </article>
 
@@ -1583,34 +1688,34 @@
    <article class="fl-stair-step" data-step-idx="2">
     <div class="fl-stair-riser"></div>
     <div class="fl-stair-head">
-     <span class="fl-stair-num">STEP 03 · ERC-4907</span>
-     <span class="fl-stair-tag">Owner vs. User</span>
+     <span class="fl-stair-num">STEP 03 · MARKET</span>
+     <span class="fl-stair-tag">Controlled Resale</span>
     </div>
-    <h3 data-en="Rentable Dual-Role & Resale" data-fa="۳. استاندارد ERC-4907 و بازار ثانویه">Rentable Dual-Role & Resale</h3>
-    <p data-en="ERC-4907 separates the Owner (bulk route investor) from the User (traveler). Investors yield-farm travel routes by renting User rights that auto-expire at takeoff, while travelers can freely resell sold-out tickets on the secondary market with instant metadata updates."
-       data-fa="استاندارد ERC-4907 نقش «مالک» (سرمایه‌گذار عمده مسیر) را از «مسافر» جدا می‌کند. سرمایه‌گذاران بدون انتقال مالکیت اصلی، حق استفاده را اجاره می‌دهند که در لحظه تیک‌آف منقضی می‌شود؛ همچنین مسافران می‌توانند بلیط خود را در بازار ثانویه با تغییر آنی نام بفروشند.">
-     ERC-4907 separates the Owner (bulk route investor) from the User (traveler). Investors yield-farm travel routes by renting User rights that auto-expire at takeoff, while travelers can freely resell sold-out tickets on the secondary market with instant metadata updates.
+    <h3 data-en="Controlled Secondary-Market Resale" data-fa="۳. بازار ثانویه کنترل‌شده">Controlled Secondary-Market Resale</h3>
+    <p data-en="Where airline rules permit, a holder may list an eligible ticket for resale. A buyer purchase moves the record into escrow and triggers an airline transfer request; the marketplace coordinates the process but cannot bypass airline approval or guarantee a successful transfer."
+       data-fa="در صورت اجازه قوانین ایرلاین، دارنده می‌تواند بلیط واجد شرایط را برای فروش مجدد عرضه کند. خرید خریدار، رکورد را وارد وضعیت امانی می‌کند و درخواست انتقال به ایرلاین ارسال می‌شود؛ بازار این فرایند را هماهنگ می‌کند اما نمی‌تواند تأیید ایرلاین را دور بزند یا موفقیت انتقال را تضمین کند.">
+     Where airline rules permit, a holder may list an eligible ticket for resale. A buyer purchase moves the record into escrow and triggers an airline transfer request; the marketplace coordinates the process but cannot bypass airline approval or guarantee a successful transfer.
     </p>
     <div class="fl-stair-foot">
-     <span>AUTO-EXPIRY</span>
-     <b>AT FLIGHT TAKEOFF</b>
+     <span>TRANSFER STATE</span>
+     <b>AIRLINE APPROVAL</b>
     </div>
    </article>
 
    <!-- STEP 04 (Peak Level +138px) -->
    <article class="fl-stair-step" data-step-idx="3">
     <div class="fl-stair-head">
-     <span class="fl-stair-num">STEP 04 · APEX</span>
-     <span class="fl-stair-tag">zk-Proof + ZeroVault</span>
+     <span class="fl-stair-num">STEP 04 · VALIDATION</span>
+     <span class="fl-stair-tag">Airline API</span>
     </div>
-    <h3 data-en="zk-Boarding & RWA Yield" data-fa="۴. گیت zk-Proof و سود ZeroVault">zk-Boarding & RWA Yield</h3>
-    <p data-en="Decentralized Oracles push real-time gate and delay updates to the NFT. At boarding, the NFT generates a Zero-Knowledge Proof (zk-Proof) QR code verifying validity without exposing passport PII, while primary & resale royalties stream to ZeroVault RWA Pools."
-       data-fa="اوراکل‌های غیرمتمرکز تغییرات گیت و تاخیرها را زنده در متادیتای NFT ثبت می‌کنند. هنگام سوار شدن، یک کد QR مبتنی بر اثبات دانایی صفر (zk-Proof) بدون افشای اطلاعات پاسپورت تولید می‌شود و رویالتی فروش به استخرهای RWA در ZeroVault واریز می‌گردد.">
-     Decentralized Oracles push real-time gate and delay updates to the NFT. At boarding, the NFT generates a Zero-Knowledge Proof (zk-Proof) QR code verifying validity without exposing passport PII, while primary & resale royalties stream to ZeroVault RWA Pools.
+    <h3 data-en="Validation & Settlement" data-fa="۴. اعتبارسنجی و تسویه">Validation & Settlement</h3>
+    <p data-en="The airline validates passenger eligibility and applies any required name change, cancellation, or reissuance in its own reservation system. Settlement is released only after the configured confirmation conditions are met; rejected or timed-out transfers follow the disclosed refund or escrow-release policy."
+       data-fa="ایرلاین صلاحیت مسافر را بررسی می‌کند و هر تغییر نام، ابطال یا صدور مجدد لازم را در سامانه رزرو خود انجام می‌دهد. تسویه فقط پس از تحقق شرایط تأیید تعریف‌شده آزاد می‌شود؛ انتقال ردشده یا منقضی‌شده طبق سیاست اعلام‌شده بازپرداخت یا آزادسازی امانی خواهد داشت.">
+     The airline validates passenger eligibility and applies any required name change, cancellation, or reissuance in its own reservation system. Settlement is released only after the configured confirmation conditions are met; rejected or timed-out transfers follow the disclosed refund or escrow-release policy.
     </p>
     <div class="fl-stair-foot">
-     <span>PRIVACY & YIELD</span>
-     <b>ZK-QR + ZEROVAULT</b>
+     <span>VALIDATION</span>
+     <b>CONFIRM → SETTLE</b>
     </div>
    </article>
 
@@ -1619,16 +1724,16 @@
 </section>
 
 <!-- ================================================
-     SECTION 04: ERC-4907 DUAL-ROLE & ORACLE SYSTEM MODEL
+     SECTION 04: AIRLINE TICKET NFT LIFECYCLE MODEL
 ================================================= -->
-<section class="wrap sec" id="erc4907-system-model">
+<section class="wrap sec" id="ticket-system-model">
  <div>
-  <span class="eyebrow" data-en="02 · COORDINATED SYSTEM MODEL" data-fa="۰۲ · مدل سیستم و معماری ERC-4907">02 · COORDINATED SYSTEM MODEL</span>
-  <h2 data-en="ERC-4907 Dual-Role, Oracles & <em>ZeroVault Yield</em>" data-fa="تفکیک مالک و مسافر، اوراکل پروازی و <em>خزانه ZeroVault</em>">ERC-4907 Dual-Role, Oracles & <em>ZeroVault Yield</em></h2>
+  <span class="eyebrow" data-en="02 · TICKET NFT SYSTEM MODEL" data-fa="۰۲ · مدل سیستم NFT بلیط">02 · TICKET NFT SYSTEM MODEL</span>
+  <h2 data-en="Ticket Issuance, Transfer & <em>Airline Validation</em>" data-fa="صدور NFT، انتقال و <em>اعتبارسنجی ایرلاین</em>">Ticket Issuance, Transfer & <em>Airline Validation</em></h2>
   <p class="lead"
-     data-en="Standard ERC-721 tokens cannot separate asset ownership from temporary travel utility. Inspect how FlightNFT_ERC4907.sol coordinates Owner yield-farming, Genesis BNPL credit, live aviation Oracles, and ZeroVault royalty routing on DotOne Chain 505."
-     data-fa="توکن‌های معمولی ERC-721 قادر به جداسازی مالکیت سرمایه‌ای از حق استفاده موقت مسافر نیستند. در مدل سیستم زیر بررسی کنید که قرارداد FlightNFT_ERC4907.sol چگونه ییلدفارمینگ مسیرهای پروازی، اعتبار BNPL، اوراکل‌های هوانوردی و رویالتی ZeroVault را هماهنگ می‌کند.">
-   Standard ERC-721 tokens cannot separate asset ownership from temporary travel utility. Inspect how FlightNFT_ERC4907.sol coordinates Owner yield-farming, Genesis BNPL credit, live aviation Oracles, and ZeroVault royalty routing on DotOne Chain 505.
+     data-en="Explore the proposed coordination between authorized ticket inventory, NFT issuance, escrow, airline transfer validation, and settlement. This conceptual model does not represent a deployed airline integration or a live transaction."
+     data-fa="در این مدل مفهومی، هماهنگی میان موجودی بلیط مجاز، صدور NFT، امانی‌سازی، اعتبارسنجی انتقال توسط ایرلاین و تسویه را بررسی کنید. این دیاگرام به معنی وجود اتصال عملیاتی یا تراکنش زنده نیست.">
+   Explore the proposed coordination between authorized ticket inventory, NFT issuance, escrow, airline transfer validation, and settlement. This conceptual model does not represent a deployed airline integration or a live transaction.
   </p>
  </div>
 
@@ -1637,12 +1742,12 @@
   <div class="fl-arch-topbar fl-airport-topbar">
    <div class="fl-arch-status">
     <i id="fl-arch-dot"></i>
-    <span id="fl-arch-status-txt" data-en="SYSTEM MODEL · ERC-4907 DUAL-ROLE (OWNER VS. USER) & AUTO-EXPIRY ACTIVE" data-fa="مدل سیستم · استاندارد دوگانه ERC-4907 (مالک و مسافر) و انقضای خودکار فعال">SYSTEM MODEL · ERC-4907 DUAL-ROLE (OWNER VS. USER) & AUTO-EXPIRY ACTIVE</span>
+    <span id="fl-arch-status-txt" data-en="SYSTEM MODEL · TICKET ISSUE → ESCROW → AIRLINE VALIDATION → SETTLEMENT" data-fa="مدل سیستم · صدور بلیط ← امانی‌سازی ← اعتبارسنجی ایرلاین ← تسویه">SYSTEM MODEL · TICKET ISSUE → ESCROW → AIRLINE VALIDATION → SETTLEMENT</span>
    </div>
    <div class="fl-mode-tabs">
-    <button type="button" class="fl-mode-btn active" data-fl-mode="dualrole"><span data-en="01 · OWNERSHIP / LEASE" data-fa="۰۱ · مالکیت / اجاره">01 · OWNERSHIP / LEASE</span></button>
-    <button type="button" class="fl-mode-btn" data-fl-mode="bnpl"><span data-en="02 · PAYMENT SYSTEM" data-fa="۰۲ · سیستم پرداخت">02 · PAYMENT SYSTEM</span></button>
-    <button type="button" class="fl-mode-btn" data-fl-mode="oracle"><span data-en="03 · AIRPORT / ORACLE" data-fa="۰۳ · فرودگاه / اوراکل">03 · AIRPORT / ORACLE</span></button>
+    <button type="button" class="fl-mode-btn active" data-fl-mode="dualrole"><span data-en="01 · TICKET ISSUANCE" data-fa="۰۱ · صدور بلیط">01 · TICKET ISSUANCE</span></button>
+    <button type="button" class="fl-mode-btn" data-fl-mode="escrow"><span data-en="02 · RESALE / ESCROW" data-fa="۰۲ · فروش مجدد / امانی">02 · RESALE / ESCROW</span></button>
+    <button type="button" class="fl-mode-btn" data-fl-mode="oracle"><span data-en="03 · AIRLINE VALIDATION" data-fa="۰۳ · اعتبارسنجی ایرلاین">03 · AIRLINE VALIDATION</span></button>
    </div>
   </div>
 
@@ -1681,17 +1786,17 @@
      <div class="fl-airport-column-label"><span>01</span><b data-en="DEPARTURE CONTROL" data-fa="کنترل مبدأ">DEPARTURE CONTROL</b><i></i></div>
      <button type="button" class="fl-cnode fl-airport-node selected" data-fl-node="OwnerPool">
       <span class="fl-node-code">OWN / 01</span><span class="fl-node-icon">A</span>
-      <span class="fl-node-copy"><strong data-en="Bulk Charter Owner" data-fa="مالک عمده مسیر">Bulk Charter Owner</strong><small data-en="Owns the underlying Flight NFT" data-fa="مالک اصل دارایی Flight NFT">Owns the underlying Flight NFT</small></span>
+      <span class="fl-node-copy"><strong data-en="Authorized Ticket Supplier" data-fa="تأمین‌کننده مجاز بلیط">Authorized Ticket Supplier</strong><small data-en="Provides eligible ticket inventory" data-fa="ارائه موجودی واجد شرایط بلیط">Provides eligible ticket inventory</small></span>
       <span class="fl-node-lamp"></span>
      </button>
-     <button type="button" class="fl-cnode fl-airport-node" data-fl-node="BNPLEngine">
+     <button type="button" class="fl-cnode fl-airport-node" data-fl-node="TicketRegistry">
       <span class="fl-node-code">PAY / 02</span><span class="fl-node-icon">₿</span>
-      <span class="fl-node-copy"><strong data-en="DOTO + Genesis BNPL" data-fa="تخفیف DOTO + اعتبار BNPL">DOTO + Genesis BNPL</strong><small data-en="Discount & installment credit" data-fa="تخفیف پروتکل و اعتبار اقساطی">Discount & installment credit</small></span>
+      <span class="fl-node-copy"><strong data-en="Ticket NFT Registry" data-fa="ثبت و صدور NFT بلیط">Ticket NFT Registry</strong><small data-en="Unique token ID & ticket reference" data-fa="شناسه توکن و ارجاع به بلیط">Unique token ID & ticket reference</small></span>
       <span class="fl-node-lamp"></span>
      </button>
      <button type="button" class="fl-cnode fl-airport-node" data-fl-node="AviationOracle">
       <span class="fl-node-code">ATC / 03</span><span class="fl-node-icon">⌁</span>
-      <span class="fl-node-copy"><strong data-en="Dynamic Flight Oracles" data-fa="اوراکل‌های زنده هوانوردی">Dynamic Flight Oracles</strong><small data-en="Gate, delay & takeoff data" data-fa="داده گیت، تأخیر و زمان پرواز">Gate, delay & takeoff data</small></span>
+      <span class="fl-node-copy"><strong data-en="Airline Ticketing System" data-fa="سامانه صدور بلیط ایرلاین">Airline Ticketing System</strong><small data-en="Passenger, fare & ticket status" data-fa="اطلاعات مسافر، کرایه و وضعیت بلیط">Passenger, fare & ticket status</small></span>
       <span class="fl-node-lamp"></span>
      </button>
     </div>
@@ -1706,32 +1811,32 @@
       <div class="fl-tower-base"></div>
       <div class="fl-tower-beacon"></div>
      </div>
-     <button type="button" class="fl-cnode fl-airport-core fl-airport-node" data-fl-node="ERC4907Core">
+     <button type="button" class="fl-cnode fl-airport-core fl-airport-node" data-fl-node="TicketCore">
       <span class="fl-core-emblem">A</span>
-      <strong>FlightNFT_4907.sol</strong>
-      <small data-en="ERC-4907 · SMART CONTRACT" data-fa="قرارداد هوشمند · ERC-4907">ERC-4907 · SMART CONTRACT</small>
-      <b id="fl-core-badge">setUser(u, expires)</b>
+      <strong>TicketNFTRegistry.sol</strong>
+      <small data-en="PROPOSED CONTRACT · CHAIN 505" data-fa="قرارداد پیشنهادی · شبکه ۵۰۵">PROPOSED CONTRACT · CHAIN 505</small>
+      <b id="fl-core-badge">issueTicketNFT() · transfer()</b>
       <span class="fl-core-status"><i></i> CHAIN 505 · ROUTING ACTIVE</span>
      </button>
-     <div class="fl-core-caption"><span>CONTROL TOWER</span><i></i><span>FLIGHT ROUTING ENGINE</span></div>
+     <div class="fl-core-caption"><span>CONTROL TOWER</span><i></i><span>TICKET TRANSFER COORDINATOR</span></div>
     </div>
 
     <!-- ARRIVAL / OUTPUT SIDE -->
     <div class="fl-airport-column fl-airport-column--out">
-     <div class="fl-airport-column-label"><span>02</span><b data-en="ARRIVAL / SETTLEMENT" data-fa="مقصد / تسویه">ARRIVAL / SETTLEMENT</b><i></i></div>
+     <div class="fl-airport-column-label"><span>02</span><b data-en="VALIDATION / SETTLEMENT" data-fa="اعتبارسنجی / تسویه">VALIDATION / SETTLEMENT</b><i></i></div>
      <button type="button" class="fl-cnode fl-airport-node" data-fl-node="TravelerUser">
       <span class="fl-node-code">GATE / 04</span><span class="fl-node-icon">ZK</span>
-      <span class="fl-node-copy"><strong data-en="Traveler User & zk-QR" data-fa="مسافر و گیت zk-QR">Traveler User & zk-QR</strong><small data-en="Temporary right · expires at takeoff" data-fa="حق استفاده موقت تا لحظه تیک‌آف">Temporary right · expires at takeoff</small></span>
+      <span class="fl-node-copy"><strong data-en="Airline Transfer Validation" data-fa="اعتبارسنجی انتقال ایرلاین">Airline Transfer Validation</strong><small data-en="Name check · reissue if approved" data-fa="بررسی نام · صدور مجدد در صورت تأیید">Name check · reissue if approved</small></span>
       <span class="fl-node-lamp"></span>
      </button>
      <button type="button" class="fl-cnode fl-airport-node" data-fl-node="SecondaryMarket">
       <span class="fl-node-code">DEX / 05</span><span class="fl-node-icon">↗</span>
-      <span class="fl-node-copy"><strong data-en="Secondary Market Resale" data-fa="بازار ثانویه و فروش مجدد">Secondary Market Resale</strong><small data-en="Transfer & metadata update" data-fa="انتقال و به‌روزرسانی متادیتا">Transfer & metadata update</small></span>
+      <span class="fl-node-copy"><strong data-en="Controlled Secondary Market" data-fa="بازار ثانویه کنترل‌شده">Controlled Secondary Market</strong><small data-en="Buyer purchase · escrow release" data-fa="خرید خریدار · آزادسازی امانی">Buyer purchase · escrow release</small></span>
       <span class="fl-node-lamp"></span>
      </button>
-     <button type="button" class="fl-cnode fl-airport-node" data-fl-node="ZeroVaultYield">
+     <button type="button" class="fl-cnode fl-airport-node" data-fl-node="SettlementLogic">
       <span class="fl-node-code">RWA / 06</span><span class="fl-node-icon">◇</span>
-      <span class="fl-node-copy"><strong data-en="ZeroVault & RWA Pools" data-fa="خزانه ZeroVault و استخر RWA">ZeroVault & RWA Pools</strong><small data-en="Primary & resale royalty routing" data-fa="مسیر‌دهی رویالتی فروش و بازار ثانویه">Primary & resale royalty routing</small></span>
+      <span class="fl-node-copy"><strong data-en="Settlement & Refund Logic" data-fa="منطق تسویه و بازپرداخت">Settlement & Refund Logic</strong><small data-en="Confirmed transfer or rejection path" data-fa="انتقال تأییدشده یا مسیر رد درخواست">Confirmed transfer or rejection path</small></span>
       <span class="fl-node-lamp"></span>
      </button>
     </div>
@@ -1741,11 +1846,11 @@
   </div>
 
   <div class="fl-inspector fl-airport-inspector">
-   <div class="fl-inspector__tag" id="fl-insp-title">Bulk Charter Owner</div>
+   <div class="fl-inspector__tag" id="fl-insp-title">Authorized Ticket Supplier</div>
    <div class="fl-inspector__desc" id="fl-insp-desc"
-        data-en="Under ERC-4907, an investor can purchase a bulk package of Flight NFTs as the underlying Owner and lease temporary User flying rights to travelers—yield-farming aviation routes without transferring ownership."
-        data-fa="بر پایه استاندارد ERC-4907، یک سرمایه‌گذار می‌تواند بسته‌ای از بلیط‌های NFT را به عنوان «مالک» (Owner) خریداری کرده و حق پرواز (User) را به مسافران اجاره دهد و بدون واگذاری اصل دارایی، از مسیرهای هوایی سود کسب کند.">
-    Under ERC-4907, an investor can purchase a bulk package of Flight NFTs as the underlying Owner and lease temporary User flying rights to travelers—yield-farming aviation routes without transferring ownership.
+        data-en="An airline or authorized supplier provides eligible ticket inventory under a defined agreement. The NFT is issued only after the underlying ticket record is confirmed."
+        data-fa="ایرلاین یا تأمین‌کننده مجاز، موجودی واجد شرایط را بر اساس توافق مشخص ارائه می‌کند. NFT پس از تأیید رکورد بلیط اصلی صادر یا متصل می‌شود.">
+    An airline or authorized supplier provides eligible ticket inventory under a defined agreement. The NFT is issued only after the underlying ticket record is confirmed.
    </div>
    <div class="fl-inspector__meta" id="fl-insp-meta">CLICK ANY MODULE TO INSPECT</div>
   </div>
@@ -1754,188 +1859,207 @@
 </section>
 
 <!-- ================================================
-     SECTION 05: INTERACTIVE HOLOGRAPHIC NFT BOARDING PASS & SANDBOX
+     SECTION 05: INTERACTIVE AIRLINE TICKET NFT SANDBOX
 ================================================= -->
 <section class="wrap sec" id="interactive-boarding-pass">
  <div>
-  <span class="eyebrow" data-en="03 · LIVE DYNAMIC NFT SANDBOX" data-fa="۰۳ · شبیه‌ساز زنده کارت پرواز پویا (ERC-4907)">03 · LIVE DYNAMIC NFT SANDBOX</span>
-  <h2 data-en="Test the Programmable <em>Boarding Pass</em>" data-fa="تست زنده <em>کارت پرواز هوشمند NFT</em>">Test the Programmable <em>Boarding Pass</em></h2>
-  <p class="lead"
-     data-en="Interact with the live Flight NFT #5058 below. Trigger the DOTO Discount Engine, activate Genesis Credential BNPL installments, simulate an Oracle gate change, or test ERC-4907 automatic User expiry at takeoff."
-     data-fa="با کارت پرواز زنده NFT #5058 در زیر تعامل کنید: تخفیف پروتکل DOTO را فعال نمایید، خرید اقساطی با Genesis NFT را تست کنید، تغییر گیت پرواز با اوراکل را ببینید یا انقضای خودکار دسترسی مسافر در لحظه تیک‌آف را اجرا کنید.">
-   Interact with the live Flight NFT #5058 below. Trigger the DOTO Discount Engine, activate Genesis Credential BNPL installments, simulate an Oracle gate change, or test ERC-4907 automatic User expiry at takeoff.
+  <span class="eyebrow" data-en="03 · INTERACTIVE TICKET NFT SANDBOX" data-fa="۰۳ · شبیه‌ساز تعاملی NFT بلیط">03 · INTERACTIVE TICKET NFT SANDBOX</span>
+  <h2 data-en="Test the Programmable <em>Boarding Pass</em>" data-fa="تجربه <em>کارت پرواز برنامه‌پذیر</em>">Test the Programmable <em>Boarding Pass</em></h2>
+  <p class="lead" data-en="Explore a simulated ticket lifecycle: issue a unique NFT, list it where permitted, escrow a buyer's payment, request airline validation, then settle or follow the refund path. No live airline API or blockchain transaction is connected in this demo." data-fa="چرخه شبیه‌سازی‌شده بلیط را تجربه کنید: صدور NFT منحصربه‌فرد، عرضه در صورت مجاز بودن، امانی‌سازی وجه خریدار، درخواست اعتبارسنجی ایرلاین و سپس تسویه یا بازپرداخت. این دمو به API زنده ایرلاین یا تراکنش واقعی بلاکچین متصل نیست.">
+   Explore a simulated ticket lifecycle: issue a unique NFT, list it where permitted, escrow a buyer's payment, request airline validation, then settle or follow the refund path. No live airline API or blockchain transaction is connected in this demo.
   </p>
  </div>
 
  <div class="fl-pass-workspace">
-  <!-- Left: Holographic NFT Boarding Pass -->
   <div class="fl-boarding-pass">
    <div class="fl-pass-top">
     <div class="fl-pass-brand">
      <svg viewBox="0 0 32 32"><path fill="currentColor" d="M3 28 16 3l13 25h-6.5L16 14.5 9.5 28z"/></svg>
-     <span>AERVYNX AIRWAYS · NFT #5058</span>
+     <span>AERVYNX AIR · TICKET NFT #5058</span>
     </div>
-    <span class="fl-pass-standard" id="fl-pass-badge">ERC-4907 · ACTIVE LEASE</span>
+    <span class="fl-pass-standard" id="fl-pass-badge">NFT ISSUED · DEMO</span>
    </div>
-
    <div class="fl-pass-route">
-    <div class="fl-pass-city">
-     <strong>DXB</strong>
-     <span>DUBAI INTL · T3</span>
-    </div>
-    <div class="fl-pass-plane-line">
-     <span>CHAIN ID 505 · CHARTER</span>
-     <i></i>
-     <span id="fl-pass-flight-status" style="color: var(--cyber-green);">ON TIME · BOARDING</span>
-    </div>
-    <div class="fl-pass-city right">
-     <strong>FRA</strong>
-     <span>FRANKFURT · T1</span>
-    </div>
+    <div class="fl-pass-city"><strong>DXB</strong><span>DUBAI INTL · T3</span></div>
+    <div class="fl-pass-plane-line"><span>CHAIN ID 505 · TICKET REF</span><i></i><span id="fl-pass-flight-status" style="color:var(--cyber-green)">ISSUER RECORD CONFIRMED</span></div>
+    <div class="fl-pass-city right"><strong>FRA</strong><span>FRANKFURT · T1</span></div>
    </div>
-
    <div class="fl-pass-grid">
-    <div class="fl-pass-cell">
-     <small>GATE / ORACLE</small>
-     <strong class="blue" id="fl-p-gate">GATE B-14</strong>
-    </div>
-    <div class="fl-pass-cell">
-     <small>TICKET SETTLEMENT</small>
-     <strong class="orange" id="fl-p-price">680 DOTO (-15%)</strong>
-    </div>
-    <div class="fl-pass-cell">
-     <small>BNPL CREDIT</small>
-     <strong class="green" id="fl-p-bnpl">STANDBY (FULL)</strong>
-    </div>
-    <div class="fl-pass-cell">
-     <small>USER EXPIRY</small>
-     <strong id="fl-p-expiry">TAKEOFF (18:45)</strong>
-    </div>
+    <div class="fl-pass-cell"><small>TICKET ID</small><strong class="blue" id="fl-p-gate">AVX-5058-12A</strong></div>
+    <div class="fl-pass-cell"><small>LIST PRICE · DEMO</small><strong class="orange" id="fl-p-price">$340.00</strong></div>
+    <div class="fl-pass-cell"><small>TRANSFER STATE</small><strong class="green" id="fl-p-state">NFT ISSUED</strong></div>
+    <div class="fl-pass-cell"><small>ISSUER CHECK</small><strong id="fl-p-expiry">PENDING LISTING</strong></div>
    </div>
-
    <div class="fl-pass-stub">
     <div class="fl-pass-roles">
-     <div><span>ERC-4907 OWNER (INVESTOR):</span> <b id="fl-p-owner">0x71C...9A2B (RETAINS ASSET)</b></div>
-     <div><span>ERC-4907 USER (TRAVELER):</span> <b id="fl-p-user" style="color: var(--cyber-green);">0x9F4...8E21 (ACTIVE PASSENGER)</b></div>
-     <div><span>GATE VERIFICATION:</span> <b style="color: var(--cyber-blue);">zk-PROOF QR · ZERO PASSPORT PII EXPOSED</b></div>
+     <div><span>CURRENT HOLDER:</span> <b id="fl-p-owner">0x71C...9A2B</b></div>
+     <div><span>BUYER / RECIPIENT:</span> <b id="fl-p-user" style="color:var(--cyber-green)">NOT ASSIGNED</b></div>
+     <div><span>AIRLINE VALIDATION:</span> <b style="color:var(--cyber-blue)">REQUIRED · ISSUER SYSTEM IS SOURCE OF TRUTH</b></div>
     </div>
-
-    <div class="fl-zk-qr" title="Zero-Knowledge Proof Boarding QR">
-     <i></i><i></i><i></i><i></i>
-     <i></i><i></i><i></i><i></i>
-     <i></i><i></i><i></i><i></i>
-     <i></i><i></i><i></i><i></i>
-    </div>
+    <div class="fl-zk-qr" title="Illustrative ticket reference pattern"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
    </div>
   </div>
 
-  <!-- Right: Sandbox Action Controls & On-Chain State Output -->
   <div class="fl-sandbox-controls">
    <div>
-    <strong style="font-size: 16px; display: block; margin-bottom: 4px;" data-en="EXECUTE FLIGHT NFT SMART CONTRACT ACTIONS" data-fa="اجرای توابع هوشمند روی بلیط پروازی NFT">EXECUTE FLIGHT NFT SMART CONTRACT ACTIONS</strong>
-    <small style="font-family: var(--mono); font-size: 11px; color: var(--color-text-muted);" data-en="Select any operation to mutate the live Boarding Pass state" data-fa="روی هر عملیات کلیک کنید تا وضعیت بلیط و کد قرارداد تغییر کند">Select any operation to mutate the live Boarding Pass state</small>
+    <strong style="font-size:16px;display:block;margin-bottom:4px" data-en="SIMULATE THE TICKET TRANSFER FLOW" data-fa="شبیه‌سازی فرایند انتقال بلیط">SIMULATE THE TICKET TRANSFER FLOW</strong>
+    <small style="font-family:var(--mono);font-size:11px;color:var(--color-text-muted)" data-en="Each action updates this illustrative ticket state only" data-fa="هر عملیات فقط وضعیت نمایشی این بلیط را تغییر می‌دهد">Each action updates this illustrative ticket state only</small>
    </div>
-
    <div class="fl-ctrl-btns">
-    <button type="button" class="fl-ctrl-btn is-active" data-pass-act="doto">
-     <small>01 · DISCOUNT ENGINE</small>
-     <span data-en="Pay with Native DOTO (-15%)" data-fa="پرداخت با توکن DOTO (۱۵٪ تخفیف)">Pay with Native DOTO (-15%)</span>
-    </button>
-
-    <button type="button" class="fl-ctrl-btn" data-pass-act="bnpl">
-     <small>02 · GENESIS NFT BNPL</small>
-     <span data-en="Activate 4-Part BNPL Credit" data-fa="فعال‌سازی اقساط BNPL با Genesis NFT">Activate 4-Part BNPL Credit</span>
-    </button>
-
-    <button type="button" class="fl-ctrl-btn" data-pass-act="oracle">
-     <small>03 · DYNAMIC ORACLE</small>
-     <span data-en="Push Live Gate Change" data-fa="به‌روزرسانی زنده گیت با اوراکل">Push Live Gate Change</span>
-    </button>
-
-    <button type="button" class="fl-ctrl-btn" data-pass-act="takeoff">
-     <small>04 · ERC-4907 EXPIRY</small>
-     <span data-en="Simulate Takeoff (Expire User)" data-fa="شبیه‌سازی تیک‌آف (انقضای خودکار)">Simulate Takeoff (Expire User)</span>
-    </button>
+    <button type="button" class="fl-ctrl-btn is-active" data-pass-act="issue"><small>01 · MINT / REGISTER</small><span data-en="Issue Ticket NFT" data-fa="صدور NFT بلیط">Issue Ticket NFT</span></button>
+    <button type="button" class="fl-ctrl-btn" data-pass-act="list"><small>02 · MARKETPLACE</small><span data-en="List for Permitted Resale" data-fa="عرضه برای فروش مجاز">List for Permitted Resale</span></button>
+    <button type="button" class="fl-ctrl-btn" data-pass-act="escrow"><small>03 · BUYER / ESCROW</small><span data-en="Buyer Purchases Ticket" data-fa="خریدار بلیط را می‌خرد">Buyer Purchases Ticket</span></button>
+    <button type="button" class="fl-ctrl-btn" data-pass-act="approve"><small>04 · AIRLINE VALIDATION</small><span data-en="Approve Transfer" data-fa="تأیید انتقال توسط ایرلاین">Approve Transfer</span></button>
+    <button type="button" class="fl-ctrl-btn" data-pass-act="reject"><small>05 · EXCEPTION PATH</small><span data-en="Reject / Timeout → Refund" data-fa="رد یا پایان مهلت ← بازپرداخت">Reject / Timeout → Refund</span></button>
    </div>
-
-   <pre class="fl-code-box" id="fl-sandbox-code"><span class="cm">// 01. Hardcoded DOTO Protocol Discount (No Bank/Forex Spread)</span>
-<span class="kw">function</span> <span class="fn">bookWithDoto</span>(uint256 tokenId, uint64 takeoffTime) <span class="kw">external</span> {
-  uint256 discounted = basePrice - ((basePrice * <span class="st">1500</span>) / <span class="st">10000</span>);
-  dotoToken.<span class="fn">transferFrom</span>(msg.sender, zeroVaultRouter, discounted);
-  _setUser(tokenId, msg.sender, takeoffTime); <span class="cm">// ERC-4907 User</span>
+   <pre class="fl-code-box" id="fl-sandbox-code"><span class="cm">// SIMULATION · Ticket NFT issuance reference</span>
+<span class="kw">function</span> <span class="fn">issueTicketNFT</span>(bytes32 ticketRef) <span class="kw">external</span> {
+  <span class="kw">require</span>(issuerRecordConfirmed(ticketRef));
+  _mint(msg.sender, ticketRef);
+  emit TicketNFTIssued(ticketRef, msg.sender);
 }</pre>
   </div>
  </div>
 </section>
 
 <!-- ================================================
-     SECTION 06: ARCHAIC AIRLINES VS. AERVYNX WEB3 TRAVEL
+     SECTION 06: AERVYNX FLIGHTYIELD — AVIATION REVENUE RWA
 ================================================= -->
-<section class="wrap sec" id="paradigm-shift">
- <div>
-  <span class="eyebrow" data-en="04 · THE PARADIGM SHIFT" data-fa="۰۴ · تغییر پارادایم صنعت هوانوردی">04 · THE PARADIGM SHIFT</span>
-  <h2 data-en="Archaic Databases vs. <em>Programmable Travel</em>" data-fa="دیتابیس‌های سنتی در برابر <em>سفر برنامه‌ریزی‌شده Web3</em>">Archaic Databases vs. <em>Programmable Travel</em></h2>
+<section class="wrap sec fy-section" id="flightyield">
+ <div class="fy-intro">
+  <span class="eyebrow" data-en="A NEW FINANCIAL LAYER · REAL-WORLD ASSET TOKENIZATION" data-fa="لایه مالی جدید · توکنیزه‌سازی دارایی واقعی">A NEW FINANCIAL LAYER · REAL-WORLD ASSET TOKENIZATION</span>
+  <h2 data-en="Introducing <em>AERVYNX FlightYield</em>" data-fa="معرفی <em>AERVYNX FlightYield</em>">Introducing <em>AERVYNX FlightYield</em></h2>
+  <p class="lead" data-en="Ticket NFTs represent eligible travel tickets. FlightYield is a separate proposed financial product: eligible investors acquire tokens representing defined contractual rights to a share of net distributable profit from a specified aviation asset and operating period. A FlightYield token is not a flight ticket, aircraft ownership, seat ownership, or airline equity." data-fa="NFT بلیط، نماینده بلیط سفر واجد شرایط است. FlightYield محصول مالی پیشنهادی و مستقلی است: سرمایه‌گذاران واجد شرایط توکن‌هایی می‌خرند که بیانگر حق قراردادی مشخص برای دریافت سهمی از سود خالص قابل‌توزیع یک دارایی پروازی و دوره عملیاتی معین است. توکن FlightYield بلیط پرواز، مالکیت هواپیما یا صندلی و سهام ایرلاین نیست.">
+   Ticket NFTs represent eligible travel tickets. FlightYield is a separate proposed financial product: eligible investors acquire tokens representing defined contractual rights to a share of net distributable profit from a specified aviation asset and operating period. A FlightYield token is not a flight ticket, aircraft ownership, seat ownership, or airline equity.
+  </p>
+  <div class="fy-distinction"><span class="fy-distinction__ticket">01 / TICKET NFT <b>TRAVEL UTILITY</b></span><i>≠</i><span class="fy-distinction__rwa">02 / FLIGHTYIELD <b>CONTRACTUAL REVENUE RIGHT</b></span></div>
+  <div class="fy-how-it-works">
+   <article><span>01</span><b>BUY TOKENS</b><p>Purchase tokens for a defined flight-revenue period. Your token count determines your proportional share.</p></article>
+   <i>→</i>
+   <article><span>02</span><b>FLIGHTS GENERATE REVENUE</b><p>At period end, eligible revenue is recorded and allocated operating costs are deducted.</p></article>
+   <i>→</i>
+   <article><span>03</span><b>RECEIVE YOUR PROFIT SHARE</b><p>The investor pool is divided pro rata among eligible token holders, based on the final terms.</p></article>
+  </div>
  </div>
 
- <div class="fl-compare-grid">
-  <article class="fl-comp-card">
-   <div>
-    <div class="fl-comp-card__top">
-     <span>PARADIGM 01</span>
-     <span>LIQUIDITY & RESALE</span>
+ <div class="fy-console" id="fy-console">
+  <div class="fy-console-head">
+   <div><span class="fy-kicker">FLIGHTYIELD / ASSET TERMINAL</span><h3>Revenue Pool <em>12A · DEC 2026</em></h3><p>PROPOSED ARCHITECTURE · ILLUSTRATIVE DATA ONLY</p></div>
+   <div class="fy-live-tag"><i></i> MODEL PREVIEW <small>NOT LIVE</small></div>
+  </div>
+  <div class="fy-console-grid">
+   <div class="fy-asset-visual">
+    <div class="fy-orbit fy-orbit-a"></div><div class="fy-orbit fy-orbit-b"></div>
+    <div class="fy-asset-core">
+     <div class="fy-wing-mark">A</div>
+     <span>ASSET / FLIGHT REVENUE POOL</span>
+     <strong>AVX–505–12A</strong>
+     <small>01 DEC — 31 DEC 2026</small>
+     <div class="fy-core-route"><b>DXB</b><i></i><b>FRA</b></div>
     </div>
-    <h3 data-en="True Ownership & Secondary Market" data-fa="مالکیت واقعی و فروش آنی در بازار ثانویه">True Ownership & Secondary Market</h3>
-    <p data-en="In legacy aviation, cancelling a flight means losing your money or paying punitive fees. With AERVYNX Flight NFTs, you own a liquid digital asset—list your ticket on the secondary marketplace (even at a premium if sold out) and let the smart contract update passenger metadata instantly."
-       data-fa="در سیستم سنتی، کنسل کردن پرواز به معنای سوخت شدن پول یا جریمه‌های سنگین است. با Flight NFT شما مالک واقعی بلیط هستید؛ می‌توانید آن را فوراً در بازار ثانویه (حتی با قیمت بالاتر در پروازهای تکمیل‌ظرفیت) بفروشید و قرارداد هوشمند تغییر نام را آنی انجام می‌دهد.">
-     In legacy aviation, cancelling a flight means losing your money or paying punitive fees. With AERVYNX Flight NFTs, you own a liquid digital asset—list your ticket on the secondary marketplace (even at a premium if sold out) and let the smart contract update passenger metadata instantly.
-    </p>
+    <div class="fy-float-label fy-label-top">ISSUER <b>AIRLINE / AUTHORIZED ENTITY</b></div>
+    <div class="fy-float-label fy-label-bottom">REPORT <b>PERIOD-CLOSED · PENDING ATTESTATION</b></div>
+    <div class="fy-signal fy-signal-one"></div><div class="fy-signal fy-signal-two"></div>
    </div>
-   <div class="fl-comp-vs">
-    <span>LEGACY: NON-TRANSFERABLE</span>
-    <b>AERVYNX: INSTANT DEX RESALE</b>
+   <div class="fy-asset-spec">
+    <div class="fy-spec-head"><span>ASSET DEFINITION</span><b>REQUIRED DISCLOSURES</b></div>
+    <div class="fy-spec-row"><span>Underlying asset</span><strong>Defined flight revenue pool</strong></div>
+    <div class="fy-spec-row"><span>Asset reference</span><strong>AERVYNX-FLIGHT-A-12A-DEC-2026</strong></div>
+    <div class="fy-spec-row"><span>Flight scope</span><strong>Defined flight IDs · listed in offering</strong></div>
+    <div class="fy-spec-row"><span>Operating period</span><strong>01–31 Dec 2026 · Illustrative</strong></div>
+    <div class="fy-spec-row"><span>Revenue basis</span><strong>Eligible ticket + ancillary revenue</strong></div>
+    <div class="fy-spec-row"><span>Investor allocation</span><strong class="fy-orange">70% of net distributable profit</strong></div>
+    <div class="fy-spec-row"><span>Airline retained</span><strong>30% under example terms</strong></div>
+    <div class="fy-spec-row"><span>Token supply</span><strong>700 units · Illustrative</strong></div>
+    <div class="fy-spec-row"><span>Entitlement</span><strong>Finite-period contractual profit share</strong></div>
+    <div class="fy-spec-row"><span>Record / eligibility</span><strong>Period-close token snapshot · proposed v1</strong></div>
+    <div class="fy-spec-note">A seat number alone does not define a revenue asset. The offering must specify the exact flights, period, revenue sources, cost allocation, issuer, rights, and settlement terms.</div>
    </div>
-  </article>
+  </div>
+  <div class="fy-finance-band">
+   <div class="fy-finance-cell"><small>GROSS REVENUE</small><strong>$35,000</strong><span>$32,000 ticket + $3,000 ancillary</span></div>
+   <div class="fy-finance-op">−</div>
+   <div class="fy-finance-cell"><small>ALLOCATED COSTS</small><strong>$12,000</strong><span>Fuel, airport, crew, maintenance, distribution</span></div>
+   <div class="fy-finance-op">=</div>
+   <div class="fy-finance-cell"><small>NET PROFIT</small><strong>$23,000</strong><span>Gross revenue less allocated costs</span></div>
+   <div class="fy-finance-op">×</div>
+   <div class="fy-finance-cell fy-finance-cell--accent"><small>INVESTOR SHARE · 70%</small><strong>$16,100</strong><span>Illustrative distribution pool</span></div>
+  </div>
+  <div class="fy-ledger-grid">
+   <article class="fy-ledger-card"><div class="fy-ledger-title"><b>REVENUE LEDGER</b><span>ILLUSTRATIVE / USD</span></div><div class="fy-ledger-row"><span>Ticket revenue attributed to asset</span><b>$32,000</b></div><div class="fy-ledger-row"><span>Eligible ancillary revenue</span><b>$3,000</b></div><div class="fy-ledger-total"><span>TOTAL GROSS REVENUE</span><b>$35,000</b></div></article>
+   <article class="fy-ledger-card"><div class="fy-ledger-title"><b>ALLOCATED COST LEDGER</b><span>ILLUSTRATIVE / USD</span></div><div class="fy-ledger-row"><span>Fuel allocation</span><b>$5,000</b></div><div class="fy-ledger-row"><span>Airport & ground services</span><b>$2,500</b></div><div class="fy-ledger-row"><span>Crew & operations</span><b>$2,000</b></div><div class="fy-ledger-row"><span>Maintenance & insurance</span><b>$1,500</b></div><div class="fy-ledger-row"><span>Distribution & payment costs</span><b>$1,000</b></div><div class="fy-ledger-total"><span>TOTAL ALLOCATED COSTS</span><b>$12,000</b></div></article>
+  </div>
+  <div class="fy-allocation-note"><span>NET PROFIT</span><b>$23,000</b><i>× 70%</i><strong>$16,100 INVESTOR POOL</strong><small>Airline / issuer retains the illustrative remaining $6,900 (30%). Actual amounts depend on finalized reporting and the binding offering terms.</small></div>
+  <div class="fy-interactive fy-buy-simulator">
+   <div class="fy-interactive-copy">
+    <span class="fy-kicker">BUY TOKENS · ESTIMATE YOUR RETURN</span>
+    <h3>Choose how many <em>tokens to buy.</em></h3>
+    <p>Each token represents an equal unit of the period profit pool. Choose how many tokens to buy to see your estimated purchase amount and profit share.</p>
+    <div class="fy-slider-line"><label for="fy-token-range">NUMBER OF TOKENS</label><output id="fy-token-count">10 / 700</output></div>
+    <input id="fy-token-range" type="range" min="1" max="700" value="10" step="1" aria-label="Number of tokens to buy">
+    <div class="fy-range-labels"><span>1 TOKEN</span><span>700 TOKENS</span></div>
+    <div class="fy-buy-price-line"><span>ILLUSTRATIVE PRICE PER TOKEN</span><strong>$153.33</strong></div>
+   </div>
+   <div class="fy-payout-card fy-buy-results">
+    <div class="fy-payout-top"><span>YOUR PURCHASE ESTIMATE</span><i>15% TARGET · 1 MONTH</i></div>
+    <div class="fy-result-row"><span>Purchase amount</span><strong id="fy-investment-value">$1,533.30</strong></div>
+    <div class="fy-result-row fy-result-profit"><span>Estimated profit share</span><strong id="fy-payout-value">$230.00</strong></div>
+    <div class="fy-result-row"><span>Share of investor pool</span><b id="fy-payout-share">1.4286%</b></div>
+    <div class="fy-result-total"><span>Investment + estimated profit</span><strong id="fy-total-value">$1,763.30</strong></div>
+    <p class="fy-result-disclaimer">The profit figures and percentages are examples; the actual values will be calculated based on the airline's data.
+  </div>
+ </div>
 
-  <article class="fl-comp-card">
-   <div>
-    <div class="fl-comp-card__top">
-     <span>PARADIGM 02</span>
-     <span>PRIVACY & ORACLES</span>
-    </div>
-    <h3 data-en="zk-Proof Boarding & Live Oracles" data-fa="گواهی zk-Proof بدون افشای پاسپورت">zk-Proof Boarding & Live Oracles</h3>
-    <p data-en="Decentralized Oracles keep gate assignments and boarding times dynamically updated inside your wallet. At the airport gate, your Flight NFT generates a cryptographic Zero-Knowledge Proof (zk-Proof) QR code—proving identity and ticket validity without exposing passport details to third-party databases."
-       data-fa="اوراکل‌های غیرمتمرکز تغییرات گیت و ساعت سوار شدن را به صورت پویا در کیف‌پول شما به‌روز می‌کنند. در گیت فرودگاه، بلیط NFT یک کد QR مبتنی بر اثبات دانایی صفر (zk-Proof) تولید می‌کند که هویت و اعتبار بلیط را بدون افشای اطلاعات پاسپورت شما تایید می‌نماید.">
-     Decentralized Oracles keep gate assignments and boarding times dynamically updated inside your wallet. At the airport gate, your Flight NFT generates a cryptographic Zero-Knowledge Proof (zk-Proof) QR code—proving identity and ticket validity without exposing passport details to third-party databases.
-    </p>
-   </div>
-   <div class="fl-comp-vs">
-    <span>LEGACY: CENTRALIZED PII LEAKS</span>
-    <b>AERVYNX: ZERO-KNOWLEDGE QR</b>
-   </div>
-  </article>
+ <div class="fy-price-grid">
+  <article class="fy-price-card"><span class="fy-kicker">01 / SIMPLE PRICING EXAMPLE</span><h3>What does one token <em>cost?</em></h3><p>In this example, each token is priced against an illustrative one-month profit share of $23 and a 15% target return. This makes the purchase price transparent instead of mixing up the token price with the profit paid to its holder.</p><div class="fy-equation">Token price = Expected profit per token ÷ Target return</div><div class="fy-equation-result">$23 ÷ 15% = <b>$153.33</b><small>Illustrative purchase price per token. The 15% is a scenario assumption, not a promised or fixed yield.</small></div><p class="fy-muted">If you buy 10 tokens, the example purchase amount is about $1,533.33. If the full $23-per-token profit scenario is achieved, the estimated profit share is $230 — equal to 15% of the purchase amount. The original purchase amount is not automatically repaid; that depends on the binding offering terms.</p></article>
+  <article class="fy-price-card fy-price-card--process"><span class="fy-kicker">02 / DISTRIBUTION LIFECYCLE</span><h3>From flight operations to <em>claim.</em></h3><ol class="fy-timeline"><li><b>01</b><span><strong>Define the asset</strong><small>Issuer, flights, period, revenue, costs, allocation and token supply.</small></span></li><li><b>02</b><span><strong>Operate & record</strong><small>Collect ticket, ancillary, refund, cancellation and operating-cost data.</small></span></li><li><b>03</b><span><strong>Close & attest</strong><small>Prepare a period report and verify it under the offering's assurance policy.</small></span></li><li><b>04</b><span><strong>Finalize the pool</strong><small>Submit the approved distributable amount and fund the claim contract.</small></span></li><li><b>05</b><span><strong>Claim distribution</strong><small>Eligible holders call claim() for their pro-rata amount. Proposed v1: transfer-lock the RWA units during the earning period and take an eligibility snapshot at period close; any later transferable version must define its record-time snapshot or time-weighted ownership rule.</small></span></li></ol></article>
+ </div>
 
-  <article class="fl-comp-card">
-   <div>
-    <div class="fl-comp-card__top">
-     <span>PARADIGM 03</span>
-     <span>ECOSYSTEM YIELD</span>
-    </div>
-    <h3 data-en="ZeroVault & RWA Yield Generation" data-fa="تولید سود در خزانه ZeroVault و استخرهای RWA">ZeroVault & RWA Yield Generation</h3>
-    <p data-en="A portion of every primary Flight NFT sale and a royalty fee from every secondary market resale are routed through the ZeroVault treasury directly into RWA liquidity pools—allowing DOTO stakers and fractional ecosystem holders to earn passive yield from global air travel."
-       data-fa="بخشی از درآمد هر فروش اولیه بلیط و کارمزد رویالتی از هر معامله در بازار ثانویه، از طریق خزانه امن ZeroVault مستقیماً به استخرهای نقدینگی RWA هدایت می‌شود تا استیک‌کنندگان DOTO و هولدرهای اکوسیستم از گردش مالی سفرهای جهانی سود غیرفعال کسب کنند.">
-     A portion of every primary Flight NFT sale and a royalty fee from every secondary market resale are routed through the ZeroVault treasury directly into RWA liquidity pools—allowing DOTO stakers and fractional ecosystem holders to earn passive yield from global air travel.
-    </p>
-   </div>
-   <div class="fl-comp-vs">
-    <span>LEGACY: 100% AIRLINE CAPTURED</span>
-    <b>AERVYNX: ZEROVAULT RWA YIELD</b>
-   </div>
-  </article>
+ <div class="fy-architecture">
+  <div class="fy-architecture-head"><div><span class="fy-kicker">PROPOSED ON-CHAIN / OFF-CHAIN STACK</span><h3>FlightYield <em>system architecture</em></h3></div><span>CONCEPTUAL FLOW · NOT DEPLOYED CLAIM</span></div>
+  <div class="fy-arch-flow">
+   <article><i>01</i><b>AIRLINE DATA</b><small>Sales · completed flights · refunds · ancillary · costs</small></article><span>→</span>
+   <article><i>02</i><b>REVENUE ENGINE</b><small>Gross revenue · cost allocation · net profit · investor share</small></article><span>→</span>
+   <article><i>03</i><b>RWA TOKEN</b><small>ERC-20 restricted rights or ERC-1155 asset-period units</small></article><span>→</span>
+   <article><i>04</i><b>OFFERING MANAGER</b><small>Supply · price · subscription · offering status</small></article><span>→</span>
+   <article><i>05</i><b>REPORT / ORACLE</b><small>Signed report · asset ID · period · nonce · report hash</small></article><span>→</span>
+   <article><i>06</i><b>DISTRIBUTOR</b><small>Funded pool · eligibility snapshot · claim protection</small></article><span>→</span>
+   <article><i>07</i><b>COMPLIANCE</b><small>KYC/AML · jurisdiction · whitelist · transfer restrictions</small></article>
+  </div>
+  <p class="fy-architecture-foot">A valid signature confirms who submitted a report; it does not independently prove the accounting figures are true. Reliable airline records, accounting controls, and potentially independent audit or attestation remain essential.</p>
+ </div>
+
+ <div class="fy-balance-grid">
+  <article><span class="fy-kicker">BALANCE STATE / 01</span><h4>Accrued estimate</h4><p>Provisional calculation from available operating data. It may not represent collected cash and is not claimable.</p></article>
+  <article><span class="fy-kicker">BALANCE STATE / 02</span><h4>Finalized distribution</h4><p>Calculated after period close using the approved financial report and documented allocation methodology.</p></article>
+  <article><span class="fy-kicker">BALANCE STATE / 03</span><h4>Claimable balance</h4><p>Only the finalized amount that is actually funded and available under the settlement rules can be withdrawn.</p></article>
+ </div>
+ <div class="fy-claim-example"><b>OPTIONAL CLAIM FEE · ILLUSTRATIVE ONLY</b><span>$2,300 finalized claim − $10 configurable fee = $2,290 net received. The fee is separate from network gas; its recipient and treatment must be disclosed in the final offering terms.</span></div>
+
+ <div class="fy-risk-panel">
+  <div><span class="fy-kicker">RISK & DISCLOSURE</span><h3>Tokenization does not <em>remove risk.</em></h3></div>
+  <div class="fy-risk-list"><span>Operational & cancellation risk</span><span>Revenue & demand risk</span><span>Cost-allocation risk</span><span>Oracle & reporting risk</span><span>Liquidity & settlement risk</span><span>Legal & regulatory risk</span><span>Issuer / airline counterparty risk</span></div>
+  <p>FlightYield is a proposed contractual profit-share framework. It does not promise a fixed return, principal repayment, guaranteed liquidity, or ownership of an aircraft, seat, or airline. Financial rights, eligibility, transfer rules, and any repayment obligation must be expressly established in binding offering documents and reviewed for each relevant jurisdiction.</p>
  </div>
 </section>
 
 <!-- ================================================
-     SECTION 07: NEXT PRODUCT & ECOSYSTEM NAVIGATION
+     SECTION 07: TICKET NFT VALUE & MARKET RULES
+================================================= -->
+<section class="wrap sec" id="paradigm-shift">
+ <div>
+  <span class="eyebrow" data-en="04 · CONTROLLED DIGITAL OWNERSHIP" data-fa="۰۴ · مالکیت دیجیتال کنترل‌شده">04 · CONTROLLED DIGITAL OWNERSHIP</span>
+  <h2 data-en="A Better Ticket Lifecycle. <em>Without Bypassing the Airline.</em>" data-fa="چرخه بهتر بلیط؛ <em>بدون دور زدن قوانین ایرلاین</em>">A Better Ticket Lifecycle. <em>Without Bypassing the Airline.</em></h2>
+ </div>
+ <div class="fl-compare-grid">
+  <article class="fl-comp-card"><div><div class="fl-comp-card__top"><span>01 · IDENTITY</span><span>UNIQUE DIGITAL RECORD</span></div><h3 data-en="A Ticket, Represented On-Chain" data-fa="بلیط با شناسه دیجیتال روی زنجیره">A Ticket, Represented On-Chain</h3><p data-en="The NFT provides a unique digital reference and a traceable ownership record for an eligible airline-authorized ticket. The airline ticket and its fare conditions remain the basis of travel eligibility." data-fa="NFT یک شناسه دیجیتال منحصربه‌فرد و سابقه مالکیت قابل رهگیری برای بلیط مورد تأیید ایرلاین فراهم می‌کند. خود بلیط و شرایط کرایه ایرلاین همچنان مبنای صلاحیت سفر هستند.">The NFT provides a unique digital reference and a traceable ownership record for an eligible airline-authorized ticket. The airline ticket and its fare conditions remain the basis of travel eligibility.</p></div><div class="fl-comp-vs"><span>ON-CHAIN REFERENCE</span><b>ISSUER-DEFINED RIGHTS</b></div></article>
+  <article class="fl-comp-card"><div><div class="fl-comp-card__top"><span>02 · TRANSFER</span><span>RULE-BASED MARKET</span></div><h3 data-en="Secondary Trading With Guardrails" data-fa="معامله ثانویه با محدودیت‌های روشن">Secondary Trading With Guardrails</h3><p data-en="Listings are available only when the airline, ticket type, jurisdiction, and marketplace policy permit transfer. Escrow and settlement logic coordinate the process; the airline still validates passenger changes and reissuance." data-fa="عرضه فقط زمانی مجاز است که ایرلاین، نوع بلیط، حوزه قضایی و سیاست بازار انتقال را اجازه دهند. امانی‌سازی و منطق تسویه فرایند را هماهنگ می‌کنند؛ تغییر مسافر و صدور مجدد همچنان با ایرلاین است.">Listings are available only when the airline, ticket type, jurisdiction, and marketplace policy permit transfer. Escrow and settlement logic coordinate the process; the airline still validates passenger changes and reissuance.</p></div><div class="fl-comp-vs"><span>LIST → ESCROW</span><b>VALIDATE → SETTLE</b></div></article>
+  <article class="fl-comp-card"><div><div class="fl-comp-card__top"><span>03 · TRADING RISK</span><span>ILLUSTRATIVE PORTFOLIO</span></div><h3 data-en="Bulk Ticket Trading Is Not Risk-Free" data-fa="معامله عمده بلیط بدون ریسک نیست">Bulk Ticket Trading Is Not Risk-Free</h3><p data-en="Illustration: 200 tickets acquired at $300 cost $60,000. Selling 50 at $310, 100 at $340, and 30 at $400 yields $61,500; 20 remain unsold at zero assumed recovery. The $1,500 gross difference is before fees, taxes, refunds, and other costs—not a forecast or guarantee." data-fa="مثال: خرید ۲۰۰ بلیط با میانگین ۳۰۰ دلار، ۶۰٬۰۰۰ دلار هزینه دارد. فروش ۵۰ بلیط با قیمت ۳۱۰، تعداد ۱۰۰ با قیمت ۳۴۰ و ۳۰ با قیمت ۴۰۰ دلار، مجموعاً ۶۱٬۵۰۰ دلار درآمد ایجاد می‌کند؛ ۲۰ بلیط با ارزش بازیافتی صفر باقی می‌مانند. اختلاف ناخالص ۱٬۵۰۰ دلار، پیش از کارمزد، مالیات، بازپرداخت و سایر هزینه‌هاست و پیش‌بینی یا تضمین نیست.">Illustration: 200 tickets acquired at $300 cost $60,000. Selling 50 at $310, 100 at $340, and 30 at $400 yields $61,500; 20 remain unsold at zero assumed recovery. The $1,500 gross difference is before fees, taxes, refunds, and other costs—not a forecast or guarantee.</p></div><div class="fl-comp-vs"><span>INVENTORY / DEMAND RISK</span><b>NO GUARANTEED PROFIT</b></div></article>
+ </div>
+</section>
+
+<!-- ================================================
+     SECTION 08: NEXT PRODUCT & ECOSYSTEM NAVIGATION
      (100% IDENTICAL STRUCTURE & STYLE TO PREVIOUS PAGES -> POS CARDS)
 ================================================= -->
 <section class="wrap sec" style="padding-bottom: 96px;">
@@ -1982,7 +2106,7 @@
 </footer>
 <!-- ================================================
      JAVASCRIPT: 3s AIRCRAFT BANKING PHYSICS, JET WIND CANVAS,
-     STEPPED STAIRCASE, ERC-4907 SYSTEM MODEL & BOARDING PASS
+     STEPPED TICKET LIFECYCLE, AIRLINE VALIDATION & BOARDING PASS
 ================================================= -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -2085,15 +2209,213 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 2.5 CINEMATIC BOARDING-TICKET RAIN — 8 tickets every 7.8 seconds.
+  // 2.4 FLIGHTYIELD BILINGUAL CONTENT (EN / FA)
+  // Keeps the existing FlightYield calculator and all interactive elements intact.
+  (() => {
+    const root = document.getElementById("flightyield");
+    if (!root) return;
+
+    const fa = {
+      "01 / TICKET NFT": "۰۱ / NFT بلیط",
+      "TRAVEL UTILITY": "کاربرد سفر",
+      "02 / FLIGHTYIELD": "۰۲ / فلایت‌ییلد",
+      "CONTRACTUAL REVENUE RIGHT": "حق قراردادی درآمد",
+      "FLIGHTYIELD / ASSET TERMINAL": "فلایت‌ییلد / پایانه دارایی",
+      "Revenue Pool ": "استخر درآمد ",
+      "PROPOSED ARCHITECTURE · ILLUSTRATIVE DATA ONLY": "معماری پیشنهادی · صرفاً داده‌های نمونه",
+      "MODEL PREVIEW ": "پیش‌نمایش مدل ",
+      "NOT LIVE": "غیرزنده",
+      "ASSET / FLIGHT REVENUE POOL": "دارایی / استخر درآمد پرواز",
+      "01 DEC — 31 DEC 2026": "۱ تا ۳۱ دسامبر ۲۰۲۶",
+      "ISSUER ": "صادرکننده ",
+      "AIRLINE / AUTHORIZED ENTITY": "ایرلاین / نهاد مجاز",
+      "REPORT ": "گزارش ",
+      "PERIOD-CLOSED · PENDING ATTESTATION": "دوره بسته‌شده · در انتظار تأیید",
+      "ASSET DEFINITION": "تعریف دارایی",
+      "REQUIRED DISCLOSURES": "افشاهای الزامی",
+      "Underlying asset": "دارایی پایه",
+      "Defined flight revenue pool": "استخر درآمد پروازهای تعریف‌شده",
+      "Asset reference": "شناسه دارایی",
+      "Flight scope": "دامنه پروازها",
+      "Defined flight IDs · listed in offering": "شناسه پروازهای مشخص · درج‌شده در عرضه",
+      "Operating period": "دوره عملیاتی",
+      "01–31 Dec 2026 · Illustrative": "۱ تا ۳۱ دسامبر ۲۰۲۶ · نمونه",
+      "Revenue basis": "مبنای درآمد",
+      "Eligible ticket + ancillary revenue": "درآمد بلیط واجد شرایط + خدمات جانبی",
+      "Investor allocation": "سهم سرمایه‌گذاران",
+      "70% of net distributable profit": "۷۰٪ از سود خالص قابل‌توزیع",
+      "Airline retained": "سهم باقی‌مانده ایرلاین",
+      "30% under example terms": "۳۰٪ طبق شرایط نمونه",
+      "Token supply": "تعداد توکن‌ها",
+      "700 units · Illustrative": "۷۰۰ واحد · نمونه",
+      "Entitlement": "حق دارنده توکن",
+      "Finite-period contractual profit share": "سهم قراردادی از سود برای دوره‌ای مشخص",
+      "Record / eligibility": "ثبت / احراز شرایط",
+      "Period-close token snapshot · proposed v1": "ثبت وضعیت توکن‌ها در پایان دوره · نسخه پیشنهادی ۱",
+      "A seat number alone does not define a revenue asset. The offering must specify the exact flights, period, revenue sources, cost allocation, issuer, rights, and settlement terms.": "شماره صندلی به‌تنهایی یک دارایی درآمدی را تعریف نمی‌کند. اسناد عرضه باید پروازهای دقیق، دوره، منابع درآمد، تخصیص هزینه‌ها، صادرکننده، حقوق دارندگان و شرایط تسویه را مشخص کنند.",
+      "GROSS REVENUE": "درآمد ناخالص",
+      "$32,000 ticket + $3,000 ancillary": "۳۲٬۰۰۰ دلار بلیط + ۳٬۰۰۰ دلار خدمات جانبی",
+      "ALLOCATED COSTS": "هزینه‌های تخصیص‌یافته",
+      "Fuel, airport, crew, maintenance, distribution": "سوخت، فرودگاه، خدمه، نگهداری و توزیع",
+      "NET PROFIT": "سود خالص",
+      "Gross revenue less allocated costs": "درآمد ناخالص پس از کسر هزینه‌های تخصیص‌یافته",
+      "INVESTOR SHARE · 70%": "سهم سرمایه‌گذاران · ۷۰٪",
+      "Illustrative distribution pool": "استخر توزیع نمونه",
+      "REVENUE LEDGER": "دفترکل درآمد",
+      "ILLUSTRATIVE / USD": "نمونه / دلار آمریکا",
+      "Ticket revenue attributed to asset": "درآمد بلیط منتسب به دارایی",
+      "Eligible ancillary revenue": "درآمد خدمات جانبی واجد شرایط",
+      "TOTAL GROSS REVENUE": "مجموع درآمد ناخالص",
+      "ALLOCATED COST LEDGER": "دفترکل هزینه‌های تخصیص‌یافته",
+      "Fuel allocation": "هزینه سوخت",
+      "Airport & ground services": "فرودگاه و خدمات زمینی",
+      "Crew & operations": "خدمه و عملیات",
+      "Maintenance & insurance": "نگهداری و بیمه",
+      "Distribution & payment costs": "هزینه‌های توزیع و پرداخت",
+      "TOTAL ALLOCATED COSTS": "مجموع هزینه‌های تخصیص‌یافته",
+      "NET PROFIT": "سود خالص",
+      "INVESTOR POOL": "استخر سهم سرمایه‌گذاران",
+      "Airline / issuer retains the illustrative remaining $6,900 (30%). Actual amounts depend on finalized reporting and the binding offering terms.": "ایرلاین / صادرکننده در این مثال ۶٬۹۰۰ دلار باقی‌مانده (۳۰٪) را دریافت می‌کند. مبالغ واقعی به گزارش نهایی و شرایط الزام‌آور اسناد عرضه بستگی دارند.",
+      "BUY TOKENS": "خرید توکن",
+      "Purchase tokens for a defined flight-revenue period. Your token count determines your proportional share.": "برای یک دوره مشخص از درآمد پروازها توکن می‌خرید. تعداد توکن‌های شما سهم نسبی‌تان را تعیین می‌کند.",
+      "FLIGHTS GENERATE REVENUE": "پروازها درآمد ایجاد می‌کنند",
+      "At period end, eligible revenue is recorded and allocated operating costs are deducted.": "در پایان دوره، درآمدهای واجد شرایط ثبت و هزینه‌های عملیاتی تخصیص‌یافته از آن کسر می‌شوند.",
+      "RECEIVE YOUR PROFIT SHARE": "دریافت سهم سود",
+      "The investor pool is divided pro rata among eligible token holders, based on the final terms.": "استخر سود سرمایه‌گذاران بر اساس شرایط نهایی، به نسبت تعداد توکن میان دارندگان واجد شرایط تقسیم می‌شود.",
+      "BUY TOKENS · ESTIMATE YOUR RETURN": "خرید توکن · برآورد بازده شما",
+      "Choose how many ": "تعداد توکن‌هایی را که می‌خواهید ",
+      "tokens to buy.": "بخرید انتخاب کنید.",
+      "Each token represents an equal unit of the period profit pool. Choose how many tokens to buy to see your estimated purchase amount and profit share.": "هر توکن سهمی برابر از استخر سود این دوره دارد. تعداد توکن‌ها را انتخاب کن تا مبلغ خرید و سود نمونه‌ات را ببینی.",
+      "NUMBER OF TOKENS": "تعداد توکن‌ها",
+      "ILLUSTRATIVE PRICE PER TOKEN": "قیمت نمونه هر توکن",
+      "YOUR PURCHASE ESTIMATE": "برآورد خرید شما",
+      "15% TARGET · 1 MONTH": "هدف ۱۵٪ · یک ماه",
+      "Purchase amount": "مبلغ خرید",
+      "Estimated profit share": "سود تخمینی شما",
+      "Share of investor pool": "سهم از استخر سرمایه‌گذاران",
+      "Investment + estimated profit": "سرمایه اولیه + سود تخمینی",
+      "The profit figures and percentages are examples; the actual values will be calculated based on the airline's data": "اعداد و درصد سود  نمونه هستند و ارقام اصلی با توجه به داده های ایرلاین محاسبه میشود",
+      "01 / SIMPLE PRICING EXAMPLE": "۰۱ / نمونه ساده قیمت‌گذاری",
+      "What does one token ": "قیمت هر توکن ",
+      "cost?": "چقدر است؟",
+      "In this example, each token is priced against an illustrative one-month profit share of $23 and a 15% target return. This makes the purchase price transparent instead of mixing up the token price with the profit paid to its holder.": "در این مثال، قیمت هر توکن بر اساس سود یک‌ماهه نمونه ۲۳ دلاری و بازده هدف ۱۵٪ محاسبه شده است. به این ترتیب قیمت خرید توکن از سودی که به دارنده آن تعلق می‌گیرد کاملاً تفکیک می‌شود.",
+      "Token price = Expected profit per token ÷ Target return": "قیمت توکن = سود مورد انتظار هر توکن ÷ بازده هدف",
+      "Illustrative purchase price per token. The 15% is a scenario assumption, not a promised or fixed yield.": "قیمت خرید نمونه برای هر توکن. بازده ۱۵٪ فقط فرض این سناریو است و سود ثابت یا تضمین‌شده نیست.",
+      "If you buy 10 tokens, the example purchase amount is about $1,533.33. If the full $23-per-token profit scenario is achieved, the estimated profit share is $230 — equal to 15% of the purchase amount. The original purchase amount is not automatically repaid; that depends on the binding offering terms.": "اگر ۱۰ توکن بخرید، مبلغ خرید نمونه ۱٬۵۳۳٫۳۰ دلار خواهد بود. اگر سناریوی سود ۲۳ دلار برای هر توکن محقق شود، سود تخمینی شما ۲۳۰ دلار است؛ یعنی ۱۵٪ مبلغ خرید. اصل مبلغ خرید به‌صورت خودکار بازپرداخت نمی‌شود و این موضوع به شرایط الزام‌آور عرضه بستگی دارد.",
+      "TOKEN ALLOCATION SIMULATOR": "شبیه‌ساز تخصیص توکن",
+      "Model your ": "سهم خود را ",
+      "pro-rata share.": "به‌صورت نسبی محاسبه کنید.",
+      "Each token represents 1/700 of the illustrative investor pool. Adjust the holding to see the proportional distribution if the full example pool were finalized and funded.": "هر توکن نماینده یک‌هفتصدم از استخر نمونه سرمایه‌گذاران است. تعداد توکن‌های خود را تغییر دهید تا سهم نسبی‌تان را در صورت نهایی‌شدن و تأمین کامل این استخر مشاهده کنید.",
+      "TOKENS HELD": "تعداد توکن‌های در اختیار",
+      "1 TOKEN": "۱ توکن",
+      "700 TOKENS": "۷۰۰ توکن",
+      "ILLUSTRATIVE DISTRIBUTION": "توزیع نمونه",
+      "DEMO CALCULATION": "محاسبه آزمایشی",
+      "Share of pool": "سهم از استخر",
+      "Per-token example": "مقدار نمونه به‌ازای هر توکن",
+      "Claim status": "وضعیت مطالبه",
+      "NOT CLAIMABLE · EXAMPLE": "غیرقابل مطالبه · نمونه",
+      "01 / OFFERING PRICE ≠ DISTRIBUTION": "۰۱ / قیمت عرضه ≠ مبلغ توزیع",
+      "How is a token ": "قیمت‌گذاری توکن ",
+      "priced?": "چگونه انجام می‌شود؟",
+      "The distribution amount is not the purchase price. Price depends on expected cash flows, required return, duration, operational and counterparty risk, data assurance, legal costs, liquidity, and settlement timing.": "مبلغ توزیع‌شده با قیمت خرید توکن یکسان نیست. قیمت به جریان‌های نقدی مورد انتظار، بازده موردنیاز، مدت‌زمان، ریسک عملیاتی و طرف مقابل، اطمینان‌پذیری داده‌ها، هزینه‌های حقوقی، نقدشوندگی و زمان تسویه بستگی دارد.",
+      "Token Price = Expected Distribution ÷ (1 + Required Return)": "قیمت توکن = توزیع مورد انتظار ÷ (۱ + بازده موردنیاز)",
+      "Illustrative one-period value using a hypothetical 10% required return — not a promised yield or market quote.": "ارزش نمونه برای یک دوره با فرض بازده موردنیاز ۱۰٪؛ این عدد سود تضمین‌شده یا قیمت بازار نیست.",
+      "This simplified formula assumes one expected future payment and no separate principal repayment or residual value. Multiple periods generally require discounted expected cash-flow valuation.": "این فرمول ساده‌شده یک پرداخت آتی مورد انتظار را فرض می‌کند و بازپرداخت جداگانه اصل سرمایه یا ارزش باقیمانده را در نظر نمی‌گیرد. برای چند دوره معمولاً باید ارزش جریان‌های نقدی مورد انتظار با تنزیل محاسبه شود.",
+      "02 / DISTRIBUTION LIFECYCLE": "۰۲ / چرخه توزیع",
+      "From flight operations to ": "از عملیات پرواز تا ",
+      "claim.": "مطالبه سهم.",
+      "Define the asset": "تعریف دارایی",
+      "Issuer, flights, period, revenue, costs, allocation and token supply.": "صادرکننده، پروازها، دوره، درآمد، هزینه‌ها، تخصیص و تعداد توکن‌ها.",
+      "Operate & record": "عملیات و ثبت داده‌ها",
+      "Collect ticket, ancillary, refund, cancellation and operating-cost data.": "جمع‌آوری داده‌های بلیط، خدمات جانبی، بازپرداخت، لغو و هزینه‌های عملیاتی.",
+      "Close & attest": "بستن دوره و تأیید گزارش",
+      "Prepare a period report and verify it under the offering's assurance policy.": "تهیه گزارش دوره و راستی‌آزمایی آن طبق سیاست اطمینان‌بخشی اسناد عرضه.",
+      "Finalize the pool": "نهایی‌سازی استخر",
+      "Submit the approved distributable amount and fund the claim contract.": "ثبت مبلغ قابل‌توزیع تأییدشده و تأمین موجودی قرارداد مطالبه.",
+      "Claim distribution": "مطالبه سهم توزیع‌شده",
+      "Eligible holders call claim() for their pro-rata amount. Proposed v1: transfer-lock the RWA units during the earning period and take an eligibility snapshot at period close; any later transferable version must define its record-time snapshot or time-weighted ownership rule.": "دارندگان واجد شرایط با اجرای claim() سهم متناسب خود را مطالبه می‌کنند. در نسخه پیشنهادی ۱، واحدهای RWA طی دوره کسب درآمد قفل انتقال می‌شوند و وضعیت دارندگان در پایان دوره ثبت می‌شود؛ هر نسخه قابل‌انتقال در آینده باید زمان ثبت مالکیت یا قاعده مالکیت زمان‌وزن‌شده را مشخص کند.",
+      "PROPOSED ON-CHAIN / OFF-CHAIN STACK": "ساختار پیشنهادی درون‌زنجیره‌ای / برون‌زنجیره‌ای",
+      "FlightYield": "فلایت‌ییلد",
+      "system architecture": "معماری سیستم",
+      "CONCEPTUAL FLOW · NOT DEPLOYED CLAIM": "جریان مفهومی · هنوز پیاده‌سازی نشده",
+      "AIRLINE DATA": "داده‌های ایرلاین",
+      "Sales · completed flights · refunds · ancillary · costs": "فروش · پروازهای انجام‌شده · بازپرداخت · خدمات جانبی · هزینه‌ها",
+      "REVENUE ENGINE": "موتور محاسبه درآمد",
+      "Gross revenue · cost allocation · net profit · investor share": "درآمد ناخالص · تخصیص هزینه · سود خالص · سهم سرمایه‌گذار",
+      "RWA TOKEN": "توکن دارایی واقعی",
+      "ERC-20 restricted rights or ERC-1155 asset-period units": "حقوق محدودشده ERC-20 یا واحدهای دارایی-دوره ERC-1155",
+      "OFFERING MANAGER": "مدیریت عرضه",
+      "Supply · price · subscription · offering status": "تعداد · قیمت · پذیره‌نویسی · وضعیت عرضه",
+      "REPORT / ORACLE": "گزارش / اوراکل",
+      "Signed report · asset ID · period · nonce · report hash": "گزارش امضاشده · شناسه دارایی · دوره · نانس · هش گزارش",
+      "DISTRIBUTOR": "توزیع‌کننده",
+      "Funded pool · eligibility snapshot · claim protection": "استخر تأمین‌شده · ثبت وضعیت واجدان شرایط · محافظت از مطالبه",
+      "COMPLIANCE": "انطباق مقرراتی",
+      "KYC/AML · jurisdiction · whitelist · transfer restrictions": "احراز هویت و مبارزه با پول‌شویی · حوزه قضایی · فهرست مجاز · محدودیت انتقال",
+      "A valid signature confirms who submitted a report; it does not independently prove the accounting figures are true. Reliable airline records, accounting controls, and potentially independent audit or attestation remain essential.": "امضای معتبر مشخص می‌کند چه کسی گزارش را ارسال کرده است؛ اما به‌تنهایی صحت ارقام حسابداری را اثبات نمی‌کند. سوابق قابل‌اتکای ایرلاین، کنترل‌های حسابداری و در صورت لزوم حسابرسی یا تأیید مستقل همچنان ضروری هستند.",
+      "BALANCE STATE / 01": "وضعیت موجودی / ۰۱",
+      "Accrued estimate": "برآورد انباشته",
+      "Provisional calculation from available operating data. It may not represent collected cash and is not claimable.": "محاسبه موقت بر اساس داده‌های عملیاتی موجود. ممکن است معادل وجه نقد وصول‌شده نباشد و قابل مطالبه نیست.",
+      "BALANCE STATE / 02": "وضعیت موجودی / ۰۲",
+      "Finalized distribution": "توزیع نهایی‌شده",
+      "Calculated after period close using the approved financial report and documented allocation methodology.": "پس از پایان دوره و بر اساس گزارش مالی تأییدشده و روش تخصیص مستند محاسبه می‌شود.",
+      "BALANCE STATE / 03": "وضعیت موجودی / ۰۳",
+      "Claimable balance": "موجودی قابل مطالبه",
+      "Only the finalized amount that is actually funded and available under the settlement rules can be withdrawn.": "فقط مبلغ نهایی‌شده‌ای که واقعاً تأمین مالی شده و طبق قواعد تسویه در دسترس باشد، قابل برداشت است.",
+      "OPTIONAL CLAIM FEE · ILLUSTRATIVE ONLY": "کارمزد اختیاری مطالبه · صرفاً نمونه",
+      "$2,300 finalized claim − $10 configurable fee = $2,290 net received. The fee is separate from network gas; its recipient and treatment must be disclosed in the final offering terms.": "۲٬۳۰۰ دلار مطالبه نهایی − ۱۰ دلار کارمزد قابل تنظیم = ۲٬۲۹۰ دلار دریافتی خالص. این کارمزد جدا از گس شبکه است؛ دریافت‌کننده و نحوه محاسبه آن باید در شرایط نهایی عرضه افشا شود.",
+      "RISK & DISCLOSURE": "ریسک و افشا",
+      "Tokenization does not ": "توکنیزه‌سازی ریسک را ",
+      "remove risk.": "از بین نمی‌برد.",
+      "Operational & cancellation risk": "ریسک عملیاتی و لغو",
+      "Revenue & demand risk": "ریسک درآمد و تقاضا",
+      "Cost-allocation risk": "ریسک تخصیص هزینه",
+      "Oracle & reporting risk": "ریسک اوراکل و گزارش‌دهی",
+      "Liquidity & settlement risk": "ریسک نقدشوندگی و تسویه",
+      "Legal & regulatory risk": "ریسک حقوقی و مقرراتی",
+      "Issuer / airline counterparty risk": "ریسک طرف مقابلِ صادرکننده / ایرلاین",
+      "FlightYield is a proposed contractual profit-share framework. It does not promise a fixed return, principal repayment, guaranteed liquidity, or ownership of an aircraft, seat, or airline. Financial rights, eligibility, transfer rules, and any repayment obligation must be expressly established in binding offering documents and reviewed for each relevant jurisdiction.": "FlightYield یک چارچوب پیشنهادی برای مشارکت قراردادی در سود است. این محصول بازده ثابت، بازپرداخت اصل سرمایه، نقدشوندگی تضمین‌شده یا مالکیت هواپیما، صندلی یا ایرلاین را وعده نمی‌دهد. حقوق مالی، شرایط احراز صلاحیت، قواعد انتقال و هرگونه تعهد بازپرداخت باید صریحاً در اسناد الزام‌آور عرضه تعیین و برای هر حوزه قضایی بررسی شوند."
+    };
+
+    const originals = new WeakMap();
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    function syncFlightYieldLanguage() {
+      const isFa = document.documentElement.lang === "fa";
+      nodes.forEach(node => {
+        if (!originals.has(node)) originals.set(node, node.nodeValue);
+        const original = originals.get(node);
+        const key = original.trim();
+        if (!key) return;
+        const translated = fa[key];
+        if (isFa && translated) {
+          const leading = original.match(/^\s*/)?.[0] || "";
+          const trailing = original.match(/\s*$/)?.[0] || "";
+          node.nodeValue = leading + translated + trailing;
+        } else if (!isFa) {
+          node.nodeValue = original;
+        }
+      });
+      root.classList.toggle("fy-rtl", isFa);
+    }
+
+    const languageButton = document.getElementById("lang-switch");
+    if (languageButton) languageButton.addEventListener("click", () => requestAnimationFrame(syncFlightYieldLanguage));
+    syncFlightYieldLanguage();
+  })();
+
+ // 2.5 CINEMATIC BOARDING-TICKET RAIN (One-time entry drop)
   const ticketLayer = document.getElementById("fl-ticket-rain");
   if (ticketLayer && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     const ticketCount = 8;
     const ticketMarkup = `
       <span class="fl-ticket-main">
-        <b class="fl-ticket-brand">AERVNYX · FLIGHT NFT</b>
+        <b class="fl-ticket-brand">AERVYNX · FLIGHT NFT</b>
         <b class="fl-ticket-route">AER <i>→</i> 505</b>
-        <span class="fl-ticket-meta"><span>BOARDING PASS</span><span>ERC-4907</span></span>
+        <span class="fl-ticket-meta"><span>BOARDING PASS</span><span>TICKET NFT</span></span>
       </span>
       <span class="fl-ticket-qr"></span>`;
     function releaseTicketWave() {
@@ -2113,13 +2435,11 @@ document.addEventListener("DOMContentLoaded", () => {
         ticket.style.setProperty("--ticket-opacity", (0.35 + Math.random() * 0.06).toFixed(2));
         ticket.style.animationDelay = (i * 105 + Math.random() * 170).toFixed(0) + "ms";
         ticketLayer.appendChild(ticket);
-        ticket.addEventListener("animationend", () => ticket.remove(), { once:true });
+        ticket.addEventListener("animationend", () => ticket.remove(), { once: true });
       }
     }
-    releaseTicketWave();
-    window.setInterval(releaseTicketWave, 7800);
+    releaseTicketWave(); // 
   }
-
   // =====================================================
   // 3. CINEMATIC AIRCRAFT CRUISE / BANK / SLIPSTREAM ENGINE
   //    Time-based motion: smooth cross-stage pass, slight overshoot, return.
@@ -2282,10 +2602,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const stairSteps = document.querySelectorAll(".fl-stair-step");
   const stairStatus = document.getElementById("fl-stair-status");
   const STAIR_LABELS = [
-    "ACTIVE TIER: STEP 01 → BULK CHARTER & DOTO DISCOUNT ENGINE",
-    "ACTIVE TIER: STEP 02 → SMART CROSS-WALLET GENESIS NFT BNPL",
-    "ACTIVE TIER: STEP 03 → ERC-4907 RENTABLE DUAL-ROLE & RESALE",
-    "ACTIVE TIER: STEP 04 → DYNAMIC ORACLES, ZK-PROOF & ZEROVAULT YIELD"
+    "ACTIVE TIER: STEP 01 → AUTHORIZED INVENTORY & NFT ISSUANCE",
+    "ACTIVE TIER: STEP 02 → UNIQUE TICKET NFT REGISTRY",
+    "ACTIVE TIER: STEP 03 → CONTROLLED SECONDARY-MARKET RESALE",
+    "ACTIVE TIER: STEP 04 → AIRLINE VALIDATION & SETTLEMENT"
   ];
   let curStairIdx = 0;
   let stairHovered = false;
@@ -2313,49 +2633,50 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, 3200);
 
-  // 5. ERC-4907 System Model Node Inspector & Optical Packet Engine
+  // Ticket NFT System Model Node Inspector & Optical Packet Engine
+  // 5. Airline Ticket NFT System Model Node Inspector & Optical Packet Engine
   const FL_NODE_SPECS = {
     OwnerPool: {
-      title: "Bulk Charter Owner (ERC-4907)",
-      en: "Under ERC-4907, an investor can buy a bulk package of Flight NFTs as the Owner and rent out User flying rights for a specific time window—yield-farming travel routes without transferring asset ownership.",
-      fa: "بر پایه استاندارد ERC-4907، یک سرمایه‌گذار می‌تواند بسته‌ای از بلیط‌های NFT را به عنوان «مالک» (Owner) خریداری کرده و حق پرواز (User) را به مسافران اجاره دهد و بدون واگذاری اصل دارایی، از مسیرهای هوایی سود کسب کند.",
-      meta: "ROLE 01 · OWNEROF(TOKENID)"
+      title: "Authorized Ticket Supplier",
+      en: "An airline or authorized supplier makes eligible inventory available under a documented commercial agreement. Ticket eligibility, fare conditions, and transfer rules originate with the issuer.",
+      fa: "ایرلاین یا تأمین‌کننده مجاز، موجودی واجد شرایط را بر اساس توافق تجاری مستند ارائه می‌کند. شرایط کرایه، صلاحیت انتقال و ضوابط بلیط از صادرکننده می‌آیند.",
+      meta: "INPUT 01 · AUTHORIZED INVENTORY"
     },
-    BNPLEngine: {
-      title: "DOTO Discount & Genesis BNPL",
-      en: "Paying with native DOTO triggers a hardcoded protocol discount. Holding an AERVYNX Genesis Credential NFT whitelists the user for instant on-chain BNPL installments.",
-      fa: "پرداخت با توکن بومی DOTO تخفیف مستقیم پروتکل را فعال می‌کند. همچنین هولدرهای Genesis Credential NFT به طور خودکار واجد شرایط خرید اقساطی آن‌چین (BNPL) می‌شوند.",
-      meta: "ENGINE · DOTO DISCOUNT + BNPL"
+    TicketRegistry: {
+      title: "Ticket NFT Registry",
+      en: "After the underlying ticket is confirmed, a unique NFT is issued or linked to its reference. Sensitive passenger data should not be exposed in public on-chain metadata.",
+      fa: "پس از تأیید بلیط اصلی، یک NFT منحصربه‌فرد صادر یا به شناسه آن متصل می‌شود. اطلاعات حساس مسافر نباید در متادیتای عمومی زنجیره افشا شود.",
+      meta: "REGISTRY · UNIQUE TOKEN ID"
     },
     AviationOracle: {
-      title: "Dynamic Aviation Oracles",
-      en: "Decentralized Oracles push real-time gate changes, flight delays, and boarding updates directly into the Flight NFT's dynamic on-chain metadata.",
-      fa: "اوراکل‌های غیرمتمرکز تغییرات گیت، تاخیرها و ساعت سوار شدن را به صورت لحظه‌ای در متادیتای پویای بلیط NFT شما به‌روزرسانی می‌کنند.",
-      meta: "ORACLE · LIVE FLIGHT METADATA"
+      title: "Airline Ticketing System",
+      en: "The issuer's reservation system remains the source of truth for passenger name, ticket validity, fare conditions, cancellations, and reissuance. An NFT transfer alone cannot modify an airline booking.",
+      fa: "سامانه رزرو صادرکننده مرجع اصلی نام مسافر، اعتبار بلیط، شرایط کرایه، لغو و صدور مجدد است. انتقال NFT به‌تنهایی رزرو ایرلاین را تغییر نمی‌دهد.",
+      meta: "OFF-CHAIN SOURCE · ISSUER CONTROL"
     },
-    ERC4907Core: {
-      title: "FlightNFT_4907.sol",
-      en: "Core smart contract on DotOne Chain 505 implementing ERC-4907 dual roles (Owner vs. User), automated takeoff expiry (uint64 expires), and instant name-change metadata.",
-      fa: "قرارداد هوشمند مرکزی روی شبکه دات‌وان ۵۰۵ که استاندارد دوگانه ERC-4907، انقضای خودکار در لحظه تیک‌آف و تغییر آنی متادیتای نام مسافر را مدیریت می‌کند.",
-      meta: "CORE CONTRACT · CHAIN ID 505"
+    TicketCore: {
+      title: "TicketNFTRegistry.sol",
+      en: "Proposed coordination contract for issuance references, marketplace escrow states, transfer requests, and settlement conditions. This is an illustrative architecture, not a verified deployment.",
+      fa: "قرارداد هماهنگ‌کننده پیشنهادی برای ارجاع صدور، وضعیت امانی بازار، درخواست انتقال و شرایط تسویه. این معماری نمونه است و به معنی استقرار تأییدشده نیست.",
+      meta: "PROPOSED CORE · CHAIN ID 505"
     },
     TravelerUser: {
-      title: "Traveler User & zk-Proof QR",
-      en: "The Traveler holds temporary User rights until takeoff and boards using a Zero-Knowledge Proof (zk-Proof) QR code without exposing passport PII to third-party databases.",
-      fa: "مسافر دارای حق استفاده (User) تا لحظه تیک‌آف است و در فرودگاه با کد QR مبتنی بر اثبات دانایی صفر (zk-Proof) بدون افشای اطلاعات پاسپورت سوار هواپیما می‌شود.",
-      meta: "OUTPUT 01 · USEROF(TOKENID) + ZK-QR"
+      title: "Airline Transfer Validation",
+      en: "The airline checks whether the ticket can be transferred and applies any required passenger-name update, cancellation, or reissue in its own system. Approval is not automatic.",
+      fa: "ایرلاین بررسی می‌کند که آیا بلیط قابل انتقال است و سپس تغییر نام، ابطال یا صدور مجدد لازم را در سامانه خود اعمال می‌کند. تأیید به‌صورت خودکار انجام نمی‌شود.",
+      meta: "OUTPUT 01 · ISSUER APPROVAL"
     },
     SecondaryMarket: {
-      title: "Secondary Market Resale",
-      en: "Plans changed? List your Flight NFT on the AERVYNX secondary market—even at a premium if the flight is sold out—with instant on-chain metadata updates.",
-      fa: "در صورت تغییر برنامه سفر، بلیط NFT خود را فوراً در بازار ثانویه (حتی با قیمت بالاتر در پروازهای تکمیل‌ظرفیت) بفروشید و تغییر نام به صورت آنی انجام می‌شود.",
-      meta: "OUTPUT 02 · LIQUID DEX RESALE"
+      title: "Controlled Secondary Market",
+      en: "A permitted listing moves through escrow, airline validation, and confirmation. The marketplace coordinates these steps; transfer restrictions, fees, and timing remain subject to issuer rules.",
+      fa: "عرضه مجاز در بازار از امانی‌سازی، اعتبارسنجی ایرلاین و تأیید عبور می‌کند. بازار این مراحل را هماهنگ می‌کند؛ محدودیت انتقال، کارمزد و زمان‌بندی تابع قوانین صادرکننده است.",
+      meta: "MARKET FLOW · LIST → ESCROW → CONFIRM"
     },
-    ZeroVaultYield: {
-      title: "ZeroVault & RWA Yield Pools",
-      en: "A portion of every primary ticket sale and secondary resale royalty is routed through ZeroVault directly to RWA liquidity pools for DOTO stakers.",
-      fa: "بخشی از هر فروش اولیه بلیط و کارمزد رویالتی بازار ثانویه از طریق خزانه ZeroVault به استخرهای نقدینگی RWA واریز می‌شود تا به استیک‌کنندگان DOTO سود برسد.",
-      meta: "OUTPUT 03 · ZEROVAULT ROYALTY STREAM"
+    SettlementLogic: {
+      title: "Settlement & Refund Logic",
+      en: "Funds are released only after configured confirmation conditions are satisfied. A rejected or timed-out airline transfer follows the offering's disclosed refund or escrow-release policy.",
+      fa: "وجوه فقط پس از تحقق شرایط تأیید تعریف‌شده آزاد می‌شوند. انتقال ردشده یا منقضی‌شده طبق سیاست اعلام‌شده بازپرداخت یا آزادسازی امانی خواهد داشت.",
+      meta: "OUTPUT 02 · SETTLE OR REFUND"
     }
   };
 
@@ -2387,6 +2708,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const statusTxt = document.getElementById("fl-arch-status-txt");
   const coreBadge = document.getElementById("fl-core-badge");
 
+  const MODEL_MODES = {
+    dualrole: {
+      en: "SYSTEM MODEL · AUTHORIZED INVENTORY → UNIQUE TICKET NFT",
+      fa: "مدل سیستم · موجودی مجاز ← NFT منحصربه‌فرد بلیط",
+      badge: "issueTicketNFT() · VERIFIED REF"
+    },
+    escrow: {
+      en: "SYSTEM MODEL · LISTING → ESCROW → AIRLINE TRANSFER REQUEST",
+      fa: "مدل سیستم · عرضه ← امانی‌سازی ← درخواست انتقال به ایرلاین",
+      badge: "openEscrow() · requestTransfer()"
+    },
+    oracle: {
+      en: "SYSTEM MODEL · AIRLINE APPROVAL → SETTLEMENT / REFUND",
+      fa: "مدل سیستم · تأیید ایرلاین ← تسویه / بازپرداخت",
+      badge: "confirmTransfer() · settle()"
+    }
+  };
+
   modeBtns.forEach(btn => {
     btn.addEventListener("click", () => {
       modeBtns.forEach(b => b.classList.remove("active"));
@@ -2394,27 +2733,10 @@ document.addEventListener("DOMContentLoaded", () => {
       currentFlMode = btn.getAttribute("data-fl-mode") || "dualrole";
       if (airportModelShell) airportModelShell.dataset.mode = currentFlMode;
       if (typeof updateAirportRoutes === "function") requestAnimationFrame(updateAirportRoutes);
+      const mode = MODEL_MODES[currentFlMode] || MODEL_MODES.dualrole;
       const isFa = document.documentElement.lang === "fa";
-
-      if (currentFlMode === "dualrole") {
-        statusTxt.textContent = isFa
-          ? "مدل سیستم · استاندارد دوگانه ERC-4907 (مالک و مسافر) و انقضای خودکار فعال"
-          : "SYSTEM MODEL · ERC-4907 DUAL-ROLE (OWNER VS. USER) & AUTO-EXPIRY ACTIVE";
-        coreBadge.textContent = "setUser(u, expires)";
-        coreBadge.setAttribute("fill", "#27D17F");
-      } else if (currentFlMode === "bnpl") {
-        statusTxt.textContent = isFa
-          ? "مدل سیستم · موتور تخفیف بومی DOTO و خط اعتباری اقساطی Genesis NFT BNPL"
-          : "SYSTEM MODEL · DOTO PROTOCOL DISCOUNT & GENESIS NFT BNPL CREDIT LINE";
-        coreBadge.textContent = "scheduleBNPL() · OK";
-        coreBadge.setAttribute("fill", "#0096FF");
-      } else if (currentFlMode === "oracle") {
-        statusTxt.textContent = isFa
-          ? "مدل سیستم · به‌روزرسانی زنده گیت توسط اوراکل و تولید گواهی zk-Proof"
-          : "SYSTEM MODEL · LIVE AVIATION ORACLE SYNC & ZK-PROOF BOARDING QR";
-        coreBadge.textContent = "verifyZkBoarding()";
-        coreBadge.setAttribute("fill", "#EC5800");
-      }
+      if (statusTxt) statusTxt.textContent = isFa ? mode.fa : mode.en;
+      if (coreBadge) coreBadge.textContent = mode.badge;
     });
   });
 
@@ -2434,13 +2756,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const vb = airportSvg.viewBox.baseVal;
     const sx = vb.width / sceneRect.width;
     const sy = vb.height / sceneRect.height;
-    const core = document.querySelector('[data-fl-node="ERC4907Core"]');
+    const core = document.querySelector('[data-fl-node="TicketCore"]');
     if (!core) return;
     const coreRect = core.getBoundingClientRect();
 
     const routes = [
-      ["OwnerPool", "left"], ["BNPLEngine", "left"], ["AviationOracle", "left"],
-      ["TravelerUser", "right"], ["SecondaryMarket", "right"], ["ZeroVaultYield", "right"]
+      ["OwnerPool", "left"], ["TicketRegistry", "left"], ["AviationOracle", "left"],
+      ["TravelerUser", "right"], ["SecondaryMarket", "right"], ["SettlementLogic", "right"]
     ];
     const basePaths = airportSvg.querySelectorAll(".fl-route-base path");
     const activePaths = airportSvg.querySelectorAll(".fl-route-active path");
@@ -2571,81 +2893,65 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   requestAnimationFrame(animateFlPackets);
 
-  // 6. Interactive Holographic Boarding Pass Sandbox
+  // 6. Interactive Airline Ticket NFT Sandbox — simulated states only
   const passBtns = document.querySelectorAll("[data-pass-act]");
   const pGate = document.getElementById("fl-p-gate");
   const pPrice = document.getElementById("fl-p-price");
-  const pBnpl = document.getElementById("fl-p-bnpl");
+  const pState = document.getElementById("fl-p-state");
   const pExpiry = document.getElementById("fl-p-expiry");
   const pUser = document.getElementById("fl-p-user");
+  const pOwner = document.getElementById("fl-p-owner");
   const pBadge = document.getElementById("fl-pass-badge");
   const pFlightStatus = document.getElementById("fl-pass-flight-status");
   const sandboxCode = document.getElementById("fl-sandbox-code");
 
   const PASS_STATES = {
-    doto: {
-      badge: "ERC-4907 · DOTO DISCOUNT APPLIED",
-      status: "ON TIME · BOARDING",
-      gate: "GATE B-14",
-      price: "680 DOTO (-15%)",
-      bnpl: "PAID IN FULL",
-      expiry: "TAKEOFF (18:45)",
-      user: "0x9F4...8E21 (ACTIVE PASSENGER)",
-      userColor: "var(--cyber-green)",
-      code: `<span class="cm">// 01. Hardcoded DOTO Protocol Discount (No Bank/Forex Spread)</span>
-<span class="kw">function</span> <span class="fn">bookWithDoto</span>(uint256 tokenId, uint64 takeoffTime) <span class="kw">external</span> {
-  uint256 discounted = basePrice - ((basePrice * <span class="st">1500</span>) / <span class="st">10000</span>);
-  dotoToken.<span class="fn">transferFrom</span>(msg.sender, zeroVaultRouter, discounted);
-  _setUser(tokenId, msg.sender, takeoffTime); <span class="cm">// ERC-4907 User</span>
+    issue: {
+      badge: "NFT ISSUED · DEMO", status: "ISSUER RECORD CONFIRMED", gate: "AVX-5058-12A", price: "$340.00", state: "NFT ISSUED", issuer: "PENDING LISTING", holder: "0x71C...9A2B", buyer: "NOT ASSIGNED", color: "var(--cyber-green)",
+      code: `<span class="cm">// SIMULATION · Create a unique digital reference after issuer confirmation</span>
+<span class="kw">function</span> <span class="fn">issueTicketNFT</span>(bytes32 ticketRef) <span class="kw">external</span> {
+  <span class="kw">require</span>(issuerRecordConfirmed(ticketRef));
+  _mint(msg.sender, ticketRef);
+  emit TicketNFTIssued(ticketRef, msg.sender);
 }`
     },
-    bnpl: {
-      badge: "GENESIS NFT · BNPL CREDIT ACTIVE",
-      status: "WHITELISTED · BNPL",
-      gate: "GATE B-14",
-      price: "170 DOTO UPFRONT",
-      bnpl: "3x 170 DOTO SCHEDULED",
-      expiry: "TAKEOFF (18:45)",
-      user: "0x9F4...8E21 (GENESIS HOLDER)",
-      userColor: "var(--cyber-blue)",
-      code: `<span class="cm">// 02. Smart Cross-Wallet BNPL via AERVYNX Genesis Credential NFT</span>
-<span class="kw">function</span> <span class="fn">bookWithGenesisBNPL</span>(uint256 tokenId) <span class="kw">external</span> {
-  <span class="kw">require</span>(genesisNft.<span class="fn">balanceOf</span>(msg.sender) > <span class="st">0</span>, <span class="st">"NotWhitelisted"</span>);
-  dotoToken.<span class="fn">transferFrom</span>(msg.sender, address(this), upfrontQuarter);
-  _scheduleInstallments(msg.sender, tokenId, <span class="st">3</span>);
+    list: {
+      badge: "LISTED · TRANSFER RULES APPLY", status: "MARKET LISTING CREATED · DEMO", gate: "AVX-5058-12A", price: "$340.00 ASK", state: "LISTED", issuer: "ELIGIBILITY CHECK REQUIRED", holder: "0x71C...9A2B", buyer: "AWAITING BUYER", color: "var(--cyber-blue)",
+      code: `<span class="cm">// SIMULATION · Listing is allowed only when issuer and marketplace rules permit</span>
+<span class="kw">function</span> <span class="fn">listForResale</span>(uint256 tokenId, uint256 ask) <span class="kw">external</span> {
+  <span class="kw">require</span>(ownerOf(tokenId) == msg.sender);
+  <span class="kw">require</span>(transferPolicyAllows(tokenId));
+  listings[tokenId] = Listing(ask, true);
 }`
     },
-    oracle: {
-      badge: "DYNAMIC ORACLE · METADATA UPDATED",
-      status: "GATE UPDATED · LIVE",
-      gate: "GATE C-09 (NEW)",
-      price: "680 DOTO (-15%)",
-      bnpl: "ACTIVE",
-      expiry: "TAKEOFF (19:05)",
-      user: "0x9F4...8E21 (ZK-QR READY)",
-      userColor: "var(--cyber-green)",
-      code: `<span class="cm">// 03. Decentralized Aviation Oracle Dynamic Metadata Push</span>
-<span class="kw">function</span> <span class="fn">pushFlightUpdate</span>(uint256 tokenId, string <span class="kw">calldata</span> newGate, uint64 newTakeoff) <span class="kw">external</span> onlyOracle {
-  flightMeta[tokenId].gate = newGate;
-  _users[tokenId].expires = newTakeoff;
-  <span class="kw">emit</span> MetadataUpdate(tokenId);
+    escrow: {
+      badge: "ESCROWED · AIRLINE CHECK PENDING", status: "BUYER PAYMENT HELD · DEMO", gate: "AVX-5058-12A", price: "$340.00 HELD", state: "TRANSFER PENDING", issuer: "REQUEST SUBMITTED", holder: "0x71C...9A2B", buyer: "0x9F4...8E21", color: "var(--cyber-blue)",
+      code: `<span class="cm">// SIMULATION · Escrow holds funds while the issuer validates the transfer</span>
+<span class="kw">function</span> <span class="fn">purchaseToEscrow</span>(uint256 tokenId) <span class="kw">external payable</span> {
+  <span class="kw">require</span>(listings[tokenId].active);
+  _holdPayment(msg.value);
+  _requestAirlineTransfer(tokenId, msg.sender);
+  emit AirlineValidationRequested(tokenId);
 }`
     },
-    takeoff: {
-      badge: "ERC-4907 · USER LEASE EXPIRED",
-      status: "DEPARTED · IN FLIGHT",
-      gate: "CLOSED (DEPARTED)",
-      price: "ROYALTIES → ZEROVAULT",
-      bnpl: "SETTLED",
-      expiry: "EXPIRED (00:00:00)",
-      user: "0x000...0000 (AUTO-EXPIRED AT TAKEOFF)",
-      userColor: "var(--color-accent)",
-      code: `<span class="cm">// 04. ERC-4907 Automatic User Expiry at Flight Takeoff</span>
-<span class="kw">function</span> <span class="fn">userOf</span>(uint256 tokenId) <span class="kw">public view returns</span> (address) {
-  <span class="kw">if</span> (uint256(_users[tokenId].expires) >= block.timestamp) {
-    <span class="kw">return</span> _users[tokenId].user;
-  }
-  <span class="kw">return</span> address(<span class="st">0</span>); <span class="cm">// Owner (0x71C...9A2B) retains underlying NFT!</span>
+    approve: {
+      badge: "AIRLINE CONFIRMED · DEMO", status: "TRANSFER APPROVED · SETTLED", gate: "AVX-5058-12A", price: "$340.00 SETTLED", state: "CONFIRMED", issuer: "AIRLINE APPROVAL RECORDED", holder: "0x9F4...8E21", buyer: "NEW HOLDER", color: "var(--cyber-green)",
+      code: `<span class="cm">// SIMULATION · Approval must originate from an authorized issuer integration</span>
+<span class="kw">function</span> <span class="fn">confirmAirlineTransfer</span>(uint256 tokenId, bytes calldata issuerProof) <span class="kw">external</span> {
+  <span class="kw">require</span>(verifyAuthorizedIssuer(issuerProof));
+  _recordIssuerConfirmation(tokenId);
+  _releaseEscrowToSeller(tokenId);
+  _completeTokenTransfer(tokenId);
+}`
+    },
+    reject: {
+      badge: "TRANSFER REJECTED · REFUND PATH", status: "AIRLINE DECLINED / TIMEOUT · DEMO", gate: "AVX-5058-12A", price: "$340.00 REFUND", state: "REJECTED / TIMEOUT", issuer: "TRANSFER NOT APPROVED", holder: "0x71C...9A2B", buyer: "REFUND INITIATED", color: "var(--color-accent)",
+      code: `<span class="cm">// SIMULATION · Failure path follows the disclosed escrow policy</span>
+<span class="kw">function</span> <span class="fn">refundAfterRejection</span>(uint256 tokenId) <span class="kw">external</span> {
+  <span class="kw">require</span>(transferRejected(tokenId) || validationTimedOut(tokenId));
+  _refundBuyer(tokenId);
+  _releaseOrCancelEscrow(tokenId);
+  emit TransferAborted(tokenId);
 }`
     }
   };
@@ -2654,23 +2960,44 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => {
       passBtns.forEach(b => b.classList.remove("is-active"));
       btn.classList.add("is-active");
-      const key = btn.getAttribute("data-pass-act");
-      const st = PASS_STATES[key];
+      const st = PASS_STATES[btn.getAttribute("data-pass-act")];
       if (!st) return;
-
       if (pBadge) pBadge.textContent = st.badge;
-      if (pFlightStatus) pFlightStatus.textContent = st.status;
+      if (pFlightStatus) { pFlightStatus.textContent = st.status; pFlightStatus.style.color = st.color; }
       if (pGate) pGate.textContent = st.gate;
       if (pPrice) pPrice.textContent = st.price;
-      if (pBnpl) pBnpl.textContent = st.bnpl;
-      if (pExpiry) pExpiry.textContent = st.expiry;
-      if (pUser) {
-        pUser.textContent = st.user;
-        pUser.style.color = st.userColor;
-      }
+      if (pState) { pState.textContent = st.state; pState.style.color = st.color; }
+      if (pExpiry) pExpiry.textContent = st.issuer;
+      if (pOwner) pOwner.textContent = st.holder;
+      if (pUser) { pUser.textContent = st.buyer; pUser.style.color = st.color; }
       if (sandboxCode) sandboxCode.innerHTML = st.code;
     });
   });
+
+  // FlightYield token purchase + pro-rata profit simulator (illustrative only).
+  const fyRange = document.getElementById("fy-token-range");
+  const fyCount = document.getElementById("fy-token-count");
+  const fyPayout = document.getElementById("fy-payout-value");
+  const fyShare = document.getElementById("fy-payout-share");
+  const fyInvestment = document.getElementById("fy-investment-value");
+  const fyTotal = document.getElementById("fy-total-value");
+  if (fyRange && fyCount && fyPayout && fyShare && fyInvestment && fyTotal) {
+    const money = value => value.toLocaleString("en-US", { style: "currency", currency: "USD" });
+    const updateFlightYield = () => {
+      const tokens = Number(fyRange.value);
+      const share = tokens / 700;
+      const investment = tokens * (23 / 0.15);
+      const profit = tokens * 23;
+      fyCount.textContent = `${tokens} / 700`;
+      fyInvestment.textContent = money(investment);
+      fyPayout.textContent = money(profit);
+      fyShare.textContent = `${(share * 100).toFixed(4)}%`;
+      fyTotal.textContent = money(investment + profit);
+    };
+    fyRange.addEventListener("input", updateFlightYield);
+    updateFlightYield();
+  }
+
 });
 </script>
 </body>

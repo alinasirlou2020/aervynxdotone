@@ -3,24 +3,45 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Aervynx — Tokenized Cargo Drones (Autonomous Fleet RWA)</title>
-<meta name="description" content="Tokenized delivery drone infrastructure with transparent on-chain participation and automated RWA yield pools on DotOne Smart Chain 505.">
+<title>Aervynx Drone RWA (FlightYield) — Autonomous Fleet Economics & 50/50 Profit Split Simulator</title>
+<meta name="description" content="Interactive product simulation for Aervynx Autonomous Drone RWA (FlightYield). Explore period-based revenue accounting, operating expense deductions, reserves, and the 50/50 net distributable profit split between token holders and fleet operators.">
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="js/wallet.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="js/wallet.js" defer></script>
 
 <style>
-  /* =====================================================
-     PRODUCT PAGE 01: TOKENIZED CARGO DRONES — CUSTOM STYLES
-     Theme: Obsidian (#010B13), Molten Orange (#EC5800), Cyber Blue (#0096FF)
-  ===================================================== */
+  /* =====================================================================
+     AERVYNX DRONE RWA (FLIGHTYIELD) — AEROSPACE & INSTITUTIONAL TERMINAL
+     Palette (Section 13 Specification):
+       Deep Navy:        #002D54  | Obsidian Base:    #020B14 / #041426
+       Aerospace Blue:   #2676AD  | Primary Teal:     #3CC8BD
+       Secondary Teal:   #3BB7B8  | Deep Burgundy:    #660000
+       Burgundy Accent:  #A6002A  | Pure White:       #FFFFFF
+  ===================================================================== */
   :root {
+    --dr-bg-deep: #020B14;
+    --dr-navy: #002D54;
+    --dr-navy-soft: #061D36;
+    --dr-blue: #2676AD;
+    --dr-teal: #3CC8BD;
+    --dr-teal-sec: #3BB7B8;
+    --dr-burgundy-deep: #660000;
+    --dr-burgundy: #A6002A;
+    --dr-white: #FFFFFF;
+    --dr-text-sec: rgba(230, 241, 250, 0.76);
+    --dr-text-muted: rgba(176, 199, 218, 0.54);
+    --dr-border: rgba(60, 200, 189, 0.18);
+    --dr-border-blue: rgba(38, 118, 173, 0.32);
+    --dr-border-burgundy: rgba(166, 0, 42, 0.48);
     --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-    --cyber-blue: #0096FF;
-    --cyber-green: #27D17F;
   }
 
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--dr-bg-deep);
+    color: var(--dr-white);
+  }
   html[dir="rtl"] body {
     font-family: "Vazirmatn", system-ui, sans-serif;
   }
@@ -28,25 +49,115 @@
     transform: scaleX(-1);
   }
 
-  /* ---------- 1. CINEMATIC DRONE HERO SECTION ---------- */
+  /* Scoped Theme Overrides for Aerospace Navy/Teal Palette */
+  .dr-page em {
+    font-style: normal;
+    color: var(--dr-teal);
+  }
+  .dr-page .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dr-teal);
+    margin-bottom: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .dr-page .btn--teal {
+    background: linear-gradient(135deg, var(--dr-teal) 0%, var(--dr-blue) 100%);
+    border-color: rgba(60, 200, 189, 0.55);
+    color: #01101C;
+    font-weight: 700;
+    box-shadow: 0 8px 26px rgba(60, 200, 189, 0.22);
+  }
+  .dr-page .btn--teal:hover {
+    box-shadow: 0 12px 32px rgba(60, 200, 189, 0.38);
+    transform: translateY(-2px);
+  }
+  .dr-page .btn--navy {
+    background: rgba(0, 45, 84, 0.55);
+    border: 1px solid var(--dr-border-blue);
+    color: var(--dr-white);
+  }
+  .dr-page .btn--navy:hover {
+    border-color: var(--dr-teal);
+    background: rgba(38, 118, 173, 0.25);
+  }
+  .dr-page .btn--burgundy {
+    background: rgba(102, 0, 0, 0.55);
+    border: 1px solid var(--dr-border-burgundy);
+    color: #FFD6DF;
+  }
+  .dr-page .btn--burgundy:hover {
+    background: var(--dr-burgundy);
+    color: #fff;
+  }
+
+  /* Simulation Category Badges (Section 16 Integrity) */
+  .sim-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 11px;
+    border-radius: 6px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    background: rgba(0, 45, 84, 0.65);
+    border: 1px solid var(--dr-border);
+    color: var(--dr-teal);
+  }
+  .sim-badge i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--dr-teal);
+    box-shadow: 0 0 8px var(--dr-teal);
+  }
+  .sim-badge--warn {
+    background: rgba(102, 0, 0, 0.45);
+    border-color: var(--dr-border-burgundy);
+    color: #FF8DA6;
+  }
+  .sim-badge--warn i {
+    background: var(--dr-burgundy);
+    box-shadow: 0 0 8px var(--dr-burgundy);
+  }
+  .sim-badge--prop {
+    background: rgba(38, 118, 173, 0.2);
+    border-color: var(--dr-border-blue);
+    color: #9BD3F5;
+  }
+  .sim-badge--prop i {
+    background: var(--dr-blue);
+    box-shadow: 0 0 8px var(--dr-blue);
+  }
+
+  /* ---------- SECTION 01: CINEMATIC HERO ---------- */
   .p-hero {
     position: relative;
     min-height: 100svh;
-    padding: calc(var(--nav-h) + 48px) 0 64px;
+    padding: calc(var(--nav-h) + 38px) 0 52px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
     isolation: isolate;
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--dr-border-blue);
+    background:
+      radial-gradient(60% 55% at 75% 42%, rgba(0, 45, 84, 0.72), transparent 70%),
+      radial-gradient(45% 50% at 18% 80%, rgba(60, 200, 189, 0.12), transparent 70%),
+      var(--dr-bg-deep);
   }
-
-  /* Hero Background Image Layer — Full 100% Opacity */
   .p-hero__bg {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: #010B13;
     overflow: hidden;
   }
   .p-hero__bg img {
@@ -54,78 +165,108 @@
     height: 100%;
     object-fit: cover;
     object-position: center center;
-    opacity: 1;
-    animation: heroZoom 18s ease-in-out infinite alternate;
+    opacity: 0.34;
+    filter: saturate(0.85) hue-rotate(8deg);
+    animation: heroZoom 20s ease-in-out infinite alternate;
   }
   .p-hero__bg::after {
     content: "";
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(90deg, rgba(1,11,19,0.88) 0%, rgba(1,11,19,0.48) 34%, transparent 65%),
-      linear-gradient(180deg, rgba(1,11,19,0.45) 0%, transparent 22%, rgba(1,11,19,0.82) 86%, #010B13 100%);
-  }
-  html[dir="rtl"] .p-hero__bg::after {
-    background:
-      linear-gradient(270deg, rgba(1,11,19,0.88) 0%, rgba(1,11,19,0.48) 34%, transparent 65%),
-      linear-gradient(180deg, rgba(1,11,19,0.45) 0%, transparent 22%, rgba(1,11,19,0.82) 86%, #010B13 100%);
+      linear-gradient(90deg, rgba(2,11,20,0.95) 0%, rgba(0,45,84,0.68) 42%, rgba(2,11,20,0.75) 100%),
+      linear-gradient(180deg, rgba(2,11,20,0.55) 0%, transparent 28%, rgba(2,11,20,0.92) 88%, var(--dr-bg-deep) 100%);
   }
 
-  /* Top Breadcrumb & Main Hero Grid */
   .p-hero__main {
     display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: 40px;
+    grid-template-columns: 1.06fr 0.94fr;
+    gap: 38px;
     align-items: center;
     margin-block: auto;
-    padding: 28px 0;
+    padding: 24px 0;
   }
 
   .p-crumb {
     display: inline-flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 10px;
     font-family: var(--mono);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
     text-transform: uppercase;
-    color: var(--color-text-secondary);
-    margin-bottom: 22px;
+    color: var(--dr-text-sec);
+    margin-bottom: 16px;
     padding-left: 12px;
-    border-left: 2px solid var(--color-accent);
+    border-left: 2px solid var(--dr-teal);
   }
   html[dir="rtl"] .p-crumb {
     padding-left: 0;
     padding-right: 12px;
     border-left: 0;
-    border-right: 2px solid var(--color-accent);
+    border-right: 2px solid var(--dr-teal);
   }
-  .p-crumb span {
-    color: var(--color-accent);
-  }
+  .p-crumb span { color: var(--dr-teal); }
 
   .p-hero h1 {
-    font-size: clamp(38px, 5vw, 72px);
-    line-height: 1.04;
+    font-size: clamp(34px, 4.4vw, 62px);
+    line-height: 1.05;
     letter-spacing: -0.035em;
-    max-width: 15ch;
+    max-width: 17ch;
   }
   .p-hero h1 em {
     display: block;
-    color: var(--color-accent);
-    text-shadow: 0 0 38px rgba(236,88,0,0.35);
+    color: var(--dr-teal);
+    text-shadow: 0 0 36px rgba(60, 200, 189, 0.28);
   }
-
+  .p-hero__tag {
+    display: block;
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #9BD3F5;
+    letter-spacing: 0.04em;
+  }
   .p-hero__sub {
-    color: var(--color-text-secondary);
-    font-size: clamp(16px, 1.35vw, 20px);
-    line-height: 1.65;
-    max-width: 46ch;
-    margin-top: 22px;
+    color: var(--dr-text-sec);
+    font-size: clamp(15px, 1.18vw, 17.5px);
+    line-height: 1.72;
+    max-width: 56ch;
+    margin-top: 16px;
   }
 
-  /* ---------- RIGHT-SIDE AUTONOMOUS DRONE AIRSPACE HUD ---------- */
+  .hero-split-Readout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 24px;
+    max-width: 560px;
+  }
+  .hero-split-box {
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: rgba(0, 45, 84, 0.42);
+    border: 1px solid var(--dr-border-blue);
+  }
+  .hero-split-box small {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--dr-text-muted);
+  }
+  .hero-split-box strong {
+    display: block;
+    font-family: var(--mono);
+    font-size: 18px;
+    color: var(--dr-teal);
+    margin-top: 3px;
+  }
+
+  /* Right-Side Autonomous Drone Airspace HUD */
   .p-hero__hud {
     position: relative;
     width: 100%;
@@ -135,30 +276,28 @@
     pointer-events: none;
     perspective: 1400px;
     overflow: visible;
+    direction: ltr;
   }
-
-  /* Radar Airspace Circle (Drone flies in and out of this boundary) */
   .hud-reticle {
     position: absolute;
-    width: 320px;
-    height: 320px;
+    width: 330px;
+    height: 330px;
     border-radius: 50%;
-    border: 1px dashed rgba(236, 88, 0, 0.32);
-    background: radial-gradient(circle, rgba(236, 88, 0, 0.08) 0%, rgba(1, 11, 19, 0) 70%);
-    animation: spinCW 32s linear infinite;
+    border: 1px dashed rgba(60, 200, 189, 0.38);
+    background: radial-gradient(circle, rgba(0, 45, 84, 0.42) 0%, rgba(2, 11, 20, 0) 70%);
+    animation: spinCW 34s linear infinite;
     z-index: 1;
   }
   .hud-reticle::before {
     content: "";
     position: absolute;
-    inset: 28px;
+    inset: 26px;
     border-radius: 50%;
-    border: 1px solid rgba(0, 150, 255, 0.22);
-    border-top-color: var(--color-accent);
+    border: 1px solid rgba(38, 118, 173, 0.35);
+    border-top-color: var(--dr-teal);
     animation: spinCCW 16s linear infinite;
   }
 
-  /* 3D Autonomous Flight Rig (Controlled by JS Flight Physics) */
   .hero-drone-rig {
     position: relative;
     width: min(105%, 490px);
@@ -167,24 +306,21 @@
     transform-style: preserve-3d;
     will-change: transform;
   }
-
   .hero-drone-body {
     position: relative;
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
   }
-
   .hero-drone-img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     display: block;
-    filter: drop-shadow(0 26px 40px rgba(0, 0, 0, 0.82)) drop-shadow(0 0 18px rgba(236, 88, 0, 0.18));
+    filter: drop-shadow(0 26px 40px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 22px rgba(60, 200, 189, 0.22));
     transition: filter 0.18s ease;
   }
 
-  /* High-Speed Spinning Propeller Discs (Exact Coordinates on how-it-works.webp) */
   .h-rotor {
     position: absolute;
     left: var(--x);
@@ -206,16 +342,16 @@
     border-radius: 50%;
     background: conic-gradient(
       transparent 0deg,
-      rgba(255, 255, 255, 0.48) 14deg,
-      rgba(236, 88, 0, 0.35) 26deg,
-      transparent 44deg,
+      rgba(255, 255, 255, 0.52) 14deg,
+      rgba(60, 200, 189, 0.42) 28deg,
+      transparent 46deg,
       transparent 120deg,
-      rgba(255, 255, 255, 0.42) 134deg,
+      rgba(255, 255, 255, 0.45) 134deg,
       transparent 154deg,
       transparent 240deg,
-      rgba(255, 255, 255, 0.48) 254deg,
-      rgba(0, 150, 255, 0.32) 266deg,
-      transparent 284deg
+      rgba(255, 255, 255, 0.52) 254deg,
+      rgba(38, 118, 173, 0.42) 268deg,
+      transparent 286deg
     );
     -webkit-mask: radial-gradient(closest-side, transparent 10%, #000 36%, transparent 100%);
     mask: radial-gradient(closest-side, transparent 10%, #000 36%, transparent 100%);
@@ -223,7 +359,6 @@
     animation: rotor-spin 0.22s linear infinite;
   }
 
-  /* Blinking / Shutting-Off Navigation & Motor Pod LEDs (Exact Hardware Positions) */
   .h-led-strip {
     position: absolute;
     left: var(--x);
@@ -232,14 +367,12 @@
     height: var(--h);
     transform: translate(-50%, -50%) rotate(var(--rot, 0deg));
     border-radius: 99px;
-    background: radial-gradient(ellipse at center, #FFFFFF 0%, #FF8533 45%, #EC5800 75%, transparent 100%);
-    box-shadow: 0 0 10px 2px rgba(236, 88, 0, 0.85);
+    background: radial-gradient(ellipse at center, #FFFFFF 0%, #3CC8BD 48%, #2676AD 80%, transparent 100%);
+    box-shadow: 0 0 10px 2px rgba(60, 200, 189, 0.85);
     mix-blend-mode: screen;
     animation: navLightCycle var(--dur, 2.6s) ease-in-out infinite;
     animation-delay: var(--d, 0s);
   }
-
-  /* Tiny Precision Arm Strobe Dots (Turn completely OFF and ON like real aviation strobes) */
   .h-strobe-dot {
     position: absolute;
     left: var(--x);
@@ -249,13 +382,11 @@
     transform: translate(-50%, -50%);
     border-radius: 50%;
     background: #FFFFFF;
-    box-shadow: 0 0 8px 2px #EC5800, 0 0 14px 4px rgba(236, 88, 0, 0.9);
+    box-shadow: 0 0 8px 2px var(--dr-teal), 0 0 14px 4px rgba(60, 200, 189, 0.9);
     mix-blend-mode: screen;
     animation: aviationStrobe var(--dur, 1.8s) steps(1, end) infinite;
     animation-delay: var(--d, 0s);
   }
-
-  /* Micro-Calibrated High-Beam Projectors on Blades & Nose Lenses (Fires Every 3s Automatically) */
   .h-beam-point {
     position: absolute;
     left: var(--x);
@@ -267,10 +398,9 @@
     opacity: 0;
     pointer-events: none;
     mix-blend-mode: screen;
-    background: radial-gradient(ellipse at center, #FFFFFF 0%, #FFE4CC 38%, rgba(236, 88, 0, 0.85) 70%, transparent 100%);
-    box-shadow: 0 0 14px 3px rgba(255, 255, 255, 0.95), 0 0 26px 6px rgba(236, 88, 0, 0.8);
+    background: radial-gradient(ellipse at center, #FFFFFF 0%, #B8F5F0 40%, rgba(60, 200, 189, 0.85) 72%, transparent 100%);
+    box-shadow: 0 0 14px 3px rgba(255, 255, 255, 0.95), 0 0 26px 6px rgba(60, 200, 189, 0.8);
   }
-  /* Razor-thin Micro Optical Glint across the Blade/Projector */
   .h-beam-point::after {
     content: "";
     position: absolute;
@@ -279,42 +409,12 @@
     right: -130%;
     height: 1.5px;
     transform: translateY(-50%);
-    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.95) 35%, #FFFFFF 50%, rgba(236, 88, 0, 0.9) 65%, transparent 100%);
-    box-shadow: 0 0 6px #FFFFFF;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.95) 35%, #FFFFFF 50%, rgba(60, 200, 189, 0.9) 65%, transparent 100%);
   }
-
-  /* Active High-Beam State (Triggered Automatically Every 3 Seconds) */
   .hero-drone-rig.is-flashing .h-beam-point {
     animation: precisionHighBeam 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
-  .hero-drone-rig.is-flashing .hero-drone-img {
-    filter: drop-shadow(0 26px 40px rgba(0, 0, 0, 0.82)) drop-shadow(0 0 28px rgba(255, 160, 80, 0.55)) brightness(1.09);
-  }
 
-  @keyframes precisionHighBeam {
-    0%   { opacity: 0; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(0.3); }
-    18%  { opacity: 1; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(1.15); }
-    38%  { opacity: 0.08; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(0.5); }
-    58%  { opacity: 1; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(1.3); }
-    100% { opacity: 0; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(0.3); }
-  }
-
-  @keyframes navLightCycle {
-    0%, 100% { opacity: 0.95; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(1); }
-    45%      { opacity: 0.05; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(0.75); }
-    55%      { opacity: 0; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(0.7); }
-    70%      { opacity: 1; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(1.08); }
-  }
-
-  @keyframes aviationStrobe {
-    0%, 55%  { opacity: 0; }
-    56%, 64% { opacity: 1; }
-    65%, 72% { opacity: 0; }
-    73%, 80% { opacity: 1; }
-    81%, 100%{ opacity: 0; }
-  }
-
-  /* Telemetry Status Chips */
   .hud-chip {
     position: absolute;
     display: inline-flex;
@@ -322,70 +422,68 @@
     gap: 8px;
     padding: 8px 14px;
     border-radius: 99px;
-    background: rgba(3, 10, 18, 0.86);
+    background: rgba(0, 28, 54, 0.9);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.14);
+    border: 1px solid var(--dr-border);
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 600;
     letter-spacing: 0.08em;
     color: #fff;
     box-shadow: 0 12px 30px rgba(0,0,0,0.55);
     animation: floatChip 4s ease-in-out infinite alternate;
-    pointer-events: none;
     z-index: 4;
   }
   .hud-chip i {
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: var(--c, var(--color-accent));
-    box-shadow: 0 0 10px var(--c, var(--color-accent));
+    background: var(--c, var(--dr-teal));
+    box-shadow: 0 0 10px var(--c, var(--dr-teal));
   }
-  .hud-chip--1 { top: 14px; right: 12px; --c: #27D17F; }
-  .hud-chip--2 { bottom: 26px; left: 4px; --c: #EC5800; animation-delay: 1.2s; }
-  .hud-chip--3 { top: 48%; right: -8px; --c: #0096FF; animation-delay: 2.1s; }
+  .hud-chip--1 { top: 10px; right: 8px; --c: #3CC8BD; }
+  .hud-chip--2 { bottom: 22px; left: 0px; --c: #2676AD; animation-delay: 1.2s; }
+  .hud-chip--3 { top: 48%; right: -6px; --c: #3BB7B8; animation-delay: 2.1s; }
+  .hud-chip--4 { top: 14px; left: 4px; --c: #A6002A; animation-delay: 0.7s; }
 
-  /* ---------- 2. HERO BOTTOM 4-STAGE PIPELINE & PILL BAR (FULL 100% CONTAINER WIDTH) ---------- */
+  /* Hero Bottom 4-Stage Pipeline */
   .p-hero__bottom {
     position: relative;
     z-index: 3;
-    margin-top: 24px;
+    margin-top: 18px;
     width: min(100% - 2 * var(--page-gutter), var(--container-width));
     margin-inline: auto;
   }
-
   .p-pipeline {
     position: relative;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    padding: 24px 0 32px;
+    padding: 20px 0 26px;
     direction: ltr;
   }
   .p-pipeline::before {
     content: "";
     position: absolute;
-    top: 56px;
+    top: 52px;
     left: 12%;
     right: 12%;
     height: 2px;
-    background: linear-gradient(90deg, rgba(236,88,0,0.15), rgba(236,88,0,0.65), rgba(0,150,255,0.65), rgba(39,209,127,0.35));
+    background: linear-gradient(90deg, rgba(38,118,173,0.2), rgba(60,200,189,0.75), rgba(38,118,173,0.75), rgba(60,200,189,0.25));
     z-index: 0;
   }
   .p-pipeline__beam {
     position: absolute;
-    top: 55px;
+    top: 51px;
     left: 12%;
     width: 90px;
     height: 4px;
     border-radius: 4px;
-    background: linear-gradient(90deg, transparent, #EC5800, #fff);
-    box-shadow: 0 0 16px #EC5800;
+    background: linear-gradient(90deg, transparent, var(--dr-teal), #fff);
+    box-shadow: 0 0 16px var(--dr-teal);
     z-index: 1;
     animation: pipePulse 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   }
-
   .p-stage {
     position: relative;
     z-index: 2;
@@ -393,293 +491,675 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 12px;
+    gap: 10px;
   }
   .p-stage__ic {
-    width: 64px;
-    height: 64px;
-    border-radius: 18px;
-    background: rgba(6, 14, 24, 0.92);
-    border: 1px solid rgba(255,255,255,0.14);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.6), inset 0 0 18px rgba(236,88,0,0.08);
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    background: rgba(0, 32, 62, 0.92);
+    border: 1px solid var(--dr-border);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.55), inset 0 0 16px rgba(60,200,189,0.08);
     display: grid;
     place-items: center;
-    transition: transform 0.35s var(--ease-premium), border-color 0.35s, box-shadow 0.35s;
-  }
-  .p-stage:hover .p-stage__ic {
-    transform: translateY(-5px) scale(1.06);
-    border-color: var(--color-accent);
-    box-shadow: 0 16px 36px rgba(236,88,0,0.28), inset 0 0 22px rgba(236,88,0,0.18);
   }
   .p-stage__ic svg {
-    width: 32px;
-    height: 32px;
-    stroke: var(--color-accent);
+    width: 28px;
+    height: 28px;
+    stroke: var(--dr-teal);
     fill: none;
     stroke-width: 1.7;
-    stroke-linecap: round;
-    stroke-linejoin: round;
   }
-  .p-stage b {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--color-text);
-  }
-  .p-stage span {
-    font-size: 12.5px;
-    color: var(--color-text-muted);
-    max-width: 22ch;
-  }
+  .p-stage b { font-size: 14.5px; color: #fff; }
+  .p-stage span { font-size: 12px; color: var(--dr-text-muted); max-width: 24ch; }
 
-  /* Glassmorphic Feature Pill Strip */
-  .p-strip {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: center;
-    padding: 18px 28px;
-    border-radius: 99px;
-    background: rgba(255,255,255,0.025);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-  }
-  .p-strip__item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 4px 16px;
-    border-right: 1px solid rgba(255,255,255,0.1);
-    font-size: 14.5px;
-    font-weight: 500;
-    color: var(--color-text-secondary);
-  }
-  .p-strip__item:last-child {
-    border-right: 0;
-  }
-  html[dir="rtl"] .p-strip__item {
-    border-right: 0;
-    border-left: 1px solid rgba(255,255,255,0.1);
-  }
-  html[dir="rtl"] .p-strip__item:last-child {
-    border-left: 0;
-  }
-  .p-strip__item svg {
-    width: 20px;
-    height: 20px;
-    stroke: var(--color-accent);
-    fill: none;
-    stroke-width: 1.8;
-    flex-shrink: 0;
-  }
-
-  /* ---------- 3. DEEP-DIVE NARRATIVE & 5 UNIFORM CARDS ---------- */
-  .p-narrative {
-    display: grid;
-    grid-template-columns: 1.12fr 0.88fr;
-    gap: clamp(32px, 5vw, 64px);
-    align-items: stretch;
-  }
-  .p-copy-box {
-    padding: clamp(28px, 4vw, 48px);
-    border-radius: var(--radius-lg);
-    background: rgba(255,255,255,0.02);
-    backdrop-filter: blur(16px);
-    border: 1px solid var(--color-border);
-    box-shadow: var(--shadow-card);
+  /* ---------- COMMON PANEL & SHELL ARCHITECTURE ---------- */
+  .dr-shell {
+    margin-top: 32px;
+    padding: clamp(24px, 3.2vw, 38px);
+    border-radius: 20px;
+    background:
+      radial-gradient(65% 75% at 95% 5%, rgba(0, 45, 84, 0.55), transparent 70%),
+      linear-gradient(165deg, rgba(4, 20, 38, 0.94) 0%, rgba(2, 10, 19, 0.98) 100%);
+    border: 1px solid var(--dr-border-blue);
+    box-shadow: 0 26px 68px rgba(0, 0, 0, 0.65);
     position: relative;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
   }
-  .p-copy-box::before {
+  .dr-shell::before {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--color-accent), var(--cyber-blue), transparent);
+    background: linear-gradient(90deg, transparent, var(--dr-teal), var(--dr-blue), transparent);
   }
-  .p-copy-box p {
-    color: var(--color-text-secondary);
-    font-size: 16.5px;
-    line-height: 1.8;
-    margin-top: 18px;
+  .dr-shell--burgundy {
+    border-color: var(--dr-border-burgundy);
+    background:
+      radial-gradient(60% 70% at 95% 5%, rgba(102, 0, 0, 0.28), transparent 70%),
+      linear-gradient(165deg, rgba(16, 10, 20, 0.95) 0%, rgba(3, 9, 17, 0.99) 100%);
   }
-  .p-copy-box p:first-of-type {
-    font-size: 18px;
-    color: var(--color-text);
-    font-weight: 500;
+  .dr-shell--burgundy::before {
+    background: linear-gradient(90deg, transparent, var(--dr-burgundy), var(--dr-teal), transparent);
   }
 
-  .p-copy-kpis {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 34px;
-    padding-top: 26px;
-    border-top: 1px solid var(--color-border);
+  .dr-topbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding-bottom: 18px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
-  .p-copy-kpi {
-    padding: 14px 16px;
-    border-radius: var(--radius-sm);
-    background: rgba(255,255,255,0.018);
-    border-left: 2px solid var(--color-accent);
+  .dr-topbar__title strong {
+    display: block;
+    font-size: 16px;
+    color: #fff;
   }
-  html[dir="rtl"] .p-copy-kpi {
-    border-left: 0;
-    border-right: 2px solid var(--color-accent);
-  }
-  .p-copy-kpi b {
+  .dr-topbar__title small {
     display: block;
     font-family: var(--mono);
-    font-size: 18px;
-    color: var(--color-text);
-    margin-bottom: 4px;
-  }
-  .p-copy-kpi span {
-    font-size: 12.5px;
-    color: var(--color-text-muted);
+    font-size: 11px;
+    color: var(--dr-text-muted);
+    margin-top: 3px;
   }
 
-  /* Right Column: 5 Identical Uniform Cards Stacked Vertically */
-  .p-specs-grid {
+  /* ---------- SECTION 02: THE 50/50 ECONOMIC PROPOSITION ---------- */
+  .prop-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: stretch;
+  }
+  .prop-split-card {
+    padding: 28px 26px;
+    border-radius: 16px;
+    background: rgba(0, 45, 84, 0.32);
+    border: 1px solid var(--dr-border);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .prop-split-card--operator {
+    background: rgba(38, 118, 173, 0.14);
+    border-color: var(--dr-border-blue);
+  }
+  .prop-pct {
+    font-family: var(--mono);
+    font-size: clamp(38px, 4.5vw, 56px);
+    font-weight: 800;
+    color: var(--dr-teal);
+    line-height: 1;
+    margin-top: 20px;
+  }
+  .prop-split-card--operator .prop-pct {
+    color: #74C0FC;
+  }
+  .prop-split-card h3 {
+    font-size: 21px;
+    margin: 6px 0;
+  }
+  .prop-split-card p {
+    font-size: 14px;
+    color: var(--dr-text-sec);
+    line-height: 1.65;
+  }
+  .prop-amount-live {
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+  .prop-amount-live b {
+    font-size: 18px;
+    color: #fff;
+  }
+
+  /* Compact Waterfall Chain */
+  .compact-wf {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    direction: ltr;
+  }
+  .cwf-step {
+    padding: 14px 12px;
+    border-radius: 12px;
+    background: rgba(2, 14, 27, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    position: relative;
+  }
+  .cwf-step small {
+    display: block;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    color: var(--dr-text-muted);
+    letter-spacing: 0.06em;
+  }
+  .cwf-step strong {
+    display: block;
+    font-family: var(--mono);
+    font-size: 14.5px;
+    color: #fff;
+    margin-top: 5px;
+  }
+  .cwf-step.is-deduct strong { color: #FF8DA6; }
+  .cwf-step.is-net {
+    border-color: var(--dr-teal);
+    background: rgba(60, 200, 189, 0.09);
+  }
+  .cwf-step.is-net strong { color: var(--dr-teal); }
+
+  .legal-notice-bar {
+    margin-top: 20px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: rgba(102, 0, 0, 0.28);
+    border-left: 3px solid var(--dr-burgundy);
+    font-size: 13px;
+    color: var(--dr-text-sec);
+    line-height: 1.6;
+  }
+  html[dir="rtl"] .legal-notice-bar {
+    border-left: 0;
+    border-right: 3px solid var(--dr-burgundy);
+  }
+
+  /* ---------- SECTION 03: FLEET ASSET REGISTRY ---------- */
+  .fleet-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .fleet-filter-btn {
+    padding: 7px 14px;
+    border-radius: 8px;
+    background: rgba(0, 45, 84, 0.38);
+    border: 1px solid var(--dr-border-blue);
+    color: var(--dr-text-sec);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .fleet-filter-btn.active,
+  .fleet-filter-btn:hover {
+    background: var(--dr-teal);
+    border-color: var(--dr-teal);
+    color: #01101C;
+  }
+
+  .fleet-workspace {
+    display: grid;
+    grid-template-columns: 1.35fr 0.65fr;
+    gap: 22px;
+    align-items: start;
+  }
+  .fleet-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .drone-node-card {
+    padding: 18px 16px;
+    border-radius: 14px;
+    background: rgba(3, 15, 29, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: left;
+  }
+  html[dir="rtl"] .drone-node-card { text-align: right; }
+  .drone-node-card:hover,
+  .drone-node-card.selected {
+    border-color: var(--dr-teal);
+    background: rgba(0, 45, 84, 0.48);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+  }
+  .dnc-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    margin-bottom: 10px;
+  }
+  .dnc-status {
+    padding: 2px 8px;
+    border-radius: 99px;
+    font-size: 9.5px;
+    font-weight: 700;
+  }
+  .dnc-status.st-OP { background: rgba(60, 200, 189, 0.16); color: var(--dr-teal); }
+  .dnc-status.st-MAINT { background: rgba(166, 0, 42, 0.25); color: #FF8DA6; }
+  .dnc-status.st-IDLE { background: rgba(38, 118, 173, 0.25); color: #9BD3F5; }
+  .dnc-status.st-PEND { background: rgba(255, 190, 90, 0.18); color: #FFD485; }
+
+  .drone-node-card h4 {
+    font-family: var(--mono);
+    font-size: 15px;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .drone-node-card small {
+    display: block;
+    font-size: 11.5px;
+    color: var(--dr-text-muted);
+    margin-bottom: 12px;
+  }
+  .dnc-metrics {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+
+  .fleet-inspector {
+    padding: 22px;
+    border-radius: 16px;
+    background: rgba(0, 28, 54, 0.52);
+    border: 1px solid var(--dr-border);
+  }
+  .fi-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    font-size: 12.5px;
+  }
+  .fi-row span { color: var(--dr-text-muted); }
+  .fi-row b { font-family: var(--mono); color: #fff; }
+
+  /* ---------- SECTION 04: REVENUE & EXPENSE ENGINE ---------- */
+  .preset-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+  .fin-engine-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 24px;
+  }
+  .fin-inputs-panel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .fin-field {
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgba(2, 12, 24, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: border-color 0.2s;
+  }
+  .fin-field:focus-within {
+    border-color: var(--dr-teal);
+  }
+  .fin-field label {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--dr-text-muted);
+    margin-bottom: 6px;
+  }
+  .fin-field input {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    color: #fff;
+    font-family: var(--mono);
+    font-size: 16px;
+    font-weight: 700;
+    outline: none;
+  }
+
+  .fin-summary-panel {
+    padding: 22px;
+    border-radius: 16px;
+    background: rgba(0, 32, 62, 0.45);
+    border: 1px solid var(--dr-border);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 14px;
+  }
+  .fin-ledger-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 12.5px;
+  }
+  .fin-ledger-table tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  .fin-ledger-table td {
+    padding: 9px 4px;
+  }
+  .fin-ledger-table td:last-child {
+    text-align: right;
+    font-weight: 700;
+  }
+  html[dir="rtl"] .fin-ledger-table td:last-child {
+    text-align: left;
+  }
+  .fin-ledger-table tr.row-total {
+    border-top: 1px solid var(--dr-teal);
+    border-bottom: 0;
+    color: var(--dr-teal);
+    font-size: 14px;
+  }
+
+  /* ---------- SECTION 05: 50/50 PROFIT ALLOCATION VISUALIZER ---------- */
+  .split-visualizer {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  .p-spec-card {
-    padding: 22px 26px;
-    border-radius: var(--radius-md);
-    background: rgba(255,255,255,0.022);
-    border: 1px solid var(--color-border);
-    transition: transform 0.3s var(--ease-premium), border-color 0.3s, box-shadow 0.3s;
-    display: flex;
-    gap: 18px;
-    align-items: flex-start;
+  .split-svg-stage {
+    background: rgba(2, 10, 20, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 18px;
+    direction: ltr;
   }
-  .p-spec-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--color-border-active);
-    box-shadow: 0 14px 36px rgba(236,88,0,0.14);
-  }
-  .p-spec-dot {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    background: rgba(236,88,0,0.1);
-    border: 1px solid rgba(236,88,0,0.35);
-    display: grid;
-    place-items: center;
-    flex-shrink: 0;
-    font-family: var(--mono);
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--color-accent);
-  }
-  .p-spec-card h3 {
-    font-size: 18px;
-    margin-bottom: 6px;
-  }
-  .p-spec-card p {
-    font-size: 14px;
-    color: var(--color-text-secondary);
-    line-height: 1.6;
-  }
-
-  /* ---------- 4. INTERACTIVE ANIMATED DIAGRAM (DRONE RWA ENGINE) ---------- */
-  .sim-box {
-    margin-top: 42px;
-    border-radius: var(--radius-lg);
-    background: linear-gradient(165deg, rgba(8,16,28,0.92) 0%, rgba(2,7,13,0.98) 100%);
-    border: 1px solid rgba(255,255,255,0.12);
-    box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 40px rgba(236,88,0,0.08);
+  .split-bar-track {
+    height: 18px;
+    border-radius: 99px;
+    background: var(--dr-blue);
     overflow: hidden;
-    position: relative;
+    display: flex;
+    border: 1px solid rgba(255, 255, 255, 0.18);
   }
-  .sim-header {
+  .split-bar-inv {
+    height: 100%;
+    width: 50%;
+    background: linear-gradient(90deg, var(--dr-teal), var(--dr-teal-sec));
+    transition: width 0.3s ease;
+  }
+  .split-controls-row {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    padding: 20px 28px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    background: rgba(255,255,255,0.015);
+    padding-top: 8px;
   }
-  .sim-status {
+
+  /* ---------- SECTION 06: INVESTOR REWARD CALCULATOR & TOKENOMICS ---------- */
+  .calc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .preset-chips {
     display: flex;
-    align-items: center;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0 18px;
+  }
+  .chip-btn {
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: rgba(0, 45, 84, 0.5);
+    border: 1px solid var(--dr-border-blue);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .chip-btn.active,
+  .chip-btn:hover {
+    background: var(--dr-teal);
+    border-color: var(--dr-teal);
+    color: #01101C;
+    font-weight: 700;
+  }
+
+  .examples-table {
+    width: 100%;
+    border-collapse: collapse;
     font-family: var(--mono);
     font-size: 12px;
-    color: var(--color-text-secondary);
+    margin-top: 12px;
   }
-  .sim-status i {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--cyber-green);
-    box-shadow: 0 0 12px var(--cyber-green);
-    animation: pulseDot 1.4s infinite;
+  .examples-table th,
+  .examples-table td {
+    padding: 9px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    text-align: left;
   }
-  .sim-controls {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  html[dir="rtl"] .examples-table th,
+  html[dir="rtl"] .examples-table td {
+    text-align: right;
   }
-  .btn--sim {
-    min-height: 38px;
-    padding: 0 18px;
-    font-size: 13px;
-    font-family: var(--mono);
+  .examples-table th {
+    color: var(--dr-text-muted);
+    font-size: 10.5px;
+  }
+  .examples-table tr.is-selected {
+    background: rgba(60, 200, 189, 0.14);
+    color: var(--dr-teal);
   }
 
-  .sim-stage {
-    position: relative;
-    padding: 32px 24px;
+  /* ---------- SECTION 07: FINANCIAL WATERFALL EXPLORER ---------- */
+  .wf-chart-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 14px;
+    align-items: end;
+    height: 270px;
+    padding: 24px 14px 12px;
+    background: rgba(2, 10, 19, 0.85);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     direction: ltr;
   }
-  .sim-svg {
-    width: 100%;
-    height: auto;
-    max-height: 440px;
-    display: block;
-    overflow: visible;
-  }
-
-  .sim-metrics {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: rgba(255,255,255,0.08);
-    border-top: 1px solid rgba(255,255,255,0.08);
-  }
-  .sim-metric {
-    background: #030911;
-    padding: 18px 22px;
+  .wf-col {
+    height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
   }
-  .sim-metric small {
+  .wf-col__val {
     font-family: var(--mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--color-text-muted);
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #fff;
   }
-  .sim-metric b {
+  .wf-col__bar-wrap {
+    width: 100%;
+    max-width: 58px;
+    height: 180px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    padding: 2px;
+  }
+  .wf-col__bar {
+    width: 100%;
+    height: var(--h, 50%);
+    border-radius: 6px;
+    background: linear-gradient(180deg, var(--dr-teal), var(--dr-blue));
+    transition: height 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .wf-col__bar.bar-deduct {
+    background: linear-gradient(180deg, var(--dr-burgundy), var(--dr-burgundy-deep));
+  }
+  .wf-col__bar.bar-op {
+    background: linear-gradient(180deg, #5BB5F5, var(--dr-blue));
+  }
+  .wf-col__lbl {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--dr-text-muted);
+    line-height: 1.3;
+  }
+
+  /* ---------- SECTION 08: DISTRIBUTION LIFECYCLE STATE MACHINE ---------- */
+  .lc-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 8px;
+    margin-bottom: 22px;
+    direction: ltr;
+  }
+  .lc-step-pill {
+    padding: 12px 8px;
+    border-radius: 10px;
+    background: rgba(2, 12, 24, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--dr-text-muted);
+    transition: all 0.25s;
+  }
+  .lc-step-pill b {
+    display: block;
+    font-size: 11px;
+    margin-bottom: 4px;
+    color: #fff;
+  }
+  .lc-step-pill.is-done {
+    border-color: rgba(60, 200, 189, 0.45);
+    background: rgba(60, 200, 189, 0.08);
+    color: var(--dr-teal);
+  }
+  .lc-step-pill.is-active {
+    border-color: var(--dr-teal);
+    background: rgba(0, 45, 84, 0.75);
+    color: #fff;
+    box-shadow: 0 0 22px rgba(60, 200, 189, 0.25);
+    transform: translateY(-3px);
+  }
+
+  /* ---------- SECTION 09: INVESTOR DISTRIBUTION DASHBOARD ---------- */
+  .inv-dash-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  .inv-kpi-card {
+    padding: 16px;
+    border-radius: 14px;
+    background: rgba(2, 13, 26, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+  }
+  .inv-kpi-card small {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--dr-text-muted);
+  }
+  .inv-kpi-card strong {
+    display: block;
     font-family: var(--mono);
     font-size: 20px;
     color: #fff;
+    margin-top: 6px;
   }
-  .sim-metric b.orange { color: var(--color-accent); }
-  .sim-metric b.green { color: var(--cyber-green); }
-  .sim-metric b.blue { color: var(--cyber-blue); }
+  .inv-kpi-card strong.teal { color: var(--dr-teal); }
 
-  /* ---------- 5. BOTTOM PRODUCT NAVIGATION ---------- */
+  .code-schema-box {
+    margin: 0;
+    padding: 16px 18px;
+    border-radius: 12px;
+    background: #01070E;
+    border: 1px solid rgba(60, 200, 189, 0.22);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: #B9D9EE;
+    overflow-x: auto;
+    direction: ltr;
+  }
+
+  /* ---------- SECTION 10 & 12: INTERACTIVE NODE & CONTRACT EXPLORERS ---------- */
+  .trust-nodes-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .trust-node-btn {
+    padding: 16px 14px;
+    border-radius: 12px;
+    background: rgba(3, 15, 29, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.22s;
+  }
+  html[dir="rtl"] .trust-node-btn { text-align: right; }
+  .trust-node-btn:hover,
+  .trust-node-btn.active {
+    border-color: var(--dr-teal);
+    background: rgba(0, 45, 84, 0.55);
+    transform: translateY(-2px);
+  }
+  .trust-node-btn small {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--dr-teal);
+    margin-bottom: 4px;
+  }
+  .trust-node-btn strong {
+    display: block;
+    font-size: 14px;
+    color: #fff;
+  }
+
+  .contracts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  /* ---------- SECTION 13: RISK DISCLOSURE & INTEGRITY MATRIX ---------- */
+  .risk-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .risk-card {
+    padding: 20px;
+    border-radius: 14px;
+    background: rgba(2, 12, 24, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+  }
+  .risk-card h4 {
+    font-size: 15.5px;
+    color: #fff;
+    margin: 8px 0;
+  }
+  .risk-card p {
+    font-size: 13px;
+    color: var(--dr-text-sec);
+    line-height: 1.6;
+  }
+
   .p-next-bar {
     display: flex;
     flex-wrap: wrap;
@@ -687,63 +1167,314 @@
     justify-content: space-between;
     gap: 20px;
     padding: 32px 40px;
-    border-radius: var(--radius-lg);
-    background: rgba(255,255,255,0.02);
-    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    background: rgba(0, 45, 84, 0.28);
+    border: 1px solid var(--dr-border-blue);
   }
 
   /* Keyframes */
-  @keyframes heroZoom {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.06); }
-  }
+  @keyframes heroZoom { 0% { transform: scale(1); } 100% { transform: scale(1.06); } }
   @keyframes spinCW { to { transform: rotate(360deg); } }
   @keyframes spinCCW { to { transform: rotate(-360deg); } }
-  @keyframes floatChip {
-    0% { transform: translateY(0px); }
-    100% { transform: translateY(-10px); }
+  @keyframes floatChip { 0% { transform: translateY(0px); } 100% { transform: translateY(-8px); } }
+  @keyframes pipePulse { 0% { left: 12%; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { left: 82%; opacity: 0; } }
+  @keyframes precisionHighBeam {
+    0%   { opacity: 0; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(0.3); }
+    20%  { opacity: 1; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(1.15); }
+    40%  { opacity: 0.1; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(0.5); }
+    60%  { opacity: 1; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(1.3); }
+    100% { opacity: 0; transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(0.3); }
   }
-  @keyframes pipePulse {
-    0% { left: 12%; opacity: 0; }
-    15% { opacity: 1; }
-    85% { opacity: 1; }
-    100% { left: 82%; opacity: 0; }
+  @keyframes navLightCycle {
+    0%, 100% { opacity: 0.95; } 50% { opacity: 0.08; }
   }
-  @keyframes pulseDot {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.35; transform: scale(0.8); }
-  }
-  @keyframes dronePatrolSmooth {
-    0%   { transform: translate(0px, 0px) rotate(-1.5deg); }
-    25%  { transform: translate(14px, -12px) rotate(2deg); }
-    50%  { transform: translate(-6px, -6px) rotate(1.5deg); }
-    75%  { transform: translate(-14px, -14px) rotate(-2deg); }
-    100% { transform: translate(0px, 0px) rotate(-1.5deg); }
-  }
-  @keyframes packetFlow1 {
-    0% { stroke-dashoffset: 260; }
-    100% { stroke-dashoffset: 0; }
+  @keyframes aviationStrobe {
+    0%, 55% { opacity: 0; } 56%, 64% { opacity: 1; } 65%, 72% { opacity: 0; } 73%, 80% { opacity: 1; } 81%, 100% { opacity: 0; }
   }
 
-  /* Responsive Adjustments */
-  @media (max-width: 1024px) {
-    .p-hero__main, .p-narrative { grid-template-columns: 1fr; }
-    .p-hero__hud { height: 360px; }
+  /* Responsive Design */
+  @media (max-width: 1080px) {
+    .p-hero__main,
+    .prop-grid,
+    .fleet-workspace,
+    .fin-engine-grid,
+    .calc-grid,
+    .risk-grid-3 { grid-template-columns: 1fr; }
+    .compact-wf { grid-template-columns: repeat(4, 1fr); }
+    .lc-steps-grid { grid-template-columns: repeat(3, 1fr); }
+    .trust-nodes-grid,
+    .contracts-grid,
+    .inv-dash-grid { grid-template-columns: repeat(2, 1fr); }
     .p-pipeline { grid-template-columns: repeat(2, 1fr); }
     .p-pipeline::before, .p-pipeline__beam { display: none; }
-    .p-strip { grid-template-columns: 1fr; border-radius: var(--radius-md); gap: 12px; }
-    .p-strip__item { border: 0 !important; justify-content: flex-start; }
-    .p-copy-kpis { grid-template-columns: 1fr; }
-    .sim-metrics { grid-template-columns: repeat(2, 1fr); }
   }
+  @media (max-width: 680px) {
+    .hero-split-Readout,
+    .fleet-grid,
+    .fin-inputs-panel,
+    .compact-wf,
+    .wf-chart-grid,
+    .lc-steps-grid,
+    .trust-nodes-grid,
+    .contracts-grid,
+    .inv-dash-grid,
+    .p-pipeline { grid-template-columns: 1fr; }
+    .wf-chart-grid { height: auto; }
+    .wf-col__bar-wrap { height: 64px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+/* =====================================================================
+     AERVYNX COLOR CALIBRATION PATCH (85% CORE BRAND / 15% AEROSPACE ACCENT)
+     + CUSTOM CYBERNETIC NUMBER INPUT ARROWS (SPINNERS)
+  ===================================================================== */
+  :root {
+    --dr-bg-deep: #010B13;          /* Core Aervynx Obsidian */
+    --dr-navy: #071320;             /* Dark Matte Surface */
+    --dr-navy-soft: #050E18;
+    --dr-blue: #0096FF;             /* Core Aervynx Cyber Blue */
+    --dr-teal: #EC5800;             /* Core Aervynx Molten Orange (Primary) */
+    --dr-teal-sec: #FF7A29;         /* Molten Orange Highlight */
+    --dr-green: #27D17F;            /* Core Aervynx Status Green */
+    --dr-burgundy-deep: #4A0818;    /* 15% New Accent: Deep Risk Crimson */
+    --dr-burgundy: #D91B42;         /* 15% New Accent: Deduction / Alert Rose */
+    --dr-white: #FFFFFF;
+    --dr-text-sec: rgba(255, 255, 255, 0.74);
+    --dr-text-muted: rgba(255, 255, 255, 0.48);
+    --dr-border: rgba(236, 88, 0, 0.30);
+    --dr-border-blue: rgba(255, 255, 255, 0.12);
+    --dr-border-burgundy: rgba(217, 27, 66, 0.42);
+  }
+
+  /* 1. Hero & Background Calibration to Original Drone Page */
+  .p-hero {
+    background:
+      radial-gradient(60% 55% at 75% 42%, rgba(236, 88, 0, 0.16), transparent 70%),
+      radial-gradient(45% 50% at 18% 80%, rgba(0, 150, 255, 0.10), transparent 70%),
+      #010B13 !important;
+    border-bottom-color: rgba(255, 255, 255, 0.12) !important;
+  }
+  .p-hero__bg img {
+    opacity: 0.85 !important;
+    filter: none !important;
+  }
+  .p-hero__bg::after {
+    background:
+      linear-gradient(90deg, rgba(1,11,19,0.90) 0%, rgba(1,11,19,0.52) 38%, transparent 68%),
+      linear-gradient(180deg, rgba(1,11,19,0.45) 0%, transparent 24%, rgba(1,11,19,0.86) 86%, #010B13 100%) !important;
+  }
+  .p-hero h1 em {
+    color: #EC5800 !important;
+    text-shadow: 0 0 38px rgba(236, 88, 0, 0.35) !important;
+  }
+
+  /* 2. Buttons & Active Tabs (Molten Orange + Obsidian Matte) */
+  .dr-page .btn--teal,
+  .fleet-filter-btn.active,
+  .fleet-filter-btn:hover,
+  .chip-btn.active,
+  .chip-btn:hover {
+    background: linear-gradient(135deg, #EC5800 0%, #C94700 100%) !important;
+    border-color: rgba(255, 155, 90, 0.5) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 8px 26px rgba(236, 88, 0, 0.32) !important;
+  }
+  .dr-page .btn--navy,
+  .fleet-filter-btn,
+  .chip-btn {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-color: rgba(255, 255, 255, 0.14) !important;
+    color: var(--dr-text-sec) !important;
+  }
+  .dr-page .btn--navy:hover {
+    border-color: #EC5800 !important;
+    background: rgba(236, 88, 0, 0.12) !important;
+    color: #FFFFFF !important;
+  }
+
+  /* 3. Shells, Cards & Containers (Obsidian Dark + Subtle 15% Cyber Blue/Crimson Accents) */
+  .dr-shell {
+    background:
+      radial-gradient(65% 75% at 95% 5%, rgba(236, 88, 0, 0.09), transparent 70%),
+      radial-gradient(50% 60% at 5% 95%, rgba(0, 150, 255, 0.06), transparent 70%),
+      linear-gradient(165deg, rgba(8, 16, 28, 0.94) 0%, rgba(2, 7, 13, 0.99) 100%) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+  }
+  .dr-shell::before {
+    background: linear-gradient(90deg, transparent, #EC5800, #0096FF, transparent) !important;
+  }
+
+  .hero-split-box,
+  .prop-split-card,
+  .fleet-inspector,
+  .fin-summary-panel {
+    background: rgba(255, 255, 255, 0.025) !important;
+    border-color: rgba(255, 255, 255, 0.11) !important;
+  }
+  .prop-split-card:first-child {
+    border-color: rgba(236, 88, 0, 0.38) !important;
+    background: radial-gradient(circle at 0% 0%, rgba(236, 88, 0, 0.10), transparent 70%), rgba(255, 255, 255, 0.02) !important;
+  }
+  .prop-split-card--operator {
+    border-color: rgba(0, 150, 255, 0.35) !important;
+    background: radial-gradient(circle at 100% 0%, rgba(0, 150, 255, 0.10), transparent 70%), rgba(255, 255, 255, 0.02) !important;
+  }
+
+  .drone-node-card,
+  .fin-field,
+  .cwf-step,
+  .lc-step-pill,
+  .inv-kpi-card,
+  .trust-node-btn,
+  .risk-card {
+    background: rgba(5, 12, 22, 0.92) !important;
+    border-color: rgba(255, 255, 255, 0.09) !important;
+  }
+  .drone-node-card:hover,
+  .drone-node-card.selected,
+  .trust-node-btn:hover,
+  .trust-node-btn.active,
+  .lc-step-pill.is-active {
+    border-color: #EC5800 !important;
+    background: rgba(236, 88, 0, 0.10) !important;
+    box-shadow: 0 12px 28px rgba(236, 88, 0, 0.16) !important;
+  }
+  .lc-step-pill.is-done {
+    border-color: rgba(39, 209, 127, 0.45) !important;
+    background: rgba(39, 209, 127, 0.08) !important;
+    color: #27D17F !important;
+  }
+
+  /* 4. Status Badges, Drone HUD & SVG Stream Sync */
+  .sim-badge {
+    background: rgba(236, 88, 0, 0.12) !important;
+    border-color: rgba(236, 88, 0, 0.38) !important;
+    color: #FF944D !important;
+  }
+  .sim-badge i {
+    background: #27D17F !important;
+    box-shadow: 0 0 8px #27D17F !important;
+  }
+  .dnc-status.st-OP { background: rgba(39, 209, 127, 0.16) !important; color: #27D17F !important; }
+  .cwf-step.is-net { border-color: rgba(39, 209, 127, 0.45) !important; background: rgba(39, 209, 127, 0.08) !important; }
+  .cwf-step.is-net strong,
+  .fin-ledger-table tr.row-total,
+  #st-inv,
+  #out-rpt,
+  #out-inv-reward,
+  .inv-kpi-card strong.teal {
+    color: #27D17F !important;
+  }
+
+  .hud-reticle {
+    border-color: rgba(236, 88, 0, 0.35) !important;
+    background: radial-gradient(circle, rgba(236, 88, 0, 0.09) 0%, transparent 70%) !important;
+  }
+  .hud-chip {
+    background: rgba(3, 10, 18, 0.88) !important;
+    border-color: rgba(255, 255, 255, 0.14) !important;
+  }
+  .hud-chip--1 { --c: #27D17F !important; }
+  .hud-chip--2 { --c: #EC5800 !important; }
+  .hud-chip--3 { --c: #0096FF !important; }
+  .h-led-strip {
+    background: radial-gradient(ellipse at center, #FFFFFF 0%, #FF8533 45%, #EC5800 75%, transparent 100%) !important;
+    box-shadow: 0 0 10px 2px rgba(236, 88, 0, 0.85) !important;
+  }
+
+  /* Waterfall Bars & 50/50 SVG Stream Colors */
+  .wf-col__bar {
+    background: linear-gradient(180deg, #EC5800, #9E3800) !important;
+  }
+  .wf-col__bar.bar-op {
+    background: linear-gradient(180deg, #0096FF, #004E8A) !important;
+  }
+  #gradTeal stop { stop-color: #EC5800 !important; }
+  #gradBlue stop { stop-color: #0096FF !important; }
+  #svg-inv-label { fill: #EC5800 !important; }
+  .examples-table tr.is-selected {
+    background: rgba(236, 88, 0, 0.14) !important;
+    color: #FF944D !important;
+  }
+
+  /* =====================================================================
+     5. CUSTOM STYLING FOR NUMBER INPUT ARROWS (SPINNERS)
+        Replaces the ugly white default browser arrows with a sleek
+        dark-obsidian + molten-orange stepper button
+  ===================================================================== */
+  .fin-field {
+    position: relative;
+    background: rgba(4, 11, 20, 0.92) !important;
+    border: 1px solid rgba(255, 255, 255, 0.11) !important;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
+  }
+  .fin-field:hover {
+    border-color: rgba(236, 88, 0, 0.42) !important;
+  }
+  .fin-field:focus-within {
+    border-color: #EC5800 !important;
+    box-shadow: 0 0 20px rgba(236, 88, 0, 0.16), inset 0 0 12px rgba(236, 88, 0, 0.06) !important;
+  }
+
+  .fin-field input[type="number"] {
+    color-scheme: dark;
+    padding-right: 4px;
+  }
+
+  /* WebKit (Chrome, Edge, Safari) Custom Up/Down Arrows */
+  .fin-field input[type="number"]::-webkit-inner-spin-button,
+  .fin-field input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+    width: 24px;
+    height: 28px;
+    opacity: 0.85;
+    cursor: pointer;
+    border-radius: 6px;
+    border: 1px solid rgba(236, 88, 0, 0.38);
+    background-color: rgba(236, 88, 0, 0.10);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='28' viewBox='0 0 24 28'%3E%3Cpath d='M12 5l4.2 5H7.8L12 5z' fill='%23EC5800'/%3E%3Cline x1='5' y1='14' x2='19' y2='14' stroke='rgba(255,255,255,0.14)' stroke-width='1'/%3E%3Cpath d='M12 23l-4.2-5h8.4L12 23z' fill='%23EC5800'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px 22px;
+    transition: opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .fin-field input[type="number"]:hover::-webkit-inner-spin-button,
+  .fin-field input[type="number"]:focus::-webkit-inner-spin-button {
+    opacity: 1;
+    background-color: rgba(236, 88, 0, 0.22);
+    border-color: #EC5800;
+    box-shadow: 0 0 12px rgba(236, 88, 0, 0.35);
+  }
+
+
+  .prop-split-card--operator .sim-badge {
+    background: rgba(0, 150, 255, 0.14) !important;
+    border-color: rgba(0, 150, 255, 0.45) !important;
+    color: #74C0FC !important; 
+  }
+  .prop-split-card--operator .sim-badge i {
+    background: #27D17F !important;
+    box-shadow: 0 0 8px #27D17F !important;
+  }
+
+
 </style>
 </head>
-<body>
+<body class="dr-page">
 <a class="skip" href="#main">Skip to content</a>
 <div id="top" aria-hidden="true"></div>
 
 <!-- ================================================
-     SECTION 01: NAVIGATION (IDENTICAL TO MAIN SITE)
+     NAVIGATION (PRESERVED SITE-WIDE HEADER)
 ================================================= -->
 <header class="nav scrolled" id="nav">
  <div class="wrap nav__in">
@@ -777,414 +1508,842 @@
 <main id="main">
 
 <!-- ================================================
-     SECTION 02: CINEMATIC PRODUCT HERO
-     HERO BACKGROUND IMAGE — REPLACE `src` BELOW WITH YOUR CUSTOM DRONE WALLPAPER
+     SECTION 01: CINEMATIC HERO
 ================================================= -->
-<section class="p-hero">
+<section class="p-hero" id="home">
  <div class="p-hero__bg" aria-hidden="true">
-  <!-- EDIT HERO BACKGROUND IMAGE PATH HERE -->
-  <img src="assets/tokenized-drones3.pn" alt="Aervynx Tokenized Cargo Drone Fleet">
+  <img src="assets/tokenized-drones3.pn" alt="Aervynx Autonomous Cargo Drone Fleet" onerror="this.style.display='none'">
  </div>
 
- <!-- Top 2-Column Hero Grid -->
  <div class="wrap p-hero__main">
-  <!-- Left Column: Title, Eyebrow, Lead & CTAs -->
   <div>
    <div class="p-crumb">
-    <b data-en="REAL-WORLD ASSETS" data-fa="دارایی‌های دنیای واقعی">REAL-WORLD ASSETS</b>
+    <b data-en="AERVYNX DRONE RWA" data-fa="دارایی واقعی پهپاد AERVYNX">AERVYNX DRONE RWA</b>
     <span>/</span>
-    <span data-en="TOKENIZED DRONE NETWORK" data-fa="شبکه پهپادهای توکنایزشده">TOKENIZED DRONE NETWORK</span>
+    <span data-en="AERVYNX FLIGHTYIELD" data-fa="زیربرند AERVYNX FLIGHTYIELD">AERVYNX FLIGHTYIELD</span>
+    <span class="sim-badge"><i></i><span data-en="INTERACTIVE PRODUCT SIMULATION" data-fa="شبیه‌ساز تعاملی محصول">INTERACTIVE PRODUCT SIMULATION</span></span>
    </div>
 
    <h1>
-    <span data-en="A Fleet. Connected" data-fa="ناوگانی متصل به">A Fleet. Connected</span>
-    <em data-en="to a Digital Economy." data-fa="اقتصاد دیجیتال.">to a Digital Economy.</em>
+    <span data-en="Real Assets. Autonomous Flight." data-fa="دارایی‌های واقعی. پرواز خودکار.">Real Assets. Autonomous Flight.</span>
+    <em data-en="Programmable Economics." data-fa="اقتصاد قابل برنامه‌ریزی.">Programmable Economics.</em>
    </h1>
 
+   <span class="p-hero__tag" data-en="Own a Share of the Economics Behind Autonomous Flight." data-fa="سهمی از اقتصادِ پشتوانه پروازهای ترابری خودکار داشته باشید.">Own a Share of the Economics Behind Autonomous Flight.</span>
+
    <p class="p-hero__sub"
-      data-en="Tokenized delivery drone infrastructure with transparent on-chain participation, live IoT flight telemetry, and automated pro-rata revenue distribution on DotOne Chain 505."
-      data-fa="زیرساخت ناوگان پهپادهای ترابری توکنایزشده با مشارکت شفاف روی زنجیره، تله‌متری زنده پروازی IoT و توزیع خودکار سود عملیاتی روی شبکه دات‌وان ۵۰۵.">
-    Tokenized delivery drone infrastructure with transparent on-chain participation, live IoT flight telemetry, and automated pro-rata revenue distribution on DotOne Chain 505.
+      data-en="Aervynx connects autonomous cargo drone operations with a transparent, period-based RWA participation model. Eligible token holders receive a defined contractual share of net distributable fleet operating profit, subject to verified reporting, operating costs, reserves, and offering terms."
+      data-fa="اکوسیستم Aervynx عملیات پهپادهای ترابری خودکار را به یک مدل مشارکت دوره‌ای و شفاف RWA متصل می‌کند. دارندگان توکن واجد شرایط، سهم قراردادی مشخصی (۵۰٪) از سود خالص قابل‌توزیع ناوگان را پس از کسر هزینه‌های عملیاتی، ذخایر احتیاطی و تایید گزارش‌های مالی دریافت می‌کنند.">
+    Aervynx connects autonomous cargo drone operations with a transparent, period-based RWA participation model. Eligible token holders receive a defined contractual share of net distributable fleet operating profit, subject to verified reporting, operating costs, reserves, and offering terms.
    </p>
 
-   <div class="ctas">
-    <a class="btn" href="#live-architecture">
-     <span data-en="Explore the Model" data-fa="بررسی مدل اقتصادی">Explore the Model</span>
+   <div class="hero-split-Readout">
+    <div class="hero-split-box">
+     <small data-en="TOKEN HOLDER POOL" data-fa="استخر دارندگان توکن">TOKEN HOLDER POOL</small>
+     <strong id="hero-inv-pct">50% NET PROFIT</strong>
+    </div>
+    <div class="hero-split-box">
+     <small data-en="OPERATOR ALLOCATION" data-fa="سهم اپراتور ناوگان">OPERATOR ALLOCATION</small>
+     <strong id="hero-op-pct" style="color:#9BD3F5">50% NET PROFIT</strong>
+    </div>
+    <div class="hero-split-box">
+     <small data-en="SIMULATED POOL (EX.)" data-fa="استخر شبیه‌سازی‌شده">SIMULATED POOL (EX.)</small>
+     <strong id="hero-pool-val">$25,000</strong>
+    </div>
+   </div>
+
+   <div class="ctas" style="margin-top: 26px;">
+    <a class="btn btn--teal" href="#financial-engine">
+     <span data-en="Explore the Financial Model" data-fa="بررسی مدل و موتور مالی">Explore the Financial Model</span>
      <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
-    <a class="btn btn--ghost" href="#deep-dive">
-     <span data-en="View the Process" data-fa="مطالعه جزئیات فنی">View the Process</span>
+    <a class="btn btn--navy" href="#technical-architecture">
+     <span data-en="Explore the Technical Architecture" data-fa="مشاهده معماری فنی و قراردادها">Explore the Technical Architecture</span>
     </a>
    </div>
   </div>
 
-  <!-- Right Column: Autonomous 3D-Maneuvering Drone (`assets/how-it-works.webp`) -->
-  <div class="p-hero__hud" aria-hidden="true">
+  <!-- Right Column: 3D Autonomous Drone Rig (Refined Flight Physics) -->
+  <div class="p-hero__hud" aria-label="Simulated Autonomous Cargo Drone Telemetry Stage">
    <div class="hud-reticle"></div>
 
-   <!-- Autonomous Drone Rig: Banks, Turns, Flies Left/Right Outside the Circle & Flashes Every 3s -->
    <div class="hero-drone-rig" id="hero-drone-rig">
     <div class="hero-drone-body" id="hero-drone-body">
      <img class="hero-drone-img" src="assets/how-it-works.webp" alt="Aervynx Autonomous Cargo Drone">
-
-     <!-- 1. High-Speed Spinning Propeller Blades -->
      <i class="h-rotor" style="--x:21.5%;--y:16.5%;--w:34%;--r:7.0"></i>
      <i class="h-rotor" style="--x:19.8%;--y:38.2%;--w:25%;--r:6.6"></i>
      <i class="h-rotor" style="--x:83.2%;--y:28.5%;--w:31%;--r:5.8"></i>
 
-     <!-- 2. Motor Pod Neon Rings & Body Lights (Turn OFF & ON in Sequence) -->
      <i class="h-led-strip" style="--x:21.4%;--y:26.8%;--w:8.8%;--h:2.2%;--dur:2.4s;--d:0s"></i>
      <i class="h-led-strip" style="--x:19.8%;--y:46.2%;--w:6.8%;--h:1.8%;--dur:2.4s;--d:0.4s"></i>
      <i class="h-led-strip" style="--x:83.0%;--y:41.2%;--w:6.5%;--h:1.8%;--dur:2.4s;--d:0.8s"></i>
      <i class="h-led-strip" style="--x:47.6%;--y:35.5%;--w:3.2%;--h:4.2%;--rot:-28deg;--dur:3.1s;--d:0.2s"></i>
 
-     <!-- 3. Tiny Arm Strobe Indicators -->
      <i class="h-strobe-dot" style="--x:29.0%;--y:29.2%;--dur:2.0s;--d:0.1s"></i>
      <i class="h-strobe-dot" style="--x:25.4%;--y:45.4%;--dur:2.0s;--d:0.9s"></i>
      <i class="h-strobe-dot" style="--x:38.5%;--y:74.8%;--dur:2.5s;--d:0.5s"></i>
 
-     <!-- 4. Precision Micro High-Beams Directly on Blades, Motor Rings & Front Optical Lenses (Auto Every 3s) -->
-     <!-- Top-Left Blade & Motor Ring High-Beam -->
      <i class="h-beam-point" style="--x:21.5%;--y:16.5%;--w:26px;--h:6px;--rot:-4deg"></i>
-     <i class="h-beam-point" style="--x:21.4%;--y:26.8%;--w:22px;--h:7px;--rot:0deg"></i>
-     <!-- Bottom-Left Blade & Motor Ring High-Beam -->
      <i class="h-beam-point" style="--x:19.8%;--y:38.2%;--w:20px;--h:5px;--rot:-4deg"></i>
-     <i class="h-beam-point" style="--x:19.8%;--y:46.2%;--w:18px;--h:6px;--rot:0deg"></i>
-     <!-- Right Blade & Motor Ring High-Beam -->
      <i class="h-beam-point" style="--x:83.2%;--y:28.5%;--w:24px;--h:6px;--rot:4deg"></i>
-     <i class="h-beam-point" style="--x:83.0%;--y:41.2%;--w:18px;--h:6px;--rot:0deg"></i>
-     <!-- Front Nose Optical Lenses High-Beam -->
      <i class="h-beam-point" style="--x:47.8%;--y:35.8%;--w:16px;--h:8px;--rot:-12deg"></i>
-     <i class="h-beam-point" style="--x:50.4%;--y:47.4%;--w:14px;--h:6px;--rot:-8deg"></i>
     </div>
    </div>
 
-   <div class="hud-chip hud-chip--1"><i></i><span>IOT TELEMETRY · ACTIVE</span></div>
-   <div class="hud-chip hud-chip--2"><i></i><span>RWA POOL · YIELDING</span></div>
-   <div class="hud-chip hud-chip--3"><i></i><span>CHAIN ID · 505</span></div>
+   <div class="hud-chip hud-chip--1"><i></i><span>SIMULATED TELEMETRY · DEMO</span></div>
+   <div class="hud-chip hud-chip--2"><i></i><span>50% HOLDER / 50% OPERATOR</span></div>
+   <div class="hud-chip hud-chip--3"><i></i><span>PERIOD SNAPSHOT MODEL</span></div>
+   <div class="hud-chip hud-chip--4"><i></i><span>OFF-CHAIN RECONCILED</span></div>
   </div>
  </div>
 
- <!-- Bottom Hero 4-Stage Pipeline & Glassmorphic Pill Strip (Full 100% Container Width) -->
  <div class="p-hero__bottom">
   <div class="p-pipeline">
    <div class="p-pipeline__beam"></div>
-
-   <!-- Stage 1 -->
    <div class="p-stage">
-    <div class="p-stage__ic">
-     <svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17M4 6h6M14 6h6M4 18h6M14 18h6"/></svg>
-    </div>
-    <b data-en="Physical Fleet" data-fa="ناوگان فیزیکی پهپادها">Physical Fleet</b>
-    <span data-en="Autonomous commercial cargo drones" data-fa="پهپادهای ترابری خودکار تجاری">Autonomous commercial cargo drones</span>
+    <div class="p-stage__ic"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17M4 6h6M14 6h6M4 18h6M14 18h6"/></svg></div>
+    <b data-en="1. Fleet Operations" data-fa="۱. عملیات فیزیکی ناوگان">1. Fleet Operations</b>
+    <span data-en="Completed missions & collected payments (Off-Chain)" data-fa="انجام ماموریت‌ها و وصول واقعی وجه (برون‌زنجیره‌ای)">Completed missions & collected payments (Off-Chain)</span>
    </div>
-
-   <!-- Stage 2 -->
    <div class="p-stage">
-    <div class="p-stage__ic">
-     <svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9"/></svg>
-    </div>
-    <b data-en="Asset Tokenization" data-fa="توکنایز دارایی (RWA)">Asset Tokenization</b>
-    <span data-en="Fractional on-chain RWA shares" data-fa="سهام کسری و نقدشونده روی زنجیره">Fractional on-chain RWA shares</span>
+    <div class="p-stage__ic"><svg viewBox="0 0 24 24"><path d="M7 3h8l4 4v14H7zM15 3v4h4M10 12h6M10 16h6"/></svg></div>
+    <b data-en="2. Period Accounting" data-fa="۲. حسابداری پایان دوره">2. Period Accounting</b>
+    <span data-en="Deduct refunds, operating expenses, reserves & prior losses" data-fa="کسر مرجوعی، هزینه‌های عملیاتی، ذخایر و زیان انباشته">Deduct refunds, operating expenses, reserves & prior losses</span>
    </div>
-
-   <!-- Stage 3 -->
    <div class="p-stage">
-    <div class="p-stage__ic">
-     <svg viewBox="0 0 24 24"><path d="M7 3h8l4 4v14H7zM15 3v4h4M10 12h6M10 16h6"/></svg>
-    </div>
-    <b data-en="On-Chain Records" data-fa="ثبت آن‌چین تله‌متری">On-Chain Records</b>
-    <span data-en="Verified flight & cargo logs" data-fa="گزارش‌های پروازی و تحویل غیرقابل‌جعل">Verified flight & cargo logs</span>
+    <div class="p-stage__ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4"/></svg></div>
+    <b data-en="3. Attested Report" data-fa="۳. گواهی و تایید گزارش">3. Attested Report</b>
+    <span data-en="EIP-712 structured report commitment & review window" data-fa="امضای ساختاریافته EIP-712 و پنجره بازبینی">EIP-712 structured report commitment & review window</span>
    </div>
-
-   <!-- Stage 4 -->
    <div class="p-stage">
-    <div class="p-stage__ic">
-     <svg viewBox="0 0 24 24"><path d="M4 20h16M7 16v-4M12 16V8M17 16v-7"/></svg>
-    </div>
-    <b data-en="Revenue Distribution" data-fa="توزیع خودکار سود">Revenue Distribution</b>
-    <span data-en="Seamless pro-rata profit pools" data-fa="واریز آنی به استخر سود هولدرها">Seamless pro-rata profit pools</span>
-   </div>
-  </div>
-
-  <!-- Glassmorphic Telemetry Pill Bar -->
-  <div class="p-strip">
-   <div class="p-strip__item">
-    <svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg>
-    <span data-en="IoT-Connected Fleet Infrastructure" data-fa="زیرساخت ناوگان متصل به اینترنت اشیاء (IoT)">IoT-Connected Fleet Infrastructure</span>
-   </div>
-   <div class="p-strip__item">
-    <svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4"/></svg>
-    <span data-en="Cryptographically Verifiable Records" data-fa="سوابق پروازی قابل راستی‌آزمایی رمزنگاری">Cryptographically Verifiable Records</span>
-   </div>
-   <div class="p-strip__item">
-    <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0zM3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
-    <span data-en="Transparent On-Chain Profit Pools" data-fa="استخرهای شفاف تقسیم درآمد روی زنجیره">Transparent On-Chain Profit Pools</span>
+    <div class="p-stage__ic"><svg viewBox="0 0 24 24"><path d="M4 20h16M7 16v-4M12 16V8M17 16v-7"/></svg></div>
+    <b data-en="4. 50/50 Profit Split" data-fa="۴. تسهیم ۵۰/۵۰ سود خالص">4. 50/50 Profit Split</b>
+    <span data-en="50% Token Holder Pool / 50% Operator Allocation" data-fa="۵۰٪ استخر دارندگان توکن / ۵۰٪ سهم اپراتور ناوگان">50% Token Holder Pool / 50% Operator Allocation</span>
    </div>
   </div>
  </div>
 </section>
 
 <!-- ================================================
-     SECTION 03: PRODUCT DEEP-DIVE & 5 UNIFORM ARCHITECTURAL PILLARS
+     SECTION 02: THE ECONOMIC PROPOSITION (50/50 SPLIT)
 ================================================= -->
-<section class="wrap sec" id="deep-dive">
- <div class="p-narrative">
-  <!-- Left Column: Official Product Copy + KPI Sub-Strip -->
-  <div class="p-copy-box">
-   <div>
-    <span class="eyebrow" data-en="01 · AUTONOMOUS FLEET RWA" data-fa="۰۱ · دارایی واقعی ناوگان خودکار">01 · AUTONOMOUS FLEET RWA</span>
-    <h2 data-en="Tokenized Cargo <em>Drones</em>" data-fa="پهپادهای ترابری <em>توکنایزشده</em>">Tokenized Cargo <em>Drones</em></h2>
-
-    <p data-en="Welcome to the future of decentralized logistics. Our Tokenized Cargo Drones bridge the gap between heavy physical infrastructure and decentralized finance, transforming autonomous aerial delivery fleets into highly liquid, yield-bearing Real-World Assets (RWAs) on the DotOne Smart Chain."
-       data-fa="به آینده لجستیک غیرمتمرکز خوش آمدید. پهپادهای باری توکنایزشده ما شکاف میان زیرساخت‌های سنگین فیزیکی و امور مالی غیرمتمرکز (DeFi) را پر کرده و ناوگان‌های تحویل هوایی خودکار را به دارایی‌های واقعی (RWA) نقدشونده و سودده روی شبکه هوشمند دات‌وان تبدیل می‌کنند.">
-     Welcome to the future of decentralized logistics. Our Tokenized Cargo Drones bridge the gap between heavy physical infrastructure and decentralized finance, transforming autonomous aerial delivery fleets into highly liquid, yield-bearing Real-World Assets (RWAs) on the DotOne Smart Chain.
-    </p>
-
-    <p data-en="By fractionally owning these commercial drones, users step directly into the physical economy's supply chain, earning a proportional share of actual operational revenue. Every successful delivery execution deposits logistics fees directly into on-chain profit pools, which are distributed seamlessly to token holders."
-       data-fa="با مالکیت کسری این پهپادهای تجاری، کاربران مستقیماً وارد زنجیره تأمین اقتصاد فیزیکی شده و سهمی متناسب از درآمد واقعی عملیاتی را کسب می‌کنند. هر مأموریت تحویل موفق، کارمزدهای لجستیکی را مستقیماً به استخرهای سود آن‌چین واریز می‌کند تا به صورت یکپارچه میان دارندگان توکن توزیع شود.">
-     By fractionally owning these commercial drones, users step directly into the physical economy's supply chain, earning a proportional share of actual operational revenue. Every successful delivery execution deposits logistics fees directly into on-chain profit pools, which are distributed seamlessly to token holders.
-    </p>
-
-    <p data-en="This isn't speculative yield; it is tangible, cash-flowing infrastructure backed by transparent IoT telemetry and operational data. Whether you are a retail enthusiast or an institutional backer, you can now power the skies and passively earn from the high-velocity movement of real-world cargo."
-       data-fa="این یک سود سفته‌بازانه نیست؛ بلکه زیرساختی ملموس و دارای جریان نقدینگی است که با تله‌متری شفاف IoT و داده‌های عملیاتی پشتیبانی می‌شود. چه یک کاربر خرد باشید و چه یک سرمایه‌گذار سازمانی، اکنون می‌توانید آسمان‌ها را به حرکت درآورید و از جابه‌جایی پرسرعت محموله‌های واقعی، درآمد غیرفعال کسب کنید.">
-     This isn't speculative yield; it is tangible, cash-flowing infrastructure backed by transparent IoT telemetry and operational data. Whether you are a retail enthusiast or an institutional backer, you can now power the skies and passively earn from the high-velocity movement of real-world cargo.
-    </p>
-   </div>
-
-   <div class="p-copy-kpis">
-    <div class="p-copy-kpi">
-     <b>EIP-712</b>
-     <span data-en="Telemetry Verification" data-fa="گواهی رمزنگاری تله‌متری">Telemetry Verification</span>
-    </div>
-    <div class="p-copy-kpi">
-     <b>CHAIN 505</b>
-     <span data-en="DotOne Native Settlement" data-fa="تسویه بومی شبکه دات‌وان">DotOne Native Settlement</span>
-    </div>
-    <div class="p-copy-kpi">
-     <b>100% ON-CHAIN</b>
-     <span data-en="Pro-Rata Yield Routing" data-fa="توزیع شفاف و خودکار سود">Pro-Rata Yield Routing</span>
-    </div>
-   </div>
-  </div>
-
-  <!-- Right Column: 5 Uniform Engineering Highlights (Identical Single-Column Cards) -->
-  <div class="p-specs-grid">
-   <div class="p-spec-card">
-    <div class="p-spec-dot">01</div>
-    <div>
-     <h3 data-en="Fractional Fleet Ownership" data-fa="مالکیت کسری ناوگان هوایی">Fractional Fleet Ownership</h3>
-     <p data-en="Acquire liquid on-chain tokens representing direct economic participation in commercial heavy-lift delivery drones."
-        data-fa="دریافت توکن‌های نقدشونده آن‌چین که نماینده مشارکت مستقیم اقتصادی در ناوگان پهپادهای تجاری حمل بار هستند.">Acquire liquid on-chain tokens representing direct economic participation in commercial heavy-lift delivery drones.</p>
-    </div>
-   </div>
-
-   <div class="p-spec-card">
-    <div class="p-spec-dot">02</div>
-    <div>
-     <h3 data-en="Real-Time IoT Telemetry Oracle" data-fa="اوراکل تله‌متری زنده IoT">Real-Time IoT Telemetry Oracle</h3>
-     <p data-en="Every flight path, payload weight, and battery cycle is cryptographically hashed and anchored onto DotOne Chain 505."
-        data-fa="تمامی مسیرهای پروازی، وزن بار و چرخه‌های عملیاتی به صورت رمزنگاری‌شده هش و روی زنجیره دات‌وان ۵۰۵ ثبت می‌شوند.">Every flight path, payload weight, and battery cycle is cryptographically hashed and anchored onto DotOne Chain 505.</p>
-    </div>
-   </div>
-
-   <div class="p-spec-card">
-    <div class="p-spec-dot">03</div>
-    <div>
-     <h3 data-en="Automated On-Chain Profit Pools" data-fa="استخرهای سود خودکار آن‌چین">Automated On-Chain Profit Pools</h3>
-     <p data-en="Logistics fees settled via DeliveryEscrow automatically route into smart-contract yield vaults with zero middlemen."
-        data-fa="کارمزدهای لجستیکی تسویه‌شده در قرارداد DeliveryEscrow بدون واسطه مستقیماً وارد خزانه تقسیم سود می‌شوند.">Logistics fees settled via DeliveryEscrow automatically route into smart-contract yield vaults with zero middlemen.</p>
-    </div>
-   </div>
-
-   <div class="p-spec-card">
-    <div class="p-spec-dot">04</div>
-    <div>
-     <h3 data-en="Non-Speculative Real Cashflow" data-fa="جریان نقدی واقعی و غیرسفته‌بازانه">Non-Speculative Real Cashflow</h3>
-     <p data-en="Yields are powered by actual physical commerce and parcel movement rather than inflationary token emissions."
-        data-fa="بازده اقتصادی این مدل از دل تجارت فیزیکی و حمل واقعی کالا تولید می‌شود، نه از چاپ تورمی توکن.">Yields are powered by actual physical commerce and parcel movement rather than inflationary token emissions.</p>
-    </div>
-   </div>
-
-   <div class="p-spec-card">
-    <div class="p-spec-dot">05</div>
-    <div>
-     <h3 data-en="Autonomous Maintenance & Insurance Reserve" data-fa="ذخیره خودکار تعمیر و نگهداری ناوگان">Autonomous Maintenance & Insurance Reserve</h3>
-     <p data-en="A dedicated protocol reserve automatically allocates a fraction of flight revenue to battery swaps, airframe servicing, and coverage."
-        data-fa="درصدی مشخص از درآمد هر پرواز به طور هوشمند در خزانه پشتیبان برای تعویض باتری، سرویس‌های دوره‌ای و بیمه ناوگان ذخیره می‌شود.">A dedicated protocol reserve automatically allocates a fraction of flight revenue to battery swaps, airframe servicing, and coverage.</p>
-    </div>
-   </div>
-  </div>
- </div>
-</section>
-
-<!-- ================================================
-     SECTION 04: LIVE INTERACTIVE ANIMATED DIAGRAM
-     (USES YOUR CUSTOM `assets/how-it-works.webp` DRONE)
-================================================= -->
-<section class="wrap sec" id="live-architecture">
+<section class="wrap sec" id="economic-proposition">
  <div>
-  <span class="eyebrow" data-en="LIVE ARCHITECTURAL ENGINE" data-fa="موتور معماری زنده">LIVE ARCHITECTURAL ENGINE</span>
-  <h2 data-en="Autonomous Telemetry & <em>Yield Distribution</em>" data-fa="تله‌متری خودکار و <em>توزیع سود آن‌چین</em>">Autonomous Telemetry & <em>Yield Distribution</em></h2>
+  <span class="eyebrow" data-en="01 · THE ECONOMIC PROPOSITION" data-fa="۰۱ · گزاره اقتصادی و مدل تسهیم">01 · THE ECONOMIC PROPOSITION</span>
+  <h2 data-en="50/50 Net Distributable <em>Profit Split</em>" data-fa="تسهیم ۵۰/۵۰ <em>سود خالص قابل‌توزیع</em>">50/50 Net Distributable <em>Profit Split</em></h2>
   <p class="lead"
-     data-en="Watch how physical cargo missions generate verified EIP-712 proofs, settle logistics fees into the DotOne 505 RWA Pool, and stream proportional rewards to fractional token holders."
-     data-fa="مشاهده کنید که چگونه مأموریت‌های حمل بار فیزیکی، گواهی‌های تاییدشده EIP-712 تولید کرده، کارمزدهای لجستیک را به استخر RWA دات‌وان ۵۰۵ واریز می‌کنند و پاداش‌ها را به نسبت سهم میان هولدرها پخش می‌نمایند.">
-   Watch how physical cargo missions generate verified EIP-712 proofs, settle logistics fees into the DotOne 505 RWA Pool, and stream proportional rewards to fractional token holders.
+     data-en="AERVYNX Drone RWA (FlightYield) is engineered around a strict, period-based accounting rule: 50% of the fleet's eligible net distributable operating profit is allocated to the Token Holder Distribution Pool, and 50% is allocated to the Fleet Operator."
+     data-fa="محصول AERVYNX Drone RWA (FlightYield) بر پایه یک قاعده حسابداری دوره‌ای دقیق طراحی شده است: ۵۰٪ از سود خالص عملیاتیِ قابل‌توزیع ناوگان به «استخر توزیع دارندگان توکن» و ۵۰٪ به «اپراتور ناوگان» اختصاص می‌یابد.">
+   AERVYNX Drone RWA (FlightYield) is engineered around a strict, period-based accounting rule: 50% of the fleet's eligible net distributable operating profit is allocated to the Token Holder Distribution Pool, and 50% is allocated to the Fleet Operator.
   </p>
  </div>
 
- <div class="sim-box">
-  <div class="sim-header">
-   <div class="sim-status">
-    <i></i>
-    <span>DOTONE CHAIN 505 · LIVE RWA TELEMETRY STREAM</span>
+ <div class="dr-shell">
+  <div class="dr-topbar">
+   <div class="dr-topbar__title">
+    <strong data-en="CONTRACTUAL PROFIT ENTITLEMENT ARCHITECTURE" data-fa="معماری حق انتفاع قراردادی از سود خالص">CONTRACTUAL PROFIT ENTITLEMENT ARCHITECTURE</strong>
+    <small data-en="SPLIT APPLIES STRICTLY TO ELIGIBLE NET DISTRIBUTABLE PROFIT — NEVER GROSS REVENUE" data-fa="تسهیم ۵۰/۵۰ صرفاً روی سود خالص قابل‌توزیع اعمال می‌شود، نه درآمد ناخالص">SPLIT APPLIES STRICTLY TO ELIGIBLE NET DISTRIBUTABLE PROFIT — NEVER GROSS REVENUE</small>
    </div>
-   <div class="sim-controls">
-    <button type="button" class="btn btn--sim" id="trigger-settlement">
-     <span data-en="⚡ Simulate Delivery Settlement" data-fa="⚡ شبیه‌سازی تسویه تحویل بسته">⚡ Simulate Delivery Settlement</span>
+   <span class="sim-badge"><i></i><span data-en="ILLUSTRATIVE SIMULATION — NOT LIVE FINANCIAL DATA" data-fa="شبیه‌سازی آموزشی — داده مالی زنده نیست">ILLUSTRATIVE SIMULATION — NOT LIVE FINANCIAL DATA</span></span>
+  </div>
+
+  <div class="prop-grid">
+   <article class="prop-split-card">
+    <div>
+     <span class="sim-badge"><i style="background:#3CC8BD"></i><span data-en="INVESTOR ENTITLEMENT" data-fa="سهم دارندگان توکن">INVESTOR ENTITLEMENT</span></span>
+     <div class="prop-pct" id="prop-inv-pct">50%</div>
+     <h3 data-en="Token Holder Distribution Pool" data-fa="استخر توزیع دارندگان توکن">Token Holder Distribution Pool</h3>
+     <p data-en="Allocated pro-rata across all eligible token holders recorded at the period-close snapshot. Every eligible token receives an equal share of this 50% net profit pool."
+        data-fa="به نسبت مساوی (Pro-Rata) میان تمامی دارندگان توکن واجد شرایط که در اسنپ‌شات پایان دوره ثبت شده‌اند تقسیم می‌شود.">
+      Allocated pro-rata across all eligible token holders recorded at the period-close snapshot. Every eligible token receives an equal share of this 50% net profit pool.
+     </p>
+    </div>
+    <div class="prop-amount-live">
+     <span data-en="CURRENT SIMULATED POOL:" data-fa="مبلغ فعلی در شبیه‌ساز:">CURRENT SIMULATED POOL:</span>
+     <b id="prop-inv-amt" style="color:var(--dr-teal)">$25,000</b>
+    </div>
+   </article>
+
+   <article class="prop-split-card prop-split-card--operator">
+    <div>
+     <span class="sim-badge sim-badge--prop"><i></i><span data-en="COMMERCIAL OPERATIONS" data-fa="سهم بهره‌بردار و اپراتور">COMMERCIAL OPERATIONS</span></span>
+     <div class="prop-pct" id="prop-op-pct">50%</div>
+     <h3 data-en="Fleet Operator Allocation" data-fa="تخصیص اپراتور ناوگان">Fleet Operator Allocation</h3>
+     <p data-en="Retained by the commercial fleet operator under the contractual operating agreement, aligning operator incentives with long-term fleet uptime, safety, and margin efficiency."
+        data-fa="مطابق قرارداد بهره‌برداری به اپراتور تجاری ناوگان تعلق می‌گیرد تا انگیزه اپراتور با ایمنی، پایداری پروازها و بهینه‌سازی هزینه‌ها هم‌راستا باشد.">
+      Retained by the commercial fleet operator under the contractual operating agreement, aligning operator incentives with long-term fleet uptime, safety, and margin efficiency.
+     </p>
+    </div>
+    <div class="prop-amount-live">
+     <span data-en="CURRENT SIMULATED ALLOCATION:" data-fa="سهم فعلی اپراتور در شبیه‌ساز:">CURRENT SIMULATED ALLOCATION:</span>
+     <b id="prop-op-amt" style="color:#9BD3F5">$25,000</b>
+    </div>
+   </article>
+  </div>
+
+  <!-- Compact 7-Stage Waterfall Strip -->
+  <div class="compact-wf" aria-label="Compact Financial Waterfall">
+   <div class="cwf-step">
+    <small data-en="1. COLLECTED REV" data-fa="۱. درآمد وصول‌شده">1. COLLECTED REV</small>
+    <strong id="cwf-gross">$100,000</strong>
+   </div>
+   <div class="cwf-step is-deduct">
+    <small data-en="2. REFUNDS/CHARGEBACK" data-fa="۲. مرجوعی و برگشتی">2. REFUNDS/CHARGEBACK</small>
+    <strong id="cwf-refunds">-$2,000</strong>
+   </div>
+   <div class="cwf-step is-deduct">
+    <small data-en="3. OPERATING COSTS" data-fa="۳. هزینه‌های عملیاتی">3. OPERATING COSTS</small>
+    <strong id="cwf-opex">-$35,000</strong>
+   </div>
+   <div class="cwf-step is-deduct">
+    <small data-en="4. RESERVE CONTRIB." data-fa="۴. ذخیره احتیاطی">4. RESERVE CONTRIB.</small>
+    <strong id="cwf-reserve">-$8,000</strong>
+   </div>
+   <div class="cwf-step is-deduct">
+    <small data-en="5. CARRY-FWD LOSS" data-fa="۵. زیان انباشته قبلی">5. CARRY-FWD LOSS</small>
+    <strong id="cwf-loss">-$5,000</strong>
+   </div>
+   <div class="cwf-step is-net">
+    <small data-en="6. DISTRIBUTABLE" data-fa="۶. سود قابل‌توزیع">6. DISTRIBUTABLE</small>
+    <strong id="cwf-dist">$50,000</strong>
+   </div>
+   <div class="cwf-step is-net">
+    <small data-en="7. 50/50 SPLIT" data-fa="۷. تسهیم ۵۰/۵۰">7. 50/50 SPLIT</small>
+    <strong id="cwf-split">$25k / $25k</strong>
+   </div>
+  </div>
+
+  <div class="legal-notice-bar" data-en="IMPORTANT LEGAL DISTINCTION: Acquiring a Drone RWA token does NOT grant automatic ownership of 50% of a physical drone, 50% of an aviation company, or 50% of its corporate equity. Tokens represent defined contractual economic rights subject to offering documents, jurisdiction, and eligibility." data-fa="تمایز حقوقی مهم: خرید توکن Drone RWA به معنای مالکیت خودکار ۵۰٪ از بدنه فیزیکی پهپاد، ۵۰٪ از شرکت هواپیمایی یا سهام شرکتی آن نیست. توکن‌ها صرفاً نمایانگر حقوق اقتصادی قراردادی تعریف‌شده در اسناد عرضه هستند و هیچ‌گونه سود تضمین‌شده یا بازپرداخت اصل سرمایه را وعده نمی‌دهند.">
+   IMPORTANT LEGAL DISTINCTION: Acquiring a Drone RWA token does NOT grant automatic ownership of 50% of a physical drone, 50% of an aviation company, or 50% of its corporate equity. Tokens represent defined contractual economic rights subject to offering documents, jurisdiction, and eligibility.
+  </div>
+ </div>
+</section>
+
+<!-- ================================================
+     SECTION 03: FLEET ASSET REGISTRY (DEMO FLEET)
+================================================= -->
+<section class="wrap sec" id="fleet-registry">
+ <div>
+  <span class="eyebrow" data-en="02 · FLEET ASSET REGISTRY" data-fa="۰۲ · رجیستری دارایی‌های ناوگان">02 · FLEET ASSET REGISTRY</span>
+  <h2 data-en="Autonomous Cargo <em>Fleet Nodes</em>" data-fa="نودهای دارایی <em>ناوگان پهپادی</em>">Autonomous Cargo <em>Fleet Nodes</em></h2>
+  <p class="lead"
+     data-en="Inspect individual drone units within the simulated Fleet Pool (FLT-505-ALPHA). Filter by operational state or click any unit to inspect its mission utilization, battery lifecycle, insurance status, and period revenue contribution."
+     data-fa="واحدهای پهپادی موجود در استخر شبیه‌سازی‌شده ناوگان (FLT-505-ALPHA) را بررسی کنید. بر اساس وضعیت عملیاتی فیلتر کنید یا روی هر پهپاد کلیک کنید تا کارکرد، سلامت باتری، وضعیت بیمه و سهم درآمدی آن را ببینید.">
+   Inspect individual drone units within the simulated Fleet Pool (FLT-505-ALPHA). Filter by operational state or click any unit to inspect its mission utilization, battery lifecycle, insurance status, and period revenue contribution.
+  </p>
+ </div>
+
+ <div class="dr-shell">
+  <div class="dr-topbar">
+   <div class="fleet-filters" id="fleet-filters" role="group" aria-label="Filter Fleet Assets">
+    <button type="button" class="fleet-filter-btn active" data-filter="ALL" data-en="All Assets (6)" data-fa="همه پهپادها (۶)">All Assets (6)</button>
+    <button type="button" class="fleet-filter-btn" data-filter="OP" data-en="Operational" data-fa="عملیاتی">Operational</button>
+    <button type="button" class="fleet-filter-btn" data-filter="MAINT" data-en="Maintenance" data-fa="در حال تعمیر">Maintenance</button>
+    <button type="button" class="fleet-filter-btn" data-filter="IDLE" data-en="Idle" data-fa="آماده‌به‌کار (Idle)">Idle</button>
+    <button type="button" class="fleet-filter-btn" data-filter="PEND" data-en="Reporting Pending" data-fa="در انتظار گزارش">Reporting Pending</button>
+   </div>
+   <span class="sim-badge"><i></i><span data-en="SIMULATED DEMO FLEET DATA" data-fa="داده‌های شبیه‌سازی‌شده ناوگان">SIMULATED DEMO FLEET DATA</span></span>
+  </div>
+
+  <div class="fleet-workspace">
+   <div class="fleet-grid" id="fleet-grid"></div>
+
+   <aside class="fleet-inspector" id="fleet-inspector" aria-live="polite">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+     <strong id="fi-id" style="font-family:var(--mono);font-size:17px;color:var(--dr-teal)">DRN-505-01</strong>
+     <span class="sim-badge" id="fi-badge">OPERATIONAL</span>
+    </div>
+    <div class="fi-row"><span data-en="Fleet ID" data-fa="شناسه ناوگان">Fleet ID</span><b id="fi-fleet">FLT-505-ALPHA</b></div>
+    <div class="fi-row"><span data-en="Asset Class" data-fa="کلاس دارایی">Asset Class</span><b id="fi-model">Heavy-Lift Cargo VTOL</b></div>
+    <div class="fi-row"><span data-en="Completed Missions" data-fa="ماموریت‌های تکمیل‌شده">Completed Missions</span><b id="fi-missions">310</b></div>
+    <div class="fi-row"><span data-en="Fleet Utilization" data-fa="نرخ بهره‌برداری">Fleet Utilization</span><b id="fi-util">88%</b></div>
+    <div class="fi-row"><span data-en="Maintenance State" data-fa="وضعیت فنی و سرویس">Maintenance State</span><b id="fi-maint">Airworthy · Next check 42h</b></div>
+    <div class="fi-row"><span data-en="Battery Health (SoH)" data-fa="سلامت باتری (SoH)">Battery Health (SoH)</span><b id="fi-bat">94% (Cycle 112/400)</b></div>
+    <div class="fi-row"><span data-en="Insurance Status" data-fa="وضعیت پوشش بیمه">Insurance Status</span><b id="fi-ins">Active Hull & Cargo Policy (Demo)</b></div>
+    <div class="fi-row" style="border-bottom:0;"><span data-en="Collected Revenue Share" data-fa="سهم از درآمد وصول‌شده">Collected Revenue Share</span><b id="fi-rev" style="color:var(--dr-teal)">$24,800</b></div>
+   </aside>
+  </div>
+ </div>
+</section>
+
+<!-- ================================================
+     SECTION 04: REVENUE & EXPENSE ENGINE
+================================================= -->
+<section class="wrap sec" id="financial-engine">
+ <div>
+  <span class="eyebrow" data-en="03 · CORE ECONOMIC ENGINE" data-fa="۰۳ · موتور محاسباتی درآمد و هزینه">03 · CORE ECONOMIC ENGINE</span>
+  <h2 data-en="Period Revenue, Expense & <em>Reserve Engine</em>" data-fa="موتور محاسبه درآمد، هزینه‌ها و <em>ذخایر دوره‌ای</em>">Period Revenue, Expense & <em>Reserve Engine</em></h2>
+  <p class="lead"
+     data-en="Edit any operational revenue, refund, expense, reserve, or carry-forward loss parameter below. All downstream charts, waterfalls, 50/50 splits, and token holder payouts derive deterministically from this single calculation engine."
+     data-fa="هر یک از پارامترهای درآمد وصول‌شده، مرجوعی، هزینه‌های عملیاتی، ذخیره احتیاطی یا زیان انباشته زیر را ویرایش کنید. تمامی نمودارها، آبشار مالی، تسهیم ۵۰/۵۰ و سود هر توکن به صورت لحظه‌ای از همین موتور مرکزی محاسبه می‌شوند.">
+   Edit any operational revenue, refund, expense, reserve, or carry-forward loss parameter below. All downstream charts, waterfalls, 50/50 splits, and token holder payouts derive deterministically from this single calculation engine.
+  </p>
+ </div>
+
+ <div class="dr-shell">
+  <div class="dr-topbar">
+   <div class="dr-topbar__title">
+    <strong data-en="INTERACTIVE PERIOD FINANCIAL INPUTS (USD)" data-fa="ورودی‌های مالی دوره گزارش‌دهی (برحسب دلار)">INTERACTIVE PERIOD FINANCIAL INPUTS (USD)</strong>
+    <small id="fin-validation-msg" style="color:var(--dr-teal)" data-en="All financial inputs validated. Using integer-cent fixed-point arithmetic." data-fa="تمامی ورودی‌ها معتبرند. محاسبات با دقت سنت (عدد صحیح) انجام می‌شود.">All financial inputs validated. Using integer-cent fixed-point arithmetic.</small>
+   </div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap;">
+    <button type="button" class="btn btn--navy" id="btn-reset-example" style="min-height:36px;padding:0 14px;font-size:12px;">
+     <span data-en="↺ Reset to Official $100k Example" data-fa="↺ بازنشانی به مثال استاندارد ۱۰۰ هزار دلاری">↺ Reset to Official $100k Example</span>
     </button>
    </div>
   </div>
 
-  <!-- Interactive Animated SVG Architecture Diagram -->
-  <div class="sim-stage">
-   <svg class="sim-svg" viewBox="0 0 1100 380" aria-label="Tokenized Drone RWA Yield Flow Diagram">
-    <defs>
-     <linearGradient id="beamOrange" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#EC5800" stop-opacity="0.15"/>
-      <stop offset="50%" stop-color="#EC5800" stop-opacity="0.95"/>
-      <stop offset="100%" stop-color="#0096FF" stop-opacity="0.95"/>
-     </linearGradient>
-     <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="rgba(236,88,0,0.38)"/>
-      <stop offset="100%" stop-color="rgba(236,88,0,0)"/>
-     </radialGradient>
-    </defs>
-
-    <!-- Background Radar Grid Lines -->
-    <g stroke="rgba(255,255,255,0.04)" stroke-width="1">
-     <line x1="0" y1="70" x2="1100" y2="70"/>
-     <line x1="0" y1="190" x2="1100" y2="190"/>
-     <line x1="0" y1="310" x2="1100" y2="310"/>
-     <line x1="200" y1="0" x2="200" y2="380"/>
-     <line x1="550" y1="0" x2="550" y2="380"/>
-     <line x1="900" y1="0" x2="900" y2="380"/>
-    </g>
-
-    <!-- CONNECTOR 1: Drone Airspace -> Smart Contract Pool -->
-    <path d="M 310 190 C 390 190, 410 190, 460 190" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="3" stroke-dasharray="6 8"/>
-    <path d="M 310 190 C 390 190, 410 190, 460 190" fill="none" stroke="url(#beamOrange)" stroke-width="4" stroke-dasharray="40 220" style="animation: packetFlow1 1.6s linear infinite"/>
-
-    <!-- CONNECTOR 2: Smart Contract Pool -> 3 Fractional Token Holder Wallets -->
-    <path d="M 640 190 C 715 190, 735 85, 795 85" fill="none" stroke="rgba(39,209,127,0.22)" stroke-width="2.5"/>
-    <path d="M 640 190 L 795 190" fill="none" stroke="rgba(39,209,127,0.22)" stroke-width="2.5"/>
-    <path d="M 640 190 C 715 190, 735 295, 795 295" fill="none" stroke="rgba(39,209,127,0.22)" stroke-width="2.5"/>
-
-    <!-- Animated Yield Particles Streaming to Holders -->
-    <circle r="5" fill="#27D17F" filter="drop-shadow(0 0 8px #27D17F)">
-     <animateMotion dur="1.8s" repeatCount="indefinite" path="M 640 190 C 715 190, 735 85, 795 85"/>
-    </circle>
-    <circle r="5" fill="#EC5800" filter="drop-shadow(0 0 8px #EC5800)">
-     <animateMotion dur="1.4s" repeatCount="indefinite" path="M 640 190 L 795 190"/>
-    </circle>
-    <circle r="5" fill="#0096FF" filter="drop-shadow(0 0 8px #0096FF)">
-     <animateMotion dur="2.1s" repeatCount="indefinite" path="M 640 190 C 715 190, 735 295, 795 295"/>
-    </circle>
-
-    <!-- ==========================================
-         ZONE 1 (LEFT): AUTONOMOUS DRONE RADAR ZONE
-         (CLEAN `assets/how-it-works.webp` + CONTAINED TELEMETRY PILL)
-    =========================================== -->
-    <g transform="translate(180, 190)">
-     <circle r="142" fill="url(#coreGlow)"/>
-     <circle r="130" fill="#050D17" stroke="rgba(236,88,0,0.38)" stroke-width="1.5"/>
-     <circle r="104" fill="none" stroke="rgba(0,150,255,0.25)" stroke-width="1.2" stroke-dasharray="8 8">
-      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="24s" repeatCount="indefinite"/>
-     </circle>
-
-     <!-- YOUR CUSTOM DRONE ASSET: assets/how-it-works.webp -->
-     <g style="animation: dronePatrolSmooth 5.5s ease-in-out infinite">
-      <image href="assets/how-it-works.webp" x="-102" y="-96" width="204" height="134" preserveAspectRatio="xMidYMid meet" style="filter: drop-shadow(0 16px 26px rgba(236,88,0,0.42));"/>
-     </g>
-
-     <!-- Contained HUD Badge Inside Circle -->
-     <rect x="-86" y="48" width="172" height="44" rx="10" fill="rgba(4,10,18,0.92)" stroke="rgba(236,88,0,0.35)" stroke-width="1"/>
-     <text y="66" fill="#fff" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" text-anchor="middle">DRONE UNIT #505-A</text>
-     <text y="83" fill="#EC5800" font-family="JetBrains Mono, monospace" font-size="9.2" font-weight="600" letter-spacing="0.04em" text-anchor="middle">IOT GPS + EIP-712 PROOF</text>
-    </g>
-
-    <!-- ==========================================
-         ZONE 2 (CENTER): DOTONE 505 RWA PROFIT POOL
-    =========================================== -->
-    <g transform="translate(550, 190)">
-     <circle r="96" fill="url(#coreGlow)" id="pool-pulse-ring"/>
-     <rect x="-88" y="-82" width="176" height="164" rx="24" fill="#06101C" stroke="#EC5800" stroke-width="2"/>
-     <rect x="-76" y="-70" width="152" height="140" rx="18" fill="none" stroke="rgba(0,150,255,0.3)" stroke-width="1" stroke-dasharray="6 6"/>
-
-     <!-- Central A Emblem (Matching site logo without middle crossbar) -->
-     <path d="M0 -40 L24 16 L12 16 L0 -12 L-12 16 L-24 16 Z" fill="#EC5800"/>
-
-     <text y="38" fill="#fff" font-family="Inter, sans-serif" font-size="14" font-weight="700" text-anchor="middle">RWA Yield Vault</text>
-     <text y="56" fill="#27D17F" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700" text-anchor="middle" id="svg-pool-val">POOL: 48,920 DOTO</text>
-    </g>
-
-    <!-- ==========================================
-         ZONE 3 (RIGHT): FRACTIONAL TOKEN HOLDERS
-         (WIDENED TO 268PX SO TEXT NEVER OVERFLOWS)
-    =========================================== -->
-    <!-- Holder Node 1 -->
-    <g transform="translate(800, 52)">
-     <rect width="268" height="66" rx="14" fill="#06111E" stroke="rgba(39,209,127,0.45)" stroke-width="1.5"/>
-     <circle cx="30" cy="33" r="14" fill="rgba(39,209,127,0.15)" stroke="#27D17F" stroke-width="1.5"/>
-     <text x="30" y="37" fill="#27D17F" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" text-anchor="middle">40%</text>
-     <text x="56" y="28" fill="#fff" font-family="Inter, sans-serif" font-size="13.5" font-weight="600">Institutional Pool</text>
-     <text x="56" y="47" fill="#27D17F" font-family="JetBrains Mono, monospace" font-size="11.5" id="holder-1">+19,568 DOTO</text>
-    </g>
-
-    <!-- Holder Node 2 -->
-    <g transform="translate(800, 157)">
-     <rect width="268" height="66" rx="14" fill="#06111E" stroke="rgba(236,88,0,0.45)" stroke-width="1.5"/>
-     <circle cx="30" cy="33" r="14" fill="rgba(236,88,0,0.15)" stroke="#EC5800" stroke-width="1.5"/>
-     <text x="30" y="37" fill="#EC5800" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" text-anchor="middle">35%</text>
-     <text x="56" y="28" fill="#fff" font-family="Inter, sans-serif" font-size="13.5" font-weight="600">Retail RWA Holders</text>
-     <text x="56" y="47" fill="#EC5800" font-family="JetBrains Mono, monospace" font-size="11.5" id="holder-2">+17,122 DOTO</text>
-    </g>
-
-    <!-- Holder Node 3 -->
-    <g transform="translate(800, 262)">
-     <rect width="268" height="66" rx="14" fill="#06111E" stroke="rgba(0,150,255,0.45)" stroke-width="1.5"/>
-     <circle cx="30" cy="33" r="14" fill="rgba(0,150,255,0.15)" stroke="#0096FF" stroke-width="1.5"/>
-     <text x="30" y="37" fill="#0096FF" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" text-anchor="middle">25%</text>
-     <text x="56" y="28" fill="#fff" font-family="Inter, sans-serif" font-size="13.5" font-weight="600">Fleet Maintenance Reserve</text>
-     <text x="56" y="47" fill="#0096FF" font-family="JetBrains Mono, monospace" font-size="11.5" id="holder-3">+12,230 DOTO</text>
-    </g>
-   </svg>
+  <!-- Scenario Presets -->
+  <div class="preset-bar" aria-label="Financial Scenario Presets">
+   <button type="button" class="fleet-filter-btn active" data-scenario="default" data-en="Official Example ($100k Rev / $50k Net)" data-fa="مثال مرجع (۱۰۰ هزار درآمد / ۵۰ هزار سود)">Official Example ($100k Rev / $50k Net)</button>
+   <button type="button" class="fleet-filter-btn" data-scenario="high_util" data-en="High Enterprise Utilization ($140k)" data-fa="بهره‌برداری بالا (۱۴۰ هزار دلار)">High Enterprise Utilization ($140k)</button>
+   <button type="button" class="fleet-filter-btn" data-scenario="heavy_maint" data-en="Increased Maintenance & Battery ($18k)" data-fa="افزایش هزینه تعمیرات و باتری">Increased Maintenance & Battery ($18k)</button>
+   <button type="button" class="fleet-filter-btn" data-scenario="low_vol" data-en="Lower Mission Volume ($62k)" data-fa="کاهش حجم ماموریت‌ها (۶۲ هزار دلار)">Lower Mission Volume ($62k)</button>
+   <button type="button" class="fleet-filter-btn" data-scenario="loss_period" data-en="Deficit / Loss Period ($38k Rev → $0 Dist.)" data-fa="دوره زیان‌ده (توزیع صفر)">Deficit / Loss Period ($38k Rev → $0 Dist.)</button>
   </div>
 
-  <!-- Live Telemetry Numbers Bar -->
-  <div class="sim-metrics">
-   <div class="sim-metric">
-    <small data-en="VERIFIED DELIVERIES" data-fa="تحویل‌های تاییدشده">VERIFIED DELIVERIES</small>
-    <b class="orange" id="m-deliveries">1,428</b>
+  <div class="fin-engine-grid">
+   <!-- Left: Editable Inputs -->
+   <div>
+    <div class="fin-inputs-panel">
+     <div class="fin-field">
+      <label for="in-gross"><span data-en="Collected Mission Revenue ($)" data-fa="درآمد وصول‌شده ماموریت‌ها ($)">Collected Mission Revenue ($)</span><span>GROSS</span></label>
+      <input id="in-gross" type="number" min="0" max="10000000" step="500" value="100000">
+     </div>
+     <div class="fin-field">
+      <label for="in-refunds"><span data-en="Refunds & Chargebacks ($)" data-fa="مرجوعی و برگشت وجه ($)">Refunds & Chargebacks ($)</span><span>DEDUCT</span></label>
+      <input id="in-refunds" type="number" min="0" max="10000000" step="100" value="2000">
+     </div>
+     <div class="fin-field">
+      <label for="in-flight"><span data-en="Flight & Mission Execution ($)" data-fa="هزینه پرواز و اجرای ماموریت ($)">Flight & Mission Execution ($)</span><span>OPEX 01</span></label>
+      <input id="in-flight" type="number" min="0" max="10000000" step="250" value="20000">
+     </div>
+     <div class="fin-field">
+      <label for="in-maint"><span data-en="Maintenance & Battery ($)" data-fa="نگهداری، تعمیرات و باتری ($)">Maintenance & Battery ($)</span><span>OPEX 02</span></label>
+      <input id="in-maint" type="number" min="0" max="10000000" step="250" value="8000">
+     </div>
+     <div class="fin-field">
+      <label for="in-ins"><span data-en="Insurance & Regulatory ($)" data-fa="بیمه و هزینه‌های رگولاتوری ($)">Insurance & Regulatory ($)</span><span>OPEX 03</span></label>
+      <input id="in-ins" type="number" min="0" max="10000000" step="250" value="4000">
+     </div>
+     <div class="fin-field">
+      <label for="in-log"><span data-en="Logistics & Communications ($)" data-fa="لجستیک زمینی و مخابرات ($)">Logistics & Communications ($)</span><span>OPEX 04</span></label>
+      <input id="in-log" type="number" min="0" max="10000000" step="250" value="3000">
+     </div>
+     <div class="fin-field">
+      <label for="in-overhead"><span data-en="Allocated Overhead ($)" data-fa="سربار اداری تخصیص‌یافته ($)">Allocated Overhead ($)</span><span>OPEX 05</span></label>
+      <input id="in-overhead" type="number" min="0" max="10000000" step="250" value="0">
+     </div>
+     <div class="fin-field">
+      <label for="in-reserve"><span data-en="Reserve Contribution ($)" data-fa="سهم صندوق ذخیره احتیاطی ($)">Reserve Contribution ($)</span><span>RESERVE</span></label>
+      <input id="in-reserve" type="number" min="0" max="10000000" step="250" value="8000">
+     </div>
+     <div class="fin-field" style="grid-column: 1 / -1;">
+      <label for="in-loss"><span data-en="Prior Carry-Forward Loss ($)" data-fa="زیان انباشته انتقالی از دوره قبل ($)">Prior Carry-Forward Loss ($)</span><span>WATERFALL</span></label>
+      <input id="in-loss" type="number" min="0" max="10000000" step="250" value="5000">
+     </div>
+    </div>
+
+    <!-- Fleet Mission Calculator Helper -->
+    <div style="margin-top:14px;padding:12px 16px;border-radius:12px;background:rgba(0,45,84,0.28);border:1px dashed var(--dr-border-blue);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:11.5px;">
+     <span data-en="FLEET MISSION ESTIMATOR: 6 Drones × 208 Missions × $80.13 Avg =" data-fa="تخمین‌گر ماموریت ناوگان: ۶ پهپاد × ۲۰۸ پرواز × ۸۰.۱۳ دلار =">FLEET MISSION ESTIMATOR: 6 Drones × 208 Missions × $80.13 Avg =</span>
+     <span style="color:var(--dr-teal);font-weight:700;" id="estimator-readout">$100,000 Gross Collected</span>
+    </div>
    </div>
-   <div class="sim-metric">
-    <small data-en="ON-CHAIN POOL VOLUME" data-fa="حجم استخر سود آن‌چین">ON-CHAIN POOL VOLUME</small>
-    <b class="green" id="m-pool">48,920 DOTO</b>
-   </div>
-   <div class="sim-metric">
-    <small data-en="LATEST TELEMETRY PROOF" data-fa="آخرین هش تله‌متری">LATEST TELEMETRY PROOF</small>
-    <b class="blue" id="m-hash">0x9F4A...8E21</b>
-   </div>
-   <div class="sim-metric">
-    <small data-en="SETTLEMENT LATENCY" data-fa="سرعت تسویه آن‌چین">SETTLEMENT LATENCY</small>
-    <b>< 420 ms</b>
+
+   <!-- Right: Live Accounting Statement -->
+   <div class="fin-summary-panel">
+    <div>
+     <span class="sim-badge" style="margin-bottom:12px;"><i></i><span data-en="PERIOD INCOME & WATERFALL STATEMENT" data-fa="صورتحساب سود و زیان دوره">PERIOD INCOME & WATERFALL STATEMENT</span></span>
+     <table class="fin-ledger-table" aria-label="Period Financial Statement">
+      <tbody>
+       <tr>
+        <td data-en="Gross Collected Revenue" data-fa="درآمد ناخالص وصول‌شده">Gross Collected Revenue</td>
+        <td id="st-gross">$100,000.00</td>
+       </tr>
+       <tr>
+        <td data-en="Less: Refunds & Chargebacks" data-fa="کسر می‌شود: مرجوعی و برگشتی">Less: Refunds & Chargebacks</td>
+        <td id="st-refunds" style="color:#FF8DA6">-$2,000.00</td>
+       </tr>
+       <tr style="color:#fff;font-weight:700;">
+        <td data-en="= Net Eligible Revenue" data-fa="= درآمد خالص واجد شرایط">= Net Eligible Revenue</td>
+        <td id="st-netrev">$98,000.00</td>
+       </tr>
+       <tr>
+        <td data-en="Less: Total Operating Costs (Opex)" data-fa="کسر می‌شود: کل هزینه‌های عملیاتی">Less: Total Operating Costs (Opex)</td>
+        <td id="st-opex" style="color:#FF8DA6">-$35,000.00</td>
+       </tr>
+       <tr>
+        <td data-en="Less: Reserve Contribution" data-fa="کسر می‌شود: ذخیره احتیاطی دوره">Less: Reserve Contribution</td>
+        <td id="st-reserve" style="color:#FF8DA6">-$8,000.00</td>
+       </tr>
+       <tr>
+        <td data-en="Less: Carry-Forward Loss" data-fa="کسر می‌شود: زیان انباشته قبلی">Less: Carry-Forward Loss</td>
+        <td id="st-loss" style="color:#FF8DA6">-$5,000.00</td>
+       </tr>
+       <tr class="row-total">
+        <td data-en="= Net Distributable Profit" data-fa="= سود خالص قابل‌توزیع">= Net Distributable Profit</td>
+        <td id="st-dist">$50,000.00</td>
+       </tr>
+       <tr>
+        <td data-en="→ Token Holder Pool (50%)" data-fa="← استخر دارندگان توکن (۵۰٪)">→ Token Holder Pool (50%)</td>
+        <td id="st-inv" style="color:var(--dr-teal)">$25,000.00</td>
+       </tr>
+       <tr>
+        <td data-en="→ Fleet Operator Allocation (50%)" data-fa="← سهم اپراتور ناوگان (۵۰٪)">→ Fleet Operator Allocation (50%)</td>
+        <td id="st-op" style="color:#9BD3F5">$25,000.00</td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+
+    <div id="deficit-alert" class="legal-notice-bar" style="display:none;margin-top:0;">
+     <strong data-en="DEFICIT PERIOD DETECTED:" data-fa="دوره زیان‌ده شناسایی شد:">DEFICIT PERIOD DETECTED:</strong>
+     <span id="deficit-alert-txt">Net revenue is insufficient to cover costs, reserves, and prior losses. Distributable profit is locked at $0.00 (never negative), and the uncovered deficit carries forward.</span>
+    </div>
    </div>
   </div>
  </div>
 </section>
 
 <!-- ================================================
-     SECTION 05: NEXT PRODUCT & ECOSYSTEM NAVIGATION
+     SECTION 05: 50/50 PROFIT ALLOCATION VISUALIZER
+================================================= -->
+<section class="wrap sec" id="profit-allocation">
+ <div>
+  <span class="eyebrow" data-en="04 · 50/50 ALLOCATION ENGINE" data-fa="۰۴ · موتور تخصیص ۵۰/۵۰">04 · 50/50 ALLOCATION ENGINE</span>
+  <h2 data-en="Synchronized <em>Profit Split Stream</em>" data-fa="جریان همگام <em>تسهیم سود خالص</em>">Synchronized <em>Profit Split Stream</em></h2>
+  <p class="lead"
+     data-en="Watch the finalized Net Distributable Profit split into two strictly conserved streams: Investor Pool + Operator Allocation always equals 100% of Distributable Profit."
+     data-fa="مشاهده کنید که چگونه سود خالص قابل‌توزیع به دو جریان کاملاً متوازن تقسیم می‌شود؛ مجموع استخر سرمایه‌گذاران و سهم اپراتور همواره دقیقاً برابر با ۱۰۰٪ سود قابل‌توزیع است.">
+   Watch the finalized Net Distributable Profit split into two strictly conserved streams: Investor Pool + Operator Allocation always equals 100% of Distributable Profit.
+  </p>
+ </div>
+
+ <div class="dr-shell split-visualizer">
+  <div class="split-svg-stage">
+   <svg viewBox="0 0 1000 220" width="100%" height="auto" role="img" aria-label="50/50 Profit Allocation Stream Diagram">
+    <defs>
+     <linearGradient id="streamGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EC5800" stop-opacity="0.45"/>
+      <stop offset="35%" stop-color="#27D17F" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#27D17F" stop-opacity="1"/>
+     </linearGradient>
+     <linearGradient id="streamBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EC5800" stop-opacity="0.45"/>
+      <stop offset="35%" stop-color="#0096FF" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#0096FF" stop-opacity="1"/>
+     </linearGradient>
+    </defs>
+
+    <!-- Conduits from Center Net Profit to Investor (Top Green) and Operator (Bottom Blue) -->
+    <path d="M 310 110 C 450 110, 480 55, 640 55" fill="none" stroke="url(#streamGreen)" stroke-width="4.5" stroke-dasharray="10 8"/>
+    <path d="M 310 110 C 450 110, 480 165, 640 165" fill="none" stroke="url(#streamBlue)" stroke-width="4.5" stroke-dasharray="10 8"/>
+
+    <!-- Moving Green Point (Enters Top Green Box) -->
+    <circle r="6" fill="#27D17F" style="filter: drop-shadow(0 0 8px #27D17F);">
+     <animateMotion dur="1.7s" repeatCount="indefinite" path="M 310 110 C 450 110, 480 55, 640 55"/>
+    </circle>
+
+    <!-- Moving Blue Point (Enters Bottom Blue Box) -->
+    <circle r="6" fill="#0096FF" style="filter: drop-shadow(0 0 8px #0096FF);">
+     <animateMotion dur="1.7s" repeatCount="indefinite" path="M 310 110 C 450 110, 480 165, 640 165"/>
+    </circle>
+
+    <!-- Source Node (Left): Molten Orange (#EC5800) -->
+    <g transform="translate(20, 62)">
+     <rect width="290" height="96" rx="14" fill="#06101C" stroke="#EC5800" stroke-width="2" style="filter: drop-shadow(0 0 18px rgba(236,88,0,0.18));"/>
+     <text x="145" y="30" fill="#91A0AE" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" text-anchor="middle">NET DISTRIBUTABLE PROFIT</text>
+     <text x="145" y="62" fill="#FFFFFF" font-family="JetBrains Mono, monospace" font-size="22" font-weight="700" text-anchor="middle" id="svg-dist-profit">$50,000.00</text>
+     <text x="145" y="82" fill="#EC5800" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="700" text-anchor="middle">100% CONSERVED SOURCE</text>
+    </g>
+
+    <!-- Top Target (Right): Token Holder Pool - Status Green (#27D17F) -->
+    <g transform="translate(640, 14)">
+     <rect width="340" height="82" rx="14" fill="#06111E" stroke="#27D17F" stroke-width="2" style="filter: drop-shadow(0 0 18px rgba(39,209,127,0.16));"/>
+     <text x="20" y="28" fill="#27D17F" style="fill: #27D17F !important;" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" id="svg-inv-label">TOKEN HOLDER POOL (50%)</text>
+     <text x="20" y="58" fill="#FFFFFF" font-family="JetBrains Mono, monospace" font-size="21" font-weight="700" id="svg-inv-pool">$25,000.00</text>
+    </g>
+
+    <!-- Bottom Target (Right): Fleet Operator Allocation - Cyber Blue (#0096FF) -->
+    <g transform="translate(640, 124)">
+     <rect width="340" height="82" rx="14" fill="#06111E" stroke="#0096FF" stroke-width="2" style="filter: drop-shadow(0 0 18px rgba(0,150,255,0.16));"/>
+     <text x="20" y="28" fill="#0096FF" style="fill: #0096FF !important;" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" id="svg-op-label">FLEET OPERATOR ALLOCATION (50%)</text>
+     <text x="20" y="58" fill="#FFFFFF" font-family="JetBrains Mono, monospace" font-size="21" font-weight="700" id="svg-op-pool">$25,000.00</text>
+    </g>
+   </svg>
+  </div>
+
+  <div class="split-bar-track" aria-hidden="true" style="background: linear-gradient(90deg, #005A9C, #0096FF); border-color: rgba(255,255,255,0.14);">
+   <div class="split-bar-inv" id="split-bar-inv" style="background: linear-gradient(90deg, #189957, #27D17F); box-shadow: 0 0 14px rgba(39,209,127,0.45);"></div>
+  </div>
+
+  <div class="split-controls-row">
+   <div style="flex:1;min-width:260px;">
+    <label for="in-split" style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11.5px;color:var(--dr-text-sec);margin-bottom:6px;">
+     <span data-en="SIMULATE CUSTOM SPLIT RATIO (OFFICIAL DEFAULT: 50% / 50%)" data-fa="تغییر آزمایشی نسبت تسهیم (پیش‌فرض رسمی: ۵۰٪ / ۵۰٪)">SIMULATE CUSTOM SPLIT RATIO (OFFICIAL DEFAULT: 50% / 50%)</span>
+     <b id="split-ratio-txt" style="color:var(--dr-teal)">50% Investor / 50% Operator</b>
+    </label>
+    <input id="in-split" type="range" min="10" max="90" step="5" value="50" style="width:100%;accent-color:var(--dr-teal);cursor:pointer;">
+   </div>
+   <button type="button" class="btn btn--navy" id="btn-reset-split" style="min-height:36px;padding:0 14px;font-size:12px;">
+    <span data-en="Reset to Official 50/50" data-fa="بازگشت به ۵۰/۵۰ رسمی">Reset to Official 50/50</span>
+   </button>
+  </div>
+ </div>
+</section>
+
+<!-- ================================================
+     SECTION 06: INVESTOR REWARD CALCULATOR & TOKENOMICS
+================================================= -->
+<section class="wrap sec" id="investor-calculator">
+ <div>
+  <span class="eyebrow" data-en="05 · TOKEN HOLDER REWARD ENGINE" data-fa="۰۵ · ماشین‌حساب پاداش هولدر و توکنومیکس">05 · TOKEN HOLDER REWARD ENGINE</span>
+  <h2 data-en="Pro-Rata Distribution & <em>Token Economics</em>" data-fa="محاسبه سود متناسب و <em>اقتصاد توکن</em>">Pro-Rata Distribution & <em>Token Economics</em></h2>
+  <p class="lead"
+     data-en="Calculate your exact proportional share of the Investor Pool. Every eligible token receives RewardPerToken = InvestorPool / EligibleTokenSupply using fixed-point cent precision."
+     data-fa="سهم دقیق خود را از استخر سرمایه‌گذاران محاسبه کنید. هر توکن واجد شرایط به نسبت مساوی از استخر ۵۰ درصدی سود خالص بهره‌مند می‌شود.">
+   Calculate your exact proportional share of the Investor Pool. Every eligible token receives RewardPerToken = InvestorPool / EligibleTokenSupply using fixed-point cent precision.
+  </p>
+ </div>
+
+ <div class="dr-shell">
+  <div class="calc-grid">
+   <!-- Left: Inputs & Quick-Select Holdings -->
+   <div>
+    <div class="fin-inputs-panel">
+     <div class="fin-field">
+      <label for="in-supply"><span data-en="Eligible Token Supply (Se)" data-fa="کل عرضه توکن واجد شرایط (Se)">Eligible Token Supply (Se)</span><span>SUPPLY</span></label>
+      <input id="in-supply" type="number" min="1" max="100000000" step="100" value="10000">
+     </div>
+     <div class="fin-field">
+      <label for="in-balance"><span data-en="Your Eligible Tokens (Bi)" data-fa="تعداد توکن‌های شما (Bi)">Your Eligible Tokens (Bi)</span><span>BALANCE</span></label>
+      <input id="in-balance" type="number" min="0" max="10000" step="1" value="100">
+     </div>
+     <div class="fin-field">
+      <label for="in-req-return"><span data-en="Assumed Required Return (r %)" data-fa="نرخ بازده مورد انتظار فرضی (r %)">Assumed Required Return (r %)</span><span>VALUATION</span></label>
+      <input id="in-req-return" type="number" min="1" max="100" step="0.5" value="10">
+     </div>
+     <div class="fin-field">
+      <label for="in-offer-price"><span data-en="Illustrative Token Price ($)" data-fa="قیمت فرضی خرید هر توکن ($)">Illustrative Token Price ($)</span><span>OPTIONAL</span></label>
+      <input id="in-offer-price" type="number" min="0.01" max="100000" step="0.1" value="25.00">
+     </div>
+    </div>
+
+    <div class="preset-chips" aria-label="Select Example Token Holdings">
+     <span style="font-family:var(--mono);font-size:11px;color:var(--dr-text-muted);align-self:center;" data-en="Quick Select Holding:" data-fa="انتخاب سریع تعداد توکن:">Quick Select Holding:</span>
+     <button type="button" class="chip-btn" data-hold="1">1</button>
+     <button type="button" class="chip-btn" data-hold="10">10</button>
+     <button type="button" class="chip-btn" data-hold="50">50</button>
+     <button type="button" class="chip-btn active" data-hold="100">100</button>
+     <button type="button" class="chip-btn" data-hold="500">500</button>
+     <button type="button" class="chip-btn" data-hold="1000">1,000</button>
+    </div>
+
+    <div class="fin-summary-panel" style="margin-top:12px;">
+     <div class="fi-row"><span data-en="Reward Per Eligible Token" data-fa="سود هر توکن واجد شرایط">Reward Per Eligible Token</span><b id="out-rpt" style="color:var(--dr-teal)">$2.50</b></div>
+     <div class="fi-row"><span data-en="Your Share of Investor Pool" data-fa="درصد سهم شما از استخر">Your Share of Investor Pool</span><b id="out-share-pct">1.0000%</b></div>
+     <div class="fi-row"><span data-en="Your Simulated Period Distribution" data-fa="سود دریافتی شما در این دوره">Your Simulated Period Distribution</span><b id="out-inv-reward" style="font-size:18px;color:var(--dr-teal)">$250.00</b></div>
+     <div class="fi-row"><span data-en="Distribution vs. Purchase Cost" data-fa="نسبت توزیع به مبلغ خرید فرضی">Distribution vs. Purchase Cost</span><b id="out-cost-ratio">10.00% (Period Cashflow Ratio)</b></div>
+     <div class="fi-row"><span data-en="One-Period Illustrative Value P0 = E(D1)/(1+r)" data-fa="ارزش ریاضی تک‌دوره‌ای P0 = E(D1)/(1+r)">One-Period Illustrative Value P0 = E(D1)/(1+r)</span><b id="out-p0">$2.27</b></div>
+     <div class="fi-row" style="border-bottom:0;"><span data-en="Unallocated Rounding Dust" data-fa="باقی‌مانده رندینگ (Dust)">Unallocated Rounding Dust</span><b id="out-dust">$0.00 (Retained in Pool Carry)</b></div>
+    </div>
+   </div>
+
+   <!-- Right: Standard Holdings Table & Cumulative Reward-Per-Share Math -->
+   <div>
+    <strong style="font-family:var(--mono);font-size:12px;color:var(--dr-teal);display:block;margin-bottom:6px;" data-en="ILLUSTRATIVE DISTRIBUTION TABLE (DYNAMICALLY COMPUTED)" data-fa="جدول توزیع نمونه بر اساس تعداد توکن (محاسبه‌شده توسط موتور)">ILLUSTRATIVE DISTRIBUTION TABLE (DYNAMICALLY COMPUTED)</strong>
+    <table class="examples-table" aria-label="Example Token Holdings Distribution Table">
+     <thead>
+      <tr>
+       <th data-en="Eligible Tokens" data-fa="تعداد توکن">Eligible Tokens</th>
+       <th data-en="Pool Share" data-fa="سهم از استخر">Pool Share</th>
+       <th data-en="Period Distribution" data-fa="مبلغ توزیع دوره">Period Distribution</th>
+      </tr>
+     </thead>
+     <tbody id="examples-tbody"></tbody>
+    </table>
+
+    <div style="margin-top:18px;padding:16px;border-radius:12px;background:rgba(2,10,19,0.9);border:1px solid var(--dr-border-blue);">
+     <strong style="font-family:var(--mono);font-size:11.5px;color:#9BD3F5;display:block;margin-bottom:8px;" data-en="ON-CHAIN REWARD ACCOUNTING (PRECISION = 1e18)" data-fa="الگوریتم حسابداری پاداش آن‌چین (PRECISION = 1e18)">ON-CHAIN REWARD ACCOUNTING (PRECISION = 1e18)</strong>
+     <code style="font-family:var(--mono);font-size:11px;color:#D6E8F5;display:block;line-height:1.6;">
+      RewardPerShare_new = RewardPerShare_old + (InvestorPool × 1e18) / EligibleSupply<br>
+      PendingReward_i = (Balance_i × RewardPerShare_new) / 1e18 − RewardDebt_i
+     </code>
+     <small style="display:block;margin-top:8px;font-family:var(--mono);font-size:10.5px;color:var(--dr-text-muted);" id="rps-live-readout">
+      Current ΔRewardPerShare: +2.500000000000000000 USD-units per token
+     </small>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ================================================
+     SECTION 07: FINANCIAL WATERFALL EXPLORER
+================================================= -->
+<section class="wrap sec" id="waterfall-explorer">
+ <div>
+  <span class="eyebrow" data-en="06 · FINANCIAL WATERFALL EXPLORER" data-fa="۰۶ · نمودار آبشاری تبدیل درآمد به سود">06 · FINANCIAL WATERFALL EXPLORER</span>
+  <h2 data-en="From Gross Revenue to <em>50/50 Allocation</em>" data-fa="از درآمد ناخالص تا <em>تخصیص ۵۰/۵۰</em>">From Gross Revenue to <em>50/50 Allocation</em></h2>
+  <p class="lead"
+     data-en="Proportional visual waterfall showing how $100,000 in collected revenue steps down through refunds, operating expenses, reserves, and carry-forward losses to reach $50,000 Net Distributable Profit."
+     data-fa="نمودار آبشاری متناسب که نشان می‌دهد چگونه درآمد وصول‌شده پس از کسر مرحله‌به‌مرحله مرجوعی، هزینه‌های عملیاتی، ذخیره احتیاطی و زیان انباشته به سود خالص قابل‌توزیع می‌رسد.">
+   Proportional visual waterfall showing how $100,000 in collected revenue steps down through refunds, operating expenses, reserves, and carry-forward losses to reach $50,000 Net Distributable Profit.
+  </p>
+ </div>
+
+ <div class="dr-shell">
+  <div class="wf-chart-grid" id="wf-chart-grid" role="img" aria-label="Proportional Financial Waterfall Chart">
+   <div class="wf-col">
+    <span class="wf-col__val" id="wfc-val-1">$100,000</span>
+    <div class="wf-col__bar-wrap"><div class="wf-col__bar" id="wfc-bar-1" style="--h:100%"></div></div>
+    <span class="wf-col__lbl" data-en="1. Collected Revenue" data-fa="۱. درآمد وصول‌شده">1. Collected Revenue</span>
+   </div>
+   <div class="wf-col">
+    <span class="wf-col__val" id="wfc-val-2">$98,000</span>
+    <div class="wf-col__bar-wrap"><div class="wf-col__bar" id="wfc-bar-2" style="--h:98%"></div></div>
+    <span class="wf-col__lbl" data-en="2. Net Revenue (-Refunds)" data-fa="۲. درآمد خالص">2. Net Revenue (-Refunds)</span>
+   </div>
+   <div class="wf-col">
+    <span class="wf-col__val" id="wfc-val-3">-$35,000</span>
+    <div class="wf-col__bar-wrap"><div class="wf-col__bar bar-deduct" id="wfc-bar-3" style="--h:35%"></div></div>
+    <span class="wf-col__lbl" data-en="3. Operating Costs" data-fa="۳. هزینه‌های عملیاتی">3. Operating Costs</span>
+   </div>
+   <div class="wf-col">
+    <span class="wf-col__val" id="wfc-val-4">-$13,000</span>
+    <div class="wf-col__bar-wrap"><div class="wf-col__bar bar-deduct" id="wfc-bar-4" style="--h:13%"></div></div>
+    <span class="wf-col__lbl" data-en="4. Reserve + Prior Loss" data-fa="۴. ذخیره و زیان قبلی">4. Reserve + Prior Loss</span>
+   </div>
+   <div class="wf-col">
+    <span class="wf-col__val" id="wfc-val-5">$50,000</span>
+    <div class="wf-col__bar-wrap"><div class="wf-col__bar" id="wfc-bar-5" style="--h:50%"></div></div>
+    <span class="wf-col__lbl" data-en="5. Distributable Profit" data-fa="۵. سود قابل‌توزیع">5. Distributable Profit</span>
+   </div>
+   <div class="wf-col">
+    <span class="wf-col__val" id="wfc-val-6">$25,000</span>
+    <div class="wf-col__bar-wrap"><div class="wf-col__bar" id="wfc-bar-6" style="--h:25%"></div></div>
+    <span class="wf-col__lbl" data-en="6. Investor Pool (50%)" data-fa="۶. استخر هولدرها (۵۰٪)">6. Investor Pool (50%)</span>
+   </div>
+   <div class="wf-col">
+    <span class="wf-col__val" id="wfc-val-7">$25,000</span>
+    <div class="wf-col__bar-wrap"><div class="wf-col__bar bar-op" id="wfc-bar-7" style="--h:25%"></div></div>
+    <span class="wf-col__lbl" data-en="7. Operator Split (50%)" data-fa="۷. سهم اپراتور (۵۰٪)">7. Operator Split (50%)</span>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ================================================
+     SECTION 08 & 09: DISTRIBUTION LIFECYCLE & DEMO INVESTOR DASHBOARD
+================================================= -->
+<section class="wrap sec" id="distribution-lifecycle">
+ <div>
+  <span class="eyebrow" data-en="07 · PERIOD ACCOUNTING & CLAIM STATE MACHINE" data-fa="۰۷ · چرخه حسابداری دوره و مطالبه سود">07 · PERIOD ACCOUNTING & CLAIM STATE MACHINE</span>
+  <h2 data-en="Distribution Lifecycle & <em>Demo Investor Account</em>" data-fa="چرخه توزیع سود و <em>حساب سرمایه‌گذار آزمایشی</em>">Distribution Lifecycle & <em>Demo Investor Account</em></h2>
+  <p class="lead"
+     data-en="Step through the 9-stage reporting lifecycle below. The state machine enforces strict transition rules: rewards cannot become claimable before report verification and profit finalization, and duplicate claims for the same distribution ID are blocked."
+     data-fa="مراحل ۹گانه چرخه مالی دوره را به ترتیب اجرا کنید. ماشین وضعیت از انتقال‌های غیرمجاز جلوگیری می‌کند: پیش از تایید گزارش و نهایی‌سازی سود امکان مطالبه وجود ندارد و مطالبه تکراری مسدود می‌شود.">
+   Step through the 9-stage reporting lifecycle below. The state machine enforces strict transition rules: rewards cannot become claimable before report verification and profit finalization, and duplicate claims for the same distribution ID are blocked.
+  </p>
+ </div>
+
+ <div class="dr-shell">
+  <div class="dr-topbar">
+   <div class="dr-topbar__title">
+    <strong id="lc-state-title">CURRENT STATE: 08 / CLAIMABLE (DISTRIBUTION_ALLOCATED)</strong>
+    <small id="lc-guard-msg" style="color:var(--dr-teal)">Ready: Period snapshot frozen. Eligible demo investor may now execute simulated claim.</small>
+   </div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap;">
+    <button type="button" class="btn btn--teal" id="btn-lc-next" style="min-height:38px;padding:0 16px;font-size:12.5px;">
+     <span data-en="▶ Advance Lifecycle Step" data-fa="▶ گام بعدی چرخه مالی">▶ Advance Lifecycle Step</span>
+    </button>
+    <button type="button" class="btn btn--teal" id="btn-claim-sim" style="min-height:38px;padding:0 16px;font-size:12.5px;">
+     <span data-en="✓ Execute Simulated Claim" data-fa="✓ ثبت مطالبه (Claim) آزمایشی">✓ Execute Simulated Claim</span>
+    </button>
+    <button type="button" class="btn btn--burgundy" id="btn-lc-dispute" style="min-height:38px;padding:0 14px;font-size:12px;">
+     <span data-en="⚠ Trigger Dispute Pause" data-fa="⚠ شبیه‌سازی اعتراض به گزارش">⚠ Trigger Dispute Pause</span>
+    </button>
+    <button type="button" class="btn btn--navy" id="btn-lc-reset" style="min-height:38px;padding:0 14px;font-size:12px;">
+     <span data-en="↺ Reset Lifecycle" data-fa="↺ بازنشانی چرخه">↺ Reset Lifecycle</span>
+    </button>
+   </div>
+  </div>
+
+  <!-- 9-Step Lifecycle Progression Bar -->
+  <div class="lc-steps-grid" id="lc-steps-grid">
+   <div class="lc-step-pill is-done" data-lc="0"><b>01</b><span>OPEN PERIOD</span></div>
+   <div class="lc-step-pill is-done" data-lc="1"><b>02</b><span>COLLECT REV</span></div>
+   <div class="lc-step-pill is-done" data-lc="2"><b>03</b><span>CLOSE PERIOD</span></div>
+   <div class="lc-step-pill is-done" data-lc="3"><b>04</b><span>SUBMIT REPORT</span></div>
+   <div class="lc-step-pill is-done" data-lc="4"><b>05</b><span>VERIFY REPORT</span></div>
+   <div class="lc-step-pill is-done" data-lc="5"><b>06</b><span>FINALIZE PROFIT</span></div>
+   <div class="lc-step-pill is-done" data-lc="6"><b>07</b><span>SNAPSHOT</span></div>
+   <div class="lc-step-pill is-active" data-lc="7"><b>08</b><span>ALLOCATE</span></div>
+   <div class="lc-step-pill" data-lc="8"><b>09</b><span>CLAIMED</span></div>
+  </div>
+
+  <!-- Section 09: Demo Investor Account Dashboard -->
+  <div style="display:flex;justify-content:space-between;align-items:center;margin:18px 0 12px;flex-wrap:wrap;gap:10px;">
+   <span class="sim-badge"><i></i><span data-en="DEMO INVESTOR ACCOUNT (SIMULATED — NOT CONNECTED WALLET)" data-fa="حساب سرمایه‌گذار آزمایشی (شبیه‌سازی‌شده)">DEMO INVESTOR ACCOUNT (SIMULATED — NOT CONNECTED WALLET)</span></span>
+   <span style="font-family:var(--mono);font-size:11.5px;color:var(--dr-text-muted);">DEMO ACCOUNT REF: DEMO-INV-0x71C...9A2B · SNAPSHOT: <b style="color:#fff">PRD-2026-Q4-CLOSE</b></span>
+  </div>
+
+  <div class="inv-dash-grid">
+   <div class="inv-kpi-card">
+    <small data-en="ELIGIBLE TOKEN BALANCE" data-fa="موجودی توکن در اسنپ‌شات">ELIGIBLE TOKEN BALANCE</small>
+    <strong id="dash-bal">100 / 10,000</strong>
+   </div>
+   <div class="inv-kpi-card">
+    <small data-en="ESTIMATED / ACCRUED" data-fa="برآورد اولیه (غیرقابل مطالبه)">ESTIMATED / ACCRUED</small>
+    <strong id="dash-est">$250.00</strong>
+   </div>
+   <div class="inv-kpi-card">
+    <small data-en="CLAIMABLE BALANCE" data-fa="موجودی قابل مطالبه (Claimable)">CLAIMABLE BALANCE</small>
+    <strong class="teal" id="dash-claimable">$250.00</strong>
+   </div>
+   <div class="inv-kpi-card">
+    <small data-en="TOTAL CLAIMED (SIMULATED)" data-fa="مجموع مطالبه‌شده (آزمایشی)">TOTAL CLAIMED (SIMULATED)</small>
+    <strong id="dash-claimed">$0.00</strong>
+   </div>
+  </div>
+
+  <div class="calc-grid">
+   <div>
+    <strong style="font-family:var(--mono);font-size:11.5px;color:var(--dr-teal);display:block;margin-bottom:8px;" data-en="SIMULATED ATTESTED REPORT PAYLOAD (EIP-712 SCHEMA)" data-fa="ساختار گزارش مالی گواهی‌شده (EIP-712 Schema)">SIMULATED ATTESTED REPORT PAYLOAD (EIP-712 SCHEMA)</strong>
+    <pre class="code-schema-box" id="report-schema-box"></pre>
+   </div>
+   <div>
+    <strong style="font-family:var(--mono);font-size:11.5px;color:var(--dr-teal);display:block;margin-bottom:8px;" data-en="DETERMINISTIC CLAIM LEDGER (DOUBLE-CLAIM PROTECTED)" data-fa="دفترکل مطالبات (مجهز به محافظت در برابر مطالبه تکراری)">DETERMINISTIC CLAIM LEDGER (DOUBLE-CLAIM PROTECTED)</strong>
+    <table class="examples-table" aria-label="Simulated Claim History">
+     <thead>
+      <tr>
+       <th>DIST ID</th>
+       <th>ACCOUNT REF</th>
+       <th>AMOUNT</th>
+       <th>STATUS</th>
+      </tr>
+     </thead>
+     <tbody id="claim-ledger-tbody">
+      <tr>
+       <td>DIST-2026-Q3</td>
+       <td>DEMO-INV-01</td>
+       <td>$215.00</td>
+       <td style="color:var(--dr-teal)">SETTLED (SIMULATED)</td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ================================================
+     SECTION 10: VERIFICATION & TRUST ARCHITECTURE
+================================================= -->
+<section class="wrap sec" id="trust-architecture">
+ <div>
+  <span class="eyebrow" data-en="08 · HYBRID VERIFICATION & TRUST BOUNDARIES" data-fa="۰۸ · معماری راستی‌آزمایی هیبریدی و مرزهای اعتماد">08 · HYBRID VERIFICATION & TRUST BOUNDARIES</span>
+  <h2 data-en="Off-Chain Operations to <em>On-Chain Settlement</em>" data-fa="از عملیات برون‌زنجیره‌ای تا <em>تسویه درون‌زنجیره‌ای</em>">Off-Chain Operations to <em>On-Chain Settlement</em></h2>
+  <p class="lead"
+     data-en="Physical drone flights and payment reconciliations happen off-chain. Click any node below to inspect the trust boundary and see how structured reports are verified before smart-contract allocation."
+     data-fa="پروازهای فیزیکی پهپاد و تطبیق پرداخت‌های بانکی در خارج از بلاکچین رخ می‌دهند. روی هر ماژول کلیک کنید تا مرز اعتماد و نحوه گواهی گزارش‌ها پیش از تخصیص در قرارداد هوشمند را بررسی نمایید.">
+   Physical drone flights and payment reconciliations happen off-chain. Click any node below to inspect the trust boundary and see how structured reports are verified before smart-contract allocation.
+  </p>
+ </div>
+
+ <div class="dr-shell">
+  <div class="trust-nodes-grid" id="trust-nodes-grid">
+   <button type="button" class="trust-node-btn active" data-tnode="0"><small>01 · OFF-CHAIN</small><strong data-en="Drone Telemetry" data-fa="تله‌متری پهپاد">Drone Telemetry</strong></button>
+   <button type="button" class="trust-node-btn" data-tnode="1"><small>02 · OFF-CHAIN</small><strong data-en="Mission Records" data-fa="سوابق ماموریت">Mission Records</strong></button>
+   <button type="button" class="trust-node-btn" data-tnode="2"><small>03 · OFF-CHAIN</small><strong data-en="Payment Collection" data-fa="وصول واقعی وجه">Payment Collection</strong></button>
+   <button type="button" class="trust-node-btn" data-tnode="3"><small>04 · OFF-CHAIN</small><strong data-en="Expense Accounting" data-fa="حسابداری هزینه‌ها">Expense Accounting</strong></button>
+   <button type="button" class="trust-node-btn" data-tnode="4"><small>05 · ATTESTATION</small><strong data-en="Report Signers (EIP-712)" data-fa="امضاکنندگان گزارش">Report Signers (EIP-712)</strong></button>
+   <button type="button" class="trust-node-btn" data-tnode="5"><small>06 · VERIFICATION</small><strong data-en="Report Verification" data-fa="راستی‌آزمایی گزارش">Report Verification</strong></button>
+   <button type="button" class="trust-node-btn" data-tnode="6"><small>07 · ON-CHAIN (PROPOSED)</small><strong data-en="Smart Contracts" data-fa="قراردادهای هوشمند">Smart Contracts</strong></button>
+   <button type="button" class="trust-node-btn" data-tnode="7"><small>08 · ON-CHAIN (PROPOSED)</small><strong data-en="Investor Distribution" data-fa="توزیع سود هولدرها">Investor Distribution</strong></button>
+  </div>
+
+  <div class="fin-summary-panel" id="trust-node-detail">
+   <strong id="tn-title" style="font-size:17px;color:var(--dr-teal)">01 · Drone Telemetry (Off-Chain Physical Layer)</strong>
+   <p id="tn-desc" style="color:var(--dr-text-sec);font-size:14.5px;line-height:1.7;margin:6px 0;">
+    Flight logs, GPS waypoints, payload weight, and battery cycle telemetry are generated off-chain by physical drone avionics. Telemetry logs alone do not equal collected revenue.
+   </p>
+   <div class="legal-notice-bar" style="margin-top:6px;" data-en="CRITICAL CRYPTOGRAPHIC PRINCIPLE: A valid EIP-712 signature proves that an authorized key signed a specific report. It does NOT independently prove that the underlying accounting figures are economically truthful—reconciliation against bank/payment records, dispute windows, and audit controls remain essential." data-fa="اصل مهم رمزنگاری: یک امضای معتبر EIP-712 صرفاً اثبات می‌کند که کلید مجاز یک گزارش مشخص را امضا کرده است؛ اما به تنهایی صحت اقتصادی ارقام حسابداری را ثابت نمی‌کند. تطبیق با صورت‌حساب‌های پرداخت، پنجره اعتراض و حسابرسی مستقل همواره ضروری است.">
+    CRITICAL CRYPTOGRAPHIC PRINCIPLE: A valid EIP-712 signature proves that an authorized key signed a specific report. It does NOT independently prove that the underlying accounting figures are economically truthful—reconciliation against bank/payment records, dispute windows, and audit controls remain essential.
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ================================================
+     SECTION 11 & 12: PROPOSED SMART CONTRACT ARCHITECTURE (11 MODULES)
+================================================= -->
+<section class="wrap sec" id="technical-architecture">
+ <div>
+  <span class="eyebrow" data-en="09 · PROPOSED SMART CONTRACT ARCHITECTURE" data-fa="۰۹ · معماری پیشنهادی قراردادهای هوشمند">09 · PROPOSED SMART CONTRACT ARCHITECTURE</span>
+  <h2 data-en="11 Modular <em>Protocol Contracts</em>" data-fa="۱۱ ماژول <em>قرارداد هوشمند پیشنهادی</em>">11 Modular <em>Protocol Contracts</em></h2>
+  <p class="lead"
+     data-en="Explore the 11 proposed smart-contract modules designed to govern asset registration, report verification, 50/50 profit allocation, reserve accounting, and duplicate-claim protection."
+     data-fa="۱۱ ماژول قرارداد هوشمند پیشنهادی برای ثبت دارایی، تایید گزارش مالی، تسهیم ۵۰/۵۰ سود، مدیریت ذخیره احتیاطی و جلوگیری از برداشت تکراری را بررسی کنید.">
+   Explore the 11 proposed smart-contract modules designed to govern asset registration, report verification, 50/50 profit allocation, reserve accounting, and duplicate-claim protection.
+  </p>
+ </div>
+
+ <div class="dr-shell">
+  <div class="dr-topbar">
+   <div class="dr-topbar__title">
+    <strong data-en="PROPOSED SOLIDITY MODULE SPECIFICATION" data-fa="مشخصات ماژول‌های پیشنهادی سالیدیتی">PROPOSED SOLIDITY MODULE SPECIFICATION</strong>
+    <small data-en="STATUS: PROPOSED ARCHITECTURE & IMPLEMENTATION ROADMAP — NOT YET DEPLOYED" data-fa="وضعیت: معماری پیشنهادی و نقشه راه پیاده‌سازی — هنوز مستقر نشده است">STATUS: PROPOSED ARCHITECTURE & IMPLEMENTATION ROADMAP — NOT YET DEPLOYED</small>
+   </div>
+   <span class="sim-badge sim-badge--prop"><i></i><span>PROPOSED ARCHITECTURE</span></span>
+  </div>
+
+  <div class="contracts-grid" id="contracts-grid"></div>
+ </div>
+</section>
+
+<!-- ================================================
+     SECTION 13: RISK DISCLOSURE & SIMULATION INTEGRITY
+================================================= -->
+<section class="wrap sec" id="risk-disclosure">
+ <div>
+  <span class="eyebrow" data-en="10 · RISK, RESERVES & MANDATORY DISCLOSURES" data-fa="۱۰ · ریسک‌ها، ذخایر و افشای الزامی اطلاعات">10 · RISK, RESERVES & MANDATORY DISCLOSURES</span>
+  <h2 data-en="Simulation Integrity & <em>Risk Factors</em>" data-fa="شفافیت شبیه‌سازی و <em>عوامل ریسک</em>">Simulation Integrity & <em>Risk Factors</em></h2>
+ </div>
+
+ <div class="dr-shell dr-shell--burgundy">
+  <div class="risk-grid-3">
+   <div class="risk-card">
+    <span class="sim-badge"><i></i><span>CATEGORY B · SIMULATION</span></span>
+    <h4 data-en="Interactive Browser Simulation" data-fa="شبیه‌ساز تعاملی مرورگر">Interactive Browser Simulation</h4>
+    <p data-en="All financial calculations, waterfall charts, fleet telemetry states, period snapshots, and claim ledgers on this page execute locally in JavaScript for educational and modeling purposes."
+       data-fa="تمامی محاسبات مالی، نمودارهای آبشاری، وضعیت ناوگان و دفترکل مطالبات در این صفحه به صورت محلی در جاوا اسکریپت و جهت مدل‌سازی اجرا می‌شوند.">
+     All financial calculations, waterfall charts, fleet telemetry states, period snapshots, and claim ledgers on this page execute locally in JavaScript for educational and modeling purposes.
+    </p>
+   </div>
+   <div class="risk-card">
+    <span class="sim-badge sim-badge--prop"><i></i><span>CATEGORY C · PROPOSED</span></span>
+    <h4 data-en="Proposed On-Chain & Oracle Stack" data-fa="زیرساخت پیشنهادی قرارداد و اوراکل">Proposed On-Chain & Oracle Stack</h4>
+    <p data-en="Smart contract modules, EIP-712 report verifiers, and payment settlement bridges represent proposed architecture requiring deployment, independent security audits, and legal structuring."
+       data-fa="ماژول‌های قرارداد هوشمند، تاییدکننده‌های گزارش EIP-712 و پل‌های پرداخت، معماری پیشنهادی هستند و نیازمند استقرار، ممیزی امنیتی و ساختاردهی حقوقی می‌باشند.">
+     Smart contract modules, EIP-712 report verifiers, and payment settlement bridges represent proposed architecture requiring deployment, independent security audits, and legal structuring.
+    </p>
+   </div>
+   <div class="risk-card">
+    <span class="sim-badge sim-badge--warn"><i></i><span>RISK DISCLOSURE</span></span>
+    <h4 data-en="No Guaranteed Yield or Principal" data-fa="عدم تضمین سود یا اصل سرمایه">No Guaranteed Yield or Principal</h4>
+    <p data-en="Operating revenue may fluctuate, expenses or downtime may exceed expectations, and any period may produce zero distributable profit. Token rights depend strictly on final offering documents."
+       data-fa="درآمد عملیاتی ممکن است نوسان داشته باشد، هزینه‌ها ممکن است از پیش‌بینی فراتر رود و هر دوره می‌تواند سود قابل‌توزیع صفر داشته باشد. هیچ سودی تضمین‌شده نیست.">
+     Operating revenue may fluctuate, expenses or downtime may exceed expectations, and any period may produce zero distributable profit. Token rights depend strictly on final offering documents.
+    </p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ================================================
+     SECTION 14: ECOSYSTEM NAVIGATION & FOOTER
 ================================================= -->
 <section class="wrap sec" style="padding-bottom: 96px;">
  <div class="p-next-bar">
@@ -1193,8 +2352,8 @@
    <h3 style="font-size: 26px;" data-en="Next Product: Tokenized Commercial Vehicles" data-fa="محصول بعدی: ناوگان خودروهای تجاری توکنایزشده">Next Product: Tokenized Commercial Vehicles</h3>
   </div>
   <div style="display: flex; flex-wrap: wrap; gap: 12px;">
-   <a class="btn btn--ghost" href="index.html#products" data-en="← All Products" data-fa="→ همه محصولات">← All Products</a>
-   <a class="btn" href="product-vehicles.html">
+   <a class="btn btn--navy" href="index.html#products" data-en="← All Products" data-fa="→ همه محصولات">← All Products</a>
+   <a class="btn btn--teal" href="product-vehicles.html">
     <span data-en="Tokenized Vehicles" data-fa="خودروهای توکنایزشده">Tokenized Vehicles</span>
     <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
    </a>
@@ -1204,13 +2363,8 @@
 
 </main>
 
-<!-- ================================================
-     SECTION 08: FOOTER (WEB3 SIGNATURE)
-================================================= -->
 <footer class="foot" id="footer">
  <div class="wrap" style="display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 36px 0;">
-  
-  <!-- Premium Web3 Developer Signature (Single Line) -->
   <div class="mh-signature-box" title="Engineering & UI/UX">
    <i class="mh-sig-dot"></i>
    <span class="mh-sig-text">
@@ -1218,23 +2372,22 @@
     <b data-en="Mohammad Hossein Ghiasvand" data-fa="محمد حسین غیاثوند">Mohammad Hossein Ghiasvand</b>
    </span>
   </div>
-
-  <!-- Minimal Copyright (Monospace style) -->
   <div class="foot__bot" style="margin-top: 0; border-top: 0; text-align: center; width: 100%;">
-   <span style="font-size: 10.5px; color: var(--color-text-muted); font-family: var(--mono); letter-spacing: 0.08em; text-transform: uppercase;">
-    © <span id="yr">2026</span> AERVYNX PROTOCOL. ALL RIGHTS RESERVED.
+   <span style="font-size: 10.5px; color: var(--dr-text-muted); font-family: var(--mono); letter-spacing: 0.08em; text-transform: uppercase;">
+    © <span id="yr">2026</span> AERVYNX PROTOCOL · INTERACTIVE PRODUCT SIMULATION · NOT FINANCIAL OR LEGAL ADVICE.
    </span>
   </div>
-
  </div>
 </footer>
 
-<!-- ================================================
-     AUTONOMOUS DRONE FLIGHT PHYSICS & TELEMETRY ENGINE
-================================================= -->
+<!-- =====================================================================
+     CENTRALIZED FINANCIAL ENGINE, STATE MACHINE & INTERACTIVE CONTROLLERS
+===================================================================== -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Mobile Burger Menu Toggle
+  "use strict";
+
+  // 1. Navigation & Bilingual Switcher
   const nav = document.getElementById("nav");
   const burger = document.getElementById("burger");
   if (burger && nav) {
@@ -1244,7 +2397,603 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 2. Bilingual Language Switcher (EN / FA + RTL)
+  // =====================================================================
+  // 2. CENTRALIZED SIMULATION STATE (Single Source of Truth)
+  //    All currency calculations use integer cents to prevent float drift.
+  // =====================================================================
+  const simulationState = {
+    revenue: {
+      grossCollectedCents: 10000000, // $100,000.00
+      refundsCents: 200000           // $2,000.00
+    },
+    expenses: {
+      flightCents: 2000000,          // $20,000.00
+      maintCents: 800000,            // $8,000.00
+      insCents: 400000,              // $4,000.00
+      logCents: 300000,              // $3,000.00
+      overheadCents: 0               // $0.00
+    },
+    reserves: {
+      contributionCents: 800000,     // $8,000.00
+      carryForwardLossCents: 500000  // $5,000.00
+    },
+    tokenomics: {
+      investorSplitPct: 50,          // Official 50% Investor / 50% Operator
+      eligibleSupply: 10000,
+      investorBalance: 100,
+      requiredReturnPct: 10,
+      offeringPriceCents: 2500       // $25.00
+    },
+    lifecycle: {
+      stepIndex: 7, // Default at 08 / ALLOCATED & CLAIMABLE so user can test claim immediately
+      disputed: false,
+      claimedPeriods: new Set(),
+      claimedTotalCents: 0
+    },
+    fleet: [
+      { id: "DRN-505-01", fleet: "FLT-505-ALPHA", status: "OP", label: "OPERATIONAL", model: "Heavy-Lift Cargo VTOL", missions: 310, util: "88%", maint: "Airworthy · Next check 42h", bat: "94% (Cycle 112/400)", ins: "Active Hull & Cargo (Demo)", rev: 24800 },
+      { id: "DRN-505-02", fleet: "FLT-505-ALPHA", status: "OP", label: "OPERATIONAL", model: "Heavy-Lift Cargo VTOL", missions: 295, util: "85%", maint: "Airworthy · Next check 60h", bat: "91% (Cycle 140/400)", ins: "Active Hull & Cargo (Demo)", rev: 23600 },
+      { id: "DRN-505-03", fleet: "FLT-505-ALPHA", status: "OP", label: "OPERATIONAL", model: "Medium Express VTOL", missions: 340, util: "92%", maint: "Airworthy · Next check 19h", bat: "89% (Cycle 168/400)", ins: "Active Hull & Cargo (Demo)", rev: 27200 },
+      { id: "DRN-505-04", fleet: "FLT-505-ALPHA", status: "PEND", label: "REPORT PENDING", model: "Medium Express VTOL", missions: 210, util: "74%", maint: "Awaiting Log Reconciliation", bat: "96% (Cycle 78/400)", ins: "Active Hull & Cargo (Demo)", rev: 16800 },
+      { id: "DRN-505-05", fleet: "FLT-505-ALPHA", status: "MAINT", label: "MAINTENANCE", model: "Heavy-Lift Cargo VTOL", missions: 95, util: "38%", maint: "Scheduled Rotor & Pack Swap", bat: "100% (New Pack Installed)", ins: "Active Hull & Cargo (Demo)", rev: 7600 },
+      { id: "DRN-505-06", fleet: "FLT-505-ALPHA", status: "IDLE", label: "IDLE / STANDBY", model: "Reserve Logistics Unit", missions: 0, util: "0%", maint: "Standby Bay · Ready", bat: "99% (Cycle 14/400)", ins: "Active Hull & Cargo (Demo)", rev: 0 }
+    ]
+  };
+
+  // =====================================================================
+  // 3. PURE FINANCIAL CALCULATION FUNCTIONS (Integer-Cent Precision)
+  // =====================================================================
+  function calculateGrossCollectedRevenue(rev) {
+    return Math.max(0, Math.round(rev.grossCollectedCents));
+  }
+
+  function calculateNetRevenue(rev) {
+    return calculateGrossCollectedRevenue(rev) - Math.max(0, Math.round(rev.refundsCents));
+  }
+
+  function calculateOperatingExpenses(exp) {
+    return (
+      Math.max(0, Math.round(exp.flightCents)) +
+      Math.max(0, Math.round(exp.maintCents)) +
+      Math.max(0, Math.round(exp.insCents)) +
+      Math.max(0, Math.round(exp.logCents)) +
+      Math.max(0, Math.round(exp.overheadCents))
+    );
+  }
+
+  function calculateReserveContribution(res) {
+    return Math.max(0, Math.round(res.contributionCents));
+  }
+
+  function calculateCarryForwardLoss(res) {
+    return Math.max(0, Math.round(res.carryForwardLossCents));
+  }
+
+  function calculateDistributableProfit(netRevCents, opexCents, reserveCents, lossCents) {
+    const rawProfit = netRevCents - opexCents - reserveCents - lossCents;
+    return {
+      distributableCents: Math.max(0, rawProfit),
+      uncoveredDeficitCents: rawProfit < 0 ? Math.abs(rawProfit) : 0
+    };
+  }
+
+  function calculateSplitAllocations(distributableCents, investorPct) {
+    const clampedPct = Math.max(0, Math.min(100, investorPct));
+    const investorPoolCents = Math.floor((distributableCents * clampedPct) / 100);
+    // Strict conservation: Operator receives exact remainder so Investor + Operator === Distributable
+    const operatorAllocationCents = distributableCents - investorPoolCents;
+    return { investorPoolCents, operatorAllocationCents };
+  }
+
+  function calculateInvestorReward(investorPoolCents, eligibleSupply, holderBalance) {
+    const safeSupply = Math.max(1, Math.floor(eligibleSupply));
+    const safeBalance = Math.max(0, Math.min(safeSupply, Math.floor(holderBalance)));
+    const rewardPerTokenCents = Math.floor(investorPoolCents / safeSupply);
+    const holderRewardCents = Math.floor((investorPoolCents * safeBalance) / safeSupply);
+    const totalDistributedIfAllUnitClaimed = rewardPerTokenCents * safeSupply;
+    const roundingDustCents = investorPoolCents - totalDistributedIfAllUnitClaimed;
+    return {
+      rewardPerTokenCents,
+      holderRewardCents,
+      roundingDustCents,
+      sharePct: (safeBalance / safeSupply) * 100
+    };
+  }
+
+  function calculateIllustrativeValuation(rewardPerTokenCents, requiredReturnPct) {
+    const r = Math.max(0.01, requiredReturnPct / 100);
+    return Math.round(rewardPerTokenCents / (1 + r));
+  }
+
+  function formatUSD(cents, showCents = true) {
+    const val = cents / 100;
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: showCents ? 2 : 0,
+      maximumFractionDigits: showCents ? 2 : 0
+    }).format(val);
+  }
+
+  // =====================================================================
+  // 4. MASTER RENDER ENGINE (Updates All UI Sections from Central State)
+  // =====================================================================
+  function renderAllFinancials() {
+    const grossCents = calculateGrossCollectedRevenue(simulationState.revenue);
+    const refundsCents = Math.max(0, Math.round(simulationState.revenue.refundsCents));
+    const netRevCents = calculateNetRevenue(simulationState.revenue);
+    const opexCents = calculateOperatingExpenses(simulationState.expenses);
+    const reserveCents = calculateReserveContribution(simulationState.reserves);
+    const lossCents = calculateCarryForwardLoss(simulationState.reserves);
+    const { distributableCents, uncoveredDeficitCents } = calculateDistributableProfit(netRevCents, opexCents, reserveCents, lossCents);
+    const { investorPoolCents, operatorAllocationCents } = calculateSplitAllocations(distributableCents, simulationState.tokenomics.investorSplitPct);
+    const rewardObj = calculateInvestorReward(investorPoolCents, simulationState.tokenomics.eligibleSupply, simulationState.tokenomics.investorBalance);
+    const p0Cents = calculateIllustrativeValuation(rewardObj.rewardPerTokenCents, simulationState.tokenomics.requiredReturnPct);
+
+    const invPct = simulationState.tokenomics.investorSplitPct;
+    const opPct = 100 - invPct;
+
+    // Hero & Section 02 Updates
+    document.getElementById("hero-inv-pct").textContent = `${invPct}% NET PROFIT`;
+    document.getElementById("hero-op-pct").textContent = `${opPct}% NET PROFIT`;
+    document.getElementById("hero-pool-val").textContent = formatUSD(investorPoolCents, false);
+
+    document.getElementById("prop-inv-pct").textContent = `${invPct}%`;
+    document.getElementById("prop-op-pct").textContent = `${opPct}%`;
+    document.getElementById("prop-inv-amt").textContent = formatUSD(investorPoolCents, false);
+    document.getElementById("prop-op-amt").textContent = formatUSD(operatorAllocationCents, false);
+
+    document.getElementById("cwf-gross").textContent = formatUSD(grossCents, false);
+    document.getElementById("cwf-refunds").textContent = "-" + formatUSD(refundsCents, false);
+    document.getElementById("cwf-opex").textContent = "-" + formatUSD(opexCents, false);
+    document.getElementById("cwf-reserve").textContent = "-" + formatUSD(reserveCents, false);
+    document.getElementById("cwf-loss").textContent = "-" + formatUSD(lossCents, false);
+    document.getElementById("cwf-dist").textContent = formatUSD(distributableCents, false);
+    document.getElementById("cwf-split").textContent = `${formatUSD(investorPoolCents, false)} / ${formatUSD(operatorAllocationCents, false)}`;
+
+    // Section 04 Statement Table
+    document.getElementById("st-gross").textContent = formatUSD(grossCents);
+    document.getElementById("st-refunds").textContent = "-" + formatUSD(refundsCents);
+    document.getElementById("st-netrev").textContent = formatUSD(netRevCents);
+    document.getElementById("st-opex").textContent = "-" + formatUSD(opexCents);
+    document.getElementById("st-reserve").textContent = "-" + formatUSD(reserveCents);
+    document.getElementById("st-loss").textContent = "-" + formatUSD(lossCents);
+    document.getElementById("st-dist").textContent = formatUSD(distributableCents);
+    document.getElementById("st-inv").textContent = formatUSD(investorPoolCents);
+    document.getElementById("st-op").textContent = formatUSD(operatorAllocationCents);
+    document.getElementById("estimator-readout").textContent = `${formatUSD(grossCents, false)} Gross Collected`;
+
+    const defAlert = document.getElementById("deficit-alert");
+    if (uncoveredDeficitCents > 0) {
+      defAlert.style.display = "block";
+      document.getElementById("deficit-alert-txt").textContent =
+        `Period produced a deficit of ${formatUSD(uncoveredDeficitCents)}. Distributable profit is locked at $0.00 (no negative distribution), and the ${formatUSD(uncoveredDeficitCents)} deficit carries forward.`;
+    } else {
+      defAlert.style.display = "none";
+    }
+
+    // Section 05 Split Visualizer
+    document.getElementById("svg-dist-profit").textContent = formatUSD(distributableCents);
+    document.getElementById("svg-inv-label").textContent = `TOKEN HOLDER POOL (${invPct}%)`;
+    document.getElementById("svg-op-label").textContent = `FLEET OPERATOR ALLOCATION (${opPct}%)`;
+    document.getElementById("svg-inv-pool").textContent = formatUSD(investorPoolCents);
+    document.getElementById("svg-op-pool").textContent = formatUSD(operatorAllocationCents);
+    document.getElementById("split-bar-inv").style.width = `${invPct}%`;
+    document.getElementById("split-ratio-txt").textContent =
+      invPct === 50 ? "50% Investor / 50% Operator (Official Default)" : `${invPct}% Investor / ${opPct}% Operator (Custom Sim)`;
+
+    // Section 06 Investor Calculator & Table
+    document.getElementById("out-rpt").textContent = formatUSD(rewardObj.rewardPerTokenCents);
+    document.getElementById("out-share-pct").textContent = `${rewardObj.sharePct.toFixed(4)}%`;
+    document.getElementById("out-inv-reward").textContent = formatUSD(rewardObj.holderRewardCents);
+
+    const purchaseCostCents = simulationState.tokenomics.investorBalance * simulationState.tokenomics.offeringPriceCents;
+    const costRatio = purchaseCostCents > 0 ? (rewardObj.holderRewardCents / purchaseCostCents) * 100 : 0;
+    document.getElementById("out-cost-ratio").textContent = `${costRatio.toFixed(2)}% of illustrative purchase amount`;
+    document.getElementById("out-p0").textContent = formatUSD(p0Cents);
+    document.getElementById("out-dust").textContent = `${formatUSD(rewardObj.roundingDustCents)} (Retained in Pool Carry)`;
+
+    const rpsDelta = (investorPoolCents / 100) / Math.max(1, simulationState.tokenomics.eligibleSupply);
+    document.getElementById("rps-live-readout").textContent =
+      `Current ΔRewardPerShare: +${rpsDelta.toFixed(8)} USD-units per eligible token`;
+
+    const exTbody = document.getElementById("examples-tbody");
+    const sampleTiers = [1, 10, 50, 100, 500, 1000];
+    exTbody.innerHTML = sampleTiers.map(tier => {
+      const r = calculateInvestorReward(investorPoolCents, simulationState.tokenomics.eligibleSupply, tier);
+      const sel = tier === simulationState.tokenomics.investorBalance ? 'class="is-selected"' : "";
+      return `<tr ${sel}>
+        <td>${tier.toLocaleString("en-US")}</td>
+        <td>${r.sharePct.toFixed(2)}%</td>
+        <td style="font-weight:700">${formatUSD(r.holderRewardCents)}</td>
+      </tr>`;
+    }).join("");
+
+    // Section 07 Waterfall Bars
+    const baseMax = Math.max(100, grossCents);
+    const pct = c => Math.max(4, Math.min(100, Math.round((Math.abs(c) / baseMax) * 100))) + "%";
+    document.getElementById("wfc-val-1").textContent = formatUSD(grossCents, false);
+    document.getElementById("wfc-bar-1").style.setProperty("--h", pct(grossCents));
+    document.getElementById("wfc-val-2").textContent = formatUSD(netRevCents, false);
+    document.getElementById("wfc-bar-2").style.setProperty("--h", pct(netRevCents));
+    document.getElementById("wfc-val-3").textContent = "-" + formatUSD(opexCents, false);
+    document.getElementById("wfc-bar-3").style.setProperty("--h", pct(opexCents));
+    document.getElementById("wfc-val-4").textContent = "-" + formatUSD(reserveCents + lossCents, false);
+    document.getElementById("wfc-bar-4").style.setProperty("--h", pct(reserveCents + lossCents));
+    document.getElementById("wfc-val-5").textContent = formatUSD(distributableCents, false);
+    document.getElementById("wfc-bar-5").style.setProperty("--h", pct(distributableCents));
+    document.getElementById("wfc-val-6").textContent = formatUSD(investorPoolCents, false);
+    document.getElementById("wfc-bar-6").style.setProperty("--h", pct(investorPoolCents));
+    document.getElementById("wfc-val-7").textContent = formatUSD(operatorAllocationCents, false);
+    document.getElementById("wfc-bar-7").style.setProperty("--h", pct(operatorAllocationCents));
+
+    // Section 08 & 09 Lifecycle & Demo Investor Account
+    document.getElementById("dash-bal").textContent =
+      `${simulationState.tokenomics.investorBalance.toLocaleString("en-US")} / ${simulationState.tokenomics.eligibleSupply.toLocaleString("en-US")}`;
+    document.getElementById("dash-est").textContent = formatUSD(rewardObj.holderRewardCents);
+
+    const isClaimable = simulationState.lifecycle.stepIndex === 7 && !simulationState.lifecycle.disputed && !simulationState.lifecycle.claimedPeriods.has("DIST-2026-Q4");
+    document.getElementById("dash-claimable").textContent = isClaimable ? formatUSD(rewardObj.holderRewardCents) : "$0.00";
+    document.getElementById("dash-claimed").textContent = formatUSD(simulationState.lifecycle.claimedTotalCents);
+
+    const schemaObj = {
+      assetId: "DRN-POOL-505-ALPHA",
+      fleetId: "FLT-505-ALPHA",
+      periodId: "PRD-2026-Q4",
+      grossCollectedRevenueUSD: (grossCents / 100).toFixed(2),
+      refundsAndChargebacksUSD: (refundsCents / 100).toFixed(2),
+      operatingExpensesUSD: (opexCents / 100).toFixed(2),
+      reserveContributionUSD: (reserveCents / 100).toFixed(2),
+      carryForwardLossUSD: (lossCents / 100).toFixed(2),
+      distributableProfitUSD: (distributableCents / 100).toFixed(2),
+      investorPoolUSD: (investorPoolCents / 100).toFixed(2),
+      operatorAllocationUSD: (operatorAllocationCents / 100).toFixed(2),
+      eligibleTokenSupply: simulationState.tokenomics.eligibleSupply,
+      simulatedReportRef: "SIM-REP-2026-Q4-NONCE-01",
+      verificationStatus: simulationState.lifecycle.disputed ? "DISPUTED_PAUSED" : "SIMULATED_VERIFIED"
+    };
+    document.getElementById("report-schema-box").textContent = JSON.stringify(schemaObj, null, 2);
+  }
+
+  // =====================================================================
+  // 5. BIND FINANCIAL INPUTS & SCENARIO PRESETS
+  // =====================================================================
+  const inputMap = [
+    ["in-gross", v => simulationState.revenue.grossCollectedCents = v * 100],
+    ["in-refunds", v => simulationState.revenue.refundsCents = v * 100],
+    ["in-flight", v => simulationState.expenses.flightCents = v * 100],
+    ["in-maint", v => simulationState.expenses.maintCents = v * 100],
+    ["in-ins", v => simulationState.expenses.insCents = v * 100],
+    ["in-log", v => simulationState.expenses.logCents = v * 100],
+    ["in-overhead", v => simulationState.expenses.overheadCents = v * 100],
+    ["in-reserve", v => simulationState.reserves.contributionCents = v * 100],
+    ["in-loss", v => simulationState.reserves.carryForwardLossCents = v * 100]
+  ];
+
+  inputMap.forEach(([id, setter]) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener("input", () => {
+      const val = Math.max(0, parseFloat(el.value) || 0);
+      setter(val);
+      renderAllFinancials();
+    });
+  });
+
+  const SCENARIOS = {
+    default:     { gross: 100000, refunds: 2000, flight: 20000, maint: 8000,  ins: 4000, log: 3000, overhead: 0, reserve: 8000, loss: 5000 },
+    high_util:   { gross: 140000, refunds: 2500, flight: 24500, maint: 9500,  ins: 4000, log: 3500, overhead: 0, reserve: 10000, loss: 0 },
+    heavy_maint: { gross: 100000, refunds: 2000, flight: 20000, maint: 18000, ins: 4000, log: 3000, overhead: 0, reserve: 11000, loss: 5000 },
+    low_vol:     { gross: 62000,  refunds: 1500, flight: 16000, maint: 7000,  ins: 4000, log: 2500, overhead: 0, reserve: 6000, loss: 5000 },
+    loss_period: { gross: 38000,  refunds: 2000, flight: 19000, maint: 9000,  ins: 4000, log: 3000, overhead: 0, reserve: 5000, loss: 5000 }
+  };
+
+  function applyScenario(key) {
+    const sc = SCENARIOS[key] || SCENARIOS.default;
+    document.getElementById("in-gross").value = sc.gross;
+    document.getElementById("in-refunds").value = sc.refunds;
+    document.getElementById("in-flight").value = sc.flight;
+    document.getElementById("in-maint").value = sc.maint;
+    document.getElementById("in-ins").value = sc.ins;
+    document.getElementById("in-log").value = sc.log;
+    document.getElementById("in-overhead").value = sc.overhead;
+    document.getElementById("in-reserve").value = sc.reserve;
+    document.getElementById("in-loss").value = sc.loss;
+
+    simulationState.revenue.grossCollectedCents = sc.gross * 100;
+    simulationState.revenue.refundsCents = sc.refunds * 100;
+    simulationState.expenses.flightCents = sc.flight * 100;
+    simulationState.expenses.maintCents = sc.maint * 100;
+    simulationState.expenses.insCents = sc.ins * 100;
+    simulationState.expenses.logCents = sc.log * 100;
+    simulationState.expenses.overheadCents = sc.overhead * 100;
+    simulationState.reserves.contributionCents = sc.reserve * 100;
+    simulationState.reserves.carryForwardLossCents = sc.loss * 100;
+    renderAllFinancials();
+  }
+
+  document.querySelectorAll("[data-scenario]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("[data-scenario]").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      applyScenario(btn.getAttribute("data-scenario"));
+    });
+  });
+
+  document.getElementById("btn-reset-example")?.addEventListener("click", () => {
+    simulationState.tokenomics.investorSplitPct = 50;
+    document.getElementById("in-split").value = 50;
+    applyScenario("default");
+  });
+
+  // Split Ratio Slider
+  const splitInput = document.getElementById("in-split");
+  splitInput?.addEventListener("input", () => {
+    simulationState.tokenomics.investorSplitPct = parseInt(splitInput.value, 10) || 50;
+    renderAllFinancials();
+  });
+  document.getElementById("btn-reset-split")?.addEventListener("click", () => {
+    simulationState.tokenomics.investorSplitPct = 50;
+    if (splitInput) splitInput.value = 50;
+    renderAllFinancials();
+  });
+
+  // Token Calculator Inputs
+  const supplyIn = document.getElementById("in-supply");
+  const balIn = document.getElementById("in-balance");
+  const reqIn = document.getElementById("in-req-return");
+  const priceIn = document.getElementById("in-offer-price");
+
+  supplyIn?.addEventListener("input", () => {
+    const s = Math.max(1, parseInt(supplyIn.value, 10) || 1);
+    simulationState.tokenomics.eligibleSupply = s;
+    if (simulationState.tokenomics.investorBalance > s) {
+      simulationState.tokenomics.investorBalance = s;
+      balIn.value = s;
+    }
+    renderAllFinancials();
+  });
+
+  balIn?.addEventListener("input", () => {
+    const b = Math.max(0, Math.min(simulationState.tokenomics.eligibleSupply, parseInt(balIn.value, 10) || 0));
+    simulationState.tokenomics.investorBalance = b;
+    renderAllFinancials();
+  });
+
+  reqIn?.addEventListener("input", () => {
+    simulationState.tokenomics.requiredReturnPct = Math.max(0.5, parseFloat(reqIn.value) || 10);
+    renderAllFinancials();
+  });
+
+  priceIn?.addEventListener("input", () => {
+    simulationState.tokenomics.offeringPriceCents = Math.max(1, Math.round((parseFloat(priceIn.value) || 25) * 100));
+    renderAllFinancials();
+  });
+
+  document.querySelectorAll("[data-hold]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("[data-hold]").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const h = parseInt(btn.getAttribute("data-hold"), 10);
+      simulationState.tokenomics.investorBalance = Math.min(simulationState.tokenomics.eligibleSupply, h);
+      if (balIn) balIn.value = simulationState.tokenomics.investorBalance;
+      renderAllFinancials();
+    });
+  });
+
+  // =====================================================================
+  // 6. FLEET ASSET REGISTRY RENDERER & INSPECTOR
+  // =====================================================================
+  const fleetGrid = document.getElementById("fleet-grid");
+  let activeFleetFilter = "ALL";
+  let selectedDroneId = "DRN-505-01";
+
+  function renderFleetRegistry() {
+    if (!fleetGrid) return;
+    const filtered = simulationState.fleet.filter(d => activeFleetFilter === "ALL" || d.status === activeFleetFilter);
+    fleetGrid.innerHTML = filtered.map(d => `
+      <button type="button" class="drone-node-card ${d.id === selectedDroneId ? "selected" : ""}" data-drone-id="${d.id}">
+        <div class="dnc-top">
+          <span>${d.fleet}</span>
+          <span class="dnc-status st-${d.status}">${d.label}</span>
+        </div>
+        <h4>${d.id}</h4>
+        <small>${d.model}</small>
+        <div class="dnc-metrics">
+          <span>Missions: <b>${d.missions}</b></span>
+          <span style="color:var(--dr-teal)">$${d.rev.toLocaleString("en-US")}</span>
+        </div>
+      </button>
+    `).join("");
+
+    fleetGrid.querySelectorAll("[data-drone-id]").forEach(card => {
+      card.addEventListener("click", () => {
+        selectedDroneId = card.getAttribute("data-drone-id");
+        const unit = simulationState.fleet.find(x => x.id === selectedDroneId);
+        if (unit) {
+          document.getElementById("fi-id").textContent = unit.id;
+          document.getElementById("fi-badge").textContent = unit.label;
+          document.getElementById("fi-fleet").textContent = unit.fleet;
+          document.getElementById("fi-model").textContent = unit.model;
+          document.getElementById("fi-missions").textContent = String(unit.missions);
+          document.getElementById("fi-util").textContent = unit.util;
+          document.getElementById("fi-maint").textContent = unit.maint;
+          document.getElementById("fi-bat").textContent = unit.bat;
+          document.getElementById("fi-ins").textContent = unit.ins;
+          document.getElementById("fi-rev").textContent = "$" + unit.rev.toLocaleString("en-US");
+        }
+        renderFleetRegistry();
+      });
+    });
+  }
+
+  document.querySelectorAll("#fleet-filters [data-filter]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("#fleet-filters [data-filter]").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeFleetFilter = btn.getAttribute("data-filter");
+      renderFleetRegistry();
+    });
+  });
+  renderFleetRegistry();
+
+  // =====================================================================
+  // 7. DISTRIBUTION LIFECYCLE STATE MACHINE & DOUBLE-CLAIM PROTECTION
+  // =====================================================================
+  const LC_STATES = [
+    { name: "01 / PERIOD_OPEN", desc: "Reporting period opened. Fleet mission logs and payment receipts accumulating." },
+    { name: "02 / REVENUE_ACCUMULATING", desc: "Cargo missions executing; only collected payments enter the gross ledger." },
+    { name: "03 / PERIOD_CLOSED", desc: "Operating period closed. Cut-off boundary set for revenue and expense reconciliation." },
+    { name: "04 / REPORT_PENDING", desc: "Off-chain accounting report compiled; awaiting authorized EIP-712 operator signatures." },
+    { name: "05 / REPORT_VERIFIED", desc: "Structured report hash & signatures verified; review window passed without dispute." },
+    { name: "06 / PROFIT_FINALIZED", desc: "Net Distributable Profit finalized after deducting Opex, Reserves, and Carry-Forward Loss." },
+    { name: "07 / SNAPSHOT_FROZEN", desc: "Period-close token holder snapshot frozen. Transfers no longer alter period entitlements." },
+    { name: "08 / CLAIMABLE (ALLOCATED)", desc: "50/50 split allocated. Eligible token holders may now execute their simulated claim." },
+    { name: "09 / CLAIMED", desc: "Simulated distribution claimed and recorded in the deterministic claim ledger." }
+  ];
+
+  function updateLifecycleUI(customMsg) {
+    const pills = document.querySelectorAll("#lc-steps-grid .lc-step-pill");
+    const idx = simulationState.lifecycle.stepIndex;
+    pills.forEach((p, i) => {
+      p.classList.toggle("is-done", i < idx);
+      p.classList.toggle("is-active", i === idx);
+    });
+    const stObj = LC_STATES[idx];
+    document.getElementById("lc-state-title").textContent =
+      simulationState.lifecycle.disputed ? "CURRENT STATE: DISPUTED / PAUSED (EMERGENCY REVIEW)" : `CURRENT STATE: ${stObj.name}`;
+    const guardEl = document.getElementById("lc-guard-msg");
+    guardEl.textContent = customMsg || stObj.desc;
+    guardEl.style.color = simulationState.lifecycle.disputed ? "#FF8DA6" : "var(--dr-teal)";
+    renderAllFinancials();
+  }
+
+  document.getElementById("btn-lc-next")?.addEventListener("click", () => {
+    if (simulationState.lifecycle.disputed) {
+      updateLifecycleUI("Guard Blocked: Distribution is paused under dispute review. Reset or resolve dispute first.");
+      return;
+    }
+    if (simulationState.lifecycle.stepIndex < 7) {
+      simulationState.lifecycle.stepIndex += 1;
+      updateLifecycleUI();
+    } else if (simulationState.lifecycle.stepIndex === 7) {
+      updateLifecycleUI("Period is at Step 08 (CLAIMABLE). Click 'Execute Simulated Claim' to complete Step 09.");
+    } else {
+      updateLifecycleUI("Period lifecycle complete (09 / CLAIMED). Click 'Reset Lifecycle' to test a new cycle.");
+    }
+  });
+
+  document.getElementById("btn-claim-sim")?.addEventListener("click", () => {
+    if (simulationState.lifecycle.disputed) {
+      updateLifecycleUI("Claim Rejected: Distribution is currently paused due to an active report dispute.");
+      return;
+    }
+    if (simulationState.lifecycle.stepIndex < 7) {
+      updateLifecycleUI(`Claim Rejected: Cannot claim during ${LC_STATES[simulationState.lifecycle.stepIndex].name}. Advance to Step 08 first.`);
+      return;
+    }
+    if (simulationState.lifecycle.claimedPeriods.has("DIST-2026-Q4")) {
+      updateLifecycleUI("Double-Claim Protection Triggered: Distribution DIST-2026-Q4 has already been claimed by DEMO-INV-01.");
+      return;
+    }
+
+    const netRev = calculateNetRevenue(simulationState.revenue);
+    const opex = calculateOperatingExpenses(simulationState.expenses);
+    const res = calculateReserveContribution(simulationState.reserves);
+    const loss = calculateCarryForwardLoss(simulationState.reserves);
+    const { distributableCents } = calculateDistributableProfit(netRev, opex, res, loss);
+    const { investorPoolCents } = calculateSplitAllocations(distributableCents, simulationState.tokenomics.investorSplitPct);
+    const rewardObj = calculateInvestorReward(investorPoolCents, simulationState.tokenomics.eligibleSupply, simulationState.tokenomics.investorBalance);
+
+    if (rewardObj.holderRewardCents <= 0) {
+      updateLifecycleUI("Claim Rejected: Eligible reward for this period is $0.00.");
+      return;
+    }
+
+    simulationState.lifecycle.claimedPeriods.add("DIST-2026-Q4");
+    simulationState.lifecycle.claimedTotalCents += rewardObj.holderRewardCents;
+    simulationState.lifecycle.stepIndex = 8;
+
+    const tbody = document.getElementById("claim-ledger-tbody");
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>DIST-2026-Q4</td>
+      <td>DEMO-INV-01</td>
+      <td style="font-weight:700;color:var(--dr-teal)">${formatUSD(rewardObj.holderRewardCents)}</td>
+      <td style="color:var(--dr-teal)">CLAIMED (SIMULATED REF)</td>
+    `;
+    tbody.prepend(tr);
+    updateLifecycleUI(`Success: Simulated claim of ${formatUSD(rewardObj.holderRewardCents)} recorded for DIST-2026-Q4.`);
+  });
+
+  document.getElementById("btn-lc-dispute")?.addEventListener("click", () => {
+    simulationState.lifecycle.disputed = !simulationState.lifecycle.disputed;
+    updateLifecycleUI(
+      simulationState.lifecycle.disputed
+        ? "DISPUTE ACTIVE: Report verification challenged. Claims and allocations are frozen."
+        : "Dispute resolved. Normal lifecycle state restored."
+    );
+  });
+
+  document.getElementById("btn-lc-reset")?.addEventListener("click", () => {
+    simulationState.lifecycle.stepIndex = 0;
+    simulationState.lifecycle.disputed = false;
+    simulationState.lifecycle.claimedPeriods.delete("DIST-2026-Q4");
+    updateLifecycleUI("Lifecycle reset to Step 01 (PERIOD_OPEN). Advance through each accounting stage.");
+  });
+
+  // =====================================================================
+  // 8. TRUST ARCHITECTURE & 11 PROPOSED CONTRACT MODULES
+  // =====================================================================
+  const TRUST_NODES = [
+    { title: "01 · Drone Telemetry (Off-Chain Physical Layer)", desc: "Flight logs, GPS waypoints, payload weight, and battery cycle telemetry are generated off-chain by physical drone avionics. Telemetry logs alone do not equal collected revenue." },
+    { title: "02 · Mission & Delivery Records (Off-Chain)", desc: "Completed cargo missions are logged with mission IDs, timestamps, and customer delivery confirmations. A completed delivery must still be reconciled against actual payment collection." },
+    { title: "03 · Payment Collection & Reconciliation (Off-Chain)", desc: "Distinguishes Estimated, Invoiced, Collected, Reversed, and Finalized revenue. Only actually collected revenue net of refunds and chargebacks enters the distributable waterfall." },
+    { title: "04 · Period Expense & Reserve Accounting (Off-Chain)", desc: "Validates flight execution, battery replacement, maintenance, insurance, logistics, and reserve contributions for the specific reporting period without double-counting." },
+    { title: "05 · Authorized Report Signers (EIP-712 Attestation)", desc: "Authorized operator and auditor keys sign a typed EIP-712 report struct containing period boundaries, revenue, expenses, reserves, nonce, and reportHash." },
+    { title: "06 · Report Verification & Dispute Window", desc: "Verifies signer authorization, nonces, and period uniqueness, opening a review window before profit finalization." },
+    { title: "07 · Proposed Smart Contracts (On-Chain Commitment)", desc: "Enforces the 50/50 split between the Token Holder Pool and Operator Allocation and records the period-close token snapshot." },
+    { title: "08 · Pro-Rata Investor Distribution & Claim Guard", desc: "Allows eligible token holders at the period-close snapshot to claim their exact proportional share with strict duplicate-claim protection." }
+  ];
+
+  document.querySelectorAll("[data-tnode]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("[data-tnode]").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const n = TRUST_NODES[parseInt(btn.getAttribute("data-tnode"), 10)];
+      if (n) {
+        document.getElementById("tn-title").textContent = n.title;
+        document.getElementById("tn-desc").textContent = n.desc;
+      }
+    });
+  });
+
+  const CONTRACT_MODULES = [
+    ["A · DroneAssetRegistry", "Registers Asset ID, fleet reference, operator reference, and contractual documentation links."],
+    ["B · RWAOfferingManager", "Manages offering parameters, token supply caps, investor eligibility, and offering status."],
+    ["C · DroneRevenueToken", "Represents defined contractual economic participation (ERC-20 / ERC-1155 per offering structure)."],
+    ["D · RevenueReportVerifier", "Validates EIP-712 signatures, reporting period bounds, nonces, and duplicate report prevention."],
+    ["E · ProfitAllocationEngine", "Computes eligible net distributable profit, 50/50 split, rounding dust, and carry-forward losses."],
+    ["F · RewardAccounting", "Records period-close token snapshots, cumulative reward indexes, and per-holder entitlements."],
+    ["G · RevenueDistributor", "Creates unique finalized distribution records and locks allocated investor pool funds."],
+    ["H · ClaimManager", "Executes holder claims with strict distribution-ID + claimant duplicate-claim protection."],
+    ["I · ReserveManager", "Tracks required reserve contributions, funded reserves, and approved maintenance expenditures."],
+    ["J · ComplianceManager", "Enforces configurable KYC/AML whitelist, jurisdiction rules, and transfer restrictions."],
+    ["K · EmergencyControl", "Governs multi-sig pause, dispute freeze, and authorized recovery procedures."]
+  ];
+
+  const cg = document.getElementById("contracts-grid");
+  if (cg) {
+    cg.innerHTML = CONTRACT_MODULES.map(([title, desc]) => `
+      <div class="drone-node-card" style="cursor:default">
+        <span class="sim-badge sim-badge--prop" style="margin-bottom:8px;">PROPOSED MODULE</span>
+        <h4>${title}</h4>
+        <small style="margin-bottom:0;line-height:1.5;">${desc}</small>
+      </div>
+    `).join("");
+  }
+
+  // Bilingual Switcher Event
   const langBtn = document.getElementById("lang-switch");
   if (langBtn) {
     langBtn.addEventListener("click", () => {
@@ -1258,104 +3007,61 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       document.querySelectorAll("[data-en][data-fa]").forEach(el => {
-        el.innerHTML = el.getAttribute("data-" + nextLang);
+        const val = el.getAttribute("data-" + nextLang);
+        if (val !== null) el.textContent = val;
       });
     });
   }
 
-  // 3. Live Interactive Delivery Settlement Simulator
-  let deliveries = 1428;
-  let poolTotal = 48920;
-  const delEl = document.getElementById("m-deliveries");
-  const poolEl = document.getElementById("m-pool");
-  const svgPoolEl = document.getElementById("svg-pool-val");
-  const h1El = document.getElementById("holder-1");
-  const h2El = document.getElementById("holder-2");
-  const h3El = document.getElementById("holder-3");
-  const hashEl = document.getElementById("m-hash");
-  const simBtn = document.getElementById("trigger-settlement");
-
-  function settleDelivery() {
-    deliveries += 1;
-    const feeAdded = 140;
-    poolTotal += feeAdded;
-
-    if (delEl) delEl.textContent = deliveries.toLocaleString("en-US");
-    if (poolEl) poolEl.textContent = poolTotal.toLocaleString("en-US") + " DOTO";
-    if (svgPoolEl) svgPoolEl.textContent = "POOL: " + poolTotal.toLocaleString("en-US") + " DOTO";
-    if (h1El) h1El.textContent = "+" + Math.round(poolTotal * 0.40).toLocaleString("en-US") + " DOTO";
-    if (h2El) h2El.textContent = "+" + Math.round(poolTotal * 0.35).toLocaleString("en-US") + " DOTO";
-    if (h3El) h3El.textContent = "+" + Math.round(poolTotal * 0.25).toLocaleString("en-US") + " DOTO";
-
-    if (hashEl) {
-      const hex = () => Math.floor(Math.random() * 16).toString(16).toUpperCase();
-      hashEl.textContent = "0x" + hex() + hex() + hex() + hex() + "..." + hex() + hex() + hex() + hex();
-    }
-  }
-
-  if (simBtn) {
-    simBtn.addEventListener("click", settleDelivery);
-  }
-  setInterval(settleDelivery, 4500);
-
-  // =====================================================
-  // 4. HERO AUTONOMOUS DRONE 3D FLIGHT & AUTO HIGH-BEAM ENGINE
-  //    - Flies left & right (exiting the HUD circle boundary and swooping back)
-  //    - Banks naturally into turns + executes smooth 360° yaw turnaround
-  //    - Automatically fires a precision micro high-beam every 3.0 seconds
-  // =====================================================
+  // =====================================================================
+  // 9. HERO 3D DRONE FLIGHT PHYSICS (Visibility & Reduced-Motion Aware)
+  // =====================================================================
   const droneRig = document.getElementById("hero-drone-rig");
-  if (!droneRig) return;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (droneRig && !reduceMotion) {
+    let t = 0, curX = 0, curY = 0, curScale = 1, curRotZ = 0, curRotX = 0, curRotY = 0;
+    let heroVisible = true;
 
-  // Automatic Precision High-Beam Trigger Every 3.0 Seconds
-  function fireAutoHighBeam() {
-    droneRig.classList.remove("is-flashing");
-    void droneRig.offsetWidth;
-    droneRig.classList.add("is-flashing");
-  }
-  setTimeout(fireAutoHighBeam, 900);
-  setInterval(fireAutoHighBeam, 3000);
+    function fireAutoHighBeam() {
+      if (!heroVisible) return;
+      droneRig.classList.remove("is-flashing");
+      void droneRig.offsetWidth;
+      droneRig.classList.add("is-flashing");
+    }
+    setInterval(fireAutoHighBeam, 3200);
 
-  // 60FPS Continuous 3D Flight Path Controller
-  let t = 0;
-  let curX = 0, curY = 0, curScale = 1, curRotZ = 0, curRotX = 0, curRotY = 0;
+    function updateFlightPhysics() {
+      if (heroVisible) {
+        t += 0.014;
+        const targetX = Math.sin(t * 1.15) * 72 + Math.cos(t * 0.55) * 22;
+        const targetY = Math.cos(t * 1.55) * 28 + Math.sin(t * 2.3) * 10;
+        const targetScale = 1 + Math.sin(t * 0.85) * 0.09;
+        const vx = targetX - curX;
+        const targetRotZ = Math.max(-10, Math.min(10, vx * 3.2));
+        const targetRotX = Math.sin(t * 1.55) * 6;
+        const targetRotY = Math.sin(t * 1.15) * 14;
 
-function updateFlightPhysics() {
-    t += 0.014;
+        curX += (targetX - curX) * 0.09;
+        curY += (targetY - curY) * 0.09;
+        curScale += (targetScale - curScale) * 0.09;
+        curRotZ += (targetRotZ - curRotZ) * 0.12;
+        curRotX += (targetRotX - curRotX) * 0.10;
+        curRotY += (targetRotY - curRotY) * 0.10;
 
-    // Wide horizontal patrol: sweeps left & right (exiting the circle boundary and returning)
-    const targetX = Math.sin(t * 1.15) * 78 + Math.cos(t * 0.55) * 24;
-    // Vertical altitude swoops
-    const targetY = Math.cos(t * 1.55) * 32 + Math.sin(t * 2.3) * 12;
-    // Depth scaling (flies closer to camera then deeper into the sky)
-    const targetScale = 1 + Math.sin(t * 0.85) * 0.11;
-
-    // Calculate horizontal velocity for realistic banking angle (tilt into the turn)
-    const vx = targetX - curX;
-    const targetRotZ = Math.max(-11, Math.min(11, vx * 3.4));
-    const targetRotX = Math.sin(t * 1.55) * 7;
-    // Subtle natural yaw angle while banking left/right (No 360 spin)
-    const targetRotY = Math.sin(t * 1.15) * 16;
-
-    // Smooth Damping Interpolation
-    curX += (targetX - curX) * 0.09;
-    curY += (targetY - curY) * 0.09;
-    curScale += (targetScale - curScale) * 0.09;
-    curRotZ += (targetRotZ - curRotZ) * 0.12;
-    curRotX += (targetRotX - curRotX) * 0.10;
-    curRotY += (targetRotY - curRotY) * 0.10;
-
-    droneRig.style.transform =
-      `translate3d(${curX.toFixed(2)}px, ${curY.toFixed(2)}px, 0px) ` +
-      `scale(${curScale.toFixed(3)}) ` +
-      `rotateX(${curRotX.toFixed(2)}deg) ` +
-      `rotateY(${curRotY.toFixed(2)}deg) ` +
-      `rotateZ(${curRotZ.toFixed(2)}deg)`;
-
+        droneRig.style.transform =
+          `translate3d(${curX.toFixed(2)}px, ${curY.toFixed(2)}px, 0px) ` +
+          `scale(${curScale.toFixed(3)}) ` +
+          `rotateX(${curRotX.toFixed(2)}deg) ` +
+          `rotateY(${curRotY.toFixed(2)}deg) ` +
+          `rotateZ(${curRotZ.toFixed(2)}deg)`;
+      }
+      requestAnimationFrame(updateFlightPhysics);
+    }
     requestAnimationFrame(updateFlightPhysics);
   }
 
-  requestAnimationFrame(updateFlightPhysics);
+  // Initial Calculation Render
+  renderAllFinancials();
 });
 </script>
 </body>
