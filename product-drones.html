@@ -1467,6 +1467,29 @@
   }
 
 
+  /* Lifecycle header: keep the action buttons anchored while state text changes. */
+  .dr-topbar.lc-topbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+  .dr-topbar.lc-topbar > .dr-topbar__title {
+    min-width: 0;
+  }
+  .dr-topbar.lc-topbar > div:last-child {
+    justify-self: end;
+    flex-wrap: nowrap;
+  }
+  @media (max-width: 1100px) {
+    .dr-topbar.lc-topbar {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .dr-topbar.lc-topbar > div:last-child {
+      justify-self: start;
+      flex-wrap: wrap;
+    }
+  }
+
 </style>
 </head>
 <body class="dr-page">
@@ -1630,7 +1653,7 @@
 <section class="wrap sec" id="economic-proposition">
  <div>
   <span class="eyebrow" data-en="01 · THE ECONOMIC PROPOSITION" data-fa="۰۱ · گزاره اقتصادی و مدل تسهیم">01 · THE ECONOMIC PROPOSITION</span>
-  <h2 data-en="50/50 Net Distributable <em>Profit Split</em>" data-fa="تسهیم ۵۰/۵۰ <em>سود خالص قابل‌توزیع</em>">50/50 Net Distributable <em>Profit Split</em></h2>
+  <h2 data-en="50/50 Net Distributable Profit Split" data-fa="تسهیم ۵۰/۵۰ سود خالص قابل‌توزیع">50/50 Net Distributable <em>Profit Split</em></h2>
   <p class="lead"
      data-en="AERVYNX Drone RWA (FlightYield) is engineered around a strict, period-based accounting rule: 50% of the fleet's eligible net distributable operating profit is allocated to the Token Holder Distribution Pool, and 50% is allocated to the Fleet Operator."
      data-fa="محصول AERVYNX Drone RWA (FlightYield) بر پایه یک قاعده حسابداری دوره‌ای دقیق طراحی شده است: ۵۰٪ از سود خالص عملیاتیِ قابل‌توزیع ناوگان به «استخر توزیع دارندگان توکن» و ۵۰٪ به «اپراتور ناوگان» اختصاص می‌یابد.">
@@ -1725,7 +1748,7 @@
 <section class="wrap sec" id="fleet-registry">
  <div>
   <span class="eyebrow" data-en="02 · FLEET ASSET REGISTRY" data-fa="۰۲ · رجیستری دارایی‌های ناوگان">02 · FLEET ASSET REGISTRY</span>
-  <h2 data-en="Autonomous Cargo <em>Fleet Nodes</em>" data-fa="نودهای دارایی <em>ناوگان پهپادی</em>">Autonomous Cargo <em>Fleet Nodes</em></h2>
+  <h2 data-en="Autonomous Cargo Fleet Nodes" data-fa="نودهای دارایی ناوگان پهپادی">Autonomous Cargo <em>Fleet Nodes</em></h2>
   <p class="lead"
      data-en="Inspect individual drone units within the simulated Fleet Pool (FLT-505-ALPHA). Filter by operational state or click any unit to inspect its mission utilization, battery lifecycle, insurance status, and period revenue contribution."
      data-fa="واحدهای پهپادی موجود در استخر شبیه‌سازی‌شده ناوگان (FLT-505-ALPHA) را بررسی کنید. بر اساس وضعیت عملیاتی فیلتر کنید یا روی هر پهپاد کلیک کنید تا کارکرد، سلامت باتری، وضعیت بیمه و سهم درآمدی آن را ببینید.">
@@ -1772,7 +1795,7 @@
 <section class="wrap sec" id="financial-engine">
  <div>
   <span class="eyebrow" data-en="03 · CORE ECONOMIC ENGINE" data-fa="۰۳ · موتور محاسباتی درآمد و هزینه">03 · CORE ECONOMIC ENGINE</span>
-  <h2 data-en="Period Revenue, Expense & <em>Reserve Engine</em>" data-fa="موتور محاسبه درآمد، هزینه‌ها و <em>ذخایر دوره‌ای</em>">Period Revenue, Expense & <em>Reserve Engine</em></h2>
+  <h2 data-en="Period Revenue, Expense & Reserve Engine" data-fa="موتور محاسبه درآمد، هزینه‌ها و ذخایر دوره‌ای">Period Revenue, Expense & <em>Reserve Engine</em></h2>
   <p class="lead"
      data-en="Edit any operational revenue, refund, expense, reserve, or carry-forward loss parameter below. All downstream charts, waterfalls, 50/50 splits, and token holder payouts derive deterministically from this single calculation engine."
      data-fa="هر یک از پارامترهای درآمد وصول‌شده، مرجوعی، هزینه‌های عملیاتی، ذخیره احتیاطی یا زیان انباشته زیر را ویرایش کنید. تمامی نمودارها، آبشار مالی، تسهیم ۵۰/۵۰ و سود هر توکن به صورت لحظه‌ای از همین موتور مرکزی محاسبه می‌شوند.">
@@ -1912,7 +1935,7 @@
 <section class="wrap sec" id="profit-allocation">
  <div>
   <span class="eyebrow" data-en="04 · 50/50 ALLOCATION ENGINE" data-fa="۰۴ · موتور تخصیص ۵۰/۵۰">04 · 50/50 ALLOCATION ENGINE</span>
-  <h2 data-en="Synchronized <em>Profit Split Stream</em>" data-fa="جریان همگام <em>تسهیم سود خالص</em>">Synchronized <em>Profit Split Stream</em></h2>
+  <h2 data-en="Synchronized Profit Split Stream" data-fa="جریان همگام تسهیم سود خالص">Synchronized <em>Profit Split Stream</em></h2>
   <p class="lead"
      data-en="Watch the finalized Net Distributable Profit split into two strictly conserved streams: Investor Pool + Operator Allocation always equals 100% of Distributable Profit."
      data-fa="مشاهده کنید که چگونه سود خالص قابل‌توزیع به دو جریان کاملاً متوازن تقسیم می‌شود؛ مجموع استخر سرمایه‌گذاران و سهم اپراتور همواره دقیقاً برابر با ۱۰۰٪ سود قابل‌توزیع است.">
@@ -1999,7 +2022,7 @@
 <section class="wrap sec" id="investor-calculator">
  <div>
   <span class="eyebrow" data-en="05 · TOKEN HOLDER REWARD ENGINE" data-fa="۰۵ · ماشین‌حساب پاداش هولدر و توکنومیکس">05 · TOKEN HOLDER REWARD ENGINE</span>
-  <h2 data-en="Pro-Rata Distribution & <em>Token Economics</em>" data-fa="محاسبه سود متناسب و <em>اقتصاد توکن</em>">Pro-Rata Distribution & <em>Token Economics</em></h2>
+  <h2 data-en="Pro-Rata Distribution & Token Economics" data-fa="محاسبه سود متناسب و اقتصاد توکن">Pro-Rata Distribution & <em>Token Economics</em></h2>
   <p class="lead"
      data-en="Calculate your exact proportional share of the Investor Pool. Every eligible token receives RewardPerToken = InvestorPool / EligibleTokenSupply using fixed-point cent precision."
      data-fa="سهم دقیق خود را از استخر سرمایه‌گذاران محاسبه کنید. هر توکن واجد شرایط به نسبت مساوی از استخر ۵۰ درصدی سود خالص بهره‌مند می‌شود.">
@@ -2085,7 +2108,7 @@
 <section class="wrap sec" id="waterfall-explorer">
  <div>
   <span class="eyebrow" data-en="06 · FINANCIAL WATERFALL EXPLORER" data-fa="۰۶ · نمودار آبشاری تبدیل درآمد به سود">06 · FINANCIAL WATERFALL EXPLORER</span>
-  <h2 data-en="From Gross Revenue to <em>50/50 Allocation</em>" data-fa="از درآمد ناخالص تا <em>تخصیص ۵۰/۵۰</em>">From Gross Revenue to <em>50/50 Allocation</em></h2>
+  <h2 data-en="From Gross Revenue to 50/50 Allocation" data-fa="از درآمد ناخالص تا تخصیص ۵۰/۵۰">From Gross Revenue to <em>50/50 Allocation</em></h2>
   <p class="lead"
      data-en="Proportional visual waterfall showing how $100,000 in collected revenue steps down through refunds, operating expenses, reserves, and carry-forward losses to reach $50,000 Net Distributable Profit."
      data-fa="نمودار آبشاری متناسب که نشان می‌دهد چگونه درآمد وصول‌شده پس از کسر مرحله‌به‌مرحله مرجوعی، هزینه‌های عملیاتی، ذخیره احتیاطی و زیان انباشته به سود خالص قابل‌توزیع می‌رسد.">
@@ -2140,7 +2163,7 @@
 <section class="wrap sec" id="distribution-lifecycle">
  <div>
   <span class="eyebrow" data-en="07 · PERIOD ACCOUNTING & CLAIM STATE MACHINE" data-fa="۰۷ · چرخه حسابداری دوره و مطالبه سود">07 · PERIOD ACCOUNTING & CLAIM STATE MACHINE</span>
-  <h2 data-en="Distribution Lifecycle & <em>Demo Investor Account</em>" data-fa="چرخه توزیع سود و <em>حساب سرمایه‌گذار آزمایشی</em>">Distribution Lifecycle & <em>Demo Investor Account</em></h2>
+  <h2 data-en="Distribution Lifecycle & Demo Investor Account" data-fa="چرخه توزیع سود و حساب سرمایه‌گذار آزمایشی">Distribution Lifecycle & <em>Demo Investor Account</em></h2>
   <p class="lead"
      data-en="Step through the 9-stage reporting lifecycle below. The state machine enforces strict transition rules: rewards cannot become claimable before report verification and profit finalization, and duplicate claims for the same distribution ID are blocked."
      data-fa="مراحل ۹گانه چرخه مالی دوره را به ترتیب اجرا کنید. ماشین وضعیت از انتقال‌های غیرمجاز جلوگیری می‌کند: پیش از تایید گزارش و نهایی‌سازی سود امکان مطالبه وجود ندارد و مطالبه تکراری مسدود می‌شود.">
@@ -2149,7 +2172,7 @@
  </div>
 
  <div class="dr-shell">
-  <div class="dr-topbar">
+  <div class="dr-topbar lc-topbar">
    <div class="dr-topbar__title">
     <strong id="lc-state-title">CURRENT STATE: 08 / CLAIMABLE (DISTRIBUTION_ALLOCATED)</strong>
     <small id="lc-guard-msg" style="color:var(--dr-teal)">Ready: Period snapshot frozen. Eligible demo investor may now execute simulated claim.</small>
@@ -2244,7 +2267,7 @@
 <section class="wrap sec" id="trust-architecture">
  <div>
   <span class="eyebrow" data-en="08 · HYBRID VERIFICATION & TRUST BOUNDARIES" data-fa="۰۸ · معماری راستی‌آزمایی هیبریدی و مرزهای اعتماد">08 · HYBRID VERIFICATION & TRUST BOUNDARIES</span>
-  <h2 data-en="Off-Chain Operations to <em>On-Chain Settlement</em>" data-fa="از عملیات برون‌زنجیره‌ای تا <em>تسویه درون‌زنجیره‌ای</em>">Off-Chain Operations to <em>On-Chain Settlement</em></h2>
+  <h2 data-en="Off-Chain Operations to On-Chain Settlement" data-fa="از عملیات برون‌زنجیره‌ای تا تسویه درون‌زنجیره‌ای">Off-Chain Operations to <em>On-Chain Settlement</em></h2>
   <p class="lead"
      data-en="Physical drone flights and payment reconciliations happen off-chain. Click any node below to inspect the trust boundary and see how structured reports are verified before smart-contract allocation."
      data-fa="پروازهای فیزیکی پهپاد و تطبیق پرداخت‌های بانکی در خارج از بلاکچین رخ می‌دهند. روی هر ماژول کلیک کنید تا مرز اعتماد و نحوه گواهی گزارش‌ها پیش از تخصیص در قرارداد هوشمند را بررسی نمایید.">
@@ -2282,7 +2305,7 @@
 <section class="wrap sec" id="technical-architecture">
  <div>
   <span class="eyebrow" data-en="09 · PROPOSED SMART CONTRACT ARCHITECTURE" data-fa="۰۹ · معماری پیشنهادی قراردادهای هوشمند">09 · PROPOSED SMART CONTRACT ARCHITECTURE</span>
-  <h2 data-en="11 Modular <em>Protocol Contracts</em>" data-fa="۱۱ ماژول <em>قرارداد هوشمند پیشنهادی</em>">11 Modular <em>Protocol Contracts</em></h2>
+  <h2 data-en="11 Modular Protocol Contracts" data-fa="۱۱ ماژول قرارداد هوشمند پیشنهادی">11 Modular <em>Protocol Contracts</em></h2>
   <p class="lead"
      data-en="Explore the 11 proposed smart-contract modules designed to govern asset registration, report verification, 50/50 profit allocation, reserve accounting, and duplicate-claim protection."
      data-fa="۱۱ ماژول قرارداد هوشمند پیشنهادی برای ثبت دارایی، تایید گزارش مالی، تسهیم ۵۰/۵۰ سود، مدیریت ذخیره احتیاطی و جلوگیری از برداشت تکراری را بررسی کنید.">
@@ -2309,7 +2332,7 @@
 <section class="wrap sec" id="risk-disclosure">
  <div>
   <span class="eyebrow" data-en="10 · RISK, RESERVES & MANDATORY DISCLOSURES" data-fa="۱۰ · ریسک‌ها، ذخایر و افشای الزامی اطلاعات">10 · RISK, RESERVES & MANDATORY DISCLOSURES</span>
-  <h2 data-en="Simulation Integrity & <em>Risk Factors</em>" data-fa="شفافیت شبیه‌سازی و <em>عوامل ریسک</em>">Simulation Integrity & <em>Risk Factors</em></h2>
+  <h2 data-en="Simulation Integrity & Risk Factors" data-fa="شفافیت شبیه‌سازی و عوامل ریسک">Simulation Integrity & <em>Risk Factors</em></h2>
  </div>
 
  <div class="dr-shell dr-shell--burgundy">
