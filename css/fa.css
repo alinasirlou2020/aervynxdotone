@@ -1,0 +1,37 @@
+/* ==========================================================
+   fa.css — Persian / RTL overrides
+   Load AFTER css/styles.css and js/wallet.css (index-fa.html does).
+   ========================================================== */
+
+:root { --fa-font: "Vazirmatn", "Segoe UI", Tahoma, system-ui, sans-serif; }
+
+html[lang="fa"] body,
+html[lang="fa"] button,
+html[lang="fa"] input,
+html[lang="fa"] textarea { font-family: var(--fa-font); }
+
+/* Letter-spacing and uppercase break Persian letter joining → disable everywhere
+   except the decorative English card artwork (.about__vis). */
+html[lang="fa"] body *:not(.about__vis *) { letter-spacing: normal; text-transform: none; }
+
+/* Persian needs more line height; headings are kept tighter so
+   masked/overflow-hidden hero lines are not clipped. */
+html[lang="fa"] p, html[lang="fa"] li, html[lang="fa"] .lead { line-height: 1.9; }
+html[lang="fa"] h1, html[lang="fa"] h2, html[lang="fa"] h3 { line-height: 1.4; }
+html[lang="fa"] .hero h1 .ln { padding-block: .08em; }
+
+/* Persian has no italic */
+html[lang="fa"] em { font-style: normal; }
+
+/* Keep LTR-only pieces LTR: logo, wallet button, language switch */
+html[lang="fa"] .logo,
+html[lang="fa"] #wallet-root,
+html[lang="fa"] .btn-lang { direction: ltr; }
+a.btn-lang { text-decoration: none; color: inherit; }
+
+/* Arrows point the reading direction */
+html[lang="fa"] [data-i="arrow"] svg { transform: scaleX(-1); }
+
+/* Email: Persian placeholder on the right, typed address stays LTR */
+html[lang="fa"] #email { direction: rtl; text-align: right; }
+html[lang="fa"] #email:not(:placeholder-shown) { direction: ltr; text-align: left; }

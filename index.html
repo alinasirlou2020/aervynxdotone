@@ -5,8 +5,23 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Aervynx — Physical Assets. Digital Ownership.</title>
 <meta name="description" content="Aervynx connects real-world assets with blockchain infrastructure, tokenized ownership, secure treasury controls, and intelligent commerce.">
+<!-- Replace with absolute URLs (https://your-domain/...) when you deploy -->
+<link rel="alternate" hreflang="en" href="index.html">
+<link rel="alternate" hreflang="fa" href="index-fa.html">
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="js/wallet.css">
+<script>
+/* Language switch (EN <-> FA): plain link between index.html and index-fa.html.
+   Keeps the current #section and remembers the choice. Runs in the capture phase so the
+   old in-page toggle in js/main.js (if any) cannot interfere. */
+document.addEventListener('click',function(e){
+ var a=e.target.closest&&e.target.closest('[data-lang-switch]');
+ if(!a)return;
+ e.stopPropagation();
+ try{localStorage.setItem('aervynx-lang',a.getAttribute('data-lang-switch'))}catch(_){}
+ a.href=a.getAttribute('href').split('#')[0]+location.hash;
+},true);
+</script>
 <script src="js/main.js" defer></script>
 <script src="js/wallet.js" defer></script>
 </head>
@@ -26,12 +41,12 @@
    <ul id="links"></ul>
    <!-- Header Action Buttons: Language Switcher & Wallet Connect -->
    <div class="menu__cta">
-    <button class="btn-lang" type="button" data-lang aria-label="Switch language">
+    <a class="btn-lang" href="index-fa.html" hreflang="fa" lang="fa" dir="ltr" data-lang data-lang-switch="fa" aria-label="Switch to Persian">
      <i data-i="globe"></i>
      <span class="lang-code active">EN</span>
      <span class="lang-sep">/</span>
      <span class="lang-code">FA</span>
-    </button>
+    </a>
     <!-- Wallet Connect: RainbowKit mounts the button here (js/wallet.js) -->
     <div id="wallet-root" style="display:contents"></div>
    </div>
