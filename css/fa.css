@@ -29,9 +29,86 @@ html[lang="fa"] #wallet-root,
 html[lang="fa"] .btn-lang { direction: ltr; }
 a.btn-lang { text-decoration: none; color: inherit; }
 
-/* Arrows point the reading direction */
-html[lang="fa"] [data-i="arrow"] svg { transform: scaleX(-1); }
+/* Arrow mirroring is handled in the RTL section below (svg[data-ic="arrow"]) */
 
 /* Email: Persian placeholder on the right, typed address stays LTR */
 html[lang="fa"] #email { direction: rtl; text-align: right; }
 html[lang="fa"] #email:not(:placeholder-shown) { direction: ltr; text-align: left; }
+
+
+/* ==========================================================
+   RTL LAYOUT FIXES — styles.css is written with physical left/right,
+   so every directional rule is mirrored here. Scoped to [dir="rtl"].
+   ========================================================== */
+
+/* ---- Fonts for pieces that set their own family ---- */
+html[lang="fa"] .mh-sig-text { font-family: var(--fa-font); font-size: 12.5px; }
+
+/* ---- Arrows: mirror every arrow icon (main.js tags svgs with data-ic) and keep hover nudges pointing the right way ---- */
+[dir="rtl"] svg[data-ic="arrow"] { transform: scaleX(-1); }
+[dir="rtl"] .btn:hover .i,
+[dir="rtl"] .card:hover .card__go .i,
+[dir="rtl"] .card:focus-visible .card__go .i,
+[dir="rtl"] .m__more:hover .i { transform: scaleX(-1) translateX(4px); }
+[dir="rtl"] .btn-lang:hover .i { transform: rotate(25deg); }
+[dir="rtl"] .foot li a:hover { transform: translateX(-3px); }
+
+/* ---- Skip link, nav, burger ---- */
+[dir="rtl"] .skip { left: auto; right: 12px; }
+[dir="rtl"] .menu a.l::after { transform-origin: right; }
+[dir="rtl"] .burger { margin-left: 0; margin-right: auto; }
+
+/* ---- Hero: text sits on the right, so mirror the artwork and the dark overlay ---- */
+[dir="rtl"] .hero__bg img,
+[dir="rtl"] .scene { transform: scaleX(-1); }   /* remove this line if your hero image contains text/logos */
+[dir="rtl"] .cue { left: auto; right: var(--page-gutter); }
+@media (min-width: 721px) {
+  [dir="rtl"] .hero__bg::after {
+    background: linear-gradient(270deg, rgba(1,11,19,.94) 0%, rgba(1,11,19,.6) 38%, transparent 72%),
+                linear-gradient(0deg, var(--color-bg) 0%, transparent 26%);
+  }
+}
+
+/* ---- Metrics strip ---- */
+[dir="rtl"] .m { border-right: 0; border-left: 1px solid var(--color-border); }
+[dir="rtl"] .m:first-child { padding-left: 24px; padding-right: 0; }
+[dir="rtl"] .m__more { padding: 26px 28px 26px 0; }
+@media (max-width: 1100px) {
+  [dir="rtl"] .m:first-child { padding-right: 24px; }
+  [dir="rtl"] .m__more { padding: 26px 24px; }
+}
+@media (max-width: 720px) {
+  [dir="rtl"] .m:nth-child(2n) { border-left: 0; }
+}
+
+/* ---- Ecosystem: feature list + layered diagram ---- */
+[dir="rtl"] .feat a:hover,
+[dir="rtl"] .feat a:focus-visible { padding-left: 0; padding-right: 10px; }
+[dir="rtl"] .dia { direction: ltr; }          /* the SVG connectors always run left→right */
+[dir="rtl"] .dl { direction: rtl; }
+[dir="rtl"] .dl li { text-align: right; padding: 0 18px 0 0; border-left: 0; border-right: 1px solid transparent; }
+[dir="rtl"] .dl li.on { border-right-color: var(--color-accent); }
+@media (max-width: 720px) {
+  [dir="rtl"] .dl li { padding: 12px 18px 12px 0; border-right-color: var(--color-border); }
+  [dir="rtl"] .dl li.on { border-right-color: var(--color-accent); }
+}
+
+/* ---- Technology flow timeline ---- */
+[dir="rtl"] .flow li { padding: 0 38px 22px 0; }
+[dir="rtl"] .flow li::before { left: auto; right: 0; }
+[dir="rtl"] .flow li:not(:last-child)::after { left: auto; right: 5.5px; }
+
+/* ---- Steps ---- */
+[dir="rtl"] .steps::before { transform-origin: right; }
+@media (max-width: 720px) {
+  [dir="rtl"] .steps::before { left: auto; right: 22px; transform-origin: top; }
+  [dir="rtl"] .step { padding-left: 0; padding-right: 68px; }
+  [dir="rtl"] .step__top { left: auto; right: 0; }
+}
+
+/* ---- Roadmap: keep the zig-zag geometry LTR, only the text is RTL ---- */
+[dir="rtl"] .rm { direction: ltr; }
+[dir="rtl"] .rm .rm__item .rm__content { direction: rtl; text-align: right; }
+
+/* ---- About pillars ---- */
+[dir="rtl"] .about__pillar { padding-left: 0; padding-right: 14px; border-left: 0; border-right: 2px solid var(--color-accent); }

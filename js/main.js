@@ -270,6 +270,115 @@ tech: [
   social: [["LinkedIn", "in", ""], ["X", "X", ""], ["Discord", "Dc", ""], ["YouTube", "Yt", ""]]
 };
 
+/* =====================================================
+   PERSIAN CONTENT (FA) — used when <html lang="fa"> (index-fa.html)
+   Same keys/order as CONFIG above. Anything not listed here
+   (motion, newsletterEndpoint, tech, hrefs, icons, images) is kept from CONFIG.
+   Sections that already carry titleFa/descFa (tech) are handled in render().
+===================================================== */
+const SITE_LANG = document.documentElement.lang === "fa" ? "fa" : "en";
+
+const CONFIG_FA = {
+  nav: [["خانه", "#home"], ["محصولات", "#products"], ["فناوری", "#technology"], ["نقشه راه", "#roadmap"], ["تیم", "#team"], ["وایت‌پیپر", "whitepaper.html"], ["درباره ما", "#about"], ["پیچ دک", "#pitchdeck"]],
+
+  roadmap: [
+    { time: "فاز ۱ - ۳ ماه", title: "پیدایش و معماری", text: "راه‌اندازی اولیه اکوسیستم، طراحی مفهومی و توسعه زیرساخت اصلی." },
+    { time: "فاز ۲ - ۶ ماه", title: "راه‌اندازی تست‌نت", text: "انتشار نسخه بتای ZeroVault، استقرار قراردادهای هوشمند و ممیزی‌های امنیتی اولیه." },
+    { time: "فاز ۳ - ۴ ماه", title: "توسعه جهانی", text: "ورود به بازار جهانی، یکپارچه‌سازی دارایی‌های دنیای واقعی و گسترش ناوگان پهپادها." },
+    { time: "فاز ۴ - ۵ ماه", title: "کارت POS مستقیم و NFTهای BNPL", text: "عرضه کارت بانکی مستقیم کیف‌پول به POS، بلیت هواپیمای NFT با اقساط پلکانی و آرکید پهپاد دوبعدی." },
+    { time: "فاز ۵ - مستمر", title: "خودگردانی کامل", text: "تمرکززدایی کامل، فعال‌سازی حاکمیت DAO و عملیات خودگردان." }
+  ],
+
+  products: [
+    { label: "لجستیک هوایی", title: "پهپادهای توکنیزه", text: "مشارکت ساختاریافته و قانونی در اقتصاد ناوگان پهپادها را، با رعایت شرایط مربوطه، کاوش کنید." },
+    { label: "دارایی‌های حمل‌ونقل", title: "خودروهای توکنیزه", text: "با مدل‌های توکنیزه‌سازی آشنا شوید که می‌توانند حقوق یا منافع قراردادی در نهادهای اختصاصی خودرو را نمایندگی کنند." },
+    { label: "امنیت خزانه", title: "ZeroVault", text: "امنیت ماژولار خزانه، دسترسی مبتنی بر نقش، قفل‌های زمانی، توقف اضطراری و اجرای کنترل‌شده را کاوش کنید." },
+    { label: "تحویل تأییدشده", title: "اسکرو و تحویل", text: "گردش‌کارهای امانی را کاوش کنید که برای آزادسازی وجه بر اساس شرایط تعریف‌شده و شواهد احرازشده طراحی شده‌اند." },
+    { label: "هوانوردی Web3", title: "بلیت پرواز NFT", text: "بلیت هواپیما را به‌صورت NFT روی زنجیره رزرو کنید. با نگهداری NFTهای پلکانی واجد شرایط، از تخفیف توکن بومی و پرداخت اقساطی بهره‌مند شوید." },
+    { label: "تسویه آنی POS", title: "کارت مستقیم کیف‌پول", text: "ارزش لحظه‌ای فیات توکن‌هایتان را در پایانه‌های POS فیزیکی و با کارت بانکی متصل مستقیم به کیف‌پول Web3 خود خرج کنید." },
+    { label: "NFTهای کاربردی و BNPL", title: "بازار NFT", text: "دارایی‌های اکوسیستم و NFTهای اعتباری انحصاری را معامله کنید؛ NFTهایی که به دارندگان کیف‌پول امکان خرید اقساطی «همین حالا بخر، بعداً بپرداز» می‌دهند." },
+    { label: "آرکید بازی-برای-کسب", title: "آرکید پهپاد دوبعدی", text: "پهپادهای رزمی را در یک بازی هوایی کلاسیک دوبعدی هدایت کنید. امتیاز بگیرید تا کوپن‌های تخفیف فروشگاه و NFTهای پاداش انحصاری را باز کنید." }
+  ],
+
+  metrics: [
+    { label: "دارایی‌های دنیای واقعی", value: "در حال توسعه" },
+    { label: "محصولات اکوسیستم", value: "قابلیت‌های پلتفرم" },
+    { label: "دسترسی جهانی", value: "دامنه اکوسیستم" },
+    { label: "جامعه", value: "چشم‌انداز را کاوش کنید" }
+  ],
+
+  layers: [
+    { t: "لایه کاربرد", s: "محصولات و خدمات", x: "رابط‌هایی برای کشف، مشارکت و پیگیری." },
+    { t: "لایه دارایی", s: "خودروها و پهپادها", x: "دارایی‌های دنیای واقعی و نهادهایی که برای نگهداری آن‌ها طراحی شده‌اند." },
+    { t: "لایه بلاکچین", s: "توکنیزه‌سازی و شفافیت", x: "بازنمایی دیجیتال و سوابق شفاف روی زنجیره." },
+    { t: "لایه زیرساخت", s: "تسویه و ذخیره‌سازی", x: "بسترهای تسویه، نگهداری و ذخیره‌سازی داده." }
+  ],
+
+  features: [
+    { t: "ZeroVault", s: "امنیت خزانه و کنترل‌های اجرا" },
+    { t: "توکنیزه‌سازی", s: "بازنمایی دیجیتال دارایی‌های واجد شرایط" },
+    { t: "توزیع سود", s: "گردش‌کارهای توزیع تعریف‌شده و شفاف" },
+    { t: "بازار", s: "کشف و مشارکت" }
+  ],
+
+  steps: [
+    { t: "کشف دارایی", s: "یک دارایی یا محصول موجود در اکوسیستم را کاوش کنید." },
+    { t: "بررسی ساختار", s: "حقوق قانونی، شرایط قراردادی، صلاحیت و ریسک‌های مربوطه را بشناسید." },
+    { t: "مشارکت", s: "فرایند پشتیبانی‌شده برای محصول موردنظر را دنبال کنید." },
+    { t: "پیگیری فعالیت", s: "تراکنش‌ها، اطلاعات عملیاتی و توزیع‌های موجود را، در صورت کاربرد، مرور کنید." }
+  ],
+
+  footer: [
+    ["محصولات", [["پهپادهای توکنیزه", "#products"], ["خودروهای توکنیزه", "#products"], ["ZeroVault", "#technology"], ["اسکرو و تحویل", "#products"]]],
+    ["شرکت", [["درباره ما", "#about"], ["فرصت‌های شغلی", "#"], ["وبلاگ", "#"], ["تماس با ما", "#"]]],
+    ["منابع", [["مستندات", "#"], ["فناوری", "#technology"], ["اکوسیستم", "#ecosystem"], ["پرسش‌های متداول", "#"]]],
+    ["حقوقی", [["شرایط استفاده", "#"], ["حریم خصوصی", "#"], ["افشای ریسک", "#"]]]
+  ],
+
+  // team: same order as CONFIG.team — photo, link and order are kept; only text is replaced.
+  // (Please double-check the spelling of the names.)
+  team: [
+    { name: "علی نصیرلو", role: "بنیان‌گذار و امنیت قراردادهای هوشمند", text: "توسعه قرارداد هوشمند و ممیزی امنیتی، با تمرکز بر شناسایی آسیب‌پذیری، بهینه‌سازی پروتکل و راهکارهای امن روی زنجیره." },
+    { name: "محمد حسین غیاثوند", role: "بنیان‌گذار، توسعه‌دهنده قرارداد هوشمند و وب", text: "توسعه و پیاده‌سازی قرارداد هوشمند، طراحی سازوکارهای روی زنجیره و ساخت راهکارهای غیرمتمرکز روی شبکه‌های سازگار با EVM." },
+    { name: "پارسا ابوالحسنی", role: "بنیان‌گذار و مشاور فنی", text: "مشاوره فنی و معماری راهکار برای سامانه‌های بلاکچینی، انتزاع حساب (ERC-4337) و یکپارچه‌سازی زیرساخت Web3." },
+    { name: "مرضیه علیزاده", role: "مدیر پروژه", text: "مدیریت اجرای چابک، تحویل نقشه راه محصول و هم‌راستاسازی تیم‌های اکوسیستم." },
+    { name: "میلاد کلهر", role: "مهندس ارشد فول‌استک", text: "توسعه میکروسرویس‌های بک‌اند مقاوم، زیرساخت‌های BitBank شتاب و APIهای ناوگان." },
+    { name: "نیکا وحیدی", role: "استراتژیست محتوای خلاق", text: "تبدیل معماری پیچیده بلاکچین و مفاهیم RWA به روایت‌های بصری و نوشتاری جذاب برای پذیرش خرد و شرکای نهادی." }
+  ]
+};
+
+/* small SITE_UI strings used inside render() */
+const SITE_UI = SITE_LANG === "fa" ? {
+  learn: "مشاهده محصول",
+  movement: "فراتر از دارایی.<br>یک جنبش.",
+  vis: t => `تصویر ${t}`,
+  social: n => `${n} (تنظیم نشده)`,
+  socialOff: n => `نشانی ${n} را در CONFIG.social اضافه کنید`,
+  teamSocial: n => `پیوند شبکه اجتماعی ${n}`,
+  year: y => y.toLocaleString("fa-IR", { useGrouping: false })
+} : {
+  learn: "Learn More",
+  movement: "More than assets.<br>A movement.",
+  vis: t => `${t} visual`,
+  social: n => `${n} (not configured)`,
+  socialOff: n => `Add the ${n} URL in CONFIG.social`,
+  teamSocial: n => `${n} Social Link`,
+  year: y => String(y)
+};
+
+/* merge FA text over CONFIG; array items are merged by index so icons/images/hrefs survive */
+if (SITE_LANG === "fa") {
+  const mergeList = (base, fa) => fa.map((f, i) => Object.assign({}, base[i], f));
+  const FA_PAGE_SUFFIX = "-fa";   // EDIT if your Persian pages are named differently (e.g. "_fa")
+  const faPage = h => /\.html$/.test(h) ? h.replace(/\.html$/, FA_PAGE_SUFFIX + ".html") : h;
+  CONFIG.nav = CONFIG_FA.nav.map(([t, h]) => [t, faPage(h)]);
+  CONFIG.footer = CONFIG_FA.footer;
+  ["roadmap", "products", "metrics", "layers", "features", "steps", "team"].forEach(k => {
+    CONFIG[k] = mergeList(CONFIG[k], CONFIG_FA[k]);
+  });
+  CONFIG.products.forEach(p => { p.href = faPage(p.href); });
+}
+
 /* ---------- ICONS (24×24 line paths) ---------- */
 const ICON = {
   arrow: "M5 12h14M13 6l6 6-6 6", exec: "M4 12h12M12 6l6 6-6 6M20 5v14",
@@ -305,7 +414,7 @@ const ICON = {
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-const svg = (n, c = "i") => `<svg class="${c}" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${ICON[n]}"/></svg>`;
+const svg = (n, c = "i") => `<svg class="${c}" data-ic="${n}" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${ICON[n]}"/></svg>`;
 
 /* ---------- RENDER: builds sections from CONFIG ---------- */
 function render() {
@@ -314,20 +423,20 @@ function render() {
  // Render 8 product cards with glowing orange Learn More CTA button
   $("#cards").innerHTML = C.products.map((p, k) =>
     `<a class="card rv" style="--k:${k}" href="${p.href}">
-      <div class="card__vis" data-asset="${p.asset}" data-alt="${p.title} visual">${svg(p.icon)}</div>
+      <div class="card__vis" data-asset="${p.asset}" data-alt="${SITE_UI.vis(p.title)}">${svg(p.icon)}</div>
       <div class="card__body">
         <small>${p.label}</small>
         <h3>${p.title}</h3>
         <p>${p.text}</p>
         <span class="card__go">
-          <span data-en="Learn More" data-fa="مشاهده محصول">Learn More</span>
+          <span>${SITE_UI.learn}</span>
           ${svg("arrow")}
         </span>
       </div>
     </a>`).join("");
   $("#metrics").innerHTML = C.metrics.map((m, k) =>
     `<div class="m rv" style="--k:${k}">${svg(m.icon)}<div><b>${m.label}</b><span>${m.value}</span></div></div>`).join("") +
-    `<a class="m__more rv" style="--k:4" href="#ecosystem"><span>More than assets.<br>A movement.</span>${svg("arrow")}</a>`;
+    `<a class="m__more rv" style="--k:4" href="#ecosystem"><span>${SITE_UI.movement}</span>${svg("arrow")}</a>`;
   $("#feat").innerHTML = C.features.map(f =>
     `<li><a href="#technology"><span class="ic">${svg(f.icon)}</span><span><b>${f.t}</b><small>${f.s}</small></span>${svg("arrow")}</a></li>`).join("");
   const isFa = document.documentElement.lang === "fa";
@@ -344,8 +453,8 @@ function render() {
     `<div><h3>${t}</h3><ul>${l.map(([n, h]) => `<li><a href="${h}">${n}</a></li>`).join("")}</ul></div>`).join("");
   $("#soc").innerHTML = C.social.map(([n, a, u]) => u
     ? `<a href="${u}" target="_blank" rel="noopener" aria-label="${n}">${a}</a>`
-    : `<span class="off" role="img" aria-label="${n} (not configured)" title="Add the ${n} URL in CONFIG.social">${a}</span>`).join("");
-  $("#yr").textContent = new Date().getFullYear();
+    : `<span class="off" role="img" aria-label="${SITE_UI.social(n)}" title="${SITE_UI.socialOff(n)}">${a}</span>`).join("");
+  $("#yr").textContent = SITE_UI.year(new Date().getFullYear());
   const rmC = $("#rm-container");
   if (rmC) {
     rmC.innerHTML = C.roadmap.map((r, k) => `
@@ -375,7 +484,7 @@ function render() {
           <span>${t.role}</span>
           <p>${t.text}</p>
         </div>
-        <a href="${t.social}" class="team__social" aria-label="${t.name} Social Link">${svg("link")}</a>
+        <a href="${t.social}" class="team__social" aria-label="${SITE_UI.teamSocial(t.name)}">${svg("link")}</a>
       </div>
     `).join("");
   }
@@ -546,18 +655,11 @@ function roadmapScroll() {
   }, { passive: true });
 }
 
-/* ---------- HEADER ACTIONS: LANGUAGE SWITCHER (wallet is handled by js/wallet.js) ---------- */
-function headerActions() {
-  const langBtn = $("[data-lang]");
-
-  if (langBtn) {
-    langBtn.addEventListener("click", () => {
-      const codes = $$(".lang-code", langBtn);
-      codes.forEach(c => c.classList.toggle("active"));
-      toast("Persian (FA) language pack is currently under preparation.");
-    });
-  }
-}
+/* ---------- HEADER ACTIONS ----------
+   The EN/FA button is a plain link between index.html and index-fa.html
+   (see the inline script in each page's <head>), so no JS toggle is needed here.
+   The wallet button is handled by js/wallet.js. */
+function headerActions() {}
 
 
 /* ---------- HOLO CARD DISINTEGRATION INTO 3D TOKENS & FLYING DRONES ---------- */
