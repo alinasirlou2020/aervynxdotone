@@ -8,25 +8,227 @@
 <!-- Replace with absolute URLs (https://your-domain/...) when you deploy -->
 <link rel="alternate" hreflang="en" href="index.html">
 <link rel="alternate" hreflang="fa" href="index-fa.html">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="js/wallet.css">
-<script>
-/* Language switch (EN <-> FA): plain link between index.html and index-fa.html.
-   Keeps the current #section and remembers the choice. Runs in the capture phase so the
-   old in-page toggle in js/main.js (if any) cannot interfere. */
-document.addEventListener('click',function(e){
- var a=e.target.closest&&e.target.closest('[data-lang-switch]');
- if(!a)return;
- e.stopPropagation();
- try{localStorage.setItem('aervynx-lang',a.getAttribute('data-lang-switch'))}catch(_){}
- a.href=a.getAttribute('href').split('#')[0]+location.hash;
-},true);
-</script>
+<style>
+  html[lang="fa"] body {
+    font-family: "Vazirmatn", system-ui, -apple-system, sans-serif;
+  }
+  html[lang="fa"] h1,
+  html[lang="fa"] h2,
+  html[lang="fa"] h3,
+  html[lang="fa"] .lead,
+  html[lang="fa"] p {
+    letter-spacing: 0;
+  }
+  html[dir="rtl"] .btn [data-i="arrow"],
+  html[dir="rtl"] .card__go svg,
+  html[dir="rtl"] .m__more svg,
+  html[dir="rtl"] .feat svg:last-child,
+  html[dir="rtl"] .news button svg {
+    transform: scaleX(-1);
+  }
+/* =====================================================================
+     MOBILE & TABLET RESPONSIVE PATCH (FOR UNOPTIMIZED SECTIONS)
+  ===================================================================== */
+  html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  /* 1. Tablet Breakpoint (max-width: 1024px) */
+  @media (max-width: 1024px) {
+    /* Product Cards & Tech Grid: 2 Columns */
+    #cards.cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 18px !important;
+    }
+    .eco,
+    .tech,
+    .how__head,
+    .about__box {
+      grid-template-columns: 1fr !important;
+      gap: 36px !important;
+    }
+    #team-grid.team__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+  }
+
+  /* 2. Mobile Breakpoint (max-width: 768px) */
+  @media (max-width: 768px) {
+    /* Hero Section & Mobile Background Fit */
+    .hero {
+      min-height: 100svh;
+      padding-top: calc(var(--nav-h, 72px) + 28px) !important;
+      padding-bottom: 48px !important;
+    }
+    .hero__bg img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center center !important;
+    }
+    .hero__txt h1 {
+      font-size: clamp(32px, 9vw, 46px) !important;
+      line-height: 1.08 !important;
+    }
+
+    /* Metrics Strip: 2x2 Grid on Mobile */
+    #metrics {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 12px !important;
+    }
+    #metrics .m__more {
+      grid-column: 1 / -1 !important;
+    }
+
+    /* Ecosystem Layered Diagram (#dia): Prevent Horizontal Overflow */
+    #dia.dia {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      gap: 20px !important;
+      overflow: hidden !important;
+    }
+    #dia svg {
+      width: 100% !important;
+      max-width: 340px !important;
+      height: auto !important;
+    }
+    #dia .cn,
+    #dia .dt {
+      display: none !important;
+    }
+    #dia .dl {
+      width: 100% !important;
+      display: grid !important;
+      gap: 10px !important;
+    }
+
+    /* How It Works: Constrain Flying Drone & Stack 4 Steps */
+    #drone.drone {
+      width: 100% !important;
+      max-width: 320px !important;
+      margin-inline: auto !important;
+      overflow: hidden !important;
+    }
+    #steps.steps {
+      grid-template-columns: 1fr !important;
+      gap: 14px !important;
+    }
+
+    /* Roadmap: Collapse Alternating Timeline into Single-Sided Mobile Timeline */
+    .rm__line,
+    .rm__track {
+      left: 20px !important;
+      transform: none !important;
+    }
+    html[dir="rtl"] .rm__line,
+    html[dir="rtl"] .rm__track {
+      left: auto !important;
+      right: 20px !important;
+    }
+    .rm__item {
+      display: grid !important;
+      grid-template-columns: 40px 1fr !important;
+      gap: 14px !important;
+      align-items: flex-start !important;
+      margin-bottom: 24px !important;
+    }
+    .rm__item .rm__node {
+      grid-column: 1 !important;
+      grid-row: 1 !important;
+      margin: 0 auto !important;
+    }
+    .rm__item .rm__content {
+      grid-column: 2 !important;
+      grid-row: 1 !important;
+      width: 100% !important;
+      text-align: start !important;
+    }
+    .rm__item .rm__empty {
+      display: none !important;
+    }
+
+    /* About Us: Stack 3 Pillars & Scale 3D Holographic Card Scene for Mobile */
+    .about__box {
+      padding: 24px 18px !important;
+    }
+    .about__pillars {
+      grid-template-columns: 1fr !important;
+      gap: 12px !important;
+    }
+    .about__vis {
+      width: 100% !important;
+      overflow: hidden !important;
+      display: flex !important;
+      justify-content: center !important;
+    }
+    .holo-scene {
+      transform: scale(0.76) !important;
+      transform-origin: center center !important;
+      margin-block: -36px !important;
+    }
+
+    /* Pitch Deck CTA Box */
+    .deck-box {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      text-align: start !important;
+      padding: 24px 20px !important;
+      gap: 20px !important;
+    }
+    .deck-action,
+    .deck-action .btn--deck {
+      width: 100% !important;
+      justify-content: center !important;
+    }
+
+    /* Footer Bottom Bar: Clean Stack on Mobile */
+    .foot__bot {
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+    }
+    .foot__bot > div:last-child {
+      text-align: center !important;
+      align-items: center !important;
+    }
+  }
+
+  /* 3. Small Phone Breakpoint (max-width: 560px) */
+  @media (max-width: 560px) {
+    #cards.cards,
+    #metrics,
+    .grid7,
+    #team-grid.team__grid {
+      grid-template-columns: 1fr !important;
+    }
+    .hero__txt .ctas {
+      display: flex !important;
+      flex-direction: column !important;
+      width: 100% !important;
+    }
+    .hero__txt .ctas .btn {
+      width: 100% !important;
+      justify-content: center !important;
+    }
+    .holo-scene {
+      transform: scale(0.64) !important;
+      margin-block: -54px !important;
+    }
+  }
+
+
+</style>
 <script src="js/main.js" defer></script>
 <script src="js/wallet.js" defer></script>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
+<a class="skip" href="#main" data-i18n-en="Skip to content" data-i18n-fa="پرش به محتوای اصلی">Skip to content</a>
 <div id="top" aria-hidden="true"></div>
 
 <!-- ================================================
@@ -41,11 +243,11 @@ document.addEventListener('click',function(e){
    <ul id="links"></ul>
    <!-- Header Action Buttons: Language Switcher & Wallet Connect -->
    <div class="menu__cta">
-    <a class="btn-lang" href="index-fa.html" hreflang="fa" lang="fa" dir="ltr" data-lang data-lang-switch="fa" aria-label="Switch to Persian">
+    <a class="btn-lang" href="#lang-switch" hreflang="fa" lang="fa" dir="ltr" data-lang data-lang-switch="fa" aria-label="Switch to Persian">
      <i data-i="globe"></i>
-     <span class="lang-code active">EN</span>
+     <span class="lang-code active" data-lang-code="en">EN</span>
      <span class="lang-sep">/</span>
-     <span class="lang-code">FA</span>
+     <span class="lang-code" data-lang-code="fa">FA</span>
     </a>
     <!-- Wallet Connect: RainbowKit mounts the button here (js/wallet.js) -->
     <div id="wallet-root" style="display:contents"></div>
@@ -97,11 +299,11 @@ document.addEventListener('click',function(e){
  <div class="wrap hero__in">
   <div class="hero__txt">
    
-   <h1><span class="ln"><span style="--d:300">Physical Assets.</span></span><span class="ln"><span style="--d:450"><em>Digital Ownership.</em></span></span></h1>
-   <p class="lead fx" style="--d:750">Aervnyx connects real-world assets with blockchain infrastructure, tokenized ownership, secure treasury controls, and intelligent commerce.</p>
+   <h1><span class="ln"><span style="--d:300" data-i18n-en="Physical Assets." data-i18n-fa="دارایی‌های فیزیکی.">Physical Assets.</span></span><span class="ln"><span style="--d:450"><em data-i18n-en="Digital Ownership." data-i18n-fa="مالکیت دیجیتال.">Digital Ownership.</em></span></span></h1>
+   <p class="lead fx" style="--d:750" data-i18n-en="Aervnyx connects real-world assets with blockchain infrastructure, tokenized ownership, secure treasury controls, and intelligent commerce." data-i18n-fa="اکوسیستم Aervynx دارایی‌های دنیای واقعی را به زیرساخت بلاکچین، مالکیت توکنایزشده، کنترل‌های امن خزانه‌داری و تجارت هوشمند متصل می‌کند.">Aervnyx connects real-world assets with blockchain infrastructure, tokenized ownership, secure treasury controls, and intelligent commerce.</p>
    <div class="ctas fx" style="--d:900">
-    <a class="btn" href="#products">Explore Assets <i data-i="arrow"></i></a>
-    <a class="btn btn--ghost" href="#technology">Discover the Technology</a>
+    <a class="btn" href="#products"><span data-i18n-en="Explore Assets" data-i18n-fa="بررسی محصولات">Explore Assets</span> <i data-i="arrow"></i></a>
+    <a class="btn btn--ghost" href="#technology" data-i18n-en="Discover the Technology" data-i18n-fa="آشنایی با فناوری">Discover the Technology</a>
    </div>
   </div>
  
@@ -133,9 +335,9 @@ document.addEventListener('click',function(e){
 <section class="wrap sec" id="ecosystem" data-nav>
  <div class="eco">
   <div>
-   <span class="eyebrow rv">The ecosystem</span>
-   <h2 class="rv">From Physical Assets to <em>Digital Ownership</em></h2>
-   <p class="lead rv">Aervnyx is designed to connect physical assets, digital ownership models, blockchain infrastructure, and transparent operational workflows.</p>
+   <span class="eyebrow rv" data-i18n-en="The ecosystem" data-i18n-fa="معماری اکوسیستم">The ecosystem</span>
+   <h2 class="rv" data-i18n-html-en="From Physical Assets to <em>Digital Ownership</em>" data-i18n-html-fa="از دارایی‌های فیزیکی تا <em>مالکیت دیجیتال</em>">From Physical Assets to <em>Digital Ownership</em></h2>
+   <p class="lead rv" data-i18n-en="Aervnyx is designed to connect physical assets, digital ownership models, blockchain infrastructure, and transparent operational workflows." data-i18n-fa="اکوسیستم Aervynx به‌گونه‌ای مهندسی شده است که دارایی‌های فیزیکی، مدل‌های مالکیت دیجیتال، زیرساخت بلاکچین و فرآیندهای عملیاتی شفاف را در یک شبکه واحد به هم پیوند دهد.">Aervnyx is designed to connect physical assets, digital ownership models, blockchain infrastructure, and transparent operational workflows.</p>
    <ul class="feat rv" id="feat"></ul>
   </div>
   <div class="dia" id="dia"><div class="eco__bg" data-asset="ecosystemGlobe" data-alt="" aria-hidden="true"></div></div>
@@ -150,16 +352,16 @@ document.addEventListener('click',function(e){
 <section class="wrap sec" id="technology" data-nav>
  <div class="tech">
   <div>
-   <span class="eyebrow rv">Technology and trust</span>
-   <h2 class="rv">Infrastructure designed for control</h2>
-   <p class="lead rv">Security and transparency are treated as architecture. These modules describe the intended design of the ecosystem.</p>
+   <span class="eyebrow rv" data-i18n-en="Technology and trust" data-i18n-fa="فناوری و معماری اعتماد">Technology and trust</span>
+   <h2 class="rv" data-i18n-en="Infrastructure designed for control" data-i18n-fa="زیرساختی مهندسی‌شده برای کنترل و امنیت">Infrastructure designed for control</h2>
+   <p class="lead rv" data-i18n-en="Security and transparency are treated as architecture. These modules describe the intended design of the ecosystem." data-i18n-fa="در Aervynx، امنیت و شفافیت در سطح معماری پایه تعریف شده‌اند. ماژول‌های زیر ساختار کنترلی و فنی اکوسیستم را تشریح می‌کنند.">Security and transparency are treated as architecture. These modules describe the intended design of the ecosystem.</p>
    <ol class="flow rv" aria-label="Controlled execution flow">
-    <li><b>Proposal</b><span>An action is queued by an authorized role.</span></li>
-    <li><b>Role check</b><span>Permissions are verified against defined roles.</span></li>
-    <li><b>Timelock</b><span>A delay window allows review before execution.</span></li>
-    <li><b>Controlled execution</b><span>The action runs within predefined limits, with an emergency pause available.</span></li>
+    <li><b data-i18n-en="Proposal" data-i18n-fa="ثبت پیشنهاد (Proposal)">Proposal</b><span data-i18n-en="An action is queued by an authorized role." data-i18n-fa="عملیات موردنظر توسط نقش مجاز در صف بررسی و اجرا ثبت می‌شود.">An action is queued by an authorized role.</span></li>
+    <li><b data-i18n-en="Role check" data-i18n-fa="بررسی دسترسی (Role Check)">Role check</b><span data-i18n-en="Permissions are verified against defined roles." data-i18n-fa="مجوزهای اجرا با نقش‌های تعریف‌شده در قرارداد هوشمند تطبیق داده می‌شوند.">Permissions are verified against defined roles.</span></li>
+    <li><b data-i18n-en="Timelock" data-i18n-fa="قفل زمانی (Timelock)">Timelock</b><span data-i18n-en="A delay window allows review before execution." data-i18n-fa="پنجره تأخیر زمانی، امکان بازبینی امنیتی پیش از اجرای نهایی را فراهم می‌سازد.">A delay window allows review before execution.</span></li>
+    <li><b data-i18n-en="Controlled execution" data-i18n-fa="اجرای کنترل‌شده">Controlled execution</b><span data-i18n-en="The action runs within predefined limits, with an emergency pause available." data-i18n-fa="عملیات در چارچوب سقف‌های مجاز اجرا شده و مکانیزم توقف اضطراری همواره در دسترس است.">The action runs within predefined limits, with an emergency pause available.</span></li>
    </ol>
-   <p class="note">Conceptual architecture. No independent audit, certification, or live integration is implied.</p>
+   <p class="note" data-i18n-en="Conceptual architecture. No independent audit, certification, or live integration is implied." data-i18n-fa="معماری مفهومی؛ این بخش به منزله ممیزی مستقل، گواهی رسمی یا یکپارچه‌سازی عملیاتی نهایی نیست.">Conceptual architecture. No independent audit, certification, or live integration is implied.</p>
   </div>
   <div class="grid7" id="tech"></div>
  </div>
@@ -172,9 +374,9 @@ document.addEventListener('click',function(e){
 <section class="wrap sec" id="how" data-nav>
  <div class="how__head">
   <div>
-   <span class="eyebrow rv">How it works</span>
-   <h2 class="rv">From discovery to tracking</h2>
-   <p class="lead rv">Four steps. Applicable terms, eligibility, and risks always apply.</p>
+   <span class="eyebrow rv" data-i18n-en="How it works" data-i18n-fa="نحوه عملکرد چرخه">How it works</span>
+   <h2 class="rv" data-i18n-en="From discovery to tracking" data-i18n-fa="از انتخاب دارایی تا پایش عملکرد">From discovery to tracking</h2>
+   <p class="lead rv" data-i18n-en="Four steps. Applicable terms, eligibility, and risks always apply." data-i18n-fa="چهار گام ساختاریافته؛ همواره تابع شرایط قراردادی، احراز صلاحیت و ملاحظات ریسک.">Four steps. Applicable terms, eligibility, and risks always apply.</p>
   </div>
   <div class="drone rv" id="drone" role="img" aria-label="Animated Aervnyx delivery drone carrying a branded cargo case">
    <div class="drone__glow" aria-hidden="true"></div>
@@ -206,9 +408,9 @@ document.addEventListener('click',function(e){
 ================================================= -->
 <section class="wrap sec" id="roadmap" data-nav>
  <div class="rm__head">
-  <span class="eyebrow rv">Our Journey</span>
-  <h2 class="rv">Project <em>Roadmap</em></h2>
-  <p class="lead rv">Charting the path to autonomous digital ownership.</p>
+  <span class="eyebrow rv" data-i18n-en="Our Journey" data-i18n-fa="مسیر توسعه">Our Journey</span>
+  <h2 class="rv" data-i18n-html-en="Project <em>Roadmap</em>" data-i18n-html-fa="نقشه راه <em>پروژه</em>">Project <em>Roadmap</em></h2>
+  <p class="lead rv" data-i18n-en="Charting the path to autonomous digital ownership." data-i18n-fa="ترسیم گام‌های اجرایی به سوی مالکیت دیجیتال و زیرساخت خودکار.">Charting the path to autonomous digital ownership.</p>
  </div>
  <div class="rm" id="roadmap-wrapper">
    <div class="rm__line"></div>
@@ -223,9 +425,9 @@ document.addEventListener('click',function(e){
 ================================================= -->
 <section class="wrap sec" id="team" data-nav>
  <div class="team__head">
-  <span class="eyebrow rv">Core Contributors</span>
-  <h2 class="rv">Meet the <em>Architects</em></h2>
-  <p class="lead rv">The visionaries and engineers building the DotOne ecosystem and AERVYNX.One infrastructure.</p>
+  <span class="eyebrow rv" data-i18n-en="Core Contributors" data-i18n-fa="اعضای کلیدی">Core Contributors</span>
+  <h2 class="rv" data-i18n-html-en="Meet the <em>Architects</em>" data-i18n-html-fa="تیم <em>معماران پروژه</em>">Meet the <em>Architects</em></h2>
+  <p class="lead rv" data-i18n-en="The visionaries and engineers building the DotOne ecosystem and AERVYNX.One infrastructure." data-i18n-fa="متخصصان و مهندسانی که اکوسیستم DotOne و زیرساخت یکپارچه AERVYNX.One را توسعه می‌دهند.">The visionaries and engineers building the DotOne ecosystem and AERVYNX.One infrastructure.</p>
  </div>
  <div class="team__grid" id="team-grid"></div>
 </section>
@@ -239,22 +441,22 @@ document.addEventListener('click',function(e){
  <div class="about__box rv">
   <!-- Left Column: Institutional About Text & 3 Pillars -->
   <div class="about__txt">
-   <span class="eyebrow">About Aervnyx</span>
-   <h2>Bridging Physical Reality with <em>Autonomous Finance.</em></h2>
-   <p class="lead">Aervnyx is a next-generation Web3 ecosystem engineered to connect real-world assets, autonomous logistics, and everyday retail commerce under a single verifiable infrastructure.</p>
-   <p class="about__desc">From tokenized drone and vehicle fleets secured by ZeroVault to NFT airline ticketing with buy-now-pay-later installment tiers, direct wallet-to-POS bank cards, and play-to-earn aerial gaming, we transform digital ownership into tangible real-world utility.</p>
+   <span class="eyebrow" data-i18n-en="About Aervnyx" data-i18n-fa="درباره Aervynx">About Aervnyx</span>
+   <h2 data-i18n-html-en="Bridging Physical Reality with <em>Autonomous Finance.</em>" data-i18n-html-fa="پیوند دنیای فیزیکی با <em>مالیه خودکار و هوشمند.</em>">Bridging Physical Reality with <em>Autonomous Finance.</em></h2>
+   <p class="lead" data-i18n-en="Aervnyx is a next-generation Web3 ecosystem engineered to connect real-world assets, autonomous logistics, and everyday retail commerce under a single verifiable infrastructure." data-i18n-fa="پروتکل Aervynx نسل جدیدی از اکوسیستم‌های Web3 است که دارایی‌های دنیای واقعی (RWA)، لجستیک خودکار و تجارت روزمره را در یک زیرساخت واحد و قابل‌راستی‌آزمایی به هم متصل می‌کند.">Aervnyx is a next-generation Web3 ecosystem engineered to connect real-world assets, autonomous logistics, and everyday retail commerce under a single verifiable infrastructure.</p>
+   <p class="about__desc" data-i18n-en="From tokenized drone and vehicle fleets secured by ZeroVault to NFT airline ticketing with buy-now-pay-later installment tiers, direct wallet-to-POS bank cards, and play-to-earn aerial gaming, we transform digital ownership into tangible real-world utility." data-i18n-fa="از ناوگان‌های پهپادی و خودرویی توکنایزشده تحت حفاظت ZeroVault تا بلیت‌های پرواز NFT با قابلیت خرید اقساطی (BNPL)، کارت‌های بانکی متصل به پایانه فروشگاهی (POS) و بازی آرکید هوایی، ما مالکیت دیجیتال را به کاربرد ملموس در دنیای واقعی تبدیل می‌کنیم.">From tokenized drone and vehicle fleets secured by ZeroVault to NFT airline ticketing with buy-now-pay-later installment tiers, direct wallet-to-POS bank cards, and play-to-earn aerial gaming, we transform digital ownership into tangible real-world utility.</p>
    <div class="about__pillars">
     <div class="about__pillar">
-     <b>RWA &amp; Logistics</b>
-     <span>Tokenized drones, vehicles, and verified escrow delivery.</span>
+     <b data-i18n-en="RWA & Logistics" data-i18n-fa="دارایی‌های واقعی و لجستیک">RWA & Logistics</b>
+     <span data-i18n-en="Tokenized drones, vehicles, and verified escrow delivery." data-i18n-fa="پهپادها و خودروهای توکنایزشده همراه با تحویل مبتنی بر اسکروی هوشمند.">Tokenized drones, vehicles, and verified escrow delivery.</span>
     </div>
     <div class="about__pillar">
-     <b>Direct POS &amp; BNPL</b>
-     <span>Instant fiat card settlement and installment-tier NFTs.</span>
+     <b data-i18n-en="Direct POS & BNPL" data-i18n-fa="پرداخت مستقیم POS و خرید اقساطی">Direct POS & BNPL</b>
+     <span data-i18n-en="Instant fiat card settlement and installment-tier NFTs." data-i18n-fa="تسویه آنی فیات در پایانه فروشگاهی و اعتبار اقساطی مبتنی بر NFT.">Instant fiat card settlement and installment-tier NFTs.</span>
     </div>
     <div class="about__pillar">
-     <b>ZeroVault Core</b>
-     <span>Role-based treasury controls, timelocks, and arcade rewards.</span>
+     <b data-i18n-en="ZeroVault Core" data-i18n-fa="هسته امنیتی ZeroVault">ZeroVault Core</b>
+     <span data-i18n-en="Role-based treasury controls, timelocks, and arcade rewards." data-i18n-fa="کنترل خزانه‌داری مبتنی بر نقش، قفل‌های زمانی و سیستم پاداش بازی.">Role-based treasury controls, timelocks, and arcade rewards.</span>
     </div>
    </div>
   </div>
@@ -383,40 +585,21 @@ document.addEventListener('click',function(e){
   <div class="deck-txt">
    <div class="deck-tag">
     <i class="node-led node-led--green" style="margin-right: 6px;"></i>
-    MASTER DECK V1.0
+    <span data-i18n-en="MASTER DECK V1.0" data-i18n-fa="ارائه جامع نسخه ۱.۰">MASTER DECK V1.0</span>
    </div>
-   <h3>Ecosystem Master <em>Pitch Deck</em></h3>
-   <p>Explore the complete business model, 4-layer architecture, DeliveryEscrow workflows, and RWA profit distribution strategies in our interactive presentation deck.</p>
+   <h3 data-i18n-html-en="Ecosystem Master <em>Pitch Deck</em>" data-i18n-html-fa="فایل ارائه جامع <em>اکوسیستم (Pitch Deck)</em>">Ecosystem Master <em>Pitch Deck</em></h3>
+   <p data-i18n-en="Explore the complete business model, 4-layer architecture, DeliveryEscrow workflows, and RWA profit distribution strategies in our interactive presentation deck." data-i18n-fa="مدل کسب‌وکار، معماری چهارلایه، چرخه کاری DeliveryEscrow و استراتژی‌های تسهیم سود دارایی‌های واقعی (RWA) را در فایل ارائه تعاملی ما بررسی کنید.">Explore the complete business model, 4-layer architecture, DeliveryEscrow workflows, and RWA profit distribution strategies in our interactive presentation deck.</p>
   </div>
 
   <!-- Right Side: Glowing Button Action -->
   <div class="deck-action">
   <a href="aervynx_one_pitch_deck.html" target="_blank" class="btn btn--deck" aria-label="Open Aervnyx Pitch Deck">
     <i data-i="layers"></i>
-    <span>View Presentation</span>
+    <span data-i18n-en="View Presentation" data-i18n-fa="مشاهده پیچ‌دک">View Presentation</span>
    </a>
   </div>
  </div>
 </section>
-
-<!-- ================================================
-     SECTION 11: FINAL CTA
-================================================= -->
-<!-- <section class="cta" id="cta"> -->
-    
-<!-- ================================================
-     SECTION 08: FINAL CTA
-     EDIT: heading, copy, buttons. Image: AERVNYX_ASSETS.finalCTA.
-================================================= -->
-<!-- <section class="cta" id="cta">
- <div class="cta__bg" data-asset="finalCTA" data-alt="" aria-hidden="true"></div>
- <div class="wrap rv">
-  <h2>The Future of Real-World Ownership Starts Here.</h2>
-  <p class="lead">Explore the technologies and infrastructure designed to connect physical assets with digital ownership.</p>
-  <div class="ctas"><a class="btn" href="#ecosystem">Explore the Ecosystem <i data-i="arrow"></i></a><a class="btn btn--ghost" href="#technology">Explore Technology</a></div>
- </div>
-</section>
-</main> -->
 
 <!-- ================================================
      SECTION 09: FOOTER
@@ -430,15 +613,15 @@ document.addEventListener('click',function(e){
   <div class="foot__grid">
    <div class="foot__brand">
     <a class="logo" href="#home"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M3 28 16 3l13 25h-6.5L16 14.5 9.5 28z"/></svg>Aervnyx</a>
-    <p>Bridging the physical and digital worlds through tokenized assets, autonomous delivery, and secure blockchain infrastructure.</p>
+    <p data-i18n-en="Bridging the physical and digital worlds through tokenized assets, autonomous delivery, and secure blockchain infrastructure." data-i18n-fa="ایجاد پل ارتباطی میان دنیای فیزیکی و دیجیتال از طریق توکنایز دارایی‌ها، تحویل خودکار و زیرساخت امن بلاکچین.">Bridging the physical and digital worlds through tokenized assets, autonomous delivery, and secure blockchain infrastructure.</p>
     <div class="soc" id="soc"></div>
    </div>
    
    <div id="fgroups"></div>
    
    <div class="foot__news">
-    <h3>Stay Updated</h3>
-    <p>Get the latest news and updates from Aervnyx.</p>
+    <h3 data-i18n-en="Stay Updated" data-i18n-fa="همراه ما باشید">Stay Updated</h3>
+    <p data-i18n-en="Get the latest news and updates from Aervnyx." data-i18n-fa="آخرین اخبار، بروزرسانی‌های فنی و اطلاعیه‌های اکوسیستم Aervynx را دریافت کنید.">Get the latest news and updates from Aervnyx.</p>
     <form class="news" id="news" novalidate>
      <label class="sr" for="email">Email address</label>
      <input id="email" name="email" type="email" placeholder="Enter your email" autocomplete="email" required aria-describedby="nmsg">
@@ -455,8 +638,8 @@ document.addEventListener('click',function(e){
    <div class="mh-signature-box" title="Engineering & UI/UX" style="margin: 0;">
     <i class="mh-sig-dot"></i>
     <span class="mh-sig-text">
-     <span data-en="Designed & Engineered by" data-fa="طراحی و توسعه توسط">Designed & Engineered by</span>
-     <b data-en="Mohammad Hossein Ghiasvand" data-fa="محمد حسین غیاثوند">Mohammad Hossein Ghiasvand</b>
+     <span data-i18n-en="Designed & Engineered by" data-i18n-fa="طراحی و توسعه توسط">Designed & Engineered by</span>
+     <b data-i18n-en="Mohammad Hossein Ghiasvand" data-i18n-fa="محمد حسین غیاثوند">Mohammad Hossein Ghiasvand</b>
     </span>
    </div>
 
@@ -465,7 +648,7 @@ document.addEventListener('click',function(e){
     <span style="font-size: 10.5px; color: var(--color-text-muted); font-family: var(--mono); letter-spacing: 0.08em; text-transform: uppercase;">
      © <span id="yr">2026</span> AERVYNX PROTOCOL. ALL RIGHTS RESERVED.
     </span>
-    <span style="font-size: 10px; color: var(--color-text-muted); opacity: 0.6;" data-en="Descriptions are conceptual. A token does not by itself establish legal title." data-fa="توضیحات مفهومی هستند. توکن به تنهایی سند مالکیت قانونی محسوب نمی‌شود.">
+    <span style="font-size: 10px; color: var(--color-text-muted); opacity: 0.6;" data-i18n-en="Descriptions are conceptual. A token does not by itself establish legal title." data-i18n-fa="توضیحات مفهومی هستند. توکن به تنهایی سند مالکیت قانونی محسوب نمی‌شود.">
      Descriptions are conceptual. A token does not by itself establish legal title.
     </span>
    </div>
@@ -474,5 +657,223 @@ document.addEventListener('click',function(e){
  </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- ================================================
+     ZERO-LOOP IN-PAGE BILINGUAL CONTROLLER (EN <-> FA)
+     Directly maps CONFIG (EN) & Institutional FA Copy
+================================================= -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  "use strict";
+
+  // High-Standard Institutional Web3 Persian Copy (Matching exact index order of CONFIG in js/main.js)
+  const FA_DATA = {
+    nav: ["خانه", "محصولات", "فناوری", "نقشه راه", "تیم", "وایت‌پیپر", "درباره ما", "پیچ‌دک"],
+    products: [
+      { label: "لجستیک هوایی", title: "پهپادهای توکنایزشده", text: "مشارکت ساختاریافته و حقوقی در اقتصاد ناوگان پهپادهای ترابری، مطابق با شرایط و ضوابط عرضه." },
+      { label: "دارایی‌های حمل‌ونقل", title: "خودروهای توکنایزشده", text: "مدل‌های توکنایز دارایی برای نمایندگی حقوق یا منافع قراردادی در نهادهای اختصاصی خودرو (SPV)." },
+      { label: "امنیت خزانه‌داری", title: "خزانه امن ZeroVault", text: "معماری ماژولار امنیت خزانه مجهز به دسترسی مبتنی بر نقش، قفل‌های زمانی، توقف اضطراری و اجرای کنترل‌شده." },
+      { label: "تحویل تأییدشده", title: "اسکرو و تحویل هوشمند", text: "گردش‌کارهای حساب امانی (Escrow) جهت آزادسازی خودکار وجه بر اساس شرایط تعریف‌شده و شواهد معتبر." },
+      { label: "هوانوردی Web3", title: "بلیت پرواز NFT", text: "رزرو بلیت‌های هواپیما در قالب NFTهای درون‌زنجیره‌ای؛ بهره‌مندی از تخفیف توکن بومی و پرداخت اقساطی با نگهداری NFTهای واجد شرایط." },
+      { label: "تسویه آنی فروشگاهی", title: "کارت مستقیم کیف‌پول", text: "خرج کردن معادل لحظه‌ای فیاتِ توکن‌ها در پایانه‌های کارت‌خوان (POS) از طریق کارت بانکی متصل به کیف‌پول Web3." },
+      { label: "توکن‌های کاربردی و BNPL", title: "مارکت‌پلیس NFT", text: "معامله دارایی‌های اکوسیستم و NFTهای سطح اعتباری که امتیاز خرید اقساطی (BNPL) را برای دارندگان کیف‌پول فعال می‌کنند." },
+      { label: "گیمیفیکیشن و پاداش", title: "آرکید پهپاد دوبعدی", text: "هدایت پهپادهای رزمی در یک بازی هوایی کلاسیک دوبعدی؛ کسب امتیاز برای آزادسازی کوپن‌های تخفیف و NFTهای پاداش." }
+    ],
+    learnMore: "بیشتر بدانید",
+    metrics: [
+      { label: "دارایی‌های دنیای واقعی", value: "در حال توسعه" },
+      { label: "محصولات اکوسیستم", value: "قابلیت‌های پلتفرم" },
+      { label: "گستره عملیاتی", value: "مقیاس اکوسیستم" },
+      { label: "جامعه کاربری", value: "آشنایی با چشم‌انداز" }
+    ],
+    movementHtml: "فراتر از دارایی؛<br>یک جنبش زیرساختی.",
+    features: [
+      { t: "ZeroVault", s: "امنیت خزانه‌داری و کنترل‌های اجرایی" },
+      { t: "توکنایز دارایی‌ها", s: "نمایش دیجیتال دارایی‌های واجد شرایط" },
+      { t: "توزیع سود", s: "فرآیندهای شفاف و تعریف‌شده تسهیم عواید" },
+      { t: "مارکت‌پلیس", s: "کشف فرصت‌ها و مشارکت اقتصادی" }
+    ],
+    layers: [
+      { t: "لایه اپلیکیشن", s: "محصولات و خدمات", x: "رابط‌های کاربری برای بررسی، مشارکت و پایش لحظه‌ای." },
+      { t: "لایه دارایی", s: "خودروها و پهپادها", x: "دارایی‌های دنیای واقعی و نهادهای حقوقی نگهدارنده آن‌ها." },
+      { t: "لایه بلاکچین", s: "توکنایز و شفافیت", x: "معرفی دیجیتال دارایی‌ها و ثبت شفاف سوابق روی زنجیره." },
+      { t: "لایه زیرساخت", s: "تسویه و ذخیره‌سازی", x: "ریل‌های تسویه مالی، نگهداری امن و ذخیره‌سازی داده." }
+    ],
+    steps: [
+      { t: "بررسی و کشف دارایی", s: "دارایی‌ها و محصولات موجود در اکوسیستم را بررسی کنید." },
+      { t: "مطالعه ساختار حقوقی", s: "حقوق قانونی، شرایط قراردادی، معیارهای صلاحیت و ریسک‌ها را بشناسید." },
+      { t: "مشارکت در چرخه", s: "فرآیند پشتیبانی‌شده برای محصول موردنظر خود را دنبال کنید." },
+      { t: "پایش و رهگیری فعالیت", s: "تراکنش‌ها، اطلاعات عملیاتی و تخصیص‌های دوره‌ای را مرور نمایید." }
+    ],
+    roadmap: [
+      { time: "فاز ۱ - ۳ ماه", title: "پیدایش و معماری پایه", text: "راه‌اندازی اولیه اکوسیستم، طراحی مفهومی و توسعه زیرساخت هسته." },
+      { time: "فاز ۲ - ۶ ماه", title: "راه‌اندازی شبکه آزمایشی (Testnet)", text: "انتشار نسخه بتای ZeroVault، استقرار قراردادهای هوشمند و ممیزی‌های امنیتی اولیه." },
+      { time: "فاز ۳ - ۴ ماه", title: "گسترش و یکپارچه‌سازی", text: "ورود به بازارهای هدف، یکپارچه‌سازی دارایی‌های دنیای واقعی (RWA) و توسعه ناوگان پهپادی." },
+      { time: "فاز ۴ - ۵ ماه", title: "کارت مستقیم POS و اعتبار BNPL", text: "عرضه کارت بانکی متصل به کیف‌پول، بلیت پرواز NFT با قابلیت خرید اقساطی و بازی آرکید پهپادی." },
+      { time: "فاز ۵ - مستمر", title: "خودگردانی کامل شبکه", text: "تکمیل تمرکززدایی، فعال‌سازی حاکمیت مشارکتی (DAO) و پایداری کامل عملیات خودکار." }
+    ],
+    team: [
+      { name: "علی نصیرلو", role: "بنیان‌گذار و امنیت قراردادهای هوشمند", text: "توسعه و ممیزی امنیتی قراردادهای هوشمند، با تمرکز بر کشف آسیب‌پذیری‌ها، بهینه‌سازی پروتکل و راهکارهای امن درون‌زنجیره‌ای." },
+      { name: "محمدحسین غیاثوند", role: "بنیان‌گذار، توسعه‌دهنده قرارداد هوشمند و وب", text: "توسعه و پیاده‌سازی قراردادهای هوشمند، طراحی سازوکارهای درون‌زنجیره‌ای و ساخت راهکارهای غیرمتمرکز روی شبکه‌های سازگار با EVM." },
+      { name: "پارسا ابوالحسنی راد", role: "بنیان‌گذار و مشاور فنی", text: "مشاوره فنی و معماری راهکار برای سامانه‌های بلاکچینی، انتزاع حساب (ERC-4337) و یکپارچه‌سازی زیرساخت‌های Web3." },
+      { name: "مرضیه ثاقب علیزاده", role: "مدیر پروژه و عملیات", text: "مدیریت اجرای چابک، راهبری نقشه راه محصول و هم‌راستاسازی تیم‌های فنی و عملیاتی اکوسیستم." },
+      { name: "میلاد کلهر", role: "مهندس ارشد فول‌استک", text: "توسعه میکروسرویس‌های بک‌اند مقاوم، زیرساخت‌های شتاب بیت‌بانک و رابط‌های برنامه‌نویسی ناوگان." },
+      { name: "نیکا وحیدی", role: "استراتژیست محتوا و خلاقیت", text: "تبدیل معماری پیچیده بلاکچین و مفاهیم RWA به روایت‌های بصری و محتوایی استاندارد برای پذیرش کاربران و شرکای سازمانی." }
+    ],
+    footer: [
+      { title: "محصولات", links: ["پهپادهای توکنایزشده", "خودروهای توکنایزشده", "ZeroVault", "اسکرو و تحویل"] },
+      { title: "شرکت", links: ["درباره ما", "فرصت‌های شغلی", "وبلاگ", "تماس با ما"] },
+      { title: "منابع", links: ["مستندات فنی", "فناوری", "اکوسیستم", "پرسش‌های متداول"] },
+      { title: "حقوقی", links: ["شرایط استفاده", "حریم خصوصی", "افشای ریسک"] }
+    ]
+  };
+
+  function setPageLanguage(lang) {
+    const isFa = lang === "fa";
+    document.documentElement.lang = isFa ? "fa" : "en";
+    document.documentElement.dir = isFa ? "rtl" : "ltr";
+
+    try { localStorage.setItem("aervynx-lang", isFa ? "fa" : "en"); } catch (_) {}
+
+    // 1. Update static text nodes in index.html
+    document.querySelectorAll("[data-i18n-en][data-i18n-fa]").forEach(el => {
+      el.textContent = el.getAttribute(isFa ? "data-i18n-fa" : "data-i18n-en");
+    });
+    document.querySelectorAll("[data-i18n-html-en][data-i18n-html-fa]").forEach(el => {
+      el.innerHTML = el.getAttribute(isFa ? "data-i18n-html-fa" : "data-i18n-html-en");
+    });
+
+    // 2. Update Tech Grid items (which already carry data-en / data-fa from main.js)
+    document.querySelectorAll("#tech [data-en][data-fa]").forEach(el => {
+      el.textContent = el.getAttribute(isFa ? "data-fa" : "data-en");
+    });
+
+    // 3. Update Navigation links (#links)
+    document.querySelectorAll("#links a.l").forEach((a, i) => {
+      if (!a.dataset.enOrig) a.dataset.enOrig = a.textContent;
+      a.textContent = isFa ? (FA_DATA.nav[i] || a.dataset.enOrig) : a.dataset.enOrig;
+    });
+
+    // 4. Update 8 Product Cards (#cards)
+    document.querySelectorAll("#cards .card").forEach((card, i) => {
+      const sm = card.querySelector(".card__body small");
+      const h3 = card.querySelector(".card__body h3");
+      const p  = card.querySelector(".card__body p");
+      const go = card.querySelector(".card__go > span:first-child");
+      const fa = FA_DATA.products[i];
+      if (!fa) return;
+
+      if (sm) { if (!sm.dataset.enOrig) sm.dataset.enOrig = sm.textContent; sm.textContent = isFa ? fa.label : sm.dataset.enOrig; }
+      if (h3) { if (!h3.dataset.enOrig) h3.dataset.enOrig = h3.textContent; h3.textContent = isFa ? fa.title : h3.dataset.enOrig; }
+      if (p)  { if (!p.dataset.enOrig)  p.dataset.enOrig  = p.textContent;  p.textContent  = isFa ? fa.text  : p.dataset.enOrig; }
+      if (go) { if (!go.dataset.enOrig) go.dataset.enOrig = go.textContent; go.textContent = isFa ? FA_DATA.learnMore : go.dataset.enOrig; }
+    });
+
+    // 5. Update Metrics Strip (#metrics)
+    document.querySelectorAll("#metrics .m").forEach((mEl, i) => {
+      const b = mEl.querySelector("b");
+      const s = mEl.querySelector("span");
+      const fa = FA_DATA.metrics[i];
+      if (!fa) return;
+      if (b) { if (!b.dataset.enOrig) b.dataset.enOrig = b.textContent; b.textContent = isFa ? fa.label : b.dataset.enOrig; }
+      if (s) { if (!s.dataset.enOrig) s.dataset.enOrig = s.textContent; s.textContent = isFa ? fa.value : s.dataset.enOrig; }
+    });
+    const mMore = document.querySelector("#metrics .m__more > span:first-child");
+    if (mMore) {
+      if (!mMore.dataset.enOrig) mMore.dataset.enOrig = mMore.innerHTML;
+      mMore.innerHTML = isFa ? FA_DATA.movementHtml : mMore.dataset.enOrig;
+    }
+
+    // 6. Update Ecosystem Features (#feat) & Diagram Layers (#dia .dl li)
+    document.querySelectorAll("#feat li").forEach((li, i) => {
+      const b = li.querySelector("b");
+      const sm = li.querySelector("small");
+      const fa = FA_DATA.features[i];
+      if (!fa) return;
+      if (b)  { if (!b.dataset.enOrig)  b.dataset.enOrig  = b.textContent;  b.textContent  = isFa ? fa.t : b.dataset.enOrig; }
+      if (sm) { if (!sm.dataset.enOrig) sm.dataset.enOrig = sm.textContent; sm.textContent = isFa ? fa.s : sm.dataset.enOrig; }
+    });
+
+    document.querySelectorAll("#dia .dl li").forEach((li, i) => {
+      const b = li.querySelector("b");
+      const s = li.querySelector("span");
+      const x = li.querySelector("p.ex");
+      const fa = FA_DATA.layers[i];
+      if (!fa) return;
+      if (b) { if (!b.dataset.enOrig) b.dataset.enOrig = b.textContent; b.textContent = isFa ? fa.t : b.dataset.enOrig; }
+      if (s) { if (!s.dataset.enOrig) s.dataset.enOrig = s.textContent; s.textContent = isFa ? fa.s : s.dataset.enOrig; }
+      if (x) { if (!x.dataset.enOrig) x.dataset.enOrig = x.textContent; x.textContent = isFa ? fa.x : x.dataset.enOrig; }
+    });
+
+    // 7. Update How It Works Steps (#steps)
+    document.querySelectorAll("#steps .step").forEach((st, i) => {
+      const h3 = st.querySelector("h3");
+      const p  = st.querySelector("p");
+      const fa = FA_DATA.steps[i];
+      if (!fa) return;
+      if (h3) { if (!h3.dataset.enOrig) h3.dataset.enOrig = h3.textContent; h3.textContent = isFa ? fa.t : h3.dataset.enOrig; }
+      if (p)  { if (!p.dataset.enOrig)  p.dataset.enOrig  = p.textContent;  p.textContent  = isFa ? fa.s : p.dataset.enOrig; }
+    });
+
+    // 8. Update Roadmap (#rm-container)
+    document.querySelectorAll("#rm-container .rm__item").forEach((item, i) => {
+      const tm = item.querySelector(".rm__time");
+      const h3 = item.querySelector("h3");
+      const p  = item.querySelector("p");
+      const fa = FA_DATA.roadmap[i];
+      if (!fa) return;
+      if (tm) { if (!tm.dataset.enOrig) tm.dataset.enOrig = tm.textContent; tm.textContent = isFa ? fa.time  : tm.dataset.enOrig; }
+      if (h3) { if (!h3.dataset.enOrig) h3.dataset.enOrig = h3.textContent; h3.textContent = isFa ? fa.title : h3.dataset.enOrig; }
+      if (p)  { if (!p.dataset.enOrig)  p.dataset.enOrig  = p.textContent;  p.textContent  = isFa ? fa.text  : p.dataset.enOrig; }
+    });
+
+    // 9. Update Team Cards (#team-grid)
+    document.querySelectorAll("#team-grid .team__card").forEach((card, i) => {
+      const h3 = card.querySelector(".team__info h3");
+      const sp = card.querySelector(".team__info span");
+      const p  = card.querySelector(".team__info p");
+      const fa = FA_DATA.team[i];
+      if (!fa) return;
+      if (h3) { if (!h3.dataset.enOrig) h3.dataset.enOrig = h3.textContent; h3.textContent = isFa ? fa.name : h3.dataset.enOrig; }
+      if (sp) { if (!sp.dataset.enOrig) sp.dataset.enOrig = sp.textContent; sp.textContent = isFa ? fa.role : sp.dataset.enOrig; }
+      if (p)  { if (!p.dataset.enOrig)  p.dataset.enOrig  = p.textContent;  p.textContent  = isFa ? fa.text : p.dataset.enOrig; }
+    });
+
+    // 10. Update Footer Groups (#fgroups) & Email Input
+    document.querySelectorAll("#fgroups > div").forEach((grp, i) => {
+      const h3 = grp.querySelector("h3");
+      const links = grp.querySelectorAll("ul li a");
+      const fa = FA_DATA.footer[i];
+      if (!fa) return;
+      if (h3) { if (!h3.dataset.enOrig) h3.dataset.enOrig = h3.textContent; h3.textContent = isFa ? fa.title : h3.dataset.enOrig; }
+      links.forEach((a, j) => {
+        if (!a.dataset.enOrig) a.dataset.enOrig = a.textContent;
+        a.textContent = isFa ? (fa.links[j] || a.dataset.enOrig) : a.dataset.enOrig;
+      });
+    });
+
+    const emailIn = document.getElementById("email");
+    if (emailIn) {
+      emailIn.placeholder = isFa ? "ایمیل خود را وارد کنید" : "Enter your email";
+    }
+
+    // 11. Update Header Language Button Active Indicator
+    document.querySelectorAll("[data-lang-code]").forEach(el => {
+      el.classList.toggle("active", el.getAttribute("data-lang-code") === (isFa ? "fa" : "en"));
+    });
+  }
+
+  // Bind click event on the header language switcher button
+  const langBtn = document.querySelector("[data-lang-switch]");
+  if (langBtn) {
+    langBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const nextLang = document.documentElement.lang === "fa" ? "en" : "fa";
+      setPageLanguage(nextLang);
+    }, true);
+  }
+});
+</script>
 </body>
 </html>

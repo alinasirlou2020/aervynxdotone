@@ -15,6 +15,7 @@
 
   const AERVNYX_ASSETS = {
   heroBackground:    "assets/hero7-city-drone.png",    // HERO: skyline + drone + autonomous vehicle (wide, 2400×1350)
+  heroBackgroundMobile: "assets/hero-mobile.png.PNG", // HERO MOBILE: skyline + drone + autonomous vehicle (wide, 2400×1350)
   tokenizedDrones:   "assets/tokenized-drones3.png",   // CARD 1: delivery drone (16:10, 1200×750)
   tokenizedVehicles: "assets/tokenized-vehicles3.png", // CARD 2: premium vehicle (16:10, 1200×750)
   zeroVault:         "assets/zerovault4.png",          // CARD 3: digital treasury vault (16:10, 1200×750)
@@ -529,14 +530,29 @@ function skyline() {
 
 /* ---------- IMAGES: loads AERVNYX_ASSETS into every [data-asset] box ---------- */
 function loadAssets() {
+  const mobileMQ = window.matchMedia("(max-width: 768px)");
   $$("[data-asset]").forEach(box => {
-    const src = AERVNYX_ASSETS[box.dataset.asset]; if (!src) return;
+    const key = box.dataset.asset;
+    const desktopSrc = AERVNYX_ASSETS[key];
+    if (!desktopSrc) return;
+
     const im = document.createElement("img"), eager = box.hasAttribute("data-eager");
     im.alt = box.dataset.alt || ""; im.decoding = "async"; im.loading = eager ? "eager" : "lazy";
-    if (eager) im.fetchPriority = "high"; // hero image is never lazy-loaded
-    im.onload = () => box.closest(".hero")?.classList.add("has-img"); // hides the SVG fallback scene
-    im.onerror = () => im.remove();                            // missing file → fallback stays
-    im.src = src; box.appendChild(im);
+    if (eager) im.fetchPriority = "high";
+    im.onload = () => box.closest(".hero")?.classList.add("has-img");
+    im.onerror = () => im.remove();
+
+    if (key === "heroBackground" && AERVNYX_ASSETS.heroBackgroundMobile) {
+      const syncHeroImg = () => {
+        im.src = mobileMQ.matches ? AERVNYX_ASSETS.heroBackgroundMobile : desktopSrc;
+      };
+      syncHeroImg();
+      mobileMQ.addEventListener("change", syncHeroImg);
+    } else {
+      im.src = desktopSrc;
+    }
+
+    box.appendChild(im);
   });
 }
 
